@@ -5,7 +5,7 @@ User Stories:
 
 As a teacher/caretaker, I want to:
 1. Be able to choose videos from youTube and photos from the web or photo library for my student to view during reward time
-2. Be able to add and delete content
+2. Be able to add and delete content/
 3. Be able to sort content into categories based on my student's varied interests and choose which content he/she can view
 4. Be able to set the amount of reward time for my student
 5. Sign into the teacher interface of the app using a password and have the option of setting a password for the student interface of the app
