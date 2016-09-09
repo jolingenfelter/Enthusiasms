@@ -4,7 +4,7 @@ Bloc Capstone
 User Stories:
 
 As a teacher/caretaker, I want to:  
-  1. Be able to create individual accounts for my students
+  1. Be able to create and delete individual accounts for my students
   2. Be able to choose videos from youTube and photos from the web or photo library for my students to view during reward time  
   3. Be able to add and delete content   
   4. Be able to sort content into categories based on my students' varied interests and choose which content they can view  
