@@ -14,6 +14,10 @@
 		9EB4F4C51D8E120500E81C74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */; };
 		9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */; };
 		9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */; };
+		9EE2E7311D8EDDB800B3D53F /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E72D1D8EDDB800B3D53F /* Content+CoreDataClass.swift */; };
+		9EE2E7321D8EDDB800B3D53F /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */; };
+		9EE2E7331D8EDDB800B3D53F /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */; };
+		9EE2E7341D8EDDB800B3D53F /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		9EB4F4C61D8E120500E81C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		9EE2E72D1D8EDDB800B3D53F /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +50,10 @@
 		9EB4F4AE1D8E120500E81C74 = {
 			isa = PBXGroup;
 			children = (
+				9EE2E72D1D8EDDB800B3D53F /* Content+CoreDataClass.swift */,
+				9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */,
+				9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */,
+				9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */,
 				9EB4F4B91D8E120500E81C74 /* EnthusiasmsApp */,
 				9EB4F4B81D8E120500E81C74 /* Products */,
 			);
@@ -144,8 +156,12 @@
 			files = (
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
+				9EE2E7341D8EDDB800B3D53F /* Student+CoreDataProperties.swift in Sources */,
+				9EE2E7321D8EDDB800B3D53F /* Content+CoreDataProperties.swift in Sources */,
+				9EE2E7331D8EDDB800B3D53F /* Student+CoreDataClass.swift in Sources */,
 				9EB4F4BD1D8E120500E81C74 /* ViewController.swift in Sources */,
 				9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */,
+				9EE2E7311D8EDDB800B3D53F /* Content+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +325,7 @@
 				9EB4F4CB1D8E120500E81C74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
