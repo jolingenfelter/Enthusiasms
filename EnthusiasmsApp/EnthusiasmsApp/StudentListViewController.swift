@@ -11,6 +11,8 @@ import CoreData
 
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    var studentName = String()
+    
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
         let request: NSFetchRequest<Student> = Student.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -61,6 +63,15 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         cell.textLabel?.text = student.name
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = fetchedResultsController.object(at: indexPath)
+        let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
+        teacherCollectionViewController.studentName = student.name!
+        let navController = UINavigationController(rootViewController: teacherCollectionViewController)
+        self.present(navController, animated: true, completion: nil)
+        
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

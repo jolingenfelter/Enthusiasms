@@ -12,13 +12,13 @@ import CoreData
 class CreateStudentPopoverViewController: UIViewController {
 
     @IBOutlet weak var studentNameTextField: UITextField!
-    
+
     let dataController = DataController.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +38,6 @@ class CreateStudentPopoverViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-
     /*
     // MARK: - Navigation
 
