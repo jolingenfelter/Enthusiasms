@@ -18,6 +18,8 @@
 		9EE2E7321D8EDDB800B3D53F /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */; };
 		9EE2E7331D8EDDB800B3D53F /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */; };
 		9EE2E7341D8EDDB800B3D53F /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */; };
+		9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */; };
+		9EE2E7381D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
+		9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentPopoverViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
 				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
 				9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */,
+				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
+				9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */,
 			);
 			path = EnthusiasmsApp;
 			sourceTree = "<group>";
@@ -155,12 +161,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
+				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9EE2E7341D8EDDB800B3D53F /* Student+CoreDataProperties.swift in Sources */,
 				9EE2E7321D8EDDB800B3D53F /* Content+CoreDataProperties.swift in Sources */,
 				9EE2E7331D8EDDB800B3D53F /* Student+CoreDataClass.swift in Sources */,
 				9EB4F4BD1D8E120500E81C74 /* ViewController.swift in Sources */,
 				9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */,
+				9EE2E7381D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift in Sources */,
 				9EE2E7311D8EDDB800B3D53F /* Content+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
