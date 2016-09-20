@@ -69,8 +69,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         let student = fetchedResultsController.object(at: indexPath)
         let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
         teacherCollectionViewController.studentName = student.name!
-        //let navController = UINavigationController(rootViewController: teacherCollectionViewController)
-        //self.present(navController, animated: true, completion: nil)
         self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
         
     }
