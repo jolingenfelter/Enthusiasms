@@ -20,6 +20,12 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func teacherPressed(_ sender: AnyObject) {
+        
+        let studentListNavController = self.storyboard?.instantiateViewController(withIdentifier: "studentListNavController") as! UINavigationController
+        
+        self.present(studentListNavController, animated: true, completion: nil)
+    }
 
 }
 

@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 private let reuseIdentifier = "Cell"
 
 class TeacherCollectionViewController: UICollectionViewController {
     
     var studentName = String()
+    
+    lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
+        let request: NSFetchRequest<Content> = Content.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
+        request.sortDescriptors = [sortDescriptor]
+        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        return controller
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,11 +34,12 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         self.title = studentName
-        navigationControllerSetup()
+        self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        navigationBarSetup()
 
     }
     
-    func navigationControllerSetup() {
+    func navigationBarSetup() {
         let studentsListBarButton = UIBarButtonItem(title: "Students", style: .plain, target: self, action: #selector(TeacherCollectionViewController.studentsListPressed))
         let settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(TeacherCollectionViewController.settingsPressed))
         
@@ -43,8 +54,9 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func studentsListPressed() {
-        let studentsListVC = self.storyboard?.instantiateViewController(withIdentifier: "studentListNavController") as! UINavigationController
-        self.present(studentsListVC, animated: true, completion: nil)
+        if let navController = self.navigationController {
+            navController.popToRootViewController(animated: true)
+        }
     }
     
     func settingsPressed() {
@@ -52,8 +64,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func homePressed() {
-        let homeVC = self.storyboard?.instantiateViewController(withIdentifier: "homeViewController") as! ViewController
-        self.present(homeVC, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,21 +72,11 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        
+        return fetchedResultsController.sections?.count ?? 0
     }
 
 

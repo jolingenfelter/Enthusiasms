@@ -49,7 +49,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <segue destination="Tuk-J4-fpa" kind="presentation" id="Gdo-hG-Z72"/>
+                                    <action selector="teacherPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c83-rU-vvl"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enthusiasms" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfS-hl-0gG">
@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="141.40625" y="138.8671875"/>
         </scene>
-        <!--Add a student-->
+        <!--Create Student Popover View Controller-->
         <scene sceneID="x7j-zm-frx">
             <objects>
                 <viewController storyboardIdentifier="createStudentPopver" modalPresentationStyle="formSheet" id="1N3-Pr-j4C" customClass="CreateStudentPopoverViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -117,13 +117,6 @@
                             <constraint firstItem="8Iw-Hp-yVb" firstAttribute="top" secondItem="fAT-Jz-ZVi" secondAttribute="bottom" constant="171" id="y1l-Fd-Nd8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a student" id="Y90-CH-oJE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="o7u-Qw-nUU">
-                            <connections>
-                                <action selector="cancelPressed:" destination="1N3-Pr-j4C" id="6Z3-pW-A7b"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -134,7 +127,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WzL-Eo-zlF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1645" y="-606"/>
+            <point key="canvasLocation" x="1645" y="-534"/>
         </scene>
         <!--Student List View Controller-->
         <scene sceneID="edx-Ny-ss2">
@@ -164,7 +157,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Home" id="hfX-Jj-Tfh">
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" id="Yqi-Di-y59"/>
+                                    <action selector="homeWasPressed:" destination="6CB-cW-kRq" id="ONt-WV-lLK"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="uyN-wp-V2K">

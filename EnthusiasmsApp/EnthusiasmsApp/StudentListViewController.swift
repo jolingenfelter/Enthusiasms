@@ -69,8 +69,9 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         let student = fetchedResultsController.object(at: indexPath)
         let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
         teacherCollectionViewController.studentName = student.name!
-        let navController = UINavigationController(rootViewController: teacherCollectionViewController)
-        self.present(navController, animated: true, completion: nil)
+        //let navController = UINavigationController(rootViewController: teacherCollectionViewController)
+        //self.present(navController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
         
     }
 
@@ -95,13 +96,12 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {
         let createStudentPopover = self.storyboard?.instantiateViewController(withIdentifier: "createStudentPopver") as! CreateStudentPopoverViewController
-        createStudentPopover.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popController = createStudentPopover.popoverPresentationController
-        popController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-        popController?.sourceView = self.view
-        popController?.sourceRect = CGRect(x: self.view.bounds.width * 0.5, y: self.view.bounds.height * 0.5, width: 0, height: 0)
-        
+        createStudentPopover.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentPopover, animated: false, completion: nil)
+    }
+    
+    @IBAction func homeWasPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

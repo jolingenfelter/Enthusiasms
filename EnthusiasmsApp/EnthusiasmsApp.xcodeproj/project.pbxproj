@@ -53,13 +53,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9EB4F4AE1D8E120500E81C74 = {
+		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				9EE2E72D1D8EDDB800B3D53F /* Content+CoreDataClass.swift */,
 				9EE2E72E1D8EDDB800B3D53F /* Content+CoreDataProperties.swift */,
 				9EE2E72F1D8EDDB800B3D53F /* Student+CoreDataClass.swift */,
 				9EE2E7301D8EDDB800B3D53F /* Student+CoreDataProperties.swift */,
+			);
+			name = CoreData;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9EB4F4AE1D8E120500E81C74 = {
+			isa = PBXGroup;
+			children = (
 				9EB4F4B91D8E120500E81C74 /* EnthusiasmsApp */,
 				9EB4F4B81D8E120500E81C74 /* Products */,
 			);
@@ -76,17 +84,18 @@
 		9EB4F4B91D8E120500E81C74 /* EnthusiasmsApp */ = {
 			isa = PBXGroup;
 			children = (
+				9E5EC2161D90CDB40014FC35 /* CoreData */,
 				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
+				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
 				9EB4F4BC1D8E120500E81C74 /* ViewController.swift */,
+				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
+				9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */,
+				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9EB4F4BE1D8E120500E81C74 /* Main.storyboard */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
-				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
 				9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */,
-				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
-				9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */,
-				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 			);
 			path = EnthusiasmsApp;
 			sourceTree = "<group>";
