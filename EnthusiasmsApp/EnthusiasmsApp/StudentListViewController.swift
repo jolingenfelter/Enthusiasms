@@ -11,6 +11,8 @@ import CoreData
 
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    var studentName = String()
+    
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
         let request: NSFetchRequest<Student> = Student.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -62,6 +64,14 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let student = fetchedResultsController.object(at: indexPath)
+        let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
+        teacherCollectionViewController.studentName = student.name!
+        self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
+        
+    }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         
@@ -84,13 +94,12 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {
         let createStudentPopover = self.storyboard?.instantiateViewController(withIdentifier: "createStudentPopver") as! CreateStudentPopoverViewController
-        createStudentPopover.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popController = createStudentPopover.popoverPresentationController
-        popController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-        popController?.sourceView = self.view
-        popController?.sourceRect = CGRect(x: self.view.bounds.width * 0.5, y: self.view.bounds.height * 0.5, width: 0, height: 0)
-        
+        createStudentPopover.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentPopover, animated: false, completion: nil)
+    }
+    
+    @IBAction func homeWasPressed(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

@@ -12,13 +12,25 @@ import CoreData
 class CreateStudentPopoverViewController: UIViewController {
 
     @IBOutlet weak var studentNameTextField: UITextField!
-    
+
     let dataController = DataController.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
+        let navBar = UINavigationBar(frame: navBarRect)
+        
+        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CreateStudentPopoverViewController.cancelWasPressed))
+        let navItem = UINavigationItem(title: "Add a Student")
+        navItem.leftBarButtonItem = cancelBarButton
+        navBar.items = [navItem]
+        
+        view.addSubview(navBar)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,19 +38,29 @@ class CreateStudentPopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    
-    @IBAction func cancelPressed(_ sender: AnyObject) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-
     @IBAction func addStudentPressed(_ sender: AnyObject) {
-        let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: dataController.managedObjectContext) as! Student
-        student.name = studentNameTextField.text
-        dataController.saveContext()
-        dismiss(animated: true, completion: nil)
+        
+        if studentNameTextField.text == "" {
+            noNameAlert()
+        } else {
+            let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: dataController.managedObjectContext) as! Student
+            student.name = studentNameTextField.text
+            dataController.saveContext()
+            dismiss(animated: true, completion: nil)
+        }
     }
     
-
+    func cancelWasPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func noNameAlert() {
+        let alertVC = UIAlertController(title: "Required Field", message: "Please enter student name", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertVC.addAction(okAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
