@@ -46,10 +46,11 @@ class TeacherCollectionViewController: UICollectionViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 20
         
+        let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TeacherCollectionViewController.addPressed))
         let homeBarButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(TeacherCollectionViewController.homePressed))
         
         self.navigationItem.leftBarButtonItems = [studentsListBarButton, space, settingsBarButton]
-        self.navigationItem.rightBarButtonItem = homeBarButton
+        self.navigationItem.rightBarButtonItems = [homeBarButton, addContentBarButton]
         
     }
     
@@ -60,6 +61,10 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func settingsPressed() {
+        
+    }
+    
+    func addPressed() {
         
     }
     
