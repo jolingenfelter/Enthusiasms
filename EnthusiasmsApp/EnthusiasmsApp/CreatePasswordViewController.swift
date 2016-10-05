@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatePasswordViewController: UIViewController {
+class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
     
     let titleLabel = UILabel()
     
@@ -49,6 +49,20 @@ class CreatePasswordViewController: UIViewController {
         createPasswordTextField.placeholder = "Password"
         confirmPasswordTextField.placeholder = "Confirm Password"
         
+        createPasswordTextField.isSecureTextEntry = true
+        confirmPasswordTextField.isSecureTextEntry = true
+        
+        let textFieldHeight: CGFloat = 40
+        let textFieldWidth: CGFloat = 250
+        
+        /*
+        let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+        createPasswordTextField.leftView = textInset
+        confirmPasswordTextField.leftView = textInset
+        createPasswordTextField.leftViewMode = UITextFieldViewMode.always
+        //confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
+         */
+        
         createPasswordTextField.backgroundColor = UIColor.white
         confirmPasswordTextField.backgroundColor = UIColor.white
         
@@ -67,15 +81,15 @@ class CreatePasswordViewController: UIViewController {
         // createPasswordTextField constraints
         let createPasswordHorizontalConstraint = createPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let createPasswordVerticalConstraint = createPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80)
-        let createPasswordHeightConstraint = createPasswordTextField.heightAnchor.constraint(equalToConstant: 40)
-        let createPasswordWidthConstraint = createPasswordTextField.widthAnchor.constraint(equalToConstant: 250)
+        let createPasswordHeightConstraint = createPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
+        let createPasswordWidthConstraint = createPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
         NSLayoutConstraint.activate([createPasswordHorizontalConstraint,createPasswordVerticalConstraint, createPasswordHeightConstraint, createPasswordWidthConstraint])
         
         // confirmPasswordTextField constraints
         let confirmPasswordHorizontalConstraint = confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let confirmPasswordVerticalConstraint = confirmPasswordTextField.topAnchor.constraint(equalTo: createPasswordTextField.bottomAnchor, constant: 25)
-        let confirmPasswordHeightConstraint = confirmPasswordTextField.heightAnchor.constraint(equalTo: createPasswordTextField.heightAnchor)
-        let confirmPasswordWidthConstraint = confirmPasswordTextField.widthAnchor.constraint(equalTo: createPasswordTextField.widthAnchor)
+        let confirmPasswordHeightConstraint = confirmPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
+        let confirmPasswordWidthConstraint = confirmPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
         NSLayoutConstraint.activate([confirmPasswordHorizontalConstraint, confirmPasswordVerticalConstraint, confirmPasswordHeightConstraint, confirmPasswordWidthConstraint])
         
         // MARK: Button Setup
@@ -92,7 +106,7 @@ class CreatePasswordViewController: UIViewController {
         let getStartedButtonHorizontalConstraint = getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         let getStartedButtonVerticalConstraint = getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
         let getStartedButtonHeightConstraint = getStartedButton.heightAnchor.constraint(equalToConstant: 60)
-        let getStartedButtonWidthConstraint = getStartedButton.widthAnchor.constraint(equalToConstant: 350)
+        let getStartedButtonWidthConstraint = getStartedButton.widthAnchor.constraint(equalToConstant: 400)
         NSLayoutConstraint.activate([getStartedButtonHorizontalConstraint, getStartedButtonVerticalConstraint, getStartedButtonHeightConstraint, getStartedButtonWidthConstraint])
 
         
