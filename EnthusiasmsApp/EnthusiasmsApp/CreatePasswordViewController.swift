@@ -34,15 +34,16 @@ class CreatePasswordViewController: UIViewController {
         titleLabel.text = welcome + "\n" + createPassword
         titleLabel.textAlignment = .center
         titleLabel.textColor = UIColor.white
+        titleLabel.font = titleLabel.font.withSize(40)
         view.addSubview(titleLabel)
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 20)
+        let titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
         let titleLabelHeightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 200)
         let titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 20)
         let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20)
-        NSLayoutConstraint.activate([titleLabelHeightConstraint, titleLabelLeadingConstraint, titleLabelTrailingConstraint])
+        NSLayoutConstraint.activate([titleLabelTopConstraint, titleLabelHeightConstraint, titleLabelLeadingConstraint, titleLabelTrailingConstraint])
         
         // MARK: TextField Setup
         createPasswordTextField.placeholder = "Password"
@@ -65,7 +66,7 @@ class CreatePasswordViewController: UIViewController {
         
         // createPasswordTextField constraints
         let createPasswordHorizontalConstraint = createPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let createPasswordVerticalConstraint = createPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20)
+        let createPasswordVerticalConstraint = createPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80)
         let createPasswordHeightConstraint = createPasswordTextField.heightAnchor.constraint(equalToConstant: 40)
         let createPasswordWidthConstraint = createPasswordTextField.widthAnchor.constraint(equalToConstant: 250)
         NSLayoutConstraint.activate([createPasswordHorizontalConstraint,createPasswordVerticalConstraint, createPasswordHeightConstraint, createPasswordWidthConstraint])
