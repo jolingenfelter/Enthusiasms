@@ -15,6 +15,8 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
     let createPasswordTextField = UITextField()
     let confirmPasswordTextField = UITextField()
     
+    var password = String()
+    
     let getStartedButton = UIButton()
 
     override func viewDidLoad() {
@@ -109,11 +111,32 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         let getStartedButtonWidthConstraint = getStartedButton.widthAnchor.constraint(equalToConstant: 400)
         NSLayoutConstraint.activate([getStartedButtonHorizontalConstraint, getStartedButtonVerticalConstraint, getStartedButtonHeightConstraint, getStartedButtonWidthConstraint])
 
-        
     }
     
     func getStartedButtonPressed() {
-        print("button pressed!")
+        if createPasswordTextField.text == "" || confirmPasswordTextField.text == "" {
+            presentAlert(title: "Required", message: "Input and confirm password to continue")
+        } else if createPasswordTextField.text != confirmPasswordTextField.text {
+            presentAlert(title: "Incorrect password", message: "Passwords do not match")
+        } else if createPasswordTextField.text == confirmPasswordTextField.text {
+            
+            password = createPasswordTextField.text!
+            let hashedpassword = password.hash
+            
+            let preferences = UserDefaults.standard
+            preferences.setValue(hashedpassword, forKey: "password")
+            
+            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+            self.present(homeViewController, animated: true, completion: nil)
+            
+        }
+    }
+    
+    func presentAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
     
 
