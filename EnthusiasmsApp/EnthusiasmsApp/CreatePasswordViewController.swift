@@ -15,8 +15,6 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
     let createPasswordTextField = UITextField()
     let confirmPasswordTextField = UITextField()
     
-    var password = String()
-    
     let getStartedButton = UIButton()
 
     override func viewDidLoad() {
@@ -120,8 +118,7 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
             presentAlert(title: "Incorrect password", message: "Passwords do not match")
         } else if createPasswordTextField.text == confirmPasswordTextField.text {
             
-            password = createPasswordTextField.text!
-            let hashedpassword = password.hash
+            let hashedpassword = createPasswordTextField.text?.hash
             
             let preferences = UserDefaults.standard
             preferences.setValue(hashedpassword, forKey: "password")

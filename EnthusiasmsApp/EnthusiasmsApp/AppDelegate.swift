@@ -16,15 +16,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // Create password only on first launch
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore {
+        // Create password to use app
+        
+        if UserDefaults.standard.value(forKey: "password") != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         } else {
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController = storyboard.instantiateViewController(withIdentifier: "createPasswordViewController") as! CreatePasswordViewController
             self.window?.rootViewController = initialViewController
