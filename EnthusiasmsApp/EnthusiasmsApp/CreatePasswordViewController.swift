@@ -21,13 +21,8 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
-
-        // Do any additional setup after loading the view.
-    }
-    
-    override func viewDidLayoutSubviews() {
         
-        // MARK: View Label Setup
+        // Label Setup
         titleLabel.numberOfLines = 0
         let welcome = "Welcome to Enthusiasms!"
         let createPassword = "Create a password to get started."
@@ -37,31 +32,12 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         titleLabel.font = titleLabel.font.withSize(40)
         view.addSubview(titleLabel)
         
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
-        let titleLabelHeightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 200)
-        let titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 20)
-        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20)
-        NSLayoutConstraint.activate([titleLabelTopConstraint, titleLabelHeightConstraint, titleLabelLeadingConstraint, titleLabelTrailingConstraint])
-        
-        // MARK: TextField Setup
+        // TextFields Setup
         createPasswordTextField.placeholder = "Password"
         confirmPasswordTextField.placeholder = "Confirm Password"
         
         createPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true
-        
-        let textFieldHeight: CGFloat = 40
-        let textFieldWidth: CGFloat = 250
-        
-        /*
-        let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        createPasswordTextField.leftView = textInset
-        confirmPasswordTextField.leftView = textInset
-        createPasswordTextField.leftViewMode = UITextFieldViewMode.always
-        //confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
-         */
         
         createPasswordTextField.backgroundColor = UIColor.white
         confirmPasswordTextField.backgroundColor = UIColor.white
@@ -73,6 +49,58 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         
         self.view.addSubview(createPasswordTextField)
         self.view.addSubview(confirmPasswordTextField)
+        
+        /*
+         let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+         createPasswordTextField.leftView = textInset
+         confirmPasswordTextField.leftView = textInset
+         createPasswordTextField.leftViewMode = UITextFieldViewMode.always
+         //confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
+         */
+        
+        // Button Setup
+        getStartedButton.layer.cornerRadius = 5.0
+        getStartedButton.layer.masksToBounds = true
+        getStartedButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        getStartedButton.setTitle("Get Started!", for: .normal)
+        getStartedButton.addTarget(self, action: #selector(CreatePasswordViewController.getStartedButtonPressed), for: .touchUpInside)
+        
+        view.addSubview(getStartedButton)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        setLabelConstraints()
+        setTextFieldConstraints()
+        setButtonConstraints()
+        
+    }
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: View Layout
+
+    func setLabelConstraints() {
+        
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
+        let titleLabelHeightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 200)
+        let titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 20)
+        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20)
+        NSLayoutConstraint.activate([titleLabelTopConstraint, titleLabelHeightConstraint, titleLabelLeadingConstraint, titleLabelTrailingConstraint])
+    }
+    
+    func setTextFieldConstraints() {
+
+        let textFieldHeight: CGFloat = 40
+        let textFieldWidth: CGFloat = 250
         
         createPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -91,15 +119,9 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         let confirmPasswordHeightConstraint = confirmPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
         let confirmPasswordWidthConstraint = confirmPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
         NSLayoutConstraint.activate([confirmPasswordHorizontalConstraint, confirmPasswordVerticalConstraint, confirmPasswordHeightConstraint, confirmPasswordWidthConstraint])
-        
-        // MARK: Button Setup
-        getStartedButton.layer.cornerRadius = 5.0
-        getStartedButton.layer.masksToBounds = true
-        getStartedButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        getStartedButton.setTitle("Get Started!", for: .normal)
-        getStartedButton.addTarget(self, action: #selector(CreatePasswordViewController.getStartedButtonPressed), for: .touchUpInside)
-        
-        view.addSubview(getStartedButton)
+    }
+    
+    func setButtonConstraints() {
         
         getStartedButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -108,7 +130,6 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         let getStartedButtonHeightConstraint = getStartedButton.heightAnchor.constraint(equalToConstant: 60)
         let getStartedButtonWidthConstraint = getStartedButton.widthAnchor.constraint(equalToConstant: 400)
         NSLayoutConstraint.activate([getStartedButtonHorizontalConstraint, getStartedButtonVerticalConstraint, getStartedButtonHeightConstraint, getStartedButtonWidthConstraint])
-
     }
     
     func getStartedButtonPressed() {
@@ -129,17 +150,13 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // MARK: Helper Methods
+    
     func presentAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }

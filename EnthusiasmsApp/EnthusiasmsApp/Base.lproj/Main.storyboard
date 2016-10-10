@@ -23,7 +23,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bzy-Ge-sO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-546" y="139"/>
+            <point key="canvasLocation" x="-1184" y="139"/>
+        </scene>
+        <!--Enter Password View Controller-->
+        <scene sceneID="qda-zX-hCf">
+            <objects>
+                <viewController storyboardIdentifier="enterPasswordViewController" id="uMb-2i-Sdp" customClass="EnterPasswordViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="StE-bf-Q3Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="R65-nK-vWU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tbx-4k-XAr">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zV9-rx-saj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-509" y="139"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -89,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="141.40625" y="138.8671875"/>
+            <point key="canvasLocation" x="173" y="139"/>
         </scene>
         <!--Create Student Popover View Controller-->
         <scene sceneID="x7j-zm-frx">
@@ -166,7 +184,7 @@
                                 <rect key="frame" x="0.0" y="92" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c5E-hq-lAn" id="kUt-Uu-yQj">
-                                    <frame key="frameInset" width="768" height="44"/>
+                                    <frame key="frameInset" width="768" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

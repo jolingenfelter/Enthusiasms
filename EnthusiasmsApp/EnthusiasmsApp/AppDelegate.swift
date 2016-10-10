@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UserDefaults.standard.value(forKey: "password") != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
+            let initialViewController = storyboard.instantiateViewController(withIdentifier: "enterPasswordViewController") as! EnterPasswordViewController
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         } else {

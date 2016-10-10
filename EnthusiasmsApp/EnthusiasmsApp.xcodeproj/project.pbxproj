@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */; };
 		9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */; };
+		9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */; };
 		9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */; };
 		9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */; };
 		9EB4F4C01D8E120500E81C74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BE1D8E120500E81C74 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListPopover.swift; sourceTree = "<group>"; };
 		9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewController.swift; sourceTree = "<group>"; };
+		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
 		9EB4F4B71D8E120500E81C74 /* EnthusiasmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnthusiasmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -93,13 +95,14 @@
 				9E5EC2161D90CDB40014FC35 /* CoreData */,
 				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
 				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
+				9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */,
+				9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */,
 				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
 				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
 				9EE2E7371D8EE8E100B3D53F /* CreateStudentPopoverViewController.swift */,
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
-				9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */,
 				9EB4F4BE1D8E120500E81C74 /* Main.storyboard */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
@@ -184,6 +187,7 @@
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
+				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
 				9EE2E7341D8EDDB800B3D53F /* Student+CoreDataProperties.swift in Sources */,
 				9EE2E7321D8EDDB800B3D53F /* Content+CoreDataProperties.swift in Sources */,
 				9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */,
