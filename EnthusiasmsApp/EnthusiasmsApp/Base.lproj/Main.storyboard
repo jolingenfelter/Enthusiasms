@@ -10,7 +10,7 @@
         <!--Create Password View Controller-->
         <scene sceneID="ct4-19-SAa">
             <objects>
-                <viewController id="yXc-NG-8eC" customClass="CreatePasswordViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createPasswordViewController" id="yXc-NG-8eC" customClass="CreatePasswordViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ywh-6I-jQL"/>
                         <viewControllerLayoutGuide type="bottom" id="wuh-d4-jUh"/>
@@ -166,7 +166,7 @@
                                 <rect key="frame" x="0.0" y="92" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c5E-hq-lAn" id="kUt-Uu-yQj">
-                                    <frame key="frameInset" width="768" height="43"/>
+                                    <frame key="frameInset" width="768" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
