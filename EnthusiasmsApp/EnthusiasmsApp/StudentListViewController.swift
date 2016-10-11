@@ -11,6 +11,7 @@ import CoreData
 
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     var studentName = String()
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
@@ -90,6 +91,33 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.reloadData()
+    }
+    
+    @IBAction func settingsWasPressed(_ sender: AnyObject) {
+        
+        // ViewController setup
+        let settingsViewController = UIViewController()
+        let editPasswordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
+
+        editPasswordButton.setTitle("Edit Password", for: .normal)
+        editPasswordButton.setTitleColor(UIColor.black, for: .normal)
+        settingsViewController.view.addSubview(editPasswordButton)
+        
+        // Button constraints
+        editPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = editPasswordButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
+        let verticalConstraint = editPasswordButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        
+        // PopoverView setup
+        settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = settingsViewController.popoverPresentationController! as UIPopoverPresentationController
+        popover.sourceView = self.view
+        settingsViewController.popoverPresentationController?.sourceRect = CGRect(x: 50, y: 10, width: 0, height: 0)
+        settingsViewController.preferredContentSize = CGSize(width: 150, height: 50)
+        settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
+        
+        self.present(settingsViewController, animated: true, completion: nil)
     }
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {

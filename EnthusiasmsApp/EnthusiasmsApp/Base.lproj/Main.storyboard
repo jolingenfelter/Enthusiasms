@@ -201,7 +201,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ILB-hh-gJ9">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="pHZ-fp-lC8"/>
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="pHZ-fp-lC8">
+                            <connections>
+                                <action selector="settingsWasPressed:" destination="6CB-cW-kRq" id="oVm-8i-vVS"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem title="Home" id="hfX-Jj-Tfh">
                                 <connections>
@@ -215,6 +219,9 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="settingsButton" destination="pHZ-fp-lC8" id="Ib6-VR-H25"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y1l-58-OLq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
