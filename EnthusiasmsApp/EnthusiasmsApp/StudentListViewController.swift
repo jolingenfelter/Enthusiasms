@@ -12,7 +12,9 @@ import CoreData
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     @IBOutlet weak var settingsButton: UIBarButtonItem!
+    
     var studentName = String()
+    var settingsViewController = UIViewController()
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
         let request: NSFetchRequest<Student> = Student.fetchRequest()
@@ -93,14 +95,25 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         tableView.reloadData()
     }
     
+    func editPasswordWasPressed() {
+        let editPasswordViewController = EditPasswordViewController()
+        self.presentingViewController?.dismiss(animated: false, completion: nil)
+        editPasswordViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        editPasswordViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
+        self.view.window?.rootViewController = editPasswordViewController
+        self.present(editPasswordViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func settingsWasPressed(_ sender: AnyObject) {
         
         // ViewController setup
-        let settingsViewController = UIViewController()
+        settingsViewController = UIViewController()
         let editPasswordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
 
         editPasswordButton.setTitle("Edit Password", for: .normal)
         editPasswordButton.setTitleColor(UIColor.black, for: .normal)
+        editPasswordButton.isEnabled = true
+        editPasswordButton.addTarget(self, action: #selector(editPasswordWasPressed), for: .touchUpInside)
         settingsViewController.view.addSubview(editPasswordButton)
         
         // Button constraints
@@ -118,6 +131,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
         
         self.present(settingsViewController, animated: true, completion: nil)
+    
     }
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {

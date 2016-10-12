@@ -34,7 +34,7 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         
         // TextFields Setup
         createPasswordTextField.placeholder = "Password"
-        confirmPasswordTextField.placeholder = "Confirm Password"
+        confirmPasswordTextField.placeholder = "Confirm password"
         
         createPasswordTextField.isSecureTextEntry = true
         confirmPasswordTextField.isSecureTextEntry = true

@@ -31,10 +31,13 @@ class HomeViewController: UIViewController {
     }
 
     @IBAction func studentPressed(_ sender: AnyObject) {
-        let studentList = StudentListPopover(nibName: nil, bundle: nil)
+        let studentList = StudentListPopover()
+        studentList.preferredContentSize = CGSize(width: 200, height: 200)
         studentList.modalPresentationStyle = UIModalPresentationStyle.popover
+        studentList.popoverPresentationController?.permittedArrowDirections = .left
         let popover = studentList.popoverPresentationController! as UIPopoverPresentationController
         popover.sourceView = self.studentButton
+        popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
         self.present(studentList, animated: true, completion: nil)
     }
 }
