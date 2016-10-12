@@ -36,7 +36,11 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
             print ("Error fetching Item  objects \(error.localizedDescription), \(error.userInfo)")
         }
     }
-
+    
+    override func viewDidLayoutSubviews() {
+        setupSettingsVC()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,17 +99,13 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         tableView.reloadData()
     }
     
-    func editPasswordWasPressed() {
-        let editPasswordViewController = EditPasswordViewController()
-        self.presentedViewController?.present(editPasswordViewController, animated: true, completion: nil)
-    }
+    // BarButtonItems
     
-    @IBAction func settingsWasPressed(_ sender: AnyObject) {
-        
+    func setupSettingsVC() {
         // ViewController setup
         settingsViewController = UIViewController()
         let editPasswordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
-
+        
         editPasswordButton.setTitle("Edit Password", for: .normal)
         editPasswordButton.setTitleColor(UIColor.black, for: .normal)
         editPasswordButton.isEnabled = true
@@ -125,9 +125,15 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         settingsViewController.popoverPresentationController?.sourceRect = CGRect(x: 50, y: 10, width: 0, height: 0)
         settingsViewController.preferredContentSize = CGSize(width: 150, height: 50)
         settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
-        
-        self.present(settingsViewController, animated: true, completion: nil)
+    }
     
+    func editPasswordWasPressed() {
+        let editPasswordViewController = EditPasswordViewController()
+        self.presentedViewController?.present(editPasswordViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func settingsWasPressed(_ sender: AnyObject) {
+        self.present(settingsViewController, animated: true, completion: nil)
     }
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {

@@ -32,6 +32,15 @@ class EditPasswordViewController: CreatePasswordViewController {
         // Button setup
         self.getStartedButton.setTitle("Save Changes", for: .normal)
         
+        // Navigation bar
+        self.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
+        self.view.addSubview(self.navigationBar)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = cancelButton
+        self.navigationBar.items = [navItem]
+        
+        
     }
     
     func passwordTextFieldConstraints() {
@@ -72,6 +81,10 @@ class EditPasswordViewController: CreatePasswordViewController {
             passwordTextField.text = nil
             presentAlert(title: "Incorrect password", message: "Incorrect password entry")
         }
+    }
+    
+    func cancelPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
 
 }
