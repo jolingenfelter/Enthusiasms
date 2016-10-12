@@ -97,11 +97,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     func editPasswordWasPressed() {
         let editPasswordViewController = EditPasswordViewController()
-        self.presentingViewController?.dismiss(animated: false, completion: nil)
-        editPasswordViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
-        editPasswordViewController.modalTransitionStyle = UIModalTransitionStyle.coverVertical
-        self.view.window?.rootViewController = editPasswordViewController
-        self.present(editPasswordViewController, animated: true, completion: nil)
+        self.presentedViewController?.present(editPasswordViewController, animated: true, completion: nil)
     }
     
     @IBAction func settingsWasPressed(_ sender: AnyObject) {
