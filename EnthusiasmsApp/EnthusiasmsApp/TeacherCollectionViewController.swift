@@ -38,7 +38,15 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
+        
+        // Notification observer to update name if edited
+        NotificationCenter.default.addObserver(self, selector: #selector(updateStudentName), name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
+        
 
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
     }
     
     // MARK: NavBar Setup
@@ -55,7 +63,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
         self.navigationItem.leftBarButtonItems = [studentsListBarButton, space, settingsBarButton]
         self.navigationItem.rightBarButtonItems = [homeBarButton, addContentBarButton]
-        
+
     }
     
     // MARK: NavBar Actions
@@ -97,6 +105,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         editNameViewController.modalPresentationStyle = .formSheet
         editNameViewController.student = student
         self.presentedViewController?.present(editNameViewController, animated: true, completion: nil)
+    }
+    
+    func updateStudentName() {
+        self.title = student?.name
     }
 
     func settingsPressed() {

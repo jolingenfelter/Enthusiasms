@@ -109,6 +109,7 @@ class EditNameViewController: UIViewController {
         } else {
             student?.name = nameTextField.text
             dataController.saveContext()
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "NameUpdate"), object: nil)
             dismiss(animated: true, completion: nil)
         }
         
