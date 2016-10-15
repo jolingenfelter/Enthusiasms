@@ -14,6 +14,8 @@ private let reuseIdentifier = "Cell"
 class TeacherCollectionViewController: UICollectionViewController {
     
     var student: Student?
+    var settingsViewController = UIViewController()
+    var settingsBarButton = UIBarButtonItem()
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
         let request: NSFetchRequest<Content> = Content.fetchRequest()
@@ -39,9 +41,11 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     }
     
+    // MARK: NavBar Setup
+    
     func navigationBarSetup() {
         let studentsListBarButton = UIBarButtonItem(title: "Students", style: .plain, target: self, action: #selector(TeacherCollectionViewController.studentsListPressed))
-        let settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(TeacherCollectionViewController.settingsPressed))
+        settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(TeacherCollectionViewController.settingsPressed))
         
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 20
@@ -54,14 +58,50 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
     
+    // MARK: NavBar Actions
+    
     func studentsListPressed() {
         if let navController = self.navigationController {
             navController.popToRootViewController(animated: true)
         }
     }
     
-    func settingsPressed() {
+    func setupSettingsVC() {
+        // ViewController setup
+        settingsViewController = UIViewController()
+        let editName = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
         
+        editName.setTitle("Edit Student Name", for: .normal)
+        editName.setTitleColor(UIColor.black, for: .normal)
+        editName.isEnabled = true
+        editName.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
+        settingsViewController.view.addSubview(editName)
+        
+        // Button constraints
+        editName.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = editName.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
+        let verticalConstraint = editName.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        
+        // PopoverView setup
+        settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = settingsViewController.popoverPresentationController! as UIPopoverPresentationController
+        popover.barButtonItem = settingsBarButton
+        settingsViewController.preferredContentSize = CGSize(width: 200, height: 50)
+        settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
+    }
+    
+    func editStudentName() {
+        let editNameViewController = EditNameViewController()
+        editNameViewController.modalTransitionStyle = .coverVertical
+        editNameViewController.modalPresentationStyle = .formSheet
+        editNameViewController.student = student
+        self.presentedViewController?.present(editNameViewController, animated: true, completion: nil)
+    }
+
+    func settingsPressed() {
+        setupSettingsVC()
+        self.present(settingsViewController, animated: true, completion: nil)
     }
     
     func addPressed() {

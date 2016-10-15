@@ -25,7 +25,7 @@ class CreateStudentPopoverViewController: UIViewController {
         let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
         let navBar = UINavigationBar(frame: navBarRect)
         
-        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(CreateStudentPopoverViewController.cancelWasPressed))
+        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelWasPressed))
         let navItem = UINavigationItem(title: "Add a Student")
         navItem.leftBarButtonItem = cancelBarButton
         navBar.items = [navItem]

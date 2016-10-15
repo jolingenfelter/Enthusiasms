@@ -94,7 +94,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         tableView.reloadData()
     }
     
-    // BarButtonItems
+    // MARK: NavBar setup
     
     func setupSettingsVC() {
         // ViewController setup
