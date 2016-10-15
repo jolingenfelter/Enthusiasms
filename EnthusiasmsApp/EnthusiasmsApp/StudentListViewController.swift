@@ -13,7 +13,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     @IBOutlet weak var settingsButton: UIBarButtonItem!
     
-    var studentName = String()
     var settingsViewController = UIViewController()
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
@@ -71,7 +70,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = fetchedResultsController.object(at: indexPath)
         let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
-        teacherCollectionViewController.studentName = student.name!
+        teacherCollectionViewController.student = student
         self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
         
     }

@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class TeacherCollectionViewController: UICollectionViewController {
     
-    var studentName = String()
+    var student: Student?
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
         let request: NSFetchRequest<Content> = Content.fetchRequest()
@@ -33,7 +33,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        self.title = studentName
+        self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
 

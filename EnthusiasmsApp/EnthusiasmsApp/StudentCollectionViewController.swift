@@ -16,7 +16,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         super.viewDidLoad()
 
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.title = studentName
+        self.title = student?.name
     }
 
     override func didReceiveMemoryWarning() {
