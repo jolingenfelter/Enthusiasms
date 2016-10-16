@@ -15,7 +15,6 @@ class CreateStudentViewController: EditNameViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navItem.title = "Add Student"
         saveChangesButton.setTitle("Add Student", for: .normal)
         
     }

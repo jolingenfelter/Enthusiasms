@@ -14,7 +14,6 @@ class EditNameViewController: UIViewController {
     var student: Student?
     let dataController = DataController.sharedInstance
     
-    var navItem = UINavigationItem()
     var nameLabel = UILabel()
     var nameTextField = UITextField()
     var saveChangesButton = UIButton()
@@ -52,7 +51,7 @@ class EditNameViewController: UIViewController {
         let navBar = UINavigationBar(frame: navBarRect)
         
         let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelWasPressed))
-        navItem.title = "Edit Student Name"
+        let navItem = UINavigationItem()
         navItem.leftBarButtonItem = cancelBarButton
         navBar.items = [navItem]
         
