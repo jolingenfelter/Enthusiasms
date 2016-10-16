@@ -14,6 +14,7 @@ class EditNameViewController: UIViewController {
     var student: Student?
     let dataController = DataController.sharedInstance
     
+    var navItem = UINavigationItem()
     var nameLabel = UILabel()
     var nameTextField = UITextField()
     var saveChangesButton = UIButton()
@@ -46,26 +47,25 @@ class EditNameViewController: UIViewController {
         
         view.addSubview(saveChangesButton)
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        navBarSetup()
-        labelConstraints()
-        textFieldConstraints()
-        buttonConstraints()
-    }
-    
-    func navBarSetup() {
+        // NavBar
         let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
         let navBar = UINavigationBar(frame: navBarRect)
         
         let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelWasPressed))
-        let navItem = UINavigationItem(title: "Edit Student Name")
+        navItem.title = "Edit Student Name"
         navItem.leftBarButtonItem = cancelBarButton
         navBar.items = [navItem]
         
         view.addSubview(navBar)
+
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        labelConstraints()
+        textFieldConstraints()
+        buttonConstraints()
     }
     
     func labelConstraints() {

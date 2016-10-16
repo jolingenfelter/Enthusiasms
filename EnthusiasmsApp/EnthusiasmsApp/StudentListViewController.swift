@@ -132,9 +132,9 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     }
     
     @IBAction func addStudentPressed(_ sender: AnyObject) {
-        let createStudentPopover = self.storyboard?.instantiateViewController(withIdentifier: "createStudentPopver") as! CreateStudentPopoverViewController
-        createStudentPopover.modalPresentationStyle = UIModalPresentationStyle.formSheet
-        self.present(createStudentPopover, animated: false, completion: nil)
+        let createStudentViewController = CreateStudentViewController()
+        createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
+        self.present(createStudentViewController, animated: false, completion: nil)
     }
     
     @IBAction func homeWasPressed(_ sender: AnyObject) {
