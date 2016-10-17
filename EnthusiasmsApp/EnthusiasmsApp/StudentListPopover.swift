@@ -27,9 +27,9 @@ class StudentListPopover: StudentListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = self.fetchedResultsController.object(at: indexPath)
-        let studentCollectionView = StudentCollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
-        studentCollectionView.student = student
-        let navController = UINavigationController(rootViewController: studentCollectionView)
+        let timerViewController = SetTimerViewController()
+        timerViewController.student = student
+        let navController = UINavigationController(rootViewController: timerViewController)
         self.present(navController, animated: true, completion: nil)
     }
 

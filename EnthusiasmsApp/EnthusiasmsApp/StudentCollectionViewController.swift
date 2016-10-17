@@ -25,8 +25,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func navigationBarSetup() {
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(StudentCollectionViewController.homePressed))
+        let homeButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(StudentCollectionViewController.homePressed))
         self.navigationItem.rightBarButtonItem = homeButton
     }
-
+    
+    override func homePressed() {
+        let enterPasswordVC = EnterPasswordViewController()
+        self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.present(enterPasswordVC, animated: true, completion: nil)
+    }
 }

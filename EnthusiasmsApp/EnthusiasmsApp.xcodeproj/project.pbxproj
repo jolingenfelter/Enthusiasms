@@ -16,6 +16,7 @@
 		9E3FD5001DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD4FC1DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift */; };
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
+		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */; };
 		9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */; };
 		9EB4F4C01D8E120500E81C74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BE1D8E120500E81C74 /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		9E3FD4FC1DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EB4F4B71D8E120500E81C74 /* EnthusiasmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnthusiasmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */,
 				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
 				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
+				9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */,
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
 				9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */,
 				9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */,
@@ -195,6 +198,7 @@
 				9E3FD5001DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9E3FD4FD1DB2C5FB00CC2C41 /* Student+CoreDataClass.swift in Sources */,
+				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,
 				9E3FD4FE1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift in Sources */,
