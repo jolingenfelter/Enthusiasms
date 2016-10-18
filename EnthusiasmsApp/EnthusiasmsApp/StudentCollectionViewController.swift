@@ -30,8 +30,6 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func homePressed() {
-        //let enterPasswordVC = EnterPasswordViewController()
         self.dismiss(animated: true, completion: nil)
-        self.presentingViewController?.dismiss(animated: false, completion: nil)
     }
 }

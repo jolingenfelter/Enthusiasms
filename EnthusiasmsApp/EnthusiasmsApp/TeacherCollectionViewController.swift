@@ -52,16 +52,16 @@ class TeacherCollectionViewController: UICollectionViewController {
     // MARK: NavBar Setup
     
     func navigationBarSetup() {
-        let studentsListBarButton = UIBarButtonItem(title: "Students", style: .plain, target: self, action: #selector(TeacherCollectionViewController.studentsListPressed))
-        settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(TeacherCollectionViewController.settingsPressed))
+        self.navigationItem.leftItemsSupplementBackButton = true
+        settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsPressed))
         
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 20
         
-        let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(TeacherCollectionViewController.addPressed))
-        let homeBarButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(TeacherCollectionViewController.homePressed))
+        let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
+        let homeBarButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homePressed))
         
-        self.navigationItem.leftBarButtonItems = [studentsListBarButton, space, settingsBarButton]
+        self.navigationItem.leftBarButtonItems = [space, settingsBarButton]
         self.navigationItem.rightBarButtonItems = [homeBarButton, addContentBarButton]
 
     }

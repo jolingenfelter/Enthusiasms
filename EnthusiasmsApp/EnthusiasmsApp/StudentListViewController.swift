@@ -11,9 +11,8 @@ import CoreData
 
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var backButton = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backWasPressed))
-    var settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
-    var addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
+    var settingsButton = UIBarButtonItem()
+    var addButton = UIBarButtonItem()
     
     var settingsViewController = UIViewController()
     
@@ -30,13 +29,19 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         super.viewDidLoad()
         
         // NavBar
-        
+        settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
+        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
         
         let spaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-    
+        spaceItem.width = 20
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItems = [spaceItem, settingsButton]
+        self.navigationItem.rightBarButtonItem = addButton
         
+        // TableView
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
+        // FetchedResultsController
         fetchedResultsController.delegate = self
         
         do {
@@ -79,7 +84,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = fetchedResultsController.object(at: indexPath)
-        let teacherCollectionViewController = self.storyboard?.instantiateViewController(withIdentifier: "teacherCollectionViewController") as! TeacherCollectionViewController
+        let teacherCollectionViewController = TeacherCollectionViewController(collectionViewLayout: .init())
         teacherCollectionViewController.student = student
         self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
         
@@ -137,6 +142,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     }
     
     func settingsWasPressed() {
+        print("pressed")
         setupSettingsVC()
         self.present(settingsViewController, animated: true, completion: nil)
     }
@@ -145,10 +151,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         let createStudentViewController = CreateStudentViewController()
         createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentViewController, animated: false, completion: nil)
-    }
-    
-    func backWasPressed() {
-        let 
     }
 
 }
