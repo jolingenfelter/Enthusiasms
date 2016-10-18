@@ -72,6 +72,7 @@ class SetTimerViewController: UIViewController {
     func startPressed() {
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: .init())
         studentCollectionView.navigationItem.hidesBackButton = true
+        studentCollectionView.student = student
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
     

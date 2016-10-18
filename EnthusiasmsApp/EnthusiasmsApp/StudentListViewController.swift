@@ -11,7 +11,9 @@ import CoreData
 
 class StudentListViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    @IBOutlet weak var settingsButton: UIBarButtonItem!
+    var backButton = UIBarButtonItem(title: "< Back", style: .plain, target: self, action: #selector(backWasPressed))
+    var settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
+    var addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
     
     var settingsViewController = UIViewController()
     
@@ -26,6 +28,14 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // NavBar
+        
+        
+        let spaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+    
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         fetchedResultsController.delegate = self
         
@@ -94,7 +104,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         tableView.reloadData()
     }
     
-    // MARK: NavBar setup
+    // MARK: NavBar Actions
     
     func setupSettingsVC() {
         // ViewController setup
@@ -126,19 +136,19 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         self.presentedViewController?.present(editPasswordViewController, animated: true, completion: nil)
     }
     
-    @IBAction func settingsWasPressed(_ sender: AnyObject) {
+    func settingsWasPressed() {
         setupSettingsVC()
         self.present(settingsViewController, animated: true, completion: nil)
     }
     
-    @IBAction func addStudentPressed(_ sender: AnyObject) {
+    func addStudentPressed() {
         let createStudentViewController = CreateStudentViewController()
         createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentViewController, animated: false, completion: nil)
     }
     
-    @IBAction func homeWasPressed(_ sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+    func backWasPressed() {
+        let 
     }
 
 }

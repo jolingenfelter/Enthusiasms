@@ -19,13 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Create password to use app
         
         if UserDefaults.standard.value(forKey: "password") != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "enterPasswordViewController") as! EnterPasswordViewController
+            let initialViewController = EnterPasswordViewController()
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateViewController(withIdentifier: "createPasswordViewController") as! CreatePasswordViewController
+            let initialViewController = CreatePasswordViewController()
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         }

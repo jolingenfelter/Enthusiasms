@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yXc-NG-8eC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -7,42 +7,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Create Password View Controller-->
-        <scene sceneID="ct4-19-SAa">
-            <objects>
-                <viewController storyboardIdentifier="createPasswordViewController" id="yXc-NG-8eC" customClass="CreatePasswordViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ywh-6I-jQL"/>
-                        <viewControllerLayoutGuide type="bottom" id="wuh-d4-jUh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bIH-KW-sC9">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bzy-Ge-sO7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1184" y="139"/>
-        </scene>
-        <!--Enter Password View Controller-->
-        <scene sceneID="qda-zX-hCf">
-            <objects>
-                <viewController storyboardIdentifier="enterPasswordViewController" id="uMb-2i-Sdp" customClass="EnterPasswordViewController" customModule="EnthusiasmsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="StE-bf-Q3Y"/>
-                        <viewControllerLayoutGuide type="bottom" id="R65-nK-vWU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="tbx-4k-XAr">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zV9-rx-saj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-509" y="139"/>
-        </scene>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -122,7 +86,7 @@
                                 <rect key="frame" x="0.0" y="92" width="768" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="c5E-hq-lAn" id="kUt-Uu-yQj">
-                                    <frame key="frameInset" width="768" height="43.5"/>
+                                    <frame key="frameInset" width="768" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -197,6 +161,7 @@
         <!--Navigation Controller-->
         <scene sceneID="aoC-aX-hy9">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UKK-oN-zkL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="studentListNavController" automaticallyAdjustsScrollViewInsets="NO" id="Tuk-J4-fpa" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YqI-ju-wIb">
@@ -208,7 +173,6 @@
                         <segue destination="6CB-cW-kRq" kind="relationship" relationship="rootViewController" id="nA0-GK-4Oo"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UKK-oN-zkL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="879.6875" y="138.8671875"/>
         </scene>

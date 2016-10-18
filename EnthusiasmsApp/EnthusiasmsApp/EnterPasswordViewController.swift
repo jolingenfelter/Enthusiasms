@@ -19,8 +19,9 @@ class EnterPasswordViewController: CreatePasswordViewController {
     
     override func getStartedButtonPressed() {
         if self.createPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
-            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-            self.present(homeViewController, animated: true, completion: nil)
+            let homeViewController = HomeViewController()
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            self.present(navigationController, animated: true, completion: nil)
         } else {
             presentAlert(title: "Incorrect Password", message: "The password you have entered is incorrect")
         }
