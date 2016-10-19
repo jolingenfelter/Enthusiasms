@@ -121,7 +121,9 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func homePressed() {
-        self.dismiss(animated: true, completion: nil)
+        if let navController = self.navigationController {
+            navController.popToRootViewController(animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

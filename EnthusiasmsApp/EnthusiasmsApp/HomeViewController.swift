@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
         buttonConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -106,7 +106,7 @@ class HomeViewController: UIViewController {
         let popover = studentList.popoverPresentationController! as UIPopoverPresentationController
         popover.sourceView = self.studentButton
         popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
-        self.present(studentList, animated: true, completion: nil)
+        self.navigationController?.present(studentList, animated: true, completion: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -29,7 +29,4 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.navigationItem.rightBarButtonItem = homeButton
     }
     
-    override func homePressed() {
-        self.dismiss(animated: true, completion: nil)
-    }
 }
