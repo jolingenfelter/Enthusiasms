@@ -46,7 +46,7 @@
 		9EB4F4C11D8E120500E81C74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9EB4F4C41D8E120500E81C74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9EB4F4C61D8E120500E81C74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = EnthusiasmsApp/CoreDataStack.swift; sourceTree = "<group>"; };
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionViewController.swift; sourceTree = "<group>"; };
 		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +68,7 @@
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
 				9E3FD4F91DB2C5FB00CC2C41 /* Student+CoreDataClass.swift */,
 				9E3FD4FA1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift */,
 				9E3FD4FB1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift */,
@@ -98,7 +99,6 @@
 			children = (
 				9E5EC2161D90CDB40014FC35 /* CoreData */,
 				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
-				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
 				9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */,
 				9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */,
 				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,

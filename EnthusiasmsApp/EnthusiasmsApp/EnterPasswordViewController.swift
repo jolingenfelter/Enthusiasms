@@ -16,6 +16,9 @@ class EnterPasswordViewController: CreatePasswordViewController {
         self.titleLabel.text = "Enter Password"
         self.confirmPasswordTextField.isHidden = true
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(presentHomeViewController), name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
     }
     
