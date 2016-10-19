@@ -9,7 +9,9 @@
 import UIKit
 
 class StudentListPopover: StudentListViewController {
-
+    
+    let timerViewController = SetTimerViewController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,10 +29,8 @@ class StudentListPopover: StudentListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = self.fetchedResultsController.object(at: indexPath)
-        let timerViewController = SetTimerViewController()
         timerViewController.student = student
-        let navController = UINavigationController(rootViewController: timerViewController)
-        self.present(navController, animated: true, completion: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
     }
 
 }

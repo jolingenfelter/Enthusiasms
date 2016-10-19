@@ -24,10 +24,6 @@ class SetTimerViewController: UIViewController {
             }
         }
         
-        // NavBar
-        let homeButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homePressed))
-        self.navigationItem.leftBarButtonItem = homeButton
-        
         // TimePicker setup
         timePicker.datePickerMode = .countDownTimer
         timePicker.backgroundColor = UIColor.white
@@ -74,10 +70,6 @@ class SetTimerViewController: UIViewController {
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
-    }
-    
-    func homePressed() {
-        self.dismiss(animated: true, completion: nil)
     }
 
     override func didReceiveMemoryWarning() {

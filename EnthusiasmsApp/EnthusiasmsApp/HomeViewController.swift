@@ -14,10 +14,14 @@ class HomeViewController: UIViewController {
     let teacherButton = UIButton()
     let enthusiasmsLabel = UILabel()
     
+    let studentListPopover = StudentListPopover()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(studentSelected), name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
         
         // Label Setup
         enthusiasmsLabel.text = "Enthusiasms"
@@ -44,6 +48,10 @@ class HomeViewController: UIViewController {
         studentButton.layer.masksToBounds = true
         studentButton.addTarget(self, action: #selector(studentPressed), for: .touchUpInside)
         self.view.addSubview(studentButton)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
     }
     
     override func viewWillLayoutSubviews() {
@@ -99,14 +107,17 @@ class HomeViewController: UIViewController {
     }
 
     func studentPressed() {
-        let studentList = StudentListPopover()
-        studentList.preferredContentSize = CGSize(width: 200, height: 200)
-        studentList.modalPresentationStyle = UIModalPresentationStyle.popover
-        studentList.popoverPresentationController?.permittedArrowDirections = .left
-        let popover = studentList.popoverPresentationController! as UIPopoverPresentationController
+        studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
+        studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
+        studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
+        let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
         popover.sourceView = self.studentButton
         popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
-        self.navigationController?.present(studentList, animated: true, completion: nil)
+        self.navigationController?.present(studentListPopover, animated: true, completion: nil)
+    }
+    
+    func studentSelected() {
+        print(studentListPopover.timerViewController.student?.name)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
