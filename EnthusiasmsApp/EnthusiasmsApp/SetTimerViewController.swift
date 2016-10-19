@@ -48,7 +48,7 @@ class SetTimerViewController: UIViewController {
         
         let leadingConstraint = timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingConstraint = timePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let verticalConstraint = timePicker.topAnchor.constraint(equalTo: (self.navigationController?.navigationBar.bottomAnchor)!)
+        let verticalConstraint = timePicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 60)
         let heightConstraint = timePicker.heightAnchor.constraint(equalToConstant: 400)
         
         NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, verticalConstraint, heightConstraint])

@@ -117,7 +117,9 @@ class HomeViewController: UIViewController {
     }
     
     func studentSelected() {
-        print(studentListPopover.timerViewController.student?.name)
+        let timerViewController = SetTimerViewController()
+        timerViewController.student = studentListPopover.selectedStudent
+        self.navigationController?.pushViewController(timerViewController, animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

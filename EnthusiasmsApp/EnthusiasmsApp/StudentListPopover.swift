@@ -10,7 +10,7 @@ import UIKit
 
 class StudentListPopover: StudentListViewController {
     
-    let timerViewController = SetTimerViewController()
+    var selectedStudent: Student?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +29,9 @@ class StudentListPopover: StudentListViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let student = self.fetchedResultsController.object(at: indexPath)
-        timerViewController.student = student
+        selectedStudent = student
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 
 }
