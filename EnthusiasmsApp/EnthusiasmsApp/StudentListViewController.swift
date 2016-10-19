@@ -139,7 +139,8 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     func editPasswordWasPressed() {
         let editPasswordViewController = EditPasswordViewController()
-        self.presentedViewController?.present(editPasswordViewController, animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        self.present(editPasswordViewController, animated: true, completion: nil)
     }
     
     func settingsWasPressed() {

@@ -104,7 +104,8 @@ class TeacherCollectionViewController: UICollectionViewController {
         editNameViewController.modalTransitionStyle = .coverVertical
         editNameViewController.modalPresentationStyle = .formSheet
         editNameViewController.student = student
-        self.presentedViewController?.present(editNameViewController, animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        self.present(editNameViewController, animated: true, completion: nil)
     }
     
     func updateStudentName() {

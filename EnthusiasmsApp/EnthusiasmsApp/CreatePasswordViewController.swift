@@ -144,8 +144,10 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
             let preferences = UserDefaults.standard
             preferences.setValue(hashedpassword, forKey: "password")
             
-            let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "homeViewController") as! HomeViewController
-            self.present(homeViewController, animated: true, completion: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
+            
+            let enterPasswordViewController = EnterPasswordViewController()
+            self.present(enterPasswordViewController, animated: true, completion: nil)
             
         }
     }

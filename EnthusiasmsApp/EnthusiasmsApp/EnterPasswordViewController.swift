@@ -15,6 +15,12 @@ class EnterPasswordViewController: CreatePasswordViewController {
         
         self.titleLabel.text = "Enter Password"
         self.confirmPasswordTextField.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentHomeViewController), name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
     }
     
     override func getStartedButtonPressed() {
@@ -33,5 +39,8 @@ class EnterPasswordViewController: CreatePasswordViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func presentHomeViewController() {
+        print("Hello world!")
+    }
 
 }
