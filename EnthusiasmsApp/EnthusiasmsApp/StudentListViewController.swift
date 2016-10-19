@@ -37,7 +37,8 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItems = [spaceItem, settingsButton]
         self.navigationItem.rightBarButtonItem = addButton
-        
+
+
         // TableView
         self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
@@ -50,7 +51,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
             print ("Error fetching Item  objects \(error.localizedDescription), \(error.userInfo)")
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -142,7 +143,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     }
     
     func settingsWasPressed() {
-        print("pressed")
         setupSettingsVC()
         self.present(settingsViewController, animated: true, completion: nil)
     }
