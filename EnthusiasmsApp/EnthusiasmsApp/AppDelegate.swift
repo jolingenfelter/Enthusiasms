@@ -15,7 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        
+        // Create password to use app
+        
+        if UserDefaults.standard.value(forKey: "password") != nil {
+            let initialViewController = EnterPasswordViewController()
+            self.window?.rootViewController = initialViewController
+        } else {
+            let initialViewController = CreatePasswordViewController()
+            self.window?.rootViewController = initialViewController
+        }
+        
         return true
     }
 
