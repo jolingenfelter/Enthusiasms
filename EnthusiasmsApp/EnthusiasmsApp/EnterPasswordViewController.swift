@@ -18,10 +18,6 @@ class EnterPasswordViewController: CreatePasswordViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NotificationCenter.default.addObserver(self, selector: #selector(presentHomeViewController), name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
     }
@@ -40,10 +36,6 @@ class EnterPasswordViewController: CreatePasswordViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func presentHomeViewController() {
-        print("Hello world!")
     }
 
 }

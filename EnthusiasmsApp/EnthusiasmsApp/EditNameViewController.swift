@@ -34,6 +34,12 @@ class EditNameViewController: UIViewController {
         nameTextField.backgroundColor = UIColor.white
         nameTextField.layer.borderWidth = 1.0
         nameTextField.layer.borderColor = UIColor.lightGray.cgColor
+        nameTextField.autocorrectionType = .no
+        let textFieldHeight: CGFloat = 40
+        let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+        nameTextField.leftView = textInset1
+        nameTextField.leftViewMode = UITextFieldViewMode.always
+
         
         view.addSubview(nameTextField)
         

@@ -50,13 +50,16 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(createPasswordTextField)
         self.view.addSubview(confirmPasswordTextField)
         
-        /*
-         let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-         createPasswordTextField.leftView = textInset
-         confirmPasswordTextField.leftView = textInset
-         createPasswordTextField.leftViewMode = UITextFieldViewMode.always
-         //confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
-         */
+        let textFieldHeight: CGFloat = 40
+        
+        let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+        createPasswordTextField.leftView = textInset1
+        createPasswordTextField.leftViewMode = UITextFieldViewMode.always
+        
+        let textInset2 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+        confirmPasswordTextField.leftView = textInset2
+        confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
+
         
         // Button Setup
         getStartedButton.layer.cornerRadius = 5.0
@@ -144,10 +147,8 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
             let preferences = UserDefaults.standard
             preferences.setValue(hashedpassword, forKey: "password")
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
-            
-            let enterPasswordViewController = EnterPasswordViewController()
-            self.present(enterPasswordViewController, animated: true, completion: nil)
+            let homeViewController = HomeViewController()
+            self.present(homeViewController, animated: true, completion: nil)
             
         }
     }

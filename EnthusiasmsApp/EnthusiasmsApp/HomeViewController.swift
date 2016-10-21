@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HomeViewController: UIViewController {
 
@@ -108,19 +109,29 @@ class HomeViewController: UIViewController {
 
     func studentPressed() {
         
-        if studentListPopover.fetchedResultsController.fetchedObjects?.count == 0 {
-            let alertController = UIAlertController(title: "No Students", message: "Create a student as a teacher to get started", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else if studentListPopover.fetchedResultsController.fetchedObjects?.count != 0 {
-            studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
-            studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
-            studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
-            let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
-            popover.sourceView = self.studentButton
-            popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
-            self.navigationController?.present(studentListPopover, animated: true, completion: nil)
+        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let request: NSFetchRequest<NSFetchRequestResult> = Student.fetchRequest()
+        
+        do {
+            let fetchedStudents = try managedObjectContext.fetch(request) as! [Student]
+            
+            if fetchedStudents.count == 0 {
+                let alertController = UIAlertController(title: "No Students", message: "Enter as a teacher to get started", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                alertController.addAction(okAction)
+                self.present(alertController, animated: true, completion: nil)
+            } else {
+                studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
+                studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
+                studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
+                let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
+                popover.sourceView = self.studentButton
+                popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
+                self.navigationController?.present(studentListPopover, animated: true, completion: nil)
+            }
+            
+        } catch (let error) {
+            print(error)
         }
     }
     
@@ -131,7 +142,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
 

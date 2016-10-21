@@ -29,6 +29,11 @@ class EditPasswordViewController: CreatePasswordViewController {
         createPasswordTextField.placeholder = "New password"
         confirmPasswordTextField.placeholder = "Confirm new password"
         
+        let textFieldHeight: Int = 40
+        let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
+        passwordTextField.leftView = textInset
+        passwordTextField.leftViewMode = UITextFieldViewMode.always
+        
         // Button setup
         self.getStartedButton.setTitle("Save Changes", for: .normal)
         

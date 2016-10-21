@@ -17,17 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
         
         // Create password to use app
         
         if UserDefaults.standard.value(forKey: "password") != nil {
             let initialViewController = EnterPasswordViewController()
             self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
         } else {
             let initialViewController = CreatePasswordViewController()
             self.window?.rootViewController = initialViewController
-            self.window?.makeKeyAndVisible()
         }
         
         return true
