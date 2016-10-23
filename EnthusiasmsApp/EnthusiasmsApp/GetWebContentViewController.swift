@@ -18,9 +18,11 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     var backButton = UIBarButtonItem()
     var forwardButton = UIBarButtonItem()
     var refreshButton = UIBarButtonItem()
+    let progressView = UIProgressView()
     
     override func loadView() {
         super.loadView()
+        self.view.addSubview(progressView)
         self.view.addSubview(webView)
         webView.navigationDelegate = self
     }
@@ -52,9 +54,12 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
         urlTextField.leftView = inset
         urlTextField.leftViewMode = .always
         urlTextField.autocapitalizationType = .none
+        urlTextField.layer.borderColor = UIColor.lightGray.cgColor
+        urlTextField.layer.borderWidth = 0.5
         
         // WebView Setup
         webView.addObserver(self, forKeyPath: "loading", options: .new, context: nil)
+        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
         let url = URL(string: "http://www.google.com")
         let request = URLRequest(url: url!)
         self.webView.load(request)
@@ -79,6 +84,7 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     
     override func viewDidLayoutSubviews() {
         textFieldConstraints()
+        progressViewConstraints()
         webViewConstraints()
         toolbarConstraints()
     }
@@ -88,10 +94,16 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
             backButton.isEnabled = webView.canGoBack
             forwardButton.isEnabled = webView.canGoForward
         }
+        
+        if keyPath == "estimatedProgress" {
+            progressView.isHidden = webView.estimatedProgress == 1
+            progressView.setProgress(Float(webView.estimatedProgress), animated: true)
+        }
     }
     
     deinit {
         webView.removeObserver(self, forKeyPath: "loading", context: nil)
+        webView.removeObserver(self, forKeyPath: "estimatedProgress", context: nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -100,7 +112,7 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     }
     
     // MARK: View Setup
-    
+
     func textFieldConstraints() {
         
         urlTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -113,13 +125,25 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
         NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
     }
     
+    func progressViewConstraints() {
+        
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let leadingConstraint = progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        let trailingConstraint = progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        let topConstraint = progressView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor)
+        
+        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint])
+    }
+    
+    
     func webViewConstraints() {
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         
         let leadingConstraint = webView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
         let trailingConstraint = webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let topConstraint = webView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor, constant: 5)
+        let topConstraint = webView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 5)
         let bottomConstraint = webView.bottomAnchor.constraint(equalTo: toolbar.topAnchor)
         
         NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
@@ -170,5 +194,17 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     
     func refreshPressed() {
         webView.reload()
+    }
+    
+    // MARK: WebView Navigation Delegate
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        progressView.setProgress(0.0, animated: false)
     }
 }
