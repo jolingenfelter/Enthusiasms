@@ -118,7 +118,8 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func addPressed() {
-        
+        let getContentView = GetWebContentViewController()
+        self.present(getContentView, animated: true, completion: nil)
     }
     
     func homePressed() {
