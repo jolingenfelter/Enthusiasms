@@ -59,10 +59,9 @@ class TeacherCollectionViewController: UICollectionViewController {
         space.width = 20
         
         let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
-        let homeBarButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homePressed))
         
         self.navigationItem.leftBarButtonItems = [space, settingsBarButton]
-        self.navigationItem.rightBarButtonItems = [homeBarButton, addContentBarButton]
+        self.navigationItem.rightBarButtonItem = addContentBarButton
 
     }
     
