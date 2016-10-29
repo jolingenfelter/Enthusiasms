@@ -19,6 +19,7 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     var forwardButton = UIBarButtonItem()
     var refreshButton = UIBarButtonItem()
     let progressView = UIProgressView()
+    var userURL = URL(string: "")
     
     override func loadView() {
         super.loadView()
@@ -165,14 +166,25 @@ class GetWebContentViewController: UIViewController, WKNavigationDelegate, UITex
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         urlTextField.resignFirstResponder()
-        if var url = urlTextField.text {
-            if url.contains("http://") == false {
-                let website = url
-                url = "http://\(website)"
+        
+        if var urlString = urlTextField.text {
+            
+            if urlString.contains(" ") {
+                let searchString = urlString.replacingOccurrences(of: " ", with: "+")
+                urlString = "google.com/search?q=\(searchString)"
             }
             
-            urlTextField.text = url
-            webView.load(URLRequest(url: URL(string: url)!))
+            let url = URL(string: urlString)
+            
+            if var url = url {
+                if (url.scheme == nil) {
+                    url = URL(string: "http://\(url)")!
+                    userURL = url
+                }
+                
+                let request = URLRequest(url: userURL!)
+                webView.load(request)
+            }
         }
         
         return false
