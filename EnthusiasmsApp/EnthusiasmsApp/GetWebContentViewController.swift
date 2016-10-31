@@ -153,16 +153,21 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         progressView.progress = 0.0
         webViewIsLoaded = false
         loadTimer = Timer.scheduledTimer(timeInterval: 0.01667, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
+        updateButtons()
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.urlTextField.text = webView.request?.url?.absoluteString
         webViewIsLoaded = true
         progressView.isHidden = true
-
+        updateButtons()
+        
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         webViewIsLoaded = true
+        progressView.isHidden = true
+        updateButtons()
     }
     
     // MARK: Timer
@@ -228,4 +233,17 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         webView.reload()
     }
     
+    func updateButtons() {
+        if webView.canGoBack {
+            backButton.isEnabled = true
+        } else {
+            backButton.isEnabled = false
+        }
+        
+        if webView.canGoForward {
+            forwardButton.isEnabled = true
+        } else {
+            forwardButton.isEnabled = false
+        }
+    }
 }
