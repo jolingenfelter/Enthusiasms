@@ -213,6 +213,8 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
                 if (url.scheme == nil) {
                     url = URL(string: "http://\(url)")!
                     userURL = url
+                } else {
+                    userURL = url
                 }
                 
                 let request = URLRequest(url: userURL!)
