@@ -199,17 +199,16 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
                 urlString = "google.com/search?q=\(searchString)"
             }
             
-            let url = URL(string: urlString)
-            
             let characterSet = "-0123456789."
             
+            if !isAnyCharacter(from: characterSet, containedIn: urlString) {
+                let searchString = urlString
+                urlString = "google.com/search?q=\(searchString)"
+            }
+            
+            let url = URL(string: urlString)
+            
             if var url = url {
-                
-                if !isAnyCharacter(from: characterSet, containedIn: url.absoluteString) {
-                    let searchString = urlString
-                    url = URL(string: "http://google.com/search?q=\(searchString)")!
-                    userURL = url
-                }
                 
                 if (url.scheme == nil) {
                     url = URL(string: "http://\(url)")!
