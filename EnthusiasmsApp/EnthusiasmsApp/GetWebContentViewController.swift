@@ -201,7 +201,16 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             
             let url = URL(string: urlString)
             
+            let characterSet = "-0123456789."
+            
             if var url = url {
+                
+                if !isAnyCharacter(from: characterSet, containedIn: url.absoluteString) {
+                    let searchString = urlString
+                    url = URL(string: "http://google.com/search?q=\(searchString)")!
+                    userURL = url
+                }
+                
                 if (url.scheme == nil) {
                     url = URL(string: "http://\(url)")!
                     userURL = url
@@ -214,6 +223,11 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
         return false
     }
+    
+    func isAnyCharacter(from characterSetString: String, containedIn string: String) -> Bool {
+        return Set(characterSetString.characters).isDisjoint(with: Set(string.characters)) == false
+    }
+
     
     // MARK: BarButtonItem Actions
     
