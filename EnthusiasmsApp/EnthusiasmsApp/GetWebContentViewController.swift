@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate {
+class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     var webView = UIWebView()
     let navBar = UINavigationBar()
@@ -22,6 +22,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     var userURL = URL(string: "")
     var webViewIsLoaded = false
     var loadTimer = Timer()
+    let longPressGestureRecognizer = UILongPressGestureRecognizer()
+    var selectedImageURL = String()
+    
+    let javaScript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
     
     override func loadView() {
         super.loadView()
@@ -78,6 +82,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         backButton.isEnabled = false
         forwardButton.isEnabled = false
         
+        // Long Press
+        longPressGestureRecognizer.addTarget(self, action: #selector(longPressAction))
+        longPressGestureRecognizer.delegate = self
+        webView.addGestureRecognizer(longPressGestureRecognizer)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -260,5 +268,25 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         } else {
             forwardButton.isEnabled = false
         }
+    }
+    
+    // Save Content
+    
+    func longPressAction(sender: UILongPressGestureRecognizer) {
+        
+        webView.stringByEvaluatingJavaScript(from: javaScript)
+        
+        if sender.state == UIGestureRecognizerState.recognized {
+            let pressPosition = sender.location(in: webView)
+            let tags = webView.stringByEvaluatingJavaScript(from: "MyAppGetHTMLElementsAtPoint(\(pressPosition.x),\(pressPosition.y));")
+            let tagsHREF = webView.stringByEvaluatingJavaScript(from: "MyAppGetLinkHREFAtPoint(\(pressPosition.x),\(pressPosition.y));")
+            let tagsSRC = self.webView.stringByEvaluatingJavaScript(from: "MyAppGetLinkSRCAtPoint(\(pressPosition.x),\(pressPosition.y));")
+            
+          
+        }
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
