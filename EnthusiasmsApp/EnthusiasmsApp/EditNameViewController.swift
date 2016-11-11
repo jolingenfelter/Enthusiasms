@@ -52,7 +52,7 @@ class EditNameViewController: UIViewController {
         
         view.addSubview(saveChangesButton)
         
-        // NavBar
+        // NavBar Setup
         let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
         let navBar = UINavigationBar(frame: navBarRect)
         

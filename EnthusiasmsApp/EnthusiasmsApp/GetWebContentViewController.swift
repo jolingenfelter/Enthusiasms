@@ -280,7 +280,13 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             let pressPosition = sender.location(in: webView)
             let src = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
             
-            print(src!)
+            if src != "" {
+                let saveContentVC = SaveContentViewController()
+                saveContentVC.modalPresentationStyle = .formSheet
+                self.present(saveContentVC, animated: true, completion: nil)
+                
+                print(src!)
+            }
         }
     }
     
