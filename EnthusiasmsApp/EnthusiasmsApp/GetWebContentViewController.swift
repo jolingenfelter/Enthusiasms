@@ -25,7 +25,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     let longPressGestureRecognizer = UILongPressGestureRecognizer()
     var selectedImageURL = String()
     
-    let javaScript = "function MyAppGetHTMLElementsAtPoint(x,y) { var tags = \",\"; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName) { tags += e.tagName + ','; } e = e.parentNode; } return tags; } function MyAppGetLinkSRCAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.src) { tags += e.src; break; } e = e.parentNode; } return tags; }  function MyAppGetLinkHREFAtPoint(x,y) { var tags = \"\"; var e = document.elementFromPoint(x,y); while (e) { if (e.href) { tags += e.href; break; } e = e.parentNode; } return tags; }"
+    let javaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
     override func loadView() {
         super.loadView()
@@ -278,11 +278,9 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
         if sender.state == UIGestureRecognizerState.recognized {
             let pressPosition = sender.location(in: webView)
-            let tags = webView.stringByEvaluatingJavaScript(from: "MyAppGetHTMLElementsAtPoint(\(pressPosition.x),\(pressPosition.y));")
-            let tagsHREF = webView.stringByEvaluatingJavaScript(from: "MyAppGetLinkHREFAtPoint(\(pressPosition.x),\(pressPosition.y));")
-            let tagsSRC = self.webView.stringByEvaluatingJavaScript(from: "MyAppGetLinkSRCAtPoint(\(pressPosition.x),\(pressPosition.y));")
+            let src = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
             
-          
+            print(src!)
         }
     }
     
