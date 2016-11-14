@@ -9,6 +9,11 @@
 import UIKit
 import WebKit
 
+enum ContentType: Int16 {
+    case Image = 1
+    case Video = 2
+}
+
 class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     var webView = UIWebView()
@@ -24,6 +29,8 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     var loadTimer = Timer()
     let longPressGestureRecognizer = UILongPressGestureRecognizer()
     var selectedImageURL = String()
+    var student: Student?
+    var contentType: ContentType?
     
     let javaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
@@ -283,9 +290,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             if src != "" {
                 let saveContentVC = SaveContentViewController()
                 saveContentVC.modalPresentationStyle = .formSheet
+                saveContentVC.student = student
+                saveContentVC.contentURL = src
+                saveContentVC.contentType = ContentType.Image
                 self.present(saveContentVC, animated: true, completion: nil)
-                
-                print(src!)
             }
         }
     }

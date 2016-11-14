@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class SaveContentViewController: UIViewController {
     
     var saveContentButton = UIButton()
     var contentTitleTextField = UITextField()
     var titleLabel = UILabel()
+    var content : Content?
+    var student: Student?
+    var contentURL: String?
+    var contentType: ContentType?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +81,7 @@ class SaveContentViewController: UIViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let horizontalConstraint = titleLabel.leadingAnchor.constraint(equalTo: contentTitleTextField.leadingAnchor)
-        let verticalConstraint = titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -150)
+        let verticalConstraint = titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
         
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
     }
@@ -98,7 +103,7 @@ class SaveContentViewController: UIViewController {
         saveContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let horizontalConstraint = saveContentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = saveContentButton.topAnchor.constraint(equalTo: contentTitleTextField.bottomAnchor, constant: 80)
+        let verticalConstraint = saveContentButton.topAnchor.constraint(equalTo: contentTitleTextField.bottomAnchor, constant: 200)
         let heightConstraint = saveContentButton.heightAnchor.constraint(equalToConstant: 50)
         let widthConstraint = saveContentButton.widthAnchor.constraint(equalToConstant: 200)
         
@@ -111,6 +116,25 @@ class SaveContentViewController: UIViewController {
     
     func saveContentPressed() {
         
+        if contentTitleTextField.text == "" {
+            let alert = UIAlertController(title: "Required Field", message: "Please enter a title for this content", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(action)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            let dataController = DataController.sharedInstance
+            content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: dataController.managedObjectContext) as? Content
+            content?.title = contentTitleTextField.text
+            content?.url = contentURL
+            content?.dateAdded = NSDate()
+            content?.type = (contentType?.rawValue)!
+            content?.addToStudentContent(student!)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
+
+            dataController.saveContext()
+            self.dismiss(animated: true, completion: nil)
+            
+        }
     }
     
 }
