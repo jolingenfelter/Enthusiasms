@@ -16,15 +16,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     var student: Student?
     var settingsViewController = UIViewController()
     var settingsBarButton = UIBarButtonItem()
-    
-    lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
-        let request: NSFetchRequest<Content> = Content.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return controller
-    }()
+    var contentsArray = [Content]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,11 +34,30 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Notification observer to update name if edited
         NotificationCenter.default.addObserver(self, selector: #selector(updateStudentName), name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
         
-
+        // Notification observer to update collectionView when content is added
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContents), name: NSNotification.Name(rawValue: "ContentAdded"), object: nil)
+        
+        updateContents()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentAdded"), object: nil)
+    }
+    
+    func updateContents() {
+        
+        guard let student = student, let contents = student.contents else {
+            return
+        }
+        
+        contentsArray = contents.sortedArray(using: [NSSortDescriptor.init(key: "title", ascending: true)]) as! [Content]
+        
+        for content in contentsArray {
+            if let contentTitle = content.title {
+                print(contentTitle)
+            }
+        }
     }
     
     // MARK: NavBar Setup
@@ -108,7 +119,11 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func updateStudentName() {
-        self.title = student?.name
+        if let student = student {
+            if let studentName = student.name {
+                self.title = studentName
+            }
+        }
     }
 
     func settingsPressed() {
@@ -118,6 +133,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     
     func addPressed() {
         let getContentView = GetWebContentViewController()
+        getContentView.student = student
         self.present(getContentView, animated: true, completion: nil)
     }
     
@@ -136,7 +152,7 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return fetchedResultsController.sections?.count ?? 0
+        return 0
     }
 
 
@@ -147,8 +163,6 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
     
         return cell
     }

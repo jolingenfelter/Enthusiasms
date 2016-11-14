@@ -264,6 +264,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     }
     
     func updateButtons() {
+        
         if webView.canGoBack {
             backButton.isEnabled = true
         } else {

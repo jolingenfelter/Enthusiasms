@@ -117,18 +117,29 @@ class SaveContentViewController: UIViewController {
     func saveContentPressed() {
         
         if contentTitleTextField.text == "" {
+            
             let alert = UIAlertController(title: "Required Field", message: "Please enter a title for this content", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
+            
         } else {
+            
             let dataController = DataController.sharedInstance
-            content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: dataController.managedObjectContext) as? Content
-            content?.title = contentTitleTextField.text
-            content?.url = contentURL
-            content?.dateAdded = NSDate()
-            content?.type = (contentType?.rawValue)!
-            content?.addToStudentContent(student!)
+            
+            guard let content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: dataController.managedObjectContext) as? Content else {
+                let alert = UIAlertController(title: "Error", message: "Error adding content", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            content.title = contentTitleTextField.text
+            content.url = contentURL
+            content.dateAdded = NSDate()
+            content.type = (contentType?.rawValue)!
+            content.addToStudentContent(student!)
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
 
             dataController.saveContext()
