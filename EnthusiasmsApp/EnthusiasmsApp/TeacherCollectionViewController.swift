@@ -27,10 +27,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        // Collection View setup
+         updateContents()
         
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
+        // Collection View setup
+    
         self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
@@ -40,8 +40,6 @@ class TeacherCollectionViewController: UICollectionViewController {
         
         // Notification observer to update collectionView when content is added
         NotificationCenter.default.addObserver(self, selector: #selector(updateContents), name: NSNotification.Name(rawValue: "ContentAdded"), object: nil)
-        
-        updateContents()
 
     }
     
@@ -58,11 +56,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
         contentsArray = contents.sortedArray(using: [NSSortDescriptor.init(key: "title", ascending: true)]) as! [Content]
         
-        for content in contentsArray {
-            if let contentTitle = content.title {
-                print(contentTitle)
-            }
-        }
+        collectionView?.reloadData()
     }
     
     // MARK: NavBar Setup
@@ -157,7 +151,7 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 0
+        return 1
     }
 
 

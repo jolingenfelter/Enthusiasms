@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import WebKit
 
 enum ContentType: Int16 {
     case Image = 1

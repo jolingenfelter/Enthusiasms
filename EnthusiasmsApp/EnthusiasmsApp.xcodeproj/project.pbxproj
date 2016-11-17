@@ -21,11 +21,11 @@
 		9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */; };
 		9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */; };
 		9EBBCC3A1D90309900A6099A /* TeacherCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */; };
-		9EC5E9AC1DC188EF009E6D97 /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5E9A81DC188EF009E6D97 /* Content+CoreDataClass.swift */; };
-		9EC5E9AD1DC188EF009E6D97 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5E9A91DC188EF009E6D97 /* Content+CoreDataProperties.swift */; };
-		9EC5E9AE1DC188EF009E6D97 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5E9AA1DC188EF009E6D97 /* Student+CoreDataClass.swift */; };
-		9EC5E9AF1DC188EF009E6D97 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC5E9AB1DC188EF009E6D97 /* Student+CoreDataProperties.swift */; };
 		9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */; };
+		9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */; };
+		9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */; };
+		9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */; };
+		9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */; };
 		9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */; };
 		9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */; };
 		9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */; };
@@ -49,11 +49,11 @@
 		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = EnthusiasmsApp/CoreDataStack.swift; sourceTree = "<group>"; };
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionViewController.swift; sourceTree = "<group>"; };
-		9EC5E9A81DC188EF009E6D97 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9EC5E9A91DC188EF009E6D97 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9EC5E9AA1DC188EF009E6D97 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9EC5E9AB1DC188EF009E6D97 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
+		9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentViewController.swift; sourceTree = "<group>"; };
 		9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -74,11 +74,11 @@
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */,
+				9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */,
+				9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */,
+				9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */,
 				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
-				9EC5E9A81DC188EF009E6D97 /* Content+CoreDataClass.swift */,
-				9EC5E9A91DC188EF009E6D97 /* Content+CoreDataProperties.swift */,
-				9EC5E9AA1DC188EF009E6D97 /* Student+CoreDataClass.swift */,
-				9EC5E9AB1DC188EF009E6D97 /* Student+CoreDataProperties.swift */,
 			);
 			name = CoreData;
 			path = ..;
@@ -203,18 +203,18 @@
 				9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */,
+				9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
-				9EC5E9AF1DC188EF009E6D97 /* Student+CoreDataProperties.swift in Sources */,
-				9EC5E9AC1DC188EF009E6D97 /* Content+CoreDataClass.swift in Sources */,
+				9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */,
+				9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */,
 				9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */,
-				9EC5E9AE1DC188EF009E6D97 /* Student+CoreDataClass.swift in Sources */,
+				9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,
 				9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */,
 				9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */,
 				9EBBCC3A1D90309900A6099A /* TeacherCollectionViewController.swift in Sources */,
 				9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */,
-				9EC5E9AD1DC188EF009E6D97 /* Content+CoreDataProperties.swift in Sources */,
 				9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */,
 				9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */,
 				9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */,

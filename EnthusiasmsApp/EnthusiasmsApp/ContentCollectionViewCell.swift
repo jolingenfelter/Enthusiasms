@@ -21,8 +21,9 @@ class ContentCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.contentView.addSubview(titleLabel)
-        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.font = UIFont.systemFont(ofSize: 16)
         titleLabel.textAlignment = .center
+        titleLabel.adjustsFontSizeToFitWidth = true
         self.contentView.addSubview(thumbnail)
         thumbnail.contentMode = .scaleAspectFit
     }
