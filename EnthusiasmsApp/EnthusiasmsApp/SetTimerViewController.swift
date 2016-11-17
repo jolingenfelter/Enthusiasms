@@ -66,7 +66,10 @@ class SetTimerViewController: UIViewController {
     }
     
     func startPressed() {
-        let studentCollectionView = StudentCollectionViewController(collectionViewLayout: .init())
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
