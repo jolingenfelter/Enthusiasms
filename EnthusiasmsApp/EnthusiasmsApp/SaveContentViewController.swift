@@ -139,9 +139,15 @@ class SaveContentViewController: UIViewController {
             content.url = contentURL
             content.dateAdded = NSDate()
             content.type = (contentType?.rawValue)!
+            let uuid = UUID().uuidString
+            content.uniqueFileName = String(describing: uuid)
             content.addToStudentContent(student!)
+            
+            let imageGetter = ImageGetter(content: content)
+            imageGetter.downloadAndSaveImage()
+            
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
-
+            
             dataController.saveContext()
             self.dismiss(animated: true, completion: nil)
             
