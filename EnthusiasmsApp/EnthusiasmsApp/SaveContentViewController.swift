@@ -143,7 +143,7 @@ class SaveContentViewController: UIViewController {
             content.uniqueFileName = String(describing: uuid)
             content.addToStudentContent(student!)
             
-            let imageGetter = ImageGetter(content: content)
+            let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
             imageGetter.downloadAndSaveImage()
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)

@@ -162,14 +162,12 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
-        cell.titleLabel.text = contentsArray[indexPath.item].title
         
         let content = contentsArray[indexPath.item]
-        let imageGetter = ImageGetter(content: content)
-        let image = imageGetter.getImage()
+        cell.titleLabel.text = content.title
         
-        cell.thumbnail.image = image
-        
+        let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
+        cell.thumbnail.image = imageGetter.getImage()
         
         return cell
     }

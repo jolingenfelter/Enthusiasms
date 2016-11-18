@@ -16,21 +16,18 @@ func getDocumentsDirectory() -> URL {
 }
 
 class ImageGetter: NSObject {
-
-    let content: Content
     
-    init(content: Content) {
-        self.content = content
+    let imageName: String
+    let imageURL: URL
+    
+    init(imageName: String, imageURL: URL) {
+        self.imageName = imageName
+        self.imageURL = imageURL
     }
     
     func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         
-        guard let contentURLString = self.content.url else {
-            print("No contentURL")
-            return
-        }
-        
-        URLSession.shared.dataTask(with: URL(string: contentURLString)!) {
+        URLSession.shared.dataTask(with: self.imageURL) {
             (data, response, error) in completion(data, response, error)
         }.resume()
     }
@@ -43,14 +40,9 @@ class ImageGetter: NSObject {
             }
             print("Download Finished")
             DispatchQueue.main.async {
-                
-                guard let contentIdentifier = self.content.uniqueFileName else {
-                    return
-                }
-                
                 if let image = UIImage(data: data) {
                     if let JPEGImageData = UIImageJPEGRepresentation(image, 0.8) {
-                        let fileName = getDocumentsDirectory().appendingPathComponent("\(contentIdentifier).jpeg")
+                        let fileName = getDocumentsDirectory().appendingPathComponent("\(self.imageName).jpeg")
                         try? JPEGImageData.write(to: fileName)
                     }
                 }
@@ -61,16 +53,13 @@ class ImageGetter: NSObject {
     func getImage() -> UIImage? {
         
         var image = UIImage()
-        
-        if let contentIdentifier = self.content.uniqueFileName {
            
-            let filePath = getDocumentsDirectory().appendingPathComponent("\(contentIdentifier).jpeg").path
+        let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
             
-            if FileManager.default.fileExists(atPath: filePath) {
+        if FileManager.default.fileExists(atPath: filePath) {
                 image = UIImage(contentsOfFile: filePath)!
-            } else {
-                print("No UUID")
-            }
+        } else {
+            print("No UUID")
         }
         
         return image
