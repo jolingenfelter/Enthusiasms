@@ -33,12 +33,12 @@ class ImageGetter: NSObject {
     }
     
     func downloadAndSaveImage() {
-        print("Download Started")
+        
         getDataFromURL { (data, response, error) in
             guard let data = data, error == nil else {
                 return
             }
-            print("Download Finished")
+            
             DispatchQueue.main.async {
                 if let image = UIImage(data: data) {
                     if let JPEGImageData = UIImageJPEGRepresentation(image, 0.8) {
@@ -58,8 +58,6 @@ class ImageGetter: NSObject {
             
         if FileManager.default.fileExists(atPath: filePath) {
                 image = UIImage(contentsOfFile: filePath)!
-        } else {
-            print("No UUID")
         }
         
         return image

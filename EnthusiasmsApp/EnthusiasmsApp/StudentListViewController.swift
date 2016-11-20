@@ -13,6 +13,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     var settingsButton = UIBarButtonItem()
     var addButton = UIBarButtonItem()
+    var allContentButton = UIBarButtonItem()
     
     var settingsViewController = UIViewController()
     
@@ -31,12 +32,15 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         // NavBar
         settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
         addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
+        allContentButton = UIBarButtonItem(title: "All Content", style: .plain, target: self, action: #selector(allContentPressed))
         
-        let spaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        spaceItem.width = 20
+        let leftSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        leftSpaceItem.width = 20
         self.navigationItem.leftItemsSupplementBackButton = true
-        self.navigationItem.leftBarButtonItems = [spaceItem, settingsButton]
-        self.navigationItem.rightBarButtonItem = addButton
+        self.navigationItem.leftBarButtonItems = [leftSpaceItem, settingsButton]
+        
+        let rightSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        self.navigationItem.rightBarButtonItems = [addButton, rightSpaceItem, allContentButton]
 
 
         // TableView
@@ -48,7 +52,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         do {
             try self.fetchedResultsController.performFetch()
         } catch let error as NSError {
-            print ("Error fetching Item  objects \(error.localizedDescription), \(error.userInfo)")
+            print ("Error fetching item objects \(error.localizedDescription), \(error.userInfo)")
         }
     }
 
@@ -71,8 +75,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         
         return section.numberOfObjects
     }
-    
-    
   
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -155,6 +157,17 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         let createStudentViewController = CreateStudentViewController()
         createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentViewController, animated: false, completion: nil)
+    }
+    
+    func allContentPressed() {
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+
+        let allContentViewController = AllContentCollectionViewController(collectionViewLayout: flowLayout)
+        
+        self.navigationController?.pushViewController(allContentViewController, animated: true)
     }
 
 }

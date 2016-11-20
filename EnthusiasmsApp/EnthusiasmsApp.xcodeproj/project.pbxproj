@@ -27,6 +27,7 @@
 		9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */; };
 		9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */; };
 		9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */; };
+		9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */; };
 		9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */; };
 		9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */; };
 		9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */; };
@@ -56,6 +57,7 @@
 		9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllContentCollectionViewController.swift; sourceTree = "<group>"; };
 		9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentViewController.swift; sourceTree = "<group>"; };
 		9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
 				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
+				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
@@ -208,6 +211,7 @@
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */,
 				9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */,
+				9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
 				9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */,
