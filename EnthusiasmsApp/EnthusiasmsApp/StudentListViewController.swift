@@ -40,7 +40,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         self.navigationItem.leftBarButtonItems = [leftSpaceItem, settingsButton]
         
         let rightSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        self.navigationItem.rightBarButtonItems = [addButton, rightSpaceItem, allContentButton]
+        self.navigationItem.rightBarButtonItems = [allContentButton, rightSpaceItem, addButton]
 
 
         // TableView

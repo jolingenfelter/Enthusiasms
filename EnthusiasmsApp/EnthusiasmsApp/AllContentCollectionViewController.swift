@@ -23,6 +23,9 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }()
     
     var cancelButton = UIBarButtonItem()
+    let menu = UIViewController()
+    var selectedContent: Content?
+    let studentListPopover = AddContentToStudentPopoverViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +50,13 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         } catch let error as NSError {
             print("Error fetching item objects \(error.localizedDescription), \(error.userInfo)")
         }
+        
+        // Notification for selected student
+         NotificationCenter.default.addObserver(self, selector: #selector(studentSelected), name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +80,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
     
-        let content = (fetchedResultsController.fetchedObjects?[indexPath.item])! as Content
+        let content = fetchedResultsController.object(at: indexPath) as Content
         
         if let contentImageName = content.uniqueFileName, let imageURL = content.url {
             let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
@@ -83,35 +93,57 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
 
     // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified ite
-     m should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedContent = fetchedResultsController.object(at: indexPath)
+        showMenufor(cellAtIndexPath: indexPath)
     }
-    */
+    
+    func showMenufor(cellAtIndexPath indexPath: IndexPath) {
+        
+        let addToStudentButton = UIButton()
+        let deleteButton = UIButton()
+        
+        addToStudentButton.setTitle("Add to student", for: .normal)
+        addToStudentButton.setTitleColor(UIColor.black, for: .normal)
+        addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
+        
+        menu.view.addSubview(addToStudentButton)
+        menu.view.addSubview(deleteButton)
+        
+        menu.modalPresentationStyle = .popover
+        menu.preferredContentSize = CGSize(width: 200, height: 200)
+        
+        let cell = self.collectionView?.cellForItem(at: indexPath)
+        menu.popoverPresentationController?.sourceRect = CGRect(x: 220, y: 150, width: 0, height: 0)
+        menu.popoverPresentationController?.permittedArrowDirections = .left
+        menu.popoverPresentationController?.sourceView = cell
+        
+        //View layout
+        addToStudentButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let addToStudentHorizontalConstraint = addToStudentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let addToStudentVerticalConstraint = addToStudentButton.topAnchor.constraint(equalTo: menu.view.topAnchor, constant: 20)
+        let addToStudentHeightConstraint = addToStudentButton.heightAnchor.constraint(equalToConstant: 40)
+        let addToStudentWidthConstraint = addToStudentButton.widthAnchor.constraint(equalToConstant: 150)
+        
+        NSLayoutConstraint.activate([addToStudentHorizontalConstraint, addToStudentVerticalConstraint, addToStudentHeightConstraint, addToStudentWidthConstraint])
+        
+        self.present(menu, animated: false, completion: nil)
+    }
+    
+    func addToStudentPressed() {
+        studentListPopover.modalPresentationStyle = .popover
+        studentListPopover.popoverPresentationController?.sourceView = menu.view
+        studentListPopover.popoverPresentationController?.sourceRect = CGRect(x: 180, y: 140, width: 0, height: 0)
+        studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
+        studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
+        self.presentedViewController?.present(studentListPopover, animated: true, completion: nil)
+    }
+    
+    func studentSelected() {
+        let studentAddingContentTo = studentListPopover.selectedStudent
+        studentAddingContentTo?.addToContents(selectedContent!)
+    }
 
 }
