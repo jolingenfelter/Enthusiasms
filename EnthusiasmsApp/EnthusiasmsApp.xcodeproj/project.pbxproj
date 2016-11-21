@@ -10,6 +10,7 @@
 		9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */; };
 		9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */; };
 		9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */; };
+		9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */; };
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
@@ -39,6 +40,7 @@
 		9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListPopover.swift; sourceTree = "<group>"; };
 		9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewController.swift; sourceTree = "<group>"; };
 		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
+		9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContentTitleViewController.swift; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
 				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
 				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
+				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
@@ -219,6 +222,7 @@
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
 				9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */,
 				9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */,
+				9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */,
 				9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */,
 				9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,

@@ -213,7 +213,11 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
     
     func changeTitlePressed() {
-        
+        let editContentViewController = EditContentTitleViewController()
+        editContentViewController.modalPresentationStyle = .formSheet
+        editContentViewController.content = selectedContent
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.present(editContentViewController, animated: true, completion: nil)
     }
     
     func deleteContent() {
