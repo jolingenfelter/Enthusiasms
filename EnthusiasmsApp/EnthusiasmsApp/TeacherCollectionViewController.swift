@@ -17,6 +17,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     var settingsViewController = UIViewController()
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
+    var addContentBarButton = UIBarButtonItem()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 20
         
-        let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
+        addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
         
         self.navigationItem.leftBarButtonItems = [space, settingsBarButton]
         self.navigationItem.rightBarButtonItem = addContentBarButton
@@ -131,9 +132,63 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func addPressed() {
+        
+        let menuViewController = UIViewController()
+        menuViewController.modalPresentationStyle = .popover
+        menuViewController.popoverPresentationController?.barButtonItem = addContentBarButton
+        menuViewController.preferredContentSize = CGSize(width: 200, height: 150)
+        
+        let contentFromWebButton = UIButton()
+        let separator = UIView()
+        let contentFromLibraryButton = UIButton()
+        
+        contentFromWebButton.setTitle("Web Content", for: .normal)
+        contentFromWebButton.setTitleColor(UIColor.black, for: .normal)
+        contentFromWebButton.addTarget(self, action: #selector(contentFromWebPressed), for: .touchUpInside)
+        menuViewController.view.addSubview(contentFromWebButton)
+        
+        separator.backgroundColor = UIColor.lightGray
+        menuViewController.view.addSubview(separator)
+        
+        contentFromLibraryButton.setTitle("Content from library", for: .normal)
+        contentFromLibraryButton.setTitleColor(UIColor.black, for: .normal)
+        contentFromLibraryButton.addTarget(self, action: #selector(contentFromLibraryPressed), for: .touchUpInside)
+        menuViewController.view.addSubview(contentFromLibraryButton)
+        
+        contentFromWebButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let contentFromWebHorizontalConstraint = contentFromWebButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
+        let contentFromWebVerticalConstraint = contentFromWebButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -15)
+        
+        NSLayoutConstraint.activate([contentFromWebHorizontalConstraint, contentFromWebVerticalConstraint])
+        
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorLeadingConstraint = separator.leadingAnchor.constraint(equalTo: menuViewController.view.leadingAnchor)
+        let separatorTrailingConstraint = separator.trailingAnchor.constraint(equalTo: menuViewController.view.trailingAnchor)
+        let separatorVerticalConstraint = separator.centerYAnchor.constraint(equalTo: menuViewController.view.centerYAnchor)
+        let separatorHeightConstraint = separator.heightAnchor.constraint(equalToConstant: 1)
+        
+        NSLayoutConstraint.activate([separatorLeadingConstraint, separatorTrailingConstraint, separatorVerticalConstraint, separatorHeightConstraint])
+        
+        contentFromLibraryButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let contentFromLibraryHorizontalConstraint = contentFromLibraryButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
+        let contentFromLibraryVerticalConstraint = contentFromLibraryButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 15)
+        
+        NSLayoutConstraint.activate([contentFromLibraryHorizontalConstraint, contentFromLibraryVerticalConstraint])
+        
+        self.present(menuViewController, animated: true, completion: nil)
+    }
+    
+    func contentFromWebPressed() {
         let getContentView = GetWebContentViewController()
         getContentView.student = student
-        self.present(getContentView, animated: true, completion: nil)
+        self.presentedViewController?.present(getContentView, animated: true, completion: nil)
+    }
+    
+    func contentFromLibraryPressed() {
+        
     }
     
     func homePressed() {
