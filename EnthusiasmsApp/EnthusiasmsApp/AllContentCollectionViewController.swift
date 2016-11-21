@@ -108,35 +108,61 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         addToStudentButton.setTitleColor(UIColor.black, for: .normal)
         addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
         
+        deleteButton.setTitle("Delete Content", for: .normal)
+        deleteButton.setTitleColor(UIColor.black, for: .normal)
+        deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
+        
         menu.view.addSubview(addToStudentButton)
         menu.view.addSubview(deleteButton)
+        
+        let separatorView = UIView()
+        separatorView.backgroundColor = UIColor.lightGray
+        menu.view.addSubview(separatorView)
         
         menu.modalPresentationStyle = .popover
         menu.preferredContentSize = CGSize(width: 200, height: 200)
         
         let cell = self.collectionView?.cellForItem(at: indexPath)
         menu.popoverPresentationController?.sourceRect = CGRect(x: 220, y: 150, width: 0, height: 0)
-        menu.popoverPresentationController?.permittedArrowDirections = .left
+        menu.popoverPresentationController?.permittedArrowDirections = [.left, .up, .right]
         menu.popoverPresentationController?.sourceView = cell
         
-        //View layout
+        //Menu layout
         addToStudentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let addToStudentHorizontalConstraint = addToStudentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let addToStudentVerticalConstraint = addToStudentButton.topAnchor.constraint(equalTo: menu.view.topAnchor, constant: 20)
+        let addToStudentVerticalConstraint = addToStudentButton.bottomAnchor.constraint(equalTo: separatorView.topAnchor, constant: -20)
         let addToStudentHeightConstraint = addToStudentButton.heightAnchor.constraint(equalToConstant: 40)
         let addToStudentWidthConstraint = addToStudentButton.widthAnchor.constraint(equalToConstant: 150)
         
         NSLayoutConstraint.activate([addToStudentHorizontalConstraint, addToStudentVerticalConstraint, addToStudentHeightConstraint, addToStudentWidthConstraint])
         
-        self.present(menu, animated: false, completion: nil)
+        separatorView.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorLeadingConstraint = separatorView.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
+        let separatorTrailingConstraint = separatorView.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
+        let separatorHeightConstraint = separatorView.heightAnchor.constraint(equalToConstant: 1)
+        let separatorVerticalConstraint = separatorView.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        
+        NSLayoutConstraint.activate([separatorLeadingConstraint, separatorTrailingConstraint, separatorHeightConstraint, separatorVerticalConstraint])
+        
+        deleteButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let deleteButtonHorizontalConstraint = deleteButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let deleteButtonVerticalConstraint = deleteButton.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 20)
+        let deleteButtonHeightConstraint = deleteButton.heightAnchor.constraint(equalToConstant: 40)
+        let deleteButtonWidthConstraint = deleteButton.widthAnchor.constraint(equalToConstant: 150)
+        
+        NSLayoutConstraint.activate([deleteButtonHorizontalConstraint, deleteButtonVerticalConstraint, deleteButtonHeightConstraint, deleteButtonWidthConstraint])
+        
+         self.present(menu, animated: false, completion: nil)
     }
     
     func addToStudentPressed() {
         studentListPopover.modalPresentationStyle = .popover
         studentListPopover.popoverPresentationController?.sourceView = menu.view
         studentListPopover.popoverPresentationController?.sourceRect = CGRect(x: 180, y: 140, width: 0, height: 0)
-        studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
+        studentListPopover.preferredContentSize = CGSize(width: 180, height: 180)
         studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
         self.presentedViewController?.present(studentListPopover, animated: true, completion: nil)
     }
@@ -144,6 +170,25 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     func studentSelected() {
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
+    }
+    
+    func deleteContent() {
+        let deleteAlert = UIAlertController(title: "Delete this content", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { alert in
+            let dataController = DataController.sharedInstance
+            dataController.managedObjectContext.delete(self.selectedContent!)
+            dataController.saveContext()
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        })
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        deleteAlert.addAction(noAction)
+        deleteAlert.addAction(yesAction)
+        self.presentedViewController?.present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        collectionView?.reloadData()
     }
 
 }
