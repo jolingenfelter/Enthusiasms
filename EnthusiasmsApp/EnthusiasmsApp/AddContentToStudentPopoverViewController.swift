@@ -27,6 +27,7 @@ class AddContentToStudentPopoverViewController: StudentListPopover {
         selectedStudent = student
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
         self.dismiss(animated: true, completion: nil)
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
 }

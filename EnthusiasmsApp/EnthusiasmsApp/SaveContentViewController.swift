@@ -141,7 +141,10 @@ class SaveContentViewController: UIViewController {
             content.type = (contentType?.rawValue)!
             let uuid = UUID().uuidString
             content.uniqueFileName = String(describing: uuid)
-            content.addToStudentContent(student!)
+            
+            if let student = student {
+                content.addToStudentContent(student)
+            }
             
             let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
             imageGetter.downloadAndSaveImage()

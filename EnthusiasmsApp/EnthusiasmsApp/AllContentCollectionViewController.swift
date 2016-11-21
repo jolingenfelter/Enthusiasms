@@ -53,6 +53,11 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         // Notification for selected student
          NotificationCenter.default.addObserver(self, selector: #selector(studentSelected), name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
+        
+        // NavBar
+        let addContentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addContent))
+        self.navigationItem.rightBarButtonItem = addContentButton
+        
     }
     
     deinit {
@@ -62,6 +67,11 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addContent() {
+        let getWebContentViewController = GetWebContentViewController()
+        self.present(getWebContentViewController, animated: true, completion: nil)
     }
 
     // MARK: UICollectionViewDataSource
@@ -170,6 +180,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     func studentSelected() {
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
+        let dataController = DataController.sharedInstance
+        dataController.saveContext()
     }
     
     func deleteContent() {
