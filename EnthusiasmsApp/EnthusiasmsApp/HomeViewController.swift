@@ -11,8 +11,8 @@ import CoreData
 
 class HomeViewController: UIViewController {
 
-    let studentButton = UIButton()
-    let teacherButton = UIButton()
+    let childButton = UIButton()
+    let caretakerButton = UIButton()
     let enthusiasmsLabel = UILabel()
     
     let studentListPopover = StudentListPopover()
@@ -32,23 +32,23 @@ class HomeViewController: UIViewController {
         self.view.addSubview(enthusiasmsLabel)
         
         // Button Setup
-        teacherButton.setTitle("Teacher", for: .normal)
-        teacherButton.titleLabel?.textColor = UIColor.white
-        teacherButton.titleLabel?.font = teacherButton.titleLabel?.font.withSize(50)
-        teacherButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        teacherButton.layer.cornerRadius = 5
-        teacherButton.layer.masksToBounds = true
-        teacherButton.addTarget(self, action: #selector(teacherPressed), for: .touchUpInside)
-        self.view.addSubview(teacherButton)
+        caretakerButton.setTitle("Caretaker", for: .normal)
+        caretakerButton.titleLabel?.textColor = UIColor.white
+        caretakerButton.titleLabel?.font = caretakerButton.titleLabel?.font.withSize(50)
+        caretakerButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        caretakerButton.layer.cornerRadius = 5
+        caretakerButton.layer.masksToBounds = true
+        caretakerButton.addTarget(self, action: #selector(caretakerPressed), for: .touchUpInside)
+        self.view.addSubview(caretakerButton)
         
-        studentButton.setTitle("Student", for: .normal)
-        studentButton.titleLabel?.textColor = UIColor.white
-        studentButton.titleLabel?.font = studentButton.titleLabel?.font.withSize(50)
-        studentButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        studentButton.layer.cornerRadius = 5
-        studentButton.layer.masksToBounds = true
-        studentButton.addTarget(self, action: #selector(studentPressed), for: .touchUpInside)
-        self.view.addSubview(studentButton)
+        childButton.setTitle("Child", for: .normal)
+        childButton.titleLabel?.textColor = UIColor.white
+        childButton.titleLabel?.font = childButton.titleLabel?.font.withSize(50)
+        childButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        childButton.layer.cornerRadius = 5
+        childButton.layer.masksToBounds = true
+        childButton.addTarget(self, action: #selector(childPressed), for: .touchUpInside)
+        self.view.addSubview(childButton)
     }
     
     deinit {
@@ -76,21 +76,21 @@ class HomeViewController: UIViewController {
     
     func buttonConstraints() {
 
-        teacherButton.translatesAutoresizingMaskIntoConstraints = false
+        caretakerButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let teacherButtonHorizontalConstraint = teacherButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let teacherButtonVerticalConstraint = teacherButton.topAnchor.constraint(equalTo: enthusiasmsLabel.bottomAnchor, constant: 200)
-        let teacherButtonHeight = teacherButton.heightAnchor.constraint(equalToConstant: 90)
-        let teacherButtonWidth = teacherButton.widthAnchor.constraint(equalToConstant: 400)
+        let teacherButtonHorizontalConstraint = caretakerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let teacherButtonVerticalConstraint = caretakerButton.topAnchor.constraint(equalTo: enthusiasmsLabel.bottomAnchor, constant: 200)
+        let teacherButtonHeight = caretakerButton.heightAnchor.constraint(equalToConstant: 90)
+        let teacherButtonWidth = caretakerButton.widthAnchor.constraint(equalToConstant: 400)
         
         NSLayoutConstraint.activate([teacherButtonHorizontalConstraint, teacherButtonVerticalConstraint, teacherButtonHeight, teacherButtonWidth])
         
-        studentButton.translatesAutoresizingMaskIntoConstraints = false
+        childButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let studentButtonHorizontalConstraint = studentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let studentButtonVerticalConstraint = studentButton.topAnchor.constraint(equalTo: teacherButton.bottomAnchor, constant: 30)
-        let studentButtonHeight = studentButton.heightAnchor.constraint(equalTo: teacherButton.heightAnchor)
-        let studentButtonWidth = studentButton.widthAnchor.constraint(equalTo: teacherButton.widthAnchor)
+        let studentButtonHorizontalConstraint = childButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        let studentButtonVerticalConstraint = childButton.topAnchor.constraint(equalTo: caretakerButton.bottomAnchor, constant: 30)
+        let studentButtonHeight = childButton.heightAnchor.constraint(equalTo: caretakerButton.heightAnchor)
+        let studentButtonWidth = childButton.widthAnchor.constraint(equalTo: caretakerButton.widthAnchor)
         
         NSLayoutConstraint.activate([studentButtonHorizontalConstraint, studentButtonVerticalConstraint, studentButtonHeight, studentButtonWidth])
     }
@@ -100,14 +100,14 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func teacherPressed() {
+    func caretakerPressed() {
         
         let studentListViewController = StudentListViewController()
         
         self.navigationController?.pushViewController(studentListViewController, animated: true)
     }
 
-    func studentPressed() {
+    func childPressed() {
         
         let managedObjectContext = DataController.sharedInstance.managedObjectContext
         let request: NSFetchRequest<NSFetchRequestResult> = Student.fetchRequest()
@@ -125,7 +125,7 @@ class HomeViewController: UIViewController {
                 studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
                 studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
                 let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
-                popover.sourceView = self.studentButton
+                popover.sourceView = self.childButton
                 popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
                 self.navigationController?.present(studentListPopover, animated: true, completion: nil)
             }
