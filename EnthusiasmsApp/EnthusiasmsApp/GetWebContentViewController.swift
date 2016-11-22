@@ -48,7 +48,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         navBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 60)
         view.addSubview(navBar)
         let navItem = UINavigationItem()
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         navItem.rightBarButtonItem = cancelButton
         navBar.items = [navItem]
         
@@ -246,7 +246,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     
     // MARK: BarButtonItem Actions
     
-    func cancelPressed() {
+    func donePressed() {
         self.dismiss(animated: true, completion: nil)
     }
     

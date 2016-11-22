@@ -40,7 +40,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         // CollectionView setup
         self.collectionView?.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
-        self.title = "All Content"
+        self.title = "Content Library"
         
         // FetchedResultsController
         fetchedResultsController.delegate = self
@@ -142,8 +142,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         menu.modalPresentationStyle = .popover
         menu.preferredContentSize = CGSize(width: 200, height: 200)
         
-        let cell = self.collectionView?.cellForItem(at: indexPath)
-        menu.popoverPresentationController?.sourceRect = CGRect(x: 220, y: 150, width: 0, height: 0)
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
+        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
         menu.popoverPresentationController?.permittedArrowDirections = [.left, .up, .right]
         menu.popoverPresentationController?.sourceView = cell
         
@@ -216,8 +216,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let editContentViewController = EditContentTitleViewController()
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
-        self.present(editContentViewController, animated: true, completion: nil)
+        self.presentedViewController?.present(editContentViewController, animated: true, completion: nil)
     }
     
     func deleteContent() {
