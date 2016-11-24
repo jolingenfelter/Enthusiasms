@@ -193,7 +193,8 @@ class TeacherCollectionViewController: UICollectionViewController {
         flowLayout.sectionInset = UIEdgeInsets(top: 40, left: 10, bottom: 10, right: 10)
         let addContentFromLibraryVC = AddContentFromLibraryViewController(collectionViewLayout: flowLayout)
         addContentFromLibraryVC.student = student
-        self.presentedViewController?.present(addContentFromLibraryVC, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
+        self.presentedViewController?.present(navigationController, animated: true, completion: nil)
     }
     
     func homePressed() {

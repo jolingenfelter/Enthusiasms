@@ -19,12 +19,8 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     }
     
     func navBarSetup() {
-        navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 60))
-        let navigationItem = UINavigationItem(title: "Content Library")
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        navigationItem.rightBarButtonItem = cancelButton
-        navigationBar.items = [navigationItem]
-        self.view.addSubview(navigationBar)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        self.navigationItem.rightBarButtonItem = doneButton
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {

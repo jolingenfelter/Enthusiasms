@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
             let fetchedStudents = try managedObjectContext.fetch(request) as! [Student]
             
             if fetchedStudents.count == 0 {
-                let alertController = UIAlertController(title: "No Students", message: "Enter as a teacher to get started", preferredStyle: .alert)
+                let alertController = UIAlertController(title: "No Children", message: "Enter as a caretaker to get started", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                 alertController.addAction(okAction)
                 self.present(alertController, animated: true, completion: nil)

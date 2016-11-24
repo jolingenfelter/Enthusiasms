@@ -220,7 +220,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
     
     func deleteContent() {
-        let deleteAlert = UIAlertController(title: "Delete this content", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
+        let deleteAlert = UIAlertController(title: "Delete this content?", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { alert in
             let dataController = DataController.sharedInstance
             dataController.managedObjectContext.delete(self.selectedContent!)
