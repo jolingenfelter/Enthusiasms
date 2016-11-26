@@ -18,6 +18,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
+    var selectedContent: Content?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +41,13 @@ class TeacherCollectionViewController: UICollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateStudentName), name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
         
         // Notification observer to update collectionView when content is added
-        NotificationCenter.default.addObserver(self, selector: #selector(updateContents), name: NSNotification.Name(rawValue: "ContentAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContents), name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
 
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentAdded"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
     }
     
     func updateContents() {
@@ -236,6 +237,50 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
 
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedContent = contentsArray[indexPath.row]
+        showMenufor(objectAtIndexPath: indexPath)
+    }
+    
+    func showMenufor(objectAtIndexPath indexPath: IndexPath) {
+        
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
+        
+        let menu = UIViewController()
+        menu.modalPresentationStyle = .popover
+        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right, .up]
+        menu.popoverPresentationController?.sourceView = cell
+        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
+        menu.preferredContentSize = CGSize(width: 200, height: 50)
+        
+        
+        let removeButton = UIButton()
+        if let student = student, let studentName = student.name {
+            removeButton.setTitle("Remove from \(studentName)", for: .normal)
+        }
+        removeButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        removeButton.setTitleColor(.black, for: .normal)
+        removeButton.addTarget(self, action: #selector(removeContentFromStudent), for: .touchUpInside)
+        menu.view.addSubview(removeButton)
+        
+        removeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let removeHorizontalConstraint = removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let removeVerticalConstraint = removeButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        
+        NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint])
+        
+        self.present(menu, animated: true, completion: nil)
+    }
+    
+    func removeContentFromStudent() {
+        selectedContent?.removeFromStudentContent(student!)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
+        let dataController = DataController.sharedInstance
+        dataController.saveContext()
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

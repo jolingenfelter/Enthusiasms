@@ -151,7 +151,7 @@ class SaveContentViewController: UIViewController {
             
             dataController.saveContext()
             
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
             
             self.dismiss(animated: true, completion: nil)
             

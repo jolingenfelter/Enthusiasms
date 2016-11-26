@@ -74,7 +74,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         student?.addToContents(selectedContent!)
         let dataController = DataController.sharedInstance
         dataController.saveContext()
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
         self.presentedViewController?.dismiss(animated: true, completion: nil)
     }
 
