@@ -44,6 +44,8 @@ class ImageGetter: NSObject {
                     if let JPEGImageData = UIImageJPEGRepresentation(image, 0.8) {
                         let fileName = getDocumentsDirectory().appendingPathComponent("\(self.imageName).jpeg")
                         try? JPEGImageData.write(to: fileName)
+                        
+                        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
                     }
                 }
             }

@@ -149,9 +149,10 @@ class SaveContentViewController: UIViewController {
             let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
             imageGetter.downloadAndSaveImage()
             
+            dataController.saveContext()
+            
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentAdded"), object: nil)
             
-            dataController.saveContext()
             self.dismiss(animated: true, completion: nil)
             
         }
