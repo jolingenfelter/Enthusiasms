@@ -249,10 +249,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         
         let menu = UIViewController()
         menu.modalPresentationStyle = .popover
-        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right, .up]
+        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
         menu.popoverPresentationController?.sourceView = cell
         menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
-        menu.preferredContentSize = CGSize(width: 200, height: 50)
+        menu.preferredContentSize = CGSize(width: 200, height: 150)
         
         
         let removeButton = UIButton()
@@ -264,12 +264,38 @@ class TeacherCollectionViewController: UICollectionViewController {
         removeButton.addTarget(self, action: #selector(removeContentFromStudent), for: .touchUpInside)
         menu.view.addSubview(removeButton)
         
+        let separator = UIView()
+        separator.backgroundColor = UIColor.lightGray
+        menu.view.addSubview(separator)
+        
+        let viewContentButton = UIButton()
+        viewContentButton.setTitle("View", for: .normal)
+        viewContentButton.setTitleColor(.black, for: .normal)
+        viewContentButton.addTarget(self, action: #selector(AllContentCollectionViewController.viewContent), for: .touchUpInside)
+        menu.view.addSubview(viewContentButton)
+        
         removeButton.translatesAutoresizingMaskIntoConstraints = false
         
         let removeHorizontalConstraint = removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let removeVerticalConstraint = removeButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        let removeVerticalConstraint = removeButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -20)
         
         NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint])
+        
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorLeadingConstraint = separator.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
+        let separatorTrailingConstraint = separator.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
+        let separatorVerticalConstraint = separator.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        let separatorHeightConstraint = separator.heightAnchor.constraint(equalToConstant: 1)
+        
+        NSLayoutConstraint.activate([separatorLeadingConstraint, separatorTrailingConstraint, separatorVerticalConstraint, separatorHeightConstraint])
+        
+        viewContentButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20)
+        
+        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint])
         
         self.present(menu, animated: true, completion: nil)
     }

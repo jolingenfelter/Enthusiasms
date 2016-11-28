@@ -29,6 +29,10 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.navigationItem.rightBarButtonItem = homeButton
     }
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
     override func homePressed() {
         let enterPasswordVC = EnterPasswordViewController()
         self.present(enterPasswordVC, animated: true, completion: nil)
