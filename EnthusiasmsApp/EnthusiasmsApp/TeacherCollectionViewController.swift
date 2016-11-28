@@ -271,7 +271,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         let viewContentButton = UIButton()
         viewContentButton.setTitle("View", for: .normal)
         viewContentButton.setTitleColor(.black, for: .normal)
-        viewContentButton.addTarget(self, action: #selector(AllContentCollectionViewController.viewContent), for: .touchUpInside)
+        viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         menu.view.addSubview(viewContentButton)
         
         removeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -306,6 +306,12 @@ class TeacherCollectionViewController: UICollectionViewController {
         let dataController = DataController.sharedInstance
         dataController.saveContext()
         self.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewContent() {
+        if selectedContent?.type == ContentType.Image.rawValue {
+            print("Image!")
+        }
     }
 
     /*

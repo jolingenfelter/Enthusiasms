@@ -285,13 +285,13 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
         if sender.state == UIGestureRecognizerState.recognized {
             let pressPosition = sender.location(in: webView)
-            let src = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
+            let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
             
-            if src != "" {
+            if imageSRC != "" {
                 let saveContentVC = SaveContentViewController()
                 saveContentVC.modalPresentationStyle = .formSheet
                 saveContentVC.student = student
-                saveContentVC.contentURL = src
+                saveContentVC.contentURL = imageSRC
                 saveContentVC.contentType = ContentType.Image
                 self.present(saveContentVC, animated: true, completion: nil)
             }
