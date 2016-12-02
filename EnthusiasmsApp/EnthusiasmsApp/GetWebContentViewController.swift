@@ -31,7 +31,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     var student: Student?
     var contentType: ContentType?
     
-    let javaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
+    let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
     override func loadView() {
         super.loadView()
@@ -92,6 +92,11 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         longPressGestureRecognizer.addTarget(self, action: #selector(longPressAction))
         longPressGestureRecognizer.delegate = self
         webView.addGestureRecognizer(longPressGestureRecognizer)
+        
+        // Context Menu
+        let saveVideoURLMenuItem = UIMenuItem(title: "Save Video URL", action: #selector(saveVideoURL))
+        UIMenuController.shared.menuItems = [saveVideoURLMenuItem]
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -108,6 +113,11 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIMenuController.shared.menuItems = nil
     }
     
     // MARK: View Setup
@@ -277,11 +287,13 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         }
     }
     
-    // Save Content
+    // MARK: Save Content
+    
+    // Save Image
     
     func longPressAction(sender: UILongPressGestureRecognizer) {
         
-        webView.stringByEvaluatingJavaScript(from: javaScript)
+        webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         
         if sender.state == UIGestureRecognizerState.recognized {
             let pressPosition = sender.location(in: webView)
@@ -301,4 +313,24 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
+    // Save Video URL
+    
+    func saveVideoURL() {
+        let saveContentVC = SaveContentViewController()
+        saveContentVC.modalPresentationStyle = .formSheet
+        saveContentVC.student = student
+        
+        guard let urlRequest = webView.request, let contentURL = urlRequest.url else {
+            return
+        }
+        
+        let contentURLString = contentURL.absoluteString
+    
+        saveContentVC.contentURL = contentURLString
+        saveContentVC.contentType = ContentType.Video
+        
+        self.present(saveContentVC, animated: true, completion: nil)
+    }
+    
 }

@@ -123,7 +123,7 @@ class SaveContentViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
             
-        } else {
+        } else if contentType == .Image {
             
             let dataController = DataController.sharedInstance
             
@@ -154,6 +154,9 @@ class SaveContentViewController: UIViewController {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
             
             self.dismiss(animated: true, completion: nil)
+            
+        } else {
+            
             
         }
     }
