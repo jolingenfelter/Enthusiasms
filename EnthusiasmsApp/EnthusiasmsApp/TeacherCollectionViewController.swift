@@ -309,8 +309,16 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func viewContent() {
-        if selectedContent?.type == ContentType.Image.rawValue {
-            print("Image!")
+        guard let selectedContent = selectedContent else {
+            return
+        }
+        
+        if selectedContent.type == ContentType.Image.rawValue {
+            guard let imageViewer = imageViewer(for: selectedContent) else {
+                return
+            }
+            let navigationController = UINavigationController(rootViewController: imageViewer)
+            self.presentedViewController?.present(navigationController, animated: true, completion: nil)
         }
     }
 

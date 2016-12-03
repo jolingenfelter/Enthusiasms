@@ -260,27 +260,25 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
     
     func viewContent() {
-        if selectedContent?.type == ContentType.Image.rawValue {
-            let imageViewer = FullScreenImageViewController()
-            imageViewer.content = selectedContent
+        
+        guard let selectedContent = selectedContent else {
+            return
+        }
+        
+        if selectedContent.type == ContentType.Image.rawValue {
+            guard let imageViewer = imageViewer(for: selectedContent) else {
+                return
+            }
+            
             let navigationController = UINavigationController(rootViewController: imageViewer)
-            
-            guard let selectedContent = selectedContent, let contentImageName = selectedContent.uniqueFileName, let imageURL = selectedContent.url else {
-                return
-            }
-            
-            let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
-            
-            guard let contentImage = imageGetter.getImage() else {
-                return
-            }
-            
-            imageViewer.image = contentImage
-            
             self.presentedViewController?.present(navigationController, animated: true, completion: nil)
+            
+        } else {
             
         }
         
     }
-
+        
 }
+
+
