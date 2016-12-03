@@ -18,6 +18,7 @@ class SaveContentViewController: UIViewController {
     var student: Student?
     var contentURL: String?
     var contentType: ContentType?
+    var videoID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,7 +124,7 @@ class SaveContentViewController: UIViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
             
-        } else if contentType == .Image {
+        } else {
             
             let dataController = DataController.sharedInstance
             
@@ -146,17 +147,22 @@ class SaveContentViewController: UIViewController {
                 content.addToStudentContent(student)
             }
             
-            let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
-            imageGetter.downloadAndSaveImage()
+            if contentType == .Image {
+                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
+                imageGetter.downloadAndSaveImage()
+            }
+            
+            if contentType == .Video {
+                let thumnailURLString = thumbnailURLString(videoID: videoID!, quailty: ThumbnailQuailty.High)
+                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: thumnailURLString)!)
+                imageGetter.downloadAndSaveImage()
+            }
             
             dataController.saveContext()
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
             
             self.dismiss(animated: true, completion: nil)
-            
-        } else {
-            
             
         }
     }

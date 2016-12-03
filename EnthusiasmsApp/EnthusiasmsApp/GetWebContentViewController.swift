@@ -330,7 +330,28 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         saveContentVC.contentURL = contentURLString
         saveContentVC.contentType = ContentType.Video
         
+        let videoID = extractYoutubeIdFromLink(link: contentURLString)
+        saveContentVC.videoID = videoID
+        
         self.present(saveContentVC, animated: true, completion: nil)
+    }
+    
+    func extractYoutubeIdFromLink(link: String) -> String? {
+        
+        let pattern = "((?<=(v|V)/)|(?<=be/)|(?<=(\\?|\\&)v=)|(?<=embed/))([\\w-]++)"
+        guard let regExp = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) else {
+            return nil
+        }
+        let nsLink = link as NSString
+        let options = NSRegularExpression.MatchingOptions(rawValue: 0)
+        let range = NSRange(location: 0,length: nsLink.length)
+        let matches = regExp.matches(in: link as String, options:options, range:range)
+        if let firstMatch = matches.first {
+            print(firstMatch)
+            
+            return nsLink.substring(with: firstMatch.range)
+        }
+        return nil
     }
     
 }

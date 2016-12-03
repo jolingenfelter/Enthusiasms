@@ -35,6 +35,7 @@
 		9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */; };
 		9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */; };
 		9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */; };
+		9EFC4B371DF338610022BCD4 /* VideoThumnailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */; };
 		9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentViewController.swift; sourceTree = "<group>"; };
 		9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoThumnailHelper.swift; sourceTree = "<group>"; };
 		9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
 				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 				9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */,
+				9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
@@ -231,6 +234,7 @@
 				9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */,
 				9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */,
 				9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */,
+				9EFC4B371DF338610022BCD4 /* VideoThumnailHelper.swift in Sources */,
 				9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,
 				9E38C9661DEBBB6B006D0ABD /* FullScreenImageViewController.swift in Sources */,
