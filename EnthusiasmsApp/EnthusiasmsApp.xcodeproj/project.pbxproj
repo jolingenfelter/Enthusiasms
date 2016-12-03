@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01481B27702B063AB1988F5B /* Pods_EnthusiasmsApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A57DF5E19B8B52D570F2116B /* Pods_EnthusiasmsApp.framework */; };
 		9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */; };
 		9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */; };
 		9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18C090900F7E8745D3C9D6DC /* Pods-EnthusiasmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnthusiasmsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListPopover.swift; sourceTree = "<group>"; };
 		9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewController.swift; sourceTree = "<group>"; };
 		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoThumnailHelper.swift; sourceTree = "<group>"; };
 		9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContentHelpers.swift; sourceTree = "<group>"; };
 		9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebContentViewController.swift; sourceTree = "<group>"; };
+		A57DF5E19B8B52D570F2116B /* Pods_EnthusiasmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnthusiasmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB3D0FA2AC9DD00717D35659 /* Pods-EnthusiasmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnthusiasmsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,12 +85,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01481B27702B063AB1988F5B /* Pods_EnthusiasmsApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C0AFCCC889C10A4EC98BC95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				18C090900F7E8745D3C9D6DC /* Pods-EnthusiasmsApp.debug.xcconfig */,
+				BB3D0FA2AC9DD00717D35659 /* Pods-EnthusiasmsApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4BB95CE0C830BBEA0CDDADD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A57DF5E19B8B52D570F2116B /* Pods_EnthusiasmsApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +127,8 @@
 			children = (
 				9EB4F4B91D8E120500E81C74 /* EnthusiasmsApp */,
 				9EB4F4B81D8E120500E81C74 /* Products */,
+				0C0AFCCC889C10A4EC98BC95 /* Pods */,
+				4BB95CE0C830BBEA0CDDADD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,9 +182,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9EB4F4C91D8E120500E81C74 /* Build configuration list for PBXNativeTarget "EnthusiasmsApp" */;
 			buildPhases = (
+				2066EE7AC8AC888DE013F2BC /* 📦 Check Pods Manifest.lock */,
 				9EB4F4B31D8E120500E81C74 /* Sources */,
 				9EB4F4B41D8E120500E81C74 /* Frameworks */,
 				9EB4F4B51D8E120500E81C74 /* Resources */,
+				E928D729511C0548EBF4E126 /* 📦 Embed Pods Frameworks */,
+				0F21012214E10EFC24BD3C15 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,6 +210,7 @@
 				TargetAttributes = {
 					9EB4F4B61D8E120500E81C74 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -216,6 +244,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0F21012214E10EFC24BD3C15 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2066EE7AC8AC888DE013F2BC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E928D729511C0548EBF4E126 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9EB4F4B31D8E120500E81C74 /* Sources */ = {
@@ -365,7 +441,9 @@
 		};
 		9EB4F4CA1D8E120500E81C74 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18C090900F7E8745D3C9D6DC /* Pods-EnthusiasmsApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EnthusiasmsApp/Info.plist;
@@ -378,7 +456,9 @@
 		};
 		9EB4F4CB1D8E120500E81C74 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB3D0FA2AC9DD00717D35659 /* Pods-EnthusiasmsApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = EnthusiasmsApp/Info.plist;
