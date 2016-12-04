@@ -18,10 +18,23 @@ func imageViewer(for content: Content) -> FullScreenImageViewController? {
     
     let imageGetter = ImageGetter(imageName: imageFileName, imageURL: URL(string: imageURL)!)
     
-    if let contentImage = imageGetter.getImage() {
-        imageViewer.image = contentImage
-        return imageViewer
+    guard let contentImage = imageGetter.getImage() else {
+        return nil
     }
     
+    imageViewer.image = contentImage
+    
     return imageViewer
+}
+
+func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
+    let videoPlayer = FullScreenVideoViewController()
+    
+    guard let videoURLString = content.url, let videoURL = URL(string: videoURLString) else {
+        return nil
+    }
+    
+    videoPlayer.videoURL = videoURL
+    
+    return videoPlayer
 }

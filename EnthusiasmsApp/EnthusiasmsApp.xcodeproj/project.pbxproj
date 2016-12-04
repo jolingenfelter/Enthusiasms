@@ -38,6 +38,7 @@
 		9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */; };
 		9EFC4B371DF338610022BCD4 /* VideoThumnailHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */; };
 		9EFC4B391DF37AA20022BCD4 /* ViewContentHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */; };
+		9EFC4B3D1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFC4B3C1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift */; };
 		9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,13 +46,13 @@
 		18C090900F7E8745D3C9D6DC /* Pods-EnthusiasmsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnthusiasmsApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp.debug.xcconfig"; sourceTree = "<group>"; };
 		9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListPopover.swift; sourceTree = "<group>"; };
 		9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewController.swift; sourceTree = "<group>"; };
-		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
+		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnterPasswordViewController.swift; path = EnthusiasmsApp/EnterPasswordViewController.swift; sourceTree = "<group>"; };
 		9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContentTitleViewController.swift; sourceTree = "<group>"; };
 		9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentFromLibraryViewController.swift; sourceTree = "<group>"; };
 		9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
-		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
+		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EB4F4B71D8E120500E81C74 /* EnthusiasmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnthusiasmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +63,7 @@
 		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = EnthusiasmsApp/CoreDataStack.swift; sourceTree = "<group>"; };
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionViewController.swift; sourceTree = "<group>"; };
-		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
+		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePasswordViewController.swift; path = EnthusiasmsApp/CreatePasswordViewController.swift; sourceTree = "<group>"; };
 		9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -75,6 +76,7 @@
 		9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoThumnailHelper.swift; sourceTree = "<group>"; };
 		9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewContentHelpers.swift; sourceTree = "<group>"; };
+		9EFC4B3C1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenVideoViewController.swift; sourceTree = "<group>"; };
 		9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebContentViewController.swift; sourceTree = "<group>"; };
 		A57DF5E19B8B52D570F2116B /* Pods_EnthusiasmsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EnthusiasmsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3D0FA2AC9DD00717D35659 /* Pods-EnthusiasmsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnthusiasmsApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnthusiasmsApp/Pods-EnthusiasmsApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -144,14 +146,12 @@
 			isa = PBXGroup;
 			children = (
 				9E5EC2161D90CDB40014FC35 /* CoreData */,
+				9EFC4B3B1DF38C790022BCD4 /* Password */,
 				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
-				9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */,
-				9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */,
 				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
 				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
 				9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */,
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
-				9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */,
 				9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */,
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
@@ -160,19 +160,47 @@
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
-				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
 				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
 				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
 				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
-				9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */,
-				9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */,
-				9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */,
+				9EFC4B3E1DF38DA80022BCD4 /* View Content */,
+				9EFC4B3A1DF38BDB0022BCD4 /* Helpers */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
 				9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */,
 			);
 			path = EnthusiasmsApp;
+			sourceTree = "<group>";
+		};
+		9EFC4B3A1DF38BDB0022BCD4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
+				9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */,
+				9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		9EFC4B3B1DF38C790022BCD4 /* Password */ = {
+			isa = PBXGroup;
+			children = (
+				9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */,
+				9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */,
+				9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */,
+			);
+			name = Password;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		9EFC4B3E1DF38DA80022BCD4 /* View Content */ = {
+			isa = PBXGroup;
+			children = (
+				9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */,
+				9EFC4B3C1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift */,
+			);
+			name = "View Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,6 +333,7 @@
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */,
 				9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */,
+				9EFC4B3D1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift in Sources */,
 				9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */,
 				9E2334741DE35C92006AB7ED /* AddContentFromLibraryViewController.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,

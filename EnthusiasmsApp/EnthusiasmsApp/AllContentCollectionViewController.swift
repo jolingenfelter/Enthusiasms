@@ -274,7 +274,11 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
             self.presentedViewController?.present(navigationController, animated: true, completion: nil)
             
         } else {
-            
+            guard let videoPlayer = videoPlayer(for: selectedContent) else {
+                return
+            }
+            let navigationController = UINavigationController(rootViewController: videoPlayer)
+            self.presentedViewController?.present(navigationController, animated: true, completion: nil)
         }
         
     }
