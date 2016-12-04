@@ -6,7 +6,7 @@
 //  Copyright © 2016 JoLingenfelter. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 func imageViewer(for content: Content) -> FullScreenImageViewController? {
     let imageViewer = FullScreenImageViewController()
@@ -37,4 +37,23 @@ func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
     videoPlayer.videoURL = videoURL
     
     return videoPlayer
+}
+
+
+func viewFullScreen(content: Content, from viewController: UIViewController) {
+    
+    if content.type == ContentType.Image.rawValue {
+        guard let imageViewer = imageViewer(for: content) else {
+            return
+        }
+        let navigationController = UINavigationController(rootViewController: imageViewer)
+        viewController.present(navigationController, animated: true, completion: nil)
+    } else {
+        guard let videoPlayer = videoPlayer(for: content) else {
+            return
+        }
+        let navigationController = UINavigationController(rootViewController: videoPlayer)
+        viewController.present(navigationController, animated: true, completion: nil)
+    }
+    
 }

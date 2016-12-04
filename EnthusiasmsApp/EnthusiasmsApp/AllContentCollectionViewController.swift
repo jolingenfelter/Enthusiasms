@@ -265,22 +265,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
             return
         }
         
-        if selectedContent.type == ContentType.Image.rawValue {
-            guard let imageViewer = imageViewer(for: selectedContent) else {
-                return
-            }
-            
-            let navigationController = UINavigationController(rootViewController: imageViewer)
-            self.presentedViewController?.present(navigationController, animated: true, completion: nil)
-            
-        } else {
-            guard let videoPlayer = videoPlayer(for: selectedContent) else {
-                return
-            }
-            let navigationController = UINavigationController(rootViewController: videoPlayer)
-            self.presentedViewController?.present(navigationController, animated: true, completion: nil)
-        }
-        
+        viewFullScreen(content: selectedContent, from: self.presentedViewController!)
+    
     }
         
 }
