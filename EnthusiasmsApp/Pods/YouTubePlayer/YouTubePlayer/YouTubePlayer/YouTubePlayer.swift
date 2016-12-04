@@ -316,6 +316,10 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
 
         // Check if ytplayer event and, if so, pass to handleJSEvent
         if let url = url, url.scheme == "ytplayer" { handleJSEvent(url) }
+        
+        if navigationType == UIWebViewNavigationType.linkClicked {
+            return false
+        }
 
         return true
     }
