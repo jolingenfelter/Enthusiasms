@@ -12,11 +12,16 @@ private let reuseIdentifier = "Cell"
 
 class StudentCollectionViewController: TeacherCollectionViewController {
     
+    var timer = Timer()
+    var rewardTime: Double?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.title = student?.name
+        
+        print(rewardTime!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,6 +35,10 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let selectedContent = contentsArray[indexPath.row]
+        
+        viewFullScreen(content: selectedContent, from: self)
         
     }
     

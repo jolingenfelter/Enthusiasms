@@ -124,6 +124,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		9E969BE01DF50209004E420E /* Name */ = {
+			isa = PBXGroup;
+			children = (
+				9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */,
+				9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */,
+			);
+			name = Name;
+			sourceTree = "<group>";
+		};
 		9EB4F4AE1D8E120500E81C74 = {
 			isa = PBXGroup;
 			children = (
@@ -145,18 +154,17 @@
 		9EB4F4B91D8E120500E81C74 /* EnthusiasmsApp */ = {
 			isa = PBXGroup;
 			children = (
+				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
 				9E5EC2161D90CDB40014FC35 /* CoreData */,
 				9EFC4B3B1DF38C790022BCD4 /* Password */,
-				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
+				9E969BE01DF50209004E420E /* Name */,
 				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
 				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
 				9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */,
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
-				9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */,
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
 				9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */,
-				9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,

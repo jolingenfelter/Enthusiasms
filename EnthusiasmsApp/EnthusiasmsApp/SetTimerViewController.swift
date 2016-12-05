@@ -13,6 +13,8 @@ class SetTimerViewController: UIViewController {
     var student: Student?
     let timePicker = UIDatePicker()
     let startButton = UIButton()
+    var rewardTime: Double = 0
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +68,14 @@ class SetTimerViewController: UIViewController {
     }
     
     func startPressed() {
+        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
+        studentCollectionView.rewardTime = Double(timePicker.countDownDuration)
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
 
@@ -79,16 +83,34 @@ class SetTimerViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
