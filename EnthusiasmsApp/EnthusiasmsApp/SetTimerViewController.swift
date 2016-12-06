@@ -13,7 +13,7 @@ class SetTimerViewController: UIViewController {
     var student: Student?
     let timePicker = UIDatePicker()
     let startButton = UIButton()
-    var rewardTime: Double = 0
+    var rewardTime: Int = 0
 
     
     override func viewDidLoad() {
@@ -75,7 +75,7 @@ class SetTimerViewController: UIViewController {
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
-        studentCollectionView.rewardTime = Double(timePicker.countDownDuration)
+        studentCollectionView.rewardTime = Int(timePicker.countDownDuration)
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
 

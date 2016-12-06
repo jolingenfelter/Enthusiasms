@@ -13,7 +13,15 @@ private let reuseIdentifier = "Cell"
 class StudentCollectionViewController: TeacherCollectionViewController {
     
     var timer = Timer()
-    var rewardTime: Double?
+    let timerLabel = TimerLabel()
+    var rewardTime = 0
+    
+    var minutes: Int {
+        return rewardTime / 60
+    }
+    var seconds: Int {
+        return rewardTime % 60
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +29,14 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.title = student?.name
         
-        print(rewardTime!)
+        // Timer Setup
+        
+        timerLabel.frame = CGRect(x: 400, y: 80, width: 80, height: 50)
+        timerLabel.setRewardTime(minutes: minutes, seconds: rewardTime % 60)
+        view.addSubview(timerLabel)
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +60,18 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     override func homePressed() {
         let enterPasswordVC = EnterPasswordViewController()
         self.present(enterPasswordVC, animated: true, completion: nil)
+    }
+    
+    func updateTimer() {
+        if rewardTime > 0 {
+            timerLabel.setRewardTime(minutes: minutes, seconds: seconds)
+            rewardTime -= 1
+            
+        } else if rewardTime == 0 {
+            timer.invalidate()
+            timerLabel.text = "00:00"
+        }
+        
     }
     
 }
