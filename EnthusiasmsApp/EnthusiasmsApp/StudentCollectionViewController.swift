@@ -33,10 +33,14 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         timerLabel.frame = CGRect(x: 400, y: 80, width: 80, height: 50)
         timerLabel.setRewardTime(minutes: minutes, seconds: rewardTime % 60)
-        view.addSubview(timerLabel)
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        view.addSubview(timerLabel)
     }
 
     override func didReceiveMemoryWarning() {
