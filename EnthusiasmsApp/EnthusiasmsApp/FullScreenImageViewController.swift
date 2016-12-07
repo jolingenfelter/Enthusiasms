@@ -14,6 +14,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
+    var timerLabel : TimerLabel?
     
     // Constraints
     var imageViewLeadingConstraint = NSLayoutConstraint()
@@ -29,6 +30,10 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = image
         
         navBarSetup()
+        
+        if let timerLabel = timerLabel {
+            imageView.addSubview(timerLabel)
+        }
         
         // ImageView setup
         

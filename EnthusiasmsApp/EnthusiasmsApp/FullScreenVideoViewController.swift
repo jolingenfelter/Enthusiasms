@@ -13,6 +13,7 @@ class FullScreenVideoViewController: UIViewController {
     
     let youtubePlayerView = YouTubePlayerView()
     var videoURL: URL?
+    var timerLabel: TimerLabel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +22,10 @@ class FullScreenVideoViewController: UIViewController {
         youtubePlayerView.loadVideoURL(videoURL!)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.leftBarButtonItem = doneButton
+        
+        if let timerLabel = timerLabel {
+            view.addSubview(timerLabel)
+        }
     }
     
     override func viewDidLayoutSubviews() {

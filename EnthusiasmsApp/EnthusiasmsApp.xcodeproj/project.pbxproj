@@ -17,7 +17,7 @@
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
-		9E83ABC91DF5C87C003CD291 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E83ABC81DF5C87C003CD291 /* TimerView.swift */; };
+		9E83ABC91DF5C87C003CD291 /* TimerLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E83ABC81DF5C87C003CD291 /* TimerLabel.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */; };
 		9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */; };
@@ -54,7 +54,7 @@
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
-		9E83ABC81DF5C87C003CD291 /* TimerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		9E83ABC81DF5C87C003CD291 /* TimerLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimerLabel.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EB4F4B71D8E120500E81C74 /* EnthusiasmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnthusiasmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
 				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
 				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
-				9E83ABC81DF5C87C003CD291 /* TimerView.swift */,
+				9E83ABC81DF5C87C003CD291 /* TimerLabel.swift */,
 				9EFC4B3E1DF38DA80022BCD4 /* View Content */,
 				9EFC4B3A1DF38BDB0022BCD4 /* Helpers */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
@@ -364,7 +364,7 @@
 				9EFC4B391DF37AA20022BCD4 /* ViewContentHelpers.swift in Sources */,
 				9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */,
 				9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */,
-				9E83ABC91DF5C87C003CD291 /* TimerView.swift in Sources */,
+				9E83ABC91DF5C87C003CD291 /* TimerLabel.swift in Sources */,
 				9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */,
 				9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */,
 				9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */,

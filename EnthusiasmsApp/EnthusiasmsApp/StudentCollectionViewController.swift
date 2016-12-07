@@ -53,7 +53,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self)
+        viewFullScreen(content: selectedContent, from: self, with: timerLabel)
         
     }
     
@@ -68,8 +68,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
             rewardTime -= 1
             
         } else if rewardTime == 0 {
+            timerLabel.setRewardTime(minutes: minutes, seconds: seconds)
             timer.invalidate()
-            timerLabel.text = "00:00"
         }
         
     }
