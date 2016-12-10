@@ -332,7 +332,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         saveContentVC.contentType = ContentType.Video
         
         let videoID = videoIDFromYouTubeURL(contentURL)
-        saveContentVC.videoID = videoID
+        saveContentVC.youtubeVideoID = videoID
         
         self.present(saveContentVC, animated: true, completion: nil)
     }

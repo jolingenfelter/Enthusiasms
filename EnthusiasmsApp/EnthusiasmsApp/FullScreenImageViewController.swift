@@ -14,7 +14,8 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
-    var timerLabel : TimerLabel?
+    var timeDisplay: String?
+    var addTimeButton: AddTimeButton?
     
     // Constraints
     var imageViewLeadingConstraint = NSLayoutConstraint()
@@ -30,10 +31,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         imageView.image = image
         
         navBarSetup()
-        
-        if let timerLabel = timerLabel {
-            imageView.addSubview(timerLabel)
-        }
         
         // ImageView setup
         
@@ -64,6 +61,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         self.title = content?.title
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton!)
     }
     
     func viewSetup() {

@@ -13,14 +13,24 @@ private let reuseIdentifier = "Cell"
 class StudentCollectionViewController: TeacherCollectionViewController {
     
     var timer = Timer()
-    let timerLabel = TimerLabel()
     var rewardTime = 0
+    var addTimeButton = AddTimeButton()
     
     var minutes: Int {
         return rewardTime / 60
     }
     var seconds: Int {
         return rewardTime % 60
+    }
+    
+    var timeDisplay: String {
+        if seconds == 0 {
+            return "\(minutes):00"
+        } else if seconds >= 1 && seconds < 10 {
+            return "\(minutes):0\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
     }
     
     override func viewDidLoad() {
@@ -31,16 +41,12 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         // Timer Setup
         
-        timerLabel.frame = CGRect(x: 400, y: 80, width: 80, height: 50)
-        timerLabel.setRewardTime(minutes: minutes, seconds: rewardTime % 60)
-        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        view.addSubview(timerLabel)
+       navigationBarSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,13 +57,16 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     override func navigationBarSetup() {
         let homeButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(StudentCollectionViewController.homePressed))
         self.navigationItem.rightBarButtonItem = homeButton
+        let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
+        self.navigationItem.leftBarButtonItem = addTimeBarButton
+    
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self, with: timerLabel)
+        viewFullScreen(content: selectedContent, from: self, with: addTimeButton)
         
     }
     
@@ -68,11 +77,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     func updateTimer() {
         if rewardTime > 0 {
-            timerLabel.setRewardTime(minutes: minutes, seconds: seconds)
+            addTimeButton.setTitle(timeDisplay, for: .normal)
+            addTimeButton.rewardTime = rewardTime
             rewardTime -= 1
             
         } else if rewardTime == 0 {
-            timerLabel.setRewardTime(minutes: minutes, seconds: seconds)
+            addTimeButton.setTitle(timeDisplay, for: .normal)
+            addTimeButton.rewardTime = rewardTime
             timer.invalidate()
         }
         
