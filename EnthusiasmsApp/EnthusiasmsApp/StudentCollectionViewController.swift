@@ -14,6 +14,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     var timer = Timer()
     var rewardTime = 0
+    var remainingRewardTime = 0
+    var updatedRewardTime = 0
     var addTimeButton = AddTimeButton()
     
     var minutes: Int {
@@ -43,6 +45,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
+        
+        // Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(addTimePressed), name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -66,7 +75,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self, with: addTimeButton)
+        viewFullScreen(content: selectedContent, from: self, with: rewardTime, and: addTimeButton)
         
     }
     
@@ -75,18 +84,31 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.present(enterPasswordVC, animated: true, completion: nil)
     }
     
+    // MARK: Timer
+    
     func updateTimer() {
         if rewardTime > 0 {
             addTimeButton.setTitle(timeDisplay, for: .normal)
-            addTimeButton.rewardTime = rewardTime
             rewardTime -= 1
             
         } else if rewardTime == 0 {
             addTimeButton.setTitle(timeDisplay, for: .normal)
-            addTimeButton.rewardTime = rewardTime
             timer.invalidate()
         }
         
+    }
+    
+    func addTimePressed() {
+        remainingRewardTime = rewardTime
+        timer.invalidate()
+        let addTimeViewController = AddTimeViewController()
+        addTimeViewController.modalPresentationStyle = .formSheet
+        
+        if self.presentedViewController == nil {
+            self.present(addTimeViewController, animated: true, completion: nil)
+        } else if self.presentedViewController != nil {
+            self.presentedViewController?.present(addTimeViewController, animated: true, completion: nil)
+        }
     }
     
 }

@@ -14,7 +14,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
-    var timeDisplay: String?
+    var rewardTime: Int?
     var addTimeButton: AddTimeButton?
     
     // Constraints

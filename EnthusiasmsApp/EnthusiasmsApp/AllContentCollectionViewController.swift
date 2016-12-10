@@ -265,7 +265,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
             return
         }
         
-        viewFullScreen(content: selectedContent, from: self.presentedViewController!, with: nil)
+        viewFullScreen(content: selectedContent, from: self.presentedViewController!, with: nil, and: nil)
     
     }
         

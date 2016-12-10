@@ -40,12 +40,13 @@ func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
 }
 
 
-func viewFullScreen(content: Content, from viewController: UIViewController, with rewardTimeAdjuster: AddTimeButton?) {
+func viewFullScreen(content: Content, from viewController: UIViewController, with rewardTime: Int?, and rewardTimeAdjuster: AddTimeButton?) {
     
     if content.type == ContentType.Image.rawValue {
         guard let imageViewer = imageViewer(for: content) else {
             return
         }
+        imageViewer.rewardTime = rewardTime
         imageViewer.addTimeButton = rewardTimeAdjuster
         let navigationController = UINavigationController(rootViewController: imageViewer)
         viewController.present(navigationController, animated: true, completion: nil)
@@ -53,6 +54,7 @@ func viewFullScreen(content: Content, from viewController: UIViewController, wit
         guard let videoPlayer = videoPlayer(for: content) else {
             return
         }
+        videoPlayer.rewardTime = rewardTime
         videoPlayer.addTimeButton = rewardTimeAdjuster
         let navigationController = UINavigationController(rootViewController: videoPlayer)
         viewController.present(navigationController, animated: true, completion: nil)

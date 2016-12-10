@@ -10,21 +10,18 @@ import UIKit
 
 class AddTimeButton: UIButton {
     
-    var rewardTime: Int
 
     required init?(coder aDecoder: NSCoder) {
-        self.rewardTime = 0
         super.init(coder: aDecoder)
     }
     
-    init(type: UIButtonType = UIButtonType.custom, rewardTime: Int = 0) {
-        self.rewardTime = rewardTime
+    init(type: UIButtonType = UIButtonType.custom) {
         super.init(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
         self.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
         self.setTitleColor(.black, for: .normal)
     }
     
     func addTimePressed() {
-        
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "addTimePressed"), object: nil)
     }
 }
