@@ -30,6 +30,7 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         timePicker.delegate = self
         timePicker.dataSource = self
         timePicker.backgroundColor = UIColor.white
+        rewardTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
         view.addSubview(timePicker)
         
         // Button

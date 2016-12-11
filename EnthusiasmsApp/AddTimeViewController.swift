@@ -33,6 +33,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         timePicker.dataSource = self
         timePicker.delegate = self
         timePicker.backgroundColor = UIColor.white
+        additionalTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
         view.addSubview(timePicker)
         
         // Button Setup

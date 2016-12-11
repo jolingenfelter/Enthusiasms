@@ -18,6 +18,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     var updatedTime = 0
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimeViewController = AddTimeViewController()
+    let addTimePasswordCheck = AddTimePasswordCheckViewController()
     
     var minutes: Int {
         return rewardTime / 60
@@ -49,10 +50,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -113,14 +117,19 @@ class StudentCollectionViewController: TeacherCollectionViewController {
 
         remainingRewardTime = rewardTime
         timer.invalidate()
-        addTimeViewController.modalPresentationStyle = .formSheet
-        addTimeViewController.rewardTime = remainingRewardTime
+        addTimePasswordCheck.modalPresentationStyle = .formSheet
         
         if self.presentedViewController == nil {
-            self.present(addTimeViewController, animated: true, completion: nil)
+            self.present(addTimePasswordCheck, animated: true, completion: nil)
         } else if self.presentedViewController != nil {
-            self.presentedViewController?.present(addTimeViewController, animated: true, completion: nil)
+            self.presentedViewController?.present(addTimePasswordCheck, animated: true, completion: nil)
         }
+    }
+    
+    func addTimePasswordCheckComplete() {
+        addTimeViewController.rewardTime = remainingRewardTime
+        addTimeViewController.modalPresentationStyle = .formSheet
+        self.present(addTimeViewController, animated: true, completion: nil)
     }
     
     func updateRewardTime() {
