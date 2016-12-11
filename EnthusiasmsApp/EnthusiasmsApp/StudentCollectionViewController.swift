@@ -15,8 +15,9 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     var timer = Timer()
     var rewardTime = 0
     var remainingRewardTime = 0
-    var updatedRewardTime = 0
+    var updatedTime = 0
     var addTimeButton = AddTimeButton()
+    let addTimeViewController = AddTimeViewController()
     
     var minutes: Int {
         return rewardTime / 60
@@ -48,10 +49,12 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePressed), name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,6 +83,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func homePressed() {
+        timer.invalidate()
         let enterPasswordVC = EnterPasswordViewController()
         self.present(enterPasswordVC, animated: true, completion: nil)
     }
@@ -101,14 +105,21 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     func addTimePressed() {
         remainingRewardTime = rewardTime
         timer.invalidate()
-        let addTimeViewController = AddTimeViewController()
         addTimeViewController.modalPresentationStyle = .formSheet
+        addTimeViewController.rewardTime = remainingRewardTime
         
         if self.presentedViewController == nil {
             self.present(addTimeViewController, animated: true, completion: nil)
         } else if self.presentedViewController != nil {
             self.presentedViewController?.present(addTimeViewController, animated: true, completion: nil)
         }
+    }
+    
+    func updateRewardTime() {
+        updatedTime = addTimeViewController.updatedTime
+        rewardTime = updatedTime
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
     }
     
 }

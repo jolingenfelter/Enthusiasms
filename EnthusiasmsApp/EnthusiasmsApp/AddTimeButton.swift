@@ -16,7 +16,7 @@ class AddTimeButton: UIButton {
     }
     
     init(type: UIButtonType = UIButtonType.custom) {
-        super.init(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
+        super.init(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
         self.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
         self.setTitleColor(.black, for: .normal)
     }

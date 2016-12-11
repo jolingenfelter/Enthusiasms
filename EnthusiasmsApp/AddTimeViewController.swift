@@ -13,6 +13,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     let timePicker = UIPickerView()
     var rewardTime : Int?
     var additionalTime = 0
+    var updatedTime = 0
     let updateTimeButton = UIButton()
     let minutesArray = [Int](1...60)
     let navigationBar = UINavigationBar()
@@ -40,6 +41,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         updateTimeButton.setTitleColor(.white, for: .normal)
         updateTimeButton.layer.cornerRadius = 5
         updateTimeButton.layer.masksToBounds = true
+        updateTimeButton.addTarget(self, action: #selector(updateTime), for: .touchUpInside)
         view.addSubview(updateTimeButton)
         
     }
@@ -85,6 +87,13 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func updateTime() {
+        
+        if rewardTime! + (additionalTime * 60) >= 3600 {
+            updatedTime = 3600
+        } else {
+            updatedTime = rewardTime! + (additionalTime * 60)
+        }
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
