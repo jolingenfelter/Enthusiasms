@@ -16,7 +16,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     var rewardTime = 0
     var remainingRewardTime = 0
     var updatedTime = 0
-    var addTimeButton = AddTimeButton()
+    var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimeViewController = AddTimeViewController()
     
     var minutes: Int {
@@ -48,12 +48,10 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         updateTimer()
         
         // Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(addTimePressed), name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePressed"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
     }
     
@@ -69,6 +67,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     override func navigationBarSetup() {
         let homeButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(StudentCollectionViewController.homePressed))
         self.navigationItem.rightBarButtonItem = homeButton
+        addTimeButton.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
+        addTimeButton.setTitleColor(.black, for: .normal)
         let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
         self.navigationItem.leftBarButtonItem = addTimeBarButton
     
@@ -103,6 +103,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     func addTimePressed() {
+
         remainingRewardTime = rewardTime
         timer.invalidate()
         addTimeViewController.modalPresentationStyle = .formSheet

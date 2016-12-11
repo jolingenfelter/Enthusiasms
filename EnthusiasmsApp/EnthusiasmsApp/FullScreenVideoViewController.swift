@@ -14,7 +14,7 @@ class FullScreenVideoViewController: UIViewController {
     let youtubePlayerView = YouTubePlayerView()
     var videoURL: URL?
     var rewardTime: Int?
-    var addTimeButton: AddTimeButton?
+    var addTimeButton: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()

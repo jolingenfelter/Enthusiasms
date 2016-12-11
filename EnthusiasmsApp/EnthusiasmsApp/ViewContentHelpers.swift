@@ -40,7 +40,7 @@ func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
 }
 
 
-func viewFullScreen(content: Content, from viewController: UIViewController, with rewardTime: Int?, and rewardTimeAdjuster: AddTimeButton?) {
+func viewFullScreen(content: Content, from viewController: UIViewController, with rewardTime: Int?, and rewardTimeAdjuster: UIButton?) {
     
     if content.type == ContentType.Image.rawValue {
         guard let imageViewer = imageViewer(for: content) else {
