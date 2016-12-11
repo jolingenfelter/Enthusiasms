@@ -98,6 +98,14 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         } else if rewardTime == 0 {
             addTimeButton.setTitle(timeDisplay, for: .normal)
             timer.invalidate()
+            
+            let enterPasswordVC = EnterPasswordViewController()
+            if self.presentedViewController == nil {
+                self.present(enterPasswordVC, animated: true, completion: nil)
+            } else if self.presentedViewController != nil {
+                self.presentedViewController?.dismiss(animated: true, completion: nil)
+                self.present(enterPasswordVC, animated: true, completion: nil)
+            }
         }
         
     }
