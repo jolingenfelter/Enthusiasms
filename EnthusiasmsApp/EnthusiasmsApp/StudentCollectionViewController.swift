@@ -51,12 +51,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -135,6 +136,11 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     func updateRewardTime() {
         updatedTime = addTimeViewController.updatedTime
         rewardTime = updatedTime
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+    }
+    
+    func cancelTimeUpdate() {
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }
