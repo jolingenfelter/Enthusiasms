@@ -61,7 +61,9 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         self.title = content?.title
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton!)
+        if let addTimeButton = addTimeButton {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton)
+        }
     }
     
     func viewSetup() {

@@ -19,7 +19,7 @@ class EnterPasswordViewController: CreatePasswordViewController {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "PasswordCreated"), object: nil)
     }
     
     override func getStartedButtonPressed() {

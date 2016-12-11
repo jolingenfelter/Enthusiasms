@@ -102,5 +102,4 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         rewardTime = minutesArray[row] * 60
     }
-
 }
