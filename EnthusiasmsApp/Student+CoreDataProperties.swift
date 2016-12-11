@@ -2,12 +2,13 @@
 //  Student+CoreDataProperties.swift
 //  EnthusiasmsApp
 //
-//  Created by Joanna Lingenfelter on 10/15/16.
+//  Created by Joanna Lingenfelter on 11/17/16.
 //  Copyright © 2016 JoLingenfelter. All rights reserved.
 //
 
 import Foundation
 import CoreData
+
 
 extension Student {
 

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11232" systemVersion="16A323" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Content" representedClassName=".Content" syncable="YES">
         <attribute name="dateAdded" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="localURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uniqueFileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="video" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="studentContent" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Student" inverseName="contents" inverseEntity="Student" syncable="YES"/>
     </entity>
     <entity name="Student" representedClassName=".Student" syncable="YES">
@@ -14,7 +15,7 @@
         <relationship name="contents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Content" inverseName="studentContent" inverseEntity="Content" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Content" positionX="-54" positionY="0" width="128" height="135"/>
+        <element name="Content" positionX="-54" positionY="0" width="128" height="150"/>
         <element name="Student" positionX="-54" positionY="-297" width="128" height="90"/>
     </elements>
 </model>

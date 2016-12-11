@@ -10,11 +10,10 @@
 		9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */; };
 		9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */; };
 		9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */; };
-		9E3FD4FD1DB2C5FB00CC2C41 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD4F91DB2C5FB00CC2C41 /* Student+CoreDataClass.swift */; };
-		9E3FD4FE1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD4FA1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift */; };
-		9E3FD4FF1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD4FB1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift */; };
-		9E3FD5001DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD4FC1DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift */; };
+		9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */; };
+		9E2334741DE35C92006AB7ED /* AddContentFromLibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */; };
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
+		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */; };
@@ -25,19 +24,27 @@
 		9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */; };
 		9EBBCC3A1D90309900A6099A /* TeacherCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */; };
 		9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */; };
+		9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */; };
+		9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */; };
+		9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */; };
+		9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */; };
+		9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */; };
+		9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */; };
+		9EDFF1D61DE262440028FB06 /* AddContentToStudentPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */; };
 		9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */; };
 		9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */; };
+		9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */; };
+		9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListPopover.swift; sourceTree = "<group>"; };
 		9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentCollectionViewController.swift; sourceTree = "<group>"; };
 		9E13B2831DABD346007622D4 /* EnterPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasswordViewController.swift; sourceTree = "<group>"; };
-		9E3FD4F91DB2C5FB00CC2C41 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9E3FD4FA1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9E3FD4FB1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9E3FD4FC1DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditContentTitleViewController.swift; sourceTree = "<group>"; };
+		9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentFromLibraryViewController.swift; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
+		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EB4F4B71D8E120500E81C74 /* EnthusiasmsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnthusiasmsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,8 +57,17 @@
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionViewController.swift; sourceTree = "<group>"; };
 		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePasswordViewController.swift; sourceTree = "<group>"; };
+		9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
+		9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllContentCollectionViewController.swift; sourceTree = "<group>"; };
+		9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentToStudentPopoverViewController.swift; sourceTree = "<group>"; };
 		9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentListViewController.swift; sourceTree = "<group>"; };
 		9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStudentViewController.swift; sourceTree = "<group>"; };
+		9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetWebContentViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,11 +84,11 @@
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */,
+				9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */,
+				9EDFF1C71DDE061B0028FB06 /* Content+CoreDataClass.swift */,
+				9EDFF1C81DDE061B0028FB06 /* Content+CoreDataProperties.swift */,
 				9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */,
-				9E3FD4F91DB2C5FB00CC2C41 /* Student+CoreDataClass.swift */,
-				9E3FD4FA1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift */,
-				9E3FD4FB1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift */,
-				9E3FD4FC1DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift */,
 			);
 			name = CoreData;
 			path = ..;
@@ -108,8 +124,16 @@
 				9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */,
 				9EE2E7371D8EE8E100B3D53F /* CreateStudentViewController.swift */,
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
+				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
+				9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */,
 				9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
+				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
+				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
+				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
+				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
+				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
+				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 				9EB4F4C11D8E120500E81C74 /* Assets.xcassets */,
 				9EB4F4C31D8E120500E81C74 /* LaunchScreen.storyboard */,
 				9EB4F4C61D8E120500E81C74 /* Info.plist */,
@@ -145,7 +169,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = JoLingenfelter;
 				TargetAttributes = {
 					9EB4F4B61D8E120500E81C74 = {
@@ -189,24 +213,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */,
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,
-				9E3FD5001DB2C5FB00CC2C41 /* Content+CoreDataProperties.swift in Sources */,
+				9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
-				9E3FD4FD1DB2C5FB00CC2C41 /* Student+CoreDataClass.swift in Sources */,
+				9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */,
+				9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */,
+				9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */,
+				9E2334741DE35C92006AB7ED /* AddContentFromLibraryViewController.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
+				9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */,
+				9EDFF1CB1DDE061B0028FB06 /* Content+CoreDataClass.swift in Sources */,
+				9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */,
+				9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */,
+				9EDFF1CC1DDE061B0028FB06 /* Content+CoreDataProperties.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,
-				9E3FD4FE1DB2C5FB00CC2C41 /* Student+CoreDataProperties.swift in Sources */,
 				9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */,
 				9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */,
+				9EDFF1D61DE262440028FB06 /* AddContentToStudentPopoverViewController.swift in Sources */,
 				9EBBCC3A1D90309900A6099A /* TeacherCollectionViewController.swift in Sources */,
 				9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */,
 				9EB4F4BD1D8E120500E81C74 /* HomeViewController.swift in Sources */,
 				9EB4F4BB1D8E120500E81C74 /* AppDelegate.swift in Sources */,
 				9EE2E7381D8EE8E100B3D53F /* CreateStudentViewController.swift in Sources */,
 				9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */,
-				9E3FD4FF1DB2C5FB00CC2C41 /* Content+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +274,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -292,6 +325,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

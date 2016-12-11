@@ -48,6 +48,10 @@ class EditPasswordViewController: CreatePasswordViewController {
         
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        navigationBar.frame = CGRect(x: 0, y: 0, width: size.width, height: 60)
+    }
+    
     func passwordTextFieldConstraints() {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = self.passwordTextField.heightAnchor.constraint(equalTo: self.createPasswordTextField.heightAnchor)

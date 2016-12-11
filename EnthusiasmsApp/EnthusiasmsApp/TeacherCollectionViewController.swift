@@ -16,15 +16,9 @@ class TeacherCollectionViewController: UICollectionViewController {
     var student: Student?
     var settingsViewController = UIViewController()
     var settingsBarButton = UIBarButtonItem()
-    
-    lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
-        let request: NSFetchRequest<Content> = Content.fetchRequest()
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        request.sortDescriptors = [sortDescriptor]
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
-        let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        return controller
-    }()
+    var contentsArray = [Content]()
+    var addContentBarButton = UIBarButtonItem()
+    var selectedContent: Content?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,8 +27,12 @@ class TeacherCollectionViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
+         updateContents()
+        
+        // Collection View setup
+    
         self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
@@ -42,11 +40,25 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Notification observer to update name if edited
         NotificationCenter.default.addObserver(self, selector: #selector(updateStudentName), name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
         
+        // Notification observer to update collectionView when content is added
+        NotificationCenter.default.addObserver(self, selector: #selector(updateContents), name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
 
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
+    }
+    
+    func updateContents() {
+        
+        guard let student = student, let contents = student.contents else {
+            return
+        }
+        
+        contentsArray = contents.sortedArray(using: [NSSortDescriptor.init(key: "title", ascending: true)]) as! [Content]
+        
+        collectionView?.reloadData()
     }
     
     // MARK: NavBar Setup
@@ -58,11 +70,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         space.width = 20
         
-        let addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
-        let homeBarButton = UIBarButtonItem(title: "Home", style: .plain, target: self, action: #selector(homePressed))
+        addContentBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addPressed))
         
         self.navigationItem.leftBarButtonItems = [space, settingsBarButton]
-        self.navigationItem.rightBarButtonItems = [homeBarButton, addContentBarButton]
+        self.navigationItem.rightBarButtonItem = addContentBarButton
 
     }
     
@@ -109,7 +120,11 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func updateStudentName() {
-        self.title = student?.name
+        if let student = student {
+            if let studentName = student.name {
+                self.title = studentName
+            }
+        }
     }
 
     func settingsPressed() {
@@ -119,6 +134,68 @@ class TeacherCollectionViewController: UICollectionViewController {
     
     func addPressed() {
         
+        let menuViewController = UIViewController()
+        menuViewController.modalPresentationStyle = .popover
+        menuViewController.popoverPresentationController?.barButtonItem = addContentBarButton
+        menuViewController.preferredContentSize = CGSize(width: 200, height: 150)
+        
+        let contentFromWebButton = UIButton()
+        let separator = UIView()
+        let contentFromLibraryButton = UIButton()
+        
+        contentFromWebButton.setTitle("Web Content", for: .normal)
+        contentFromWebButton.setTitleColor(UIColor.black, for: .normal)
+        contentFromWebButton.addTarget(self, action: #selector(contentFromWebPressed), for: .touchUpInside)
+        menuViewController.view.addSubview(contentFromWebButton)
+        
+        separator.backgroundColor = UIColor.lightGray
+        menuViewController.view.addSubview(separator)
+        
+        contentFromLibraryButton.setTitle("Content from library", for: .normal)
+        contentFromLibraryButton.setTitleColor(UIColor.black, for: .normal)
+        contentFromLibraryButton.addTarget(self, action: #selector(contentFromLibraryPressed), for: .touchUpInside)
+        menuViewController.view.addSubview(contentFromLibraryButton)
+        
+        contentFromWebButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let contentFromWebHorizontalConstraint = contentFromWebButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
+        let contentFromWebVerticalConstraint = contentFromWebButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -15)
+        
+        NSLayoutConstraint.activate([contentFromWebHorizontalConstraint, contentFromWebVerticalConstraint])
+        
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorLeadingConstraint = separator.leadingAnchor.constraint(equalTo: menuViewController.view.leadingAnchor)
+        let separatorTrailingConstraint = separator.trailingAnchor.constraint(equalTo: menuViewController.view.trailingAnchor)
+        let separatorVerticalConstraint = separator.centerYAnchor.constraint(equalTo: menuViewController.view.centerYAnchor)
+        let separatorHeightConstraint = separator.heightAnchor.constraint(equalToConstant: 1)
+        
+        NSLayoutConstraint.activate([separatorLeadingConstraint, separatorTrailingConstraint, separatorVerticalConstraint, separatorHeightConstraint])
+        
+        contentFromLibraryButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let contentFromLibraryHorizontalConstraint = contentFromLibraryButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
+        let contentFromLibraryVerticalConstraint = contentFromLibraryButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 15)
+        
+        NSLayoutConstraint.activate([contentFromLibraryHorizontalConstraint, contentFromLibraryVerticalConstraint])
+        
+        self.present(menuViewController, animated: true, completion: nil)
+    }
+    
+    func contentFromWebPressed() {
+        let getContentView = GetWebContentViewController()
+        getContentView.student = student
+        self.presentedViewController?.present(getContentView, animated: true, completion: nil)
+    }
+    
+    func contentFromLibraryPressed() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: 300, height: 300)
+        flowLayout.sectionInset = UIEdgeInsets(top: 40, left: 10, bottom: 10, right: 10)
+        let addContentFromLibraryVC = AddContentFromLibraryViewController(collectionViewLayout: flowLayout)
+        addContentFromLibraryVC.student = student
+        let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
+        self.presentedViewController?.present(navigationController, animated: true, completion: nil)
     }
     
     func homePressed() {
@@ -136,24 +213,74 @@ class TeacherCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return fetchedResultsController.sections?.count ?? 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        
+        return contentsArray.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
+        
+        let content = contentsArray[indexPath.item]
+        cell.titleLabel.text = content.title
+        
+        if let contentImageName = content.uniqueFileName, let imageURL = content.url {
+            let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
+            cell.thumbnail.image = imageGetter.getImage()
+        }
+        
         return cell
     }
 
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedContent = contentsArray[indexPath.row]
+        showMenufor(objectAtIndexPath: indexPath)
+    }
+    
+    func showMenufor(objectAtIndexPath indexPath: IndexPath) {
+        
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
+        
+        let menu = UIViewController()
+        menu.modalPresentationStyle = .popover
+        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right, .up]
+        menu.popoverPresentationController?.sourceView = cell
+        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
+        menu.preferredContentSize = CGSize(width: 200, height: 50)
+        
+        
+        let removeButton = UIButton()
+        if let student = student, let studentName = student.name {
+            removeButton.setTitle("Remove from \(studentName)", for: .normal)
+        }
+        removeButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        removeButton.setTitleColor(.black, for: .normal)
+        removeButton.addTarget(self, action: #selector(removeContentFromStudent), for: .touchUpInside)
+        menu.view.addSubview(removeButton)
+        
+        removeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let removeHorizontalConstraint = removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let removeVerticalConstraint = removeButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        
+        NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint])
+        
+        self.present(menu, animated: true, completion: nil)
+    }
+    
+    func removeContentFromStudent() {
+        selectedContent?.removeFromStudentContent(student!)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
+        let dataController = DataController.sharedInstance
+        dataController.saveContext()
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking
