@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     let childButton = UIButton()
     let caretakerButton = UIButton()
     let enthusiasmsLabel = UILabel()
+    var fetchedStudents: [Student] = []
     
     let studentListPopover = StudentListPopover()
     
@@ -62,6 +63,15 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        
+        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let request: NSFetchRequest<NSFetchRequestResult> = Student.fetchRequest()
+        
+        do {
+            fetchedStudents = try managedObjectContext.fetch(request) as! [Student]
+        } catch let error {
+            print(error)
+        }
     }
     
     func labelConstraints() {
@@ -93,6 +103,7 @@ class HomeViewController: UIViewController {
         let studentButtonWidth = childButton.widthAnchor.constraint(equalTo: caretakerButton.widthAnchor)
         
         NSLayoutConstraint.activate([studentButtonHorizontalConstraint, studentButtonVerticalConstraint, studentButtonHeight, studentButtonWidth])
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,30 +120,21 @@ class HomeViewController: UIViewController {
 
     func childPressed() {
         
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
-        let request: NSFetchRequest<NSFetchRequestResult> = Student.fetchRequest()
-        
-        do {
-            let fetchedStudents = try managedObjectContext.fetch(request) as! [Student]
-            
-            if fetchedStudents.count == 0 {
-                let alertController = UIAlertController(title: "No Children", message: "Enter as a caretaker to get started", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-            } else {
-                studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
-                studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
-                studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
-                let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
-                popover.sourceView = self.childButton
-                popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
-                self.navigationController?.present(studentListPopover, animated: true, completion: nil)
+        if fetchedStudents.count == 0 {
+            let alertController = UIAlertController(title: "No Children", message: "Enter as a caretaker to get started", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alertController.addAction(okAction)
+            self.present(alertController, animated: true, completion: nil)
+        } else {
+            studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
+            studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
+            studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
+            let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
+            popover.sourceView = self.childButton
+            popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
+            self.navigationController?.present(studentListPopover, animated: true, completion: nil)
             }
-            
-        } catch (let error) {
-            print(error)
-        }
+        
     }
     
     func studentSelected() {
