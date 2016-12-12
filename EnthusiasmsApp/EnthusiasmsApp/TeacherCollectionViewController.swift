@@ -231,6 +231,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         if let contentImageName = content.uniqueFileName, let imageURL = content.url {
             let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
             cell.thumbnail.image = imageGetter.getImage()
+            
         }
         
         return cell
