@@ -75,7 +75,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         updateTimeButton.translatesAutoresizingMaskIntoConstraints = false
         
         let updateTimeHorizontalConstraint = updateTimeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let updateTimeTopConstraint = updateTimeButton.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 200)
+        let updateTimeTopConstraint = updateTimeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
         let updateTimeHeightConstraint = updateTimeButton.heightAnchor.constraint(equalToConstant: 50)
         let updateTimeWidthConstraint = updateTimeButton.widthAnchor.constraint(equalToConstant: 200)
         
