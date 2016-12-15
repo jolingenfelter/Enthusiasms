@@ -89,15 +89,31 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // MARK: PickerView DataSource and Delegate
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return minutesArray.count
+        if component == 0 {
+            return minutesArray.count
+        } else {
+            return 1
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(minutesArray[row])
+        if component == 0 {
+            return String(minutesArray[row])
+        } else {
+            return "min"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        if component == 0 {
+            return 50
+        } else {
+            return 60
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
