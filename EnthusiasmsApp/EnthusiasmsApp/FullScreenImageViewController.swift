@@ -26,7 +26,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navBarSetup()
     
         view.addSubview(scrollView)
         self.view.addSubview(imageView)
@@ -63,6 +62,10 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         if let addTimeButton = addTimeButton {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         navBarSetup()
     }
     
     func viewSetup() {
