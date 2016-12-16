@@ -8,11 +8,13 @@
 
 import UIKit
 
-class SetTimerViewController: UIViewController {
+class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var student: Student?
-    let timePicker = UIDatePicker()
+    let timePicker = UIPickerView()
     let startButton = UIButton()
+    var rewardTime: Int = 0
+    let minutesArray = [Int](1...60)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +27,10 @@ class SetTimerViewController: UIViewController {
         }
         
         // TimePicker setup
-        timePicker.datePickerMode = .countDownTimer
+        timePicker.delegate = self
+        timePicker.dataSource = self
         timePicker.backgroundColor = UIColor.white
+        rewardTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
         view.addSubview(timePicker)
         
         // Button
@@ -66,12 +70,14 @@ class SetTimerViewController: UIViewController {
     }
     
     func startPressed() {
+        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
+        studentCollectionView.rewardTime = rewardTime
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
 
@@ -80,15 +86,21 @@ class SetTimerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: PickerView DataSource and Delegate
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return minutesArray.count
     }
-    */
-
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(minutesArray[row])
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        rewardTime = minutesArray[row] * 60
+    }
 }

@@ -18,6 +18,7 @@ class SaveContentViewController: UIViewController {
     var student: Student?
     var contentURL: String?
     var contentType: ContentType?
+    var youtubeVideoID: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -146,8 +147,19 @@ class SaveContentViewController: UIViewController {
                 content.addToStudentContent(student)
             }
             
-            let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
-            imageGetter.downloadAndSaveImage()
+            if contentType == .Image {
+                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
+                imageGetter.downloadAndSaveImage()
+            }
+            
+            if contentType == .Video {
+                guard let videoID = youtubeVideoID else {
+                    return
+                }
+                let thumnailURLString = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
+                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: thumnailURLString)!)
+                imageGetter.downloadAndSaveImage()
+            }
             
             dataController.saveContext()
             

@@ -46,7 +46,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
         menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
         menu.modalPresentationStyle = .popover
-        menu.preferredContentSize = CGSize(width: 200, height: 60)
+        menu.preferredContentSize = CGSize(width: 200, height: 150)
         menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
         menu.popoverPresentationController?.sourceView = cell
         
@@ -59,12 +59,38 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         addContentButton.addTarget(self, action: #selector(addContentPressed), for: .touchUpInside)
         menu.view.addSubview(addContentButton)
         
+        let separator = UIView()
+        separator.backgroundColor = UIColor.lightGray
+        menu.view.addSubview(separator)
+        
+        let viewContentButton = UIButton()
+        viewContentButton.setTitle("View", for: .normal)
+        viewContentButton.setTitleColor(.black, for: .normal)
+        viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
+        menu.view.addSubview(viewContentButton)
+        
         addContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let addContentHorizontalConstraint = addContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let addContentVerticalConstraint = addContentButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        let addContentVerticalConstraint = addContentButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -20)
         
         NSLayoutConstraint.activate([addContentHorizontalConstraint, addContentVerticalConstraint])
+        
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        let separatorLeadingConstraint = separator.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
+        let separatorTrailingConstraint = separator.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
+        let separatorHeightConstraint = separator.heightAnchor.constraint(equalToConstant: 1)
+        let separatorVerticalConstraint = separator.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
+        
+        NSLayoutConstraint.activate([separatorLeadingConstraint, separatorTrailingConstraint, separatorHeightConstraint, separatorVerticalConstraint])
+        
+        viewContentButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
+        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20)
+        
+        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint])
         
         self.present(menu, animated: true, completion: nil)
 
