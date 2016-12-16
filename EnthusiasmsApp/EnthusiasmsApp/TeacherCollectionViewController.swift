@@ -185,7 +185,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     func contentFromWebPressed() {
         let getContentView = GetWebContentViewController()
         getContentView.student = student
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(getContentView, animated: true, completion: nil)
     }
     
@@ -196,7 +196,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         let addContentFromLibraryVC = AddContentFromLibraryViewController(collectionViewLayout: flowLayout)
         addContentFromLibraryVC.student = student
         let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(navigationController, animated: true, completion: nil)
     }
     
