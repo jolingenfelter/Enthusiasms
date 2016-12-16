@@ -237,7 +237,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let editContentViewController = EditContentTitleViewController()
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
-        self.presentedViewController?.present(editContentViewController, animated: true, completion: nil)
+        menu.dismiss(animated: false, completion: nil)
+        self.present(editContentViewController, animated: true, completion: nil)
     }
     
     func deleteContent() {
@@ -252,7 +253,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         deleteAlert.addAction(noAction)
         deleteAlert.addAction(yesAction)
-        self.presentedViewController?.present(deleteAlert, animated: true, completion: nil)
+        menu.dismiss(animated: false, completion: nil)
+        self.present(deleteAlert, animated: true, completion: nil)
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -265,7 +267,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
             return
         }
         
-        viewFullScreen(content: selectedContent, from: self.presentedViewController!, with: nil, and: nil)
+        menu.dismiss(animated: false, completion: nil)
+        viewFullScreen(content: selectedContent, from: self, with: nil, and: nil)
     
     }
         
