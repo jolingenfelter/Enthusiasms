@@ -100,7 +100,9 @@ class TeacherCollectionViewController: UICollectionViewController {
         editName.translatesAutoresizingMaskIntoConstraints = false
         let horizontalConstraint = editName.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
         let verticalConstraint = editName.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        let heightConstraint = editName.heightAnchor.constraint(equalToConstant: 50)
+        let widthConstraint = editName.widthAnchor.constraint(equalToConstant: 200)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
         
         // PopoverView setup
         settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
