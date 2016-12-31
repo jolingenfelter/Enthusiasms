@@ -156,12 +156,17 @@ class TeacherCollectionViewController: UICollectionViewController {
         contentFromLibraryButton.addTarget(self, action: #selector(contentFromLibraryPressed), for: .touchUpInside)
         menuViewController.view.addSubview(contentFromLibraryButton)
         
+        let buttonHeight: CGFloat = 75
+        let buttonWidth: CGFloat = 200
+        
         contentFromWebButton.translatesAutoresizingMaskIntoConstraints = false
         
         let contentFromWebHorizontalConstraint = contentFromWebButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
-        let contentFromWebVerticalConstraint = contentFromWebButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -15)
+        let contentFromWebVerticalConstraint = contentFromWebButton.bottomAnchor.constraint(equalTo: separator.topAnchor)
+        let contentFromWebHeightConstraint = contentFromWebButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let contentFromWebWidthConstraint = contentFromWebButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([contentFromWebHorizontalConstraint, contentFromWebVerticalConstraint])
+        NSLayoutConstraint.activate([contentFromWebHorizontalConstraint, contentFromWebVerticalConstraint, contentFromWebHeightConstraint, contentFromWebWidthConstraint])
         
         separator.translatesAutoresizingMaskIntoConstraints = false
         
@@ -175,9 +180,11 @@ class TeacherCollectionViewController: UICollectionViewController {
         contentFromLibraryButton.translatesAutoresizingMaskIntoConstraints = false
         
         let contentFromLibraryHorizontalConstraint = contentFromLibraryButton.centerXAnchor.constraint(equalTo: menuViewController.view.centerXAnchor)
-        let contentFromLibraryVerticalConstraint = contentFromLibraryButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 15)
+        let contentFromLibraryVerticalConstraint = contentFromLibraryButton.topAnchor.constraint(equalTo: separator.bottomAnchor)
+        let contentFromLibraryHeightConstraint = contentFromLibraryButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let contentFromLibraryWidthConstraint = contentFromLibraryButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([contentFromLibraryHorizontalConstraint, contentFromLibraryVerticalConstraint])
+        NSLayoutConstraint.activate([contentFromLibraryHorizontalConstraint, contentFromLibraryVerticalConstraint, contentFromLibraryHeightConstraint, contentFromLibraryWidthConstraint])
         
         self.present(menuViewController, animated: true, completion: nil)
     }
@@ -255,7 +262,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
         menu.popoverPresentationController?.sourceView = cell
         menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
-        menu.preferredContentSize = CGSize(width: 200, height: 150)
+        menu.preferredContentSize = CGSize(width: 200, height: 200)
         
         
         let removeButton = UIButton()
@@ -277,12 +284,17 @@ class TeacherCollectionViewController: UICollectionViewController {
         viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         menu.view.addSubview(viewContentButton)
         
+        let buttonHeight: CGFloat = 100
+        let buttonWidth: CGFloat = 200
+        
         removeButton.translatesAutoresizingMaskIntoConstraints = false
         
         let removeHorizontalConstraint = removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let removeVerticalConstraint = removeButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -20)
+        let removeVerticalConstraint = removeButton.bottomAnchor.constraint(equalTo: separator.topAnchor)
+        let removeHeightConstraint = removeButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let removeWidthConstraint = removeButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint])
+        NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint, removeHeightConstraint, removeWidthConstraint])
         
         separator.translatesAutoresizingMaskIntoConstraints = false
         
@@ -296,9 +308,11 @@ class TeacherCollectionViewController: UICollectionViewController {
         viewContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20)
+        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor)
+        let viewContentHeightConstraint = viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let viewContentWidthConstraint = viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint])
+        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint, viewContentHeightConstraint, viewContentWidthConstraint])
         
         self.present(menu, animated: true, completion: nil)
     }
