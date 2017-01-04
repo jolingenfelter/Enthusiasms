@@ -40,6 +40,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         instructionsLabel.text = "Tap '+' to add content"
         instructionsLabel.textColor = UIColor.white
         instructionsLabel.font = instructionsLabel.font.withSize(40)
+        instructionsLabel.textAlignment = .center
         self.view.addSubview(instructionsLabel)
         
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -47,8 +48,9 @@ class TeacherCollectionViewController: UICollectionViewController {
         let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
+        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
         
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint])
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
         
         updateContents()
         
