@@ -27,6 +27,7 @@
 		9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */; };
 		9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */; };
 		9EBBCC3A1D90309900A6099A /* TeacherCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */; };
+		9EC774361E1DA544008B33B5 /* WebViewHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */; };
 		9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */; };
 		9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */; };
 		9EDFF1CA1DDE061B0028FB06 /* Student+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */; };
@@ -67,6 +68,7 @@
 		9EB4F4CC1D8E129A00E81C74 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = EnthusiasmsApp/CoreDataStack.swift; sourceTree = "<group>"; };
 		9EB4F4CF1D8E131D00E81C74 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCollectionViewController.swift; sourceTree = "<group>"; };
+		9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewHelpViewController.swift; sourceTree = "<group>"; };
 		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePasswordViewController.swift; path = EnthusiasmsApp/CreatePasswordViewController.swift; sourceTree = "<group>"; };
 		9EDFF1C51DDE061B0028FB06 /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EDFF1C61DDE061B0028FB06 /* Student+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
+				9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */,
 				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
 				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 				9EFC4B3E1DF38DA80022BCD4 /* View Content */,
@@ -369,6 +372,7 @@
 				9E2334741DE35C92006AB7ED /* AddContentFromLibraryViewController.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E3692B51DFDB36900557E3B /* AddTimePasswordCheckViewController.swift in Sources */,
+				9EC774361E1DA544008B33B5 /* WebViewHelpViewController.swift in Sources */,
 				9E13B2841DABD346007622D4 /* EnterPasswordViewController.swift in Sources */,
 				9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */,
 				9EDFF1C91DDE061B0028FB06 /* Student+CoreDataClass.swift in Sources */,
