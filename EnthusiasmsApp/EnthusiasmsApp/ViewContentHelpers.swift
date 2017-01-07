@@ -12,13 +12,11 @@ func imageViewer(for content: Content) -> FullScreenImageViewController? {
     let imageViewer = FullScreenImageViewController()
     imageViewer.content = content
     
-    guard let imageFileName = content.uniqueFileName, let imageURL = content.url else {
+    guard let imageName = content.uniqueFileName else {
         return nil
     }
     
-    let imageGetter = ImageGetter(imageName: imageFileName, imageURL: URL(string: imageURL)!)
-    
-    guard let contentImage = imageGetter.getImage() else {
+    guard let contentImage = getImage(imageName: imageName) else {
         return nil
     }
     
