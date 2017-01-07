@@ -119,14 +119,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let content = fetchedResultsController.object(at: indexPath) as Content
         
         guard let imageName = content.uniqueFileName else {
-            if content.type == ContentType.Image.rawValue {
-                let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: content.url!)!)
+                let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
-            } else {
-                let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: content.thumbnailURL!)!)
-                imageSaver.downloadNameAndSaveImage()
-            }
-            
             return cell
         }
         

@@ -146,7 +146,7 @@ class SaveContentViewController: UIViewController {
             }
             
             if contentType == .Image {
-                let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: content.url!)!)
+                let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
             }
             
@@ -156,7 +156,7 @@ class SaveContentViewController: UIViewController {
                 }
                 let thumbnailURL = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
                 content.thumbnailURL = thumbnailURL
-                let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: thumbnailURL)!)
+                let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
             }
             

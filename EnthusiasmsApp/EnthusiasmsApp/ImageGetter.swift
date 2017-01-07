@@ -18,19 +18,33 @@ func getDocumentsDirectory() -> URL {
 class ContentImageSaver: NSObject {
     
     let content: Content
-    var imageName: String?
-    let imageURL: URL
     
-    init(content: Content, imageURL: URL) {
+    init(content: Content) {
         self.content = content
-        self.imageURL = imageURL
     }
     
-    func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    private func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         
-        URLSession.shared.dataTask(with: self.imageURL) {
-            (data, response, error) in completion(data, response, error)
-        }.resume()
+        if content.type == ContentType.Image.rawValue {
+            guard let contentURL = self.content.url else {
+                return
+            }
+            
+            URLSession.shared.dataTask(with: URL(string:contentURL)!) {
+                (data, response, error) in completion(data, response, error)
+                }.resume()
+            
+        } else {
+            guard let thumbnailURL = self.content.thumbnailURL else {
+                return
+            }
+            
+            URLSession.shared.dataTask(with: URL(string:thumbnailURL)!) {
+                (data, response, error) in completion(data, response, error)
+                }.resume()
+            
+        }
+
     }
     
     private func generateImageName() -> String {

@@ -268,16 +268,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         
        
         guard let imageName = content.uniqueFileName else {
-            if content.type == ContentType.Image.rawValue {
-                let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: content.url!)!)
-                    imageSaver.downloadNameAndSaveImage()
-                } else {
-                    let imageSaver = ContentImageSaver(content: content, imageURL: URL(string: content.thumbnailURL!)!)
-                    imageSaver.downloadNameAndSaveImage()
-                }
-                
-                return cell
-            }
+            let imageSaver = ContentImageSaver(content: content)
+            imageSaver.downloadNameAndSaveImage()
+            return cell
+        }
     
             cell.thumbnail.image = getImage(imageName: imageName)
         
