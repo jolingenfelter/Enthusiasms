@@ -11,7 +11,7 @@ import UIKit
 class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let timePicker = UIPickerView()
-    var rewardTime : Int?
+    var rewardTime = 0
     var additionalTime = 0
     var updatedTime = 0
     let updateTimeButton = UIButton()
@@ -45,6 +45,11 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         updateTimeButton.addTarget(self, action: #selector(updateTime), for: .touchUpInside)
         view.addSubview(updateTimeButton)
         
+    }
+    
+    override func viewWillLayoutSubviews() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
     }
     
     override func viewDidLayoutSubviews() {
@@ -89,11 +94,16 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func updateTime() {
         
-        if rewardTime! + (additionalTime * 60) >= 3600 {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if rewardTime + additionalTime >= 3600 {
             updatedTime = 3600
         } else {
-            updatedTime = rewardTime! + (additionalTime * 60)
+            updatedTime = rewardTime + additionalTime
         }
+        
+        appDelegate.rewardTime = updatedTime
+        rewardTime = updatedTime
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         self.dismiss(animated: true, completion: nil)
@@ -134,7 +144,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        additionalTime = minutesArray[row]
+        additionalTime = minutesArray[row] * 60
     }
 
 }

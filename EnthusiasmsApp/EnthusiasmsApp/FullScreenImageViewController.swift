@@ -14,8 +14,26 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
-    var rewardTime: Int?
-    var addTimeButton: UIButton?
+    var rewardTime = 0
+    var timer = Timer()
+    var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
+    
+    var minutes: Int {
+        return rewardTime / 60
+    }
+    var seconds: Int {
+        return rewardTime % 60
+    }
+    
+    var timeDisplay: String {
+        if seconds == 0 {
+            return "\(minutes):00"
+        } else if seconds >= 1 && seconds < 10 {
+            return "\(minutes):0\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
+    }
     
     // Constraints
     var imageViewLeadingConstraint = NSLayoutConstraint()
@@ -50,6 +68,10 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
 //        scrollView.flashScrollIndicators()
         
          viewSetup()
+        
+        // Timer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
     }
     
     func navBarSetup() {
@@ -59,9 +81,11 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         self.title = content?.title
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
-        if let addTimeButton = addTimeButton {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton)
-        }
+        addTimeButton.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
+        addTimeButton.setTitleColor(.black, for: .normal)
+        let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
+        self.navigationItem.leftBarButtonItem = addTimeBarButton
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -105,8 +129,33 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func addTimePressed() {
+        
+    }
+    
     func donePressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // MARK: Timer
+    
+    func updateTimer() {
+        
+        rewardTime -= 1
+        addTimeButton.setTitle(timeDisplay, for: .normal)
+        let enterPasswordVC = EnterPasswordViewController()
+        
+        if rewardTime == 0 {
+            
+            timer.invalidate()
+            
+            if self.presentedViewController == nil {
+                self.present(enterPasswordVC, animated: true, completion: nil)
+            } else if self.presentedViewController != nil {
+                self.presentedViewController?.present(enterPasswordVC, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     // MARK: ScrollView Delegate

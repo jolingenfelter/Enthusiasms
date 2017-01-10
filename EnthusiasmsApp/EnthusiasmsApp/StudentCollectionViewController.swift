@@ -43,15 +43,15 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         self.title = student?.name
         
-        // Timer Setup
-        
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        updateTimer()
-        
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
+        
+        // Timer Setup
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
     }
     
     deinit {
@@ -62,6 +62,9 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
        navigationBarSetup()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +86,10 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self, with: rewardTime)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        
+        viewFullScreen(content: selectedContent, from: self)
         
     }
     
@@ -102,6 +108,9 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         let enterPasswordVC = EnterPasswordViewController()
         
         if rewardTime == 0 {
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.rewardTime = 0
             
             timer.invalidate()
 
@@ -128,14 +137,15 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     func addTimePasswordCheckComplete() {
-        addTimeViewController.rewardTime = remainingRewardTime
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     
     func updateRewardTime() {
-        updatedTime = addTimeViewController.updatedTime
-        rewardTime = updatedTime
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }

@@ -40,20 +40,22 @@ func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
 }
 
 
-func viewFullScreen(content: Content, from viewController: UIViewController, with rewardTime: Int?) {
+func viewFullScreen(content: Content, from viewController: UIViewController) {
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     if content.type == ContentType.Image.rawValue {
         guard let imageViewer = imageViewer(for: content) else {
             return
         }
-        imageViewer.rewardTime = rewardTime
+        imageViewer.rewardTime = appDelegate.rewardTime
         let navigationController = UINavigationController(rootViewController: imageViewer)
         viewController.present(navigationController, animated: true, completion: nil)
     } else {
         guard let videoPlayer = videoPlayer(for: content) else {
             return
         }
-        videoPlayer.rewardTime = rewardTime
+        videoPlayer.rewardTime = appDelegate.rewardTime
         let navigationController = UINavigationController(rootViewController: videoPlayer)
         viewController.present(navigationController, animated: true, completion: nil)
     }

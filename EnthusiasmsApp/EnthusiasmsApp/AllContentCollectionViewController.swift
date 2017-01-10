@@ -268,7 +268,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         }
         
         menu.dismiss(animated: false, completion: nil)
-        viewFullScreen(content: selectedContent, from: self, with: nil)
+        viewFullScreen(content: selectedContent, from: self)
     
     }
         

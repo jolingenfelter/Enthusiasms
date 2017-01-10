@@ -33,6 +33,9 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         rewardTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
         view.addSubview(timePicker)
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        
         // Button
         startButton.setTitle("Start!", for: .normal)
         startButton.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
@@ -118,5 +121,7 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         rewardTime = minutesArray[row] * 60
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
     }
 }

@@ -318,7 +318,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         }
         
         self.presentedViewController?.dismiss(animated: false, completion: nil)
-        viewFullScreen(content: selectedContent, from: self, with: nil)
+        viewFullScreen(content: selectedContent, from: self)
     }
 
     /*
