@@ -83,7 +83,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self, with: rewardTime, and: addTimeButton)
+        viewFullScreen(content: selectedContent, from: self, with: rewardTime)
         
     }
     
