@@ -80,7 +80,6 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
-        studentCollectionView.rewardTime = rewardTime
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
 

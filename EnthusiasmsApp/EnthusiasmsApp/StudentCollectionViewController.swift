@@ -50,7 +50,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(finshedViewingContent), name: NSNotification.Name(rawValue: "finishedViewingContent"), object: nil)
         
         // Timer Setup
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }

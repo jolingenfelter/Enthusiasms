@@ -95,7 +95,6 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             updatedTime = rewardTime + additionalTime
         }
         
-        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
