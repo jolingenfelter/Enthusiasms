@@ -135,6 +135,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     func addTimePasswordCheckComplete() {
         addTimeViewController.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
+        
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     

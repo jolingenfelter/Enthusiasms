@@ -14,20 +14,20 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
+    
+    // Timer Variables
     var rewardTime = 0
     var remainingRewardTime = 0
     var timer = Timer()
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimePasswordCheck = AddTimePasswordCheckViewController()
     let addTimeViewController = AddTimeViewController()
-    
     var minutes: Int {
         return rewardTime / 60
     }
     var seconds: Int {
         return rewardTime % 60
     }
-    
     var timeDisplay: String {
         if seconds == 0 {
             return "\(minutes):00"
@@ -131,12 +131,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         NSLayoutConstraint.activate([scrollViewLeadingConstraint, scrollViewTrailingConstraint, scrollViewTopConstraint, scrollViewBottomConstraint])
         
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -171,11 +165,8 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
             
             timer.invalidate()
             
-            if self.presentedViewController == nil {
-                self.present(enterPasswordVC, animated: true, completion: nil)
-            } else if self.presentedViewController != nil {
-                self.presentedViewController?.present(enterPasswordVC, animated: true, completion: nil)
-            }
+            self.present(enterPasswordVC, animated: true, completion: nil)
+            
         }
         
     }
