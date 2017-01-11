@@ -134,6 +134,10 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func donePressed() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        timer.invalidate()
+        NotificationCenter.default.post(name: NSNotification.Name("finishedViewingContent"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

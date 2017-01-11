@@ -47,6 +47,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(finshedViewingContent), name: NSNotification.Name(rawValue: "finishedViewingContent"), object: nil)
         
         // Timer Setup
         
@@ -58,13 +59,12 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "finishedViewingContent"), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
        navigationBarSetup()
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        rewardTime = appDelegate.rewardTime
     }
 
     override func didReceiveMemoryWarning() {
@@ -88,6 +88,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
+        
+        timer.invalidate()
         
         viewFullScreen(content: selectedContent, from: self)
         
@@ -113,12 +115,9 @@ class StudentCollectionViewController: TeacherCollectionViewController {
             appDelegate.rewardTime = 0
             
             timer.invalidate()
-
-            if self.presentedViewController == nil {
-                self.present(enterPasswordVC, animated: true, completion: nil)
-            } else if self.presentedViewController != nil {
-                self.presentedViewController?.present(enterPasswordVC, animated: true, completion: nil)
-            }
+            
+            self.present(enterPasswordVC, animated: true, completion: nil)
+            
         }
         
     }
@@ -129,28 +128,29 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         timer.invalidate()
         addTimePasswordCheck.modalPresentationStyle = .formSheet
         
-        if self.presentedViewController == nil {
-            self.present(addTimePasswordCheck, animated: true, completion: nil)
-        } else if self.presentedViewController != nil {
-            self.presentedViewController?.present(addTimePasswordCheck, animated: true, completion: nil)
-        }
+        self.present(addTimePasswordCheck, animated: true, completion: nil)
     }
     
     func addTimePasswordCheckComplete() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.rewardTime = rewardTime
+        addTimeViewController.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     
     func updateRewardTime() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        rewardTime = appDelegate.rewardTime
+        rewardTime = addTimeViewController.updatedTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }
     
     func cancelTimeUpdate() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+    }
+    
+    func finshedViewingContent() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }

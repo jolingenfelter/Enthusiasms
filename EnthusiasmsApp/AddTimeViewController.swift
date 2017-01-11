@@ -94,16 +94,12 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func updateTime() {
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
         if rewardTime + additionalTime >= 3600 {
             updatedTime = 3600
         } else {
             updatedTime = rewardTime + additionalTime
         }
         
-        appDelegate.rewardTime = updatedTime
-        rewardTime = updatedTime
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         self.dismiss(animated: true, completion: nil)
