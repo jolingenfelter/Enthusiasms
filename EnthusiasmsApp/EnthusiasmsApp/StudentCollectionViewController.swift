@@ -152,6 +152,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     func finshedViewingContent() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         rewardTime = appDelegate.rewardTime
+        timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
     }
