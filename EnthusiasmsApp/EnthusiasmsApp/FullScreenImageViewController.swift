@@ -15,8 +15,11 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     let imageView = UIImageView()
     let scrollView = UIScrollView()
     var rewardTime = 0
+    var remainingRewardTime = 0
     var timer = Timer()
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
+    let addTimePasswordCheck = AddTimePasswordCheckViewController()
+    let addTimeViewController = AddTimeViewController()
     
     var minutes: Int {
         return rewardTime / 60
@@ -72,6 +75,17 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         // Timer
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
+        
+        // Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     func navBarSetup() {
@@ -130,7 +144,11 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func addTimePressed() {
+        remainingRewardTime = rewardTime
+        timer.invalidate()
+        addTimePasswordCheck.modalPresentationStyle = .formSheet
         
+        self.present(addTimePasswordCheck, animated: true, completion: nil)
     }
     
     func donePressed() {
@@ -161,6 +179,24 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         }
         
     }
+    
+    func addTimePasswordCheckComplete() {
+        addTimeViewController.rewardTime = rewardTime
+        addTimeViewController.modalPresentationStyle = .formSheet
+        self.present(addTimeViewController, animated: true, completion: nil)
+    }
+    
+    func updateRewardTime() {
+        rewardTime = addTimeViewController.updatedTime
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+    }
+    
+    func cancelTimeUpdate() {
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+    }
+
     
     // MARK: ScrollView Delegate
     

@@ -47,11 +47,6 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
     }
     
-    override func viewWillLayoutSubviews() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        rewardTime = appDelegate.rewardTime
-    }
-    
     override func viewDidLayoutSubviews() {
         
         // NavBar Constraints
