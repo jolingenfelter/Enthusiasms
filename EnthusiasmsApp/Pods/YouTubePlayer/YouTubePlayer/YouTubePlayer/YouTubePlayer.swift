@@ -70,7 +70,7 @@ public func videoIDFromYouTubeURL(_ videoURL: URL) -> String? {
 }
 
 /** Embed and control YouTube videos */
-open class YouTubePlayerView: UIView, UIWebViewDelegate {
+open class YouTubePlayerView: UIView, UIWebViewDelegate, UIGestureRecognizerDelegate {
 
     public typealias YouTubePlayerParameters = [String: AnyObject]
 

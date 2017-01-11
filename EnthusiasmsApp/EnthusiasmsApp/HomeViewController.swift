@@ -113,6 +113,9 @@ class HomeViewController: UIViewController {
 
     func caretakerPressed() {
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = 0
+        
         let studentListViewController = StudentListViewController()
         
         self.navigationController?.pushViewController(studentListViewController, animated: true)
