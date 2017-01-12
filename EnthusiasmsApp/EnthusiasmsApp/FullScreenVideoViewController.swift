@@ -47,7 +47,6 @@ class FullScreenVideoViewController: UIViewController {
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
         
     }
     
@@ -62,7 +61,6 @@ class FullScreenVideoViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     func navBarSetup() {
@@ -103,8 +101,6 @@ class FullScreenVideoViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
         timer.invalidate()
-        NotificationCenter.default.post(name: NSNotification.Name("finishedViewingContent"), object: nil)
-
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -134,9 +130,6 @@ class FullScreenVideoViewController: UIViewController {
     
     func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
-    }
-    
-    func cancelTimeUpdate() {
     }
 
 }

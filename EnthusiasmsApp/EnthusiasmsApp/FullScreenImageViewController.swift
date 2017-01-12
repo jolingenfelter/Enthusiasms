@@ -79,13 +79,11 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
     func navBarSetup() {
@@ -149,7 +147,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
         timer.invalidate()
-        NotificationCenter.default.post(name: NSNotification.Name("finishedViewingContent"), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -180,10 +177,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
     }
-    
-    func cancelTimeUpdate() {
-    }
-
     
     // MARK: ScrollView Delegate
     

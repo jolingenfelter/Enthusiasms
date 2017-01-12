@@ -60,8 +60,6 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(finshedViewingContent), name: NSNotification.Name(rawValue: "finishedViewingContent"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,8 +67,6 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "finishedViewingContent"), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -143,14 +139,6 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
-    }
-    
-    func cancelTimeUpdate() {
-        // do nothing for now
-    }
-    
-    func finshedViewingContent() {
-        // do nothing for now
     }
     
 }
