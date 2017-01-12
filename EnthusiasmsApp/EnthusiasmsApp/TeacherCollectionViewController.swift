@@ -185,7 +185,8 @@ class TeacherCollectionViewController: UICollectionViewController {
     func contentFromWebPressed() {
         let getContentView = GetWebContentViewController()
         getContentView.student = student
-        self.presentedViewController?.present(getContentView, animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        self.present(getContentView, animated: true, completion: nil)
     }
     
     func contentFromLibraryPressed() {
@@ -195,7 +196,8 @@ class TeacherCollectionViewController: UICollectionViewController {
         let addContentFromLibraryVC = AddContentFromLibraryViewController(collectionViewLayout: flowLayout)
         addContentFromLibraryVC.student = student
         let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
-        self.presentedViewController?.present(navigationController, animated: true, completion: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        self.present(navigationController, animated: true, completion: nil)
     }
     
     func homePressed() {
@@ -231,6 +233,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         if let contentImageName = content.uniqueFileName, let imageURL = content.url {
             let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
             cell.thumbnail.image = imageGetter.getImage()
+            
         }
         
         return cell
@@ -314,7 +317,8 @@ class TeacherCollectionViewController: UICollectionViewController {
             return
         }
         
-        viewFullScreen(content: selectedContent, from: self.presentedViewController!, with: nil,and: nil)
+        self.presentedViewController?.dismiss(animated: false, completion: nil)
+        viewFullScreen(content: selectedContent, from: self)
     }
 
     /*

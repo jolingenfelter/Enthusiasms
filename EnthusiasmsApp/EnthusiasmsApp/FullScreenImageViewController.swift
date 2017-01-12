@@ -14,8 +14,29 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var image = UIImage()
     let imageView = UIImageView()
     let scrollView = UIScrollView()
-    var rewardTime: Int?
-    var addTimeButton: UIButton?
+    
+    // Timer Variables
+    var rewardTime = 0
+    var remainingRewardTime = 0
+    var timer = Timer()
+    var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
+    let addTimePasswordCheck = AddTimePasswordCheckViewController()
+    let addTimeViewController = AddTimeViewController()
+    var minutes: Int {
+        return rewardTime / 60
+    }
+    var seconds: Int {
+        return rewardTime % 60
+    }
+    var timeDisplay: String {
+        if seconds == 0 {
+            return "\(minutes):00"
+        } else if seconds >= 1 && seconds < 10 {
+            return "\(minutes):0\(seconds)"
+        } else {
+            return "\(minutes):\(seconds)"
+        }
+    }
     
     // Constraints
     var imageViewLeadingConstraint = NSLayoutConstraint()
@@ -27,31 +48,42 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
     
+        view.addSubview(scrollView)
         self.view.addSubview(imageView)
         imageView.image = image
         
-        navBarSetup()
-        
         // ImageView setup
         
-//        if image.size.width > self.view.bounds.size.width {
-//            imageView.contentMode = .scaleAspectFit
-//        } else {
-//            imageView.contentMode = .center
-//        }
+        if image.size.width > self.view.bounds.size.width {
+            imageView.contentMode = .scaleAspectFit
+        } else {
+            imageView.contentMode = .center
+        }
         
         // ScrollView setup
         
-        view.addSubview(scrollView)
         scrollView.addSubview(imageView)
-//        scrollView.minimumZoomScale = 1.0
-//        scrollView.maximumZoomScale = 6.0
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 6.0
         scrollView.delegate = self
 //        scrollView.showsVerticalScrollIndicator = true
 //        scrollView.showsHorizontalScrollIndicator = true
 //        scrollView.flashScrollIndicators()
         
          viewSetup()
+        
+        // Timer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+        
+        // Observers
+        NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
     }
     
     func navBarSetup() {
@@ -61,27 +93,32 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         self.title = content?.title
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
-        if let addTimeButton = addTimeButton {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: addTimeButton)
+        if rewardTime > 0 {
+            addTimeButton.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
+            addTimeButton.setTitleColor(.black, for: .normal)
+            let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
+            self.navigationItem.leftBarButtonItem = addTimeBarButton
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         navBarSetup()
     }
     
     func viewSetup() {
         
+        // ImageView
+        
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        imageViewLeadingConstraint = NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
-        imageViewTrailingConstraint = NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: self.view, attribute: .trailing, multiplier: 1, constant: 0)
-        imageViewTopConstraint = NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1, constant: 0)
-        imageViewBottomConstraint = NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1, constant: 0)
-        
-        //        imageViewLeadingConstraint = imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-        //        imageViewTrailingConstraint = imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-        //        imageViewTopConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-        //        imageViewBottomConstraint = imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        imageViewLeadingConstraint = imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+        imageViewTrailingConstraint = imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+        imageViewTopConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+        imageViewBottomConstraint = imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
         
         NSLayoutConstraint.activate([imageViewLeadingConstraint, imageViewTrailingConstraint, imageViewTopConstraint, imageViewBottomConstraint])
         
+        // Scroll View
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -93,59 +130,58 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         NSLayoutConstraint.activate([scrollViewLeadingConstraint, scrollViewTrailingConstraint, scrollViewTopConstraint, scrollViewBottomConstraint])
         
     }
-    
-    override func viewDidLayoutSubviews() {
-        
-        super.viewDidLayoutSubviews()
-
-        updateMinZoomScaleForSize(size: view.bounds.size)
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    func addTimePressed() {
+        remainingRewardTime = rewardTime
+        addTimePasswordCheck.modalPresentationStyle = .formSheet
+        
+        self.present(addTimePasswordCheck, animated: true, completion: nil)
+    }
+    
     func donePressed() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        timer.invalidate()
         self.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: ScrollView Methods
+    // MARK: Timer
     
-    private func updateMinZoomScaleForSize(size: CGSize) {
-        let widthScale = size.width / imageView.bounds.width
-        let heightScale = size.height / imageView.bounds.height
-        let minScale = min(widthScale, heightScale)
+    func updateTimer() {
         
-        scrollView.minimumZoomScale = minScale
+        rewardTime -= 1
+        addTimeButton.setTitle(timeDisplay, for: .normal)
+        let enterPasswordVC = EnterPasswordViewController()
         
-        scrollView.zoomScale = minScale
+        if rewardTime == 0 {
+            
+            timer.invalidate()
+            
+            self.present(enterPasswordVC, animated: true, completion: nil)
+            
+        }
+        
     }
     
-    private func updateConstraintsForSize(size: CGSize) {
-        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
-        imageViewTopConstraint.constant = yOffset
-        imageViewBottomConstraint.constant = yOffset
-        
-        let xOffset = max(0, (size.width - imageView.frame.width) / 2)
-        imageViewLeadingConstraint.constant = xOffset
-        imageViewTrailingConstraint.constant = xOffset
-        
-        view.layoutIfNeeded()
+    func addTimePasswordCheckComplete() {
+        addTimeViewController.rewardTime = rewardTime
+        addTimeViewController.modalPresentationStyle = .formSheet
+        self.present(addTimeViewController, animated: true, completion: nil)
+    }
+    
+    func updateRewardTime() {
+        rewardTime = addTimeViewController.updatedTime
     }
     
     // MARK: ScrollView Delegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return self.imageView
-    }
-    
-    func scrollViewWillBeginZooming(_ scrollView: UIScrollView, with view: UIView?) {
-        
-    }
-    
-    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-        updateConstraintsForSize(size: view.bounds.size)
     }
     
 }

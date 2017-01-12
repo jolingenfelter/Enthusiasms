@@ -44,24 +44,29 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.title = student?.name
         
         // Timer Setup
-        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationBarSetup()
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(cancelTimeUpdate), name: NSNotification.Name("cancelTimeUpdate"), object: nil)
     }
     
-    deinit {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("cancelTimeUpdate"), object: nil)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-       navigationBarSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +88,10 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let selectedContent = contentsArray[indexPath.row]
         
-        viewFullScreen(content: selectedContent, from: self, with: rewardTime, and: addTimeButton)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        
+        viewFullScreen(content: selectedContent, from: self)
         
     }
     
@@ -103,13 +111,13 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         if rewardTime == 0 {
             
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.rewardTime = 0
+            
             timer.invalidate()
-
-            if self.presentedViewController == nil {
-                self.present(enterPasswordVC, animated: true, completion: nil)
-            } else if self.presentedViewController != nil {
-                self.presentedViewController?.present(enterPasswordVC, animated: true, completion: nil)
-            }
+            
+            self.present(enterPasswordVC, animated: true, completion: nil)
+            
         }
         
     }
@@ -117,32 +125,20 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     func addTimePressed() {
 
         remainingRewardTime = rewardTime
-        timer.invalidate()
         addTimePasswordCheck.modalPresentationStyle = .formSheet
         
-        if self.presentedViewController == nil {
-            self.present(addTimePasswordCheck, animated: true, completion: nil)
-        } else if self.presentedViewController != nil {
-            self.presentedViewController?.present(addTimePasswordCheck, animated: true, completion: nil)
-        }
+        self.present(addTimePasswordCheck, animated: true, completion: nil)
     }
     
     func addTimePasswordCheckComplete() {
-        addTimeViewController.rewardTime = remainingRewardTime
+        addTimeViewController.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
+        
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     
     func updateRewardTime() {
-        updatedTime = addTimeViewController.updatedTime
-        rewardTime = updatedTime
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        updateTimer()
-    }
-    
-    func cancelTimeUpdate() {
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        updateTimer()
+        rewardTime = addTimeViewController.updatedTime
     }
     
 }

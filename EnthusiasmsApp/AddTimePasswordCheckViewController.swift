@@ -53,7 +53,7 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
         self.getStartedButton.translatesAutoresizingMaskIntoConstraints = false
         
         let buttonHorizontalConstraint = self.getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let buttonVerticalConstraint = self.getStartedButton.topAnchor.constraint(equalTo: self.createPasswordTextField.bottomAnchor, constant: 150)
+        let buttonVerticalConstraint = self.getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
         let buttonHeightConstraint = self.getStartedButton.heightAnchor.constraint(equalToConstant: 50)
         let buttonWidthConstraint = self.getStartedButton.widthAnchor.constraint(equalToConstant: 200)
         

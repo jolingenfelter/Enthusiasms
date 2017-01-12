@@ -33,6 +33,9 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         rewardTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
         view.addSubview(timePicker)
         
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
+        
         // Button
         startButton.setTitle("Start!", for: .normal)
         startButton.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
@@ -77,7 +80,6 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let studentCollectionView = StudentCollectionViewController(collectionViewLayout: flowLayout)
         studentCollectionView.navigationItem.hidesBackButton = true
         studentCollectionView.student = student
-        studentCollectionView.rewardTime = rewardTime
         self.navigationController?.pushViewController(studentCollectionView, animated: true)
     }
 
@@ -89,18 +91,36 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     // MARK: PickerView DataSource and Delegate
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return minutesArray.count
+        if component == 0 {
+            return minutesArray.count
+        } else {
+            return 1
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(minutesArray[row])
+        if component == 0 {
+            return String(minutesArray[row])
+        } else {
+            return "min"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        if component == 0 {
+            return 50
+        } else {
+            return 60
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         rewardTime = minutesArray[row] * 60
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.rewardTime = rewardTime
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let timePicker = UIPickerView()
-    var rewardTime : Int?
+    var rewardTime = 0
     var additionalTime = 0
     var updatedTime = 0
     let updateTimeButton = UIButton()
@@ -75,7 +75,7 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         updateTimeButton.translatesAutoresizingMaskIntoConstraints = false
         
         let updateTimeHorizontalConstraint = updateTimeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let updateTimeTopConstraint = updateTimeButton.topAnchor.constraint(equalTo: timePicker.bottomAnchor, constant: 200)
+        let updateTimeTopConstraint = updateTimeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
         let updateTimeHeightConstraint = updateTimeButton.heightAnchor.constraint(equalToConstant: 50)
         let updateTimeWidthConstraint = updateTimeButton.widthAnchor.constraint(equalToConstant: 200)
         
@@ -89,10 +89,10 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     func updateTime() {
         
-        if rewardTime! + (additionalTime * 60) >= 3600 {
+        if rewardTime + additionalTime >= 3600 {
             updatedTime = 3600
         } else {
-            updatedTime = rewardTime! + (additionalTime * 60)
+            updatedTime = rewardTime + additionalTime
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
@@ -106,19 +106,35 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     // MARK: PickerView DataSource and Delegate
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return minutesArray.count
+        if component == 0 {
+            return minutesArray.count
+        } else {
+            return 1
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return String(minutesArray[row])
+        if component == 0 {
+            return String(minutesArray[row])
+        } else {
+            return "min"
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        if component == 0 {
+            return 50
+        } else {
+            return 60
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        additionalTime = minutesArray[row]
+        additionalTime = minutesArray[row] * 60
     }
 
 }

@@ -148,7 +148,8 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
             preferences.setValue(hashedpassword, forKey: "password")
             
             let homeViewController = HomeViewController()
-            self.present(homeViewController, animated: true, completion: nil)
+            let navigationController = UINavigationController(rootViewController: homeViewController)
+            self.present(navigationController, animated: true, completion: nil)
             
         }
     }
