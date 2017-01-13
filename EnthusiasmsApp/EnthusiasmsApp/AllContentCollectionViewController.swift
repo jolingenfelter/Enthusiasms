@@ -26,6 +26,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     let menu = UIViewController()
     var selectedContent: Content?
     let studentListPopover = AddContentToStudentPopoverViewController()
+    let instructionsLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,22 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let addContentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addContent))
         self.navigationItem.rightBarButtonItem = addContentButton
         
+        // InstructionsLabel
+        instructionsLabel.text = "Tap '+' to add content"
+        instructionsLabel.textColor = UIColor.white
+        instructionsLabel.font = instructionsLabel.font.withSize(40)
+        self.view.addSubview(instructionsLabel)
+        
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 200)
+        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 800)
+        
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        
+        presentInstructionLabel()
     }
     
     deinit {
@@ -67,6 +84,15 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func presentInstructionLabel() {
+        
+        if self.fetchedResultsController.fetchedObjects?.count == 0 {
+            instructionsLabel.isHidden = false
+        } else {
+            instructionsLabel.isHidden = true
+        }
     }
     
     func addContent() {
@@ -269,6 +295,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        presentInstructionLabel()
         collectionView?.reloadData()
     }
     

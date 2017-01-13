@@ -51,6 +51,8 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         let navItem = UINavigationItem()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         navItem.rightBarButtonItem = cancelButton
+        let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
+        navItem.leftBarButtonItem = helpButton
         navBar.items = [navItem]
         
         // TextField Setup
@@ -259,6 +261,12 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     
     func donePressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func helpPressed() {
+        let helpViewController = WebViewHelpViewController()
+        helpViewController.modalPresentationStyle = .formSheet
+        self.present(helpViewController, animated: true, completion: nil)
     }
     
     func backPressed() {

@@ -14,6 +14,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     var settingsButton = UIBarButtonItem()
     var addButton = UIBarButtonItem()
     var allContentButton = UIBarButtonItem()
+    let instructionsLabel = UILabel()
     
     var settingsViewController = UIViewController()
     
@@ -54,11 +55,37 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         } catch let error as NSError {
             print ("Error fetching item objects \(error.localizedDescription), \(error.userInfo)")
         }
+        
+        // InstructionsLabel
+        instructionsLabel.text = "Tap '+' to add a child"
+        instructionsLabel.font = instructionsLabel.font.withSize(40)
+        instructionsLabel.backgroundColor = UIColor.white
+        instructionsLabel.textColor = UIColor.lightGray
+        self.view.addSubview(instructionsLabel)
+        
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
+        
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint])
+        
+        presentInstructionLabel()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func presentInstructionLabel() {
+        
+        if self.fetchedResultsController.fetchedObjects?.count == 0 {
+            instructionsLabel.isHidden = false
+        } else {
+            instructionsLabel.isHidden = true
+        }
     }
 
     // MARK: - Table view data source
@@ -113,6 +140,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.reloadData()
+        presentInstructionLabel()
     }
     
     // MARK: NavBar Actions

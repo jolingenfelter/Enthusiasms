@@ -19,6 +19,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
     var selectedContent: Content?
+    let instructionsLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,13 +30,29 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-         updateContents()
-        
         // Collection View setup
     
         self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
+        
+        // InstructionsLabel 
+        instructionsLabel.text = "Tap '+' to add content"
+        instructionsLabel.textColor = UIColor.white
+        instructionsLabel.font = instructionsLabel.font.withSize(40)
+        instructionsLabel.textAlignment = .center
+        self.view.addSubview(instructionsLabel)
+        
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+        let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+        let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
+        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
+        
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        
+        updateContents()
         
         // Notification observer to update name if edited
         NotificationCenter.default.addObserver(self, selector: #selector(updateStudentName), name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
@@ -61,6 +78,12 @@ class TeacherCollectionViewController: UICollectionViewController {
         }
         
         contentsArray = contents.sortedArray(using: [NSSortDescriptor.init(key: "title", ascending: true)]) as! [Content]
+        
+        if contentsArray.count == 0 {
+            instructionsLabel.isHidden = false
+        } else {
+            instructionsLabel.isHidden = true
+        }
         
         collectionView?.reloadData()
     }

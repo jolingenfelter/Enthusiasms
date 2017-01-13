@@ -60,6 +60,11 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        
+        // Instructions Label
+        instructionsLabel.text = "Sign in as a caretaker to add content"
+        instructionsLabel.font = instructionsLabel.font.withSize(30)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
