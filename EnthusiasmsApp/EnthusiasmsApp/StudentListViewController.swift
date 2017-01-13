@@ -132,7 +132,9 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         editPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         let horizontalConstraint = editPasswordButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
         let verticalConstraint = editPasswordButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        let heightConstraint = editPasswordButton.heightAnchor.constraint(equalToConstant: 50)
+        let widthConstraint = editPasswordButton.widthAnchor.constraint(equalToConstant: 150)
+        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
         
         // PopoverView setup
         settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover

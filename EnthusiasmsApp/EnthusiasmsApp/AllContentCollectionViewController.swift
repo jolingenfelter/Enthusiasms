@@ -159,28 +159,35 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         //Menu layout
         
+        let buttonHeight: CGFloat = 50
+        let buttonWidth: CGFloat = 200
+        
         viewContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let viewContentButtonVerticalConstraint = viewContentButton.bottomAnchor.constraint(equalTo: separator1.topAnchor, constant: -10)
+        let viewContentButtonVerticalConstraint = viewContentButton.bottomAnchor.constraint(equalTo: separator1.topAnchor)
+        let viewContentButtonHeight = viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let viewContentButtonWidth = viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentButtonVerticalConstraint])
+        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentButtonVerticalConstraint, viewContentButtonHeight, viewContentButtonWidth])
         
         separator1.translatesAutoresizingMaskIntoConstraints = false
         
         let separator1LeadingConstraint = separator1.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
         let separator1TrailingConstraint = separator1.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
         let separator1HeightConstraint = separator1.heightAnchor.constraint(equalToConstant: 1)
-        let separator1VerticalConstraint = separator1.bottomAnchor.constraint(equalTo: addToStudentButton.topAnchor, constant: -10)
+        let separator1VerticalConstraint = separator1.bottomAnchor.constraint(equalTo: addToStudentButton.topAnchor)
         
         NSLayoutConstraint.activate([separator1LeadingConstraint, separator1TrailingConstraint, separator1HeightConstraint, separator1VerticalConstraint])
        
         addToStudentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let addToStudentHorizontalConstraint = addToStudentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let addToStudentVerticalConstraint = addToStudentButton.bottomAnchor.constraint(equalTo: separator2.topAnchor, constant: -10)
+        let addToStudentVerticalConstraint = addToStudentButton.bottomAnchor.constraint(equalTo: separator2.topAnchor)
+        let addToStudentHeightConstraint = addToStudentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let addToStudentWidthConstraint = addToStudentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([addToStudentHorizontalConstraint, addToStudentVerticalConstraint])
+        NSLayoutConstraint.activate([addToStudentHorizontalConstraint, addToStudentVerticalConstraint, addToStudentHeightConstraint, addToStudentWidthConstraint])
         
         separator2.translatesAutoresizingMaskIntoConstraints = false
         
@@ -194,25 +201,29 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         changeTitleButton.translatesAutoresizingMaskIntoConstraints = false
         
         let changeTitleHorizontalConstraint = changeTitleButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let changeTitleVerticalConstraint = changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor, constant: 10)
+        let changeTitleVerticalConstraint = changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor)
+        let changeTitleHeightConstraint = changeTitleButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let changeTitleWidthConstraint = changeTitleButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([changeTitleHorizontalConstraint, changeTitleVerticalConstraint])
+        NSLayoutConstraint.activate([changeTitleHorizontalConstraint, changeTitleVerticalConstraint, changeTitleHeightConstraint, changeTitleWidthConstraint])
         
         separator3.translatesAutoresizingMaskIntoConstraints = false
         
         let separator3LeadingConstraint = separator3.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
         let separator3TrailingConstraint = separator3.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
         let separator3HeightConstraint = separator3.heightAnchor.constraint(equalToConstant: 1)
-        let separator3VerticalConstraint = separator3.topAnchor.constraint(equalTo: changeTitleButton.bottomAnchor, constant: 10)
+        let separator3VerticalConstraint = separator3.topAnchor.constraint(equalTo: changeTitleButton.bottomAnchor)
         
         NSLayoutConstraint.activate([separator3LeadingConstraint, separator3TrailingConstraint, separator3HeightConstraint, separator3VerticalConstraint])
         
         deleteButton.translatesAutoresizingMaskIntoConstraints = false
         
         let deleteButtonHorizontalConstraint = deleteButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let deleteButtonVerticalConstraint = deleteButton.topAnchor.constraint(equalTo: separator3.bottomAnchor, constant: 10)
+        let deleteButtonVerticalConstraint = deleteButton.topAnchor.constraint(equalTo: separator3.bottomAnchor)
+        let deleteButtonHeightConstraint = deleteButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let deleteButtonWidthConstraint = deleteButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([deleteButtonHorizontalConstraint, deleteButtonVerticalConstraint])
+        NSLayoutConstraint.activate([deleteButtonHorizontalConstraint, deleteButtonVerticalConstraint, deleteButtonHeightConstraint, deleteButtonWidthConstraint])
         
          self.present(menu, animated: true, completion: nil)
     }

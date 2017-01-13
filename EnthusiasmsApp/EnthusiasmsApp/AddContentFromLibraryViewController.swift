@@ -69,12 +69,17 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         menu.view.addSubview(viewContentButton)
         
+        let buttonHeight: CGFloat = 75
+        let buttonWidth: CGFloat = 200
+        
         addContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let addContentHorizontalConstraint = addContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let addContentVerticalConstraint = addContentButton.bottomAnchor.constraint(equalTo: separator.topAnchor, constant: -20)
+        let addContentVerticalConstraint = addContentButton.bottomAnchor.constraint(equalTo: separator.topAnchor)
+        let addContentHeightConstraint = addContentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let addContentWidthConstraint = addContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([addContentHorizontalConstraint, addContentVerticalConstraint])
+        NSLayoutConstraint.activate([addContentHorizontalConstraint, addContentVerticalConstraint, addContentHeightConstraint, addContentWidthConstraint])
         
         separator.translatesAutoresizingMaskIntoConstraints = false
         
@@ -88,9 +93,11 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         viewContentButton.translatesAutoresizingMaskIntoConstraints = false
         
         let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor, constant: 20)
+        let viewContentVerticalConstraint = viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor)
+        let viewContentHeightConstraint = viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
+        let viewContentWidthConstraint = viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
         
-        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint])
+        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint, viewContentHeightConstraint, viewContentWidthConstraint])
         
         self.present(menu, animated: true, completion: nil)
 
