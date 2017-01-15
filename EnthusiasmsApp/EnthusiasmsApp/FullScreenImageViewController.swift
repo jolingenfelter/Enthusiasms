@@ -105,17 +105,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
     func viewSetup() {
         
-        // ImageView
-        
-//        imageView.translatesAutoresizingMaskIntoConstraints = false
-//        
-//        imageViewLeadingConstraint = imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-//        imageViewTrailingConstraint = imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-//        imageViewTopConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-//        imageViewBottomConstraint = imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-//        
-//        NSLayoutConstraint.activate([imageViewLeadingConstraint, imageViewTrailingConstraint, imageViewTopConstraint, imageViewBottomConstraint])
-        
         // Scroll View
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
