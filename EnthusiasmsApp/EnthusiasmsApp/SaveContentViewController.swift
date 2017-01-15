@@ -140,25 +140,24 @@ class SaveContentViewController: UIViewController {
             content.url = contentURL
             content.dateAdded = NSDate()
             content.type = (contentType?.rawValue)!
-            let uuid = UUID().uuidString
-            content.uniqueFileName = String(describing: uuid)
             
             if let student = student {
                 content.addToStudentContent(student)
             }
             
             if contentType == .Image {
-                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: content.url!)!)
-                imageGetter.downloadAndSaveImage()
+                let imageSaver = ContentImageSaver(content: content)
+                imageSaver.downloadNameAndSaveImage()
             }
             
             if contentType == .Video {
                 guard let videoID = youtubeVideoID else {
                     return
                 }
-                let thumnailURLString = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
-                let imageGetter = ImageGetter(imageName: content.uniqueFileName!, imageURL: URL(string: thumnailURLString)!)
-                imageGetter.downloadAndSaveImage()
+                let thumbnailURL = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
+                content.thumbnailURL = thumbnailURL
+                let imageSaver = ContentImageSaver(content: content)
+                imageSaver.downloadNameAndSaveImage()
             }
             
             dataController.saveContext()

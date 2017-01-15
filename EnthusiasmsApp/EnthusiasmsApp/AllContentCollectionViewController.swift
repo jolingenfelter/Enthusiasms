@@ -118,11 +118,13 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     
         let content = fetchedResultsController.object(at: indexPath) as Content
         
-        if let contentImageName = content.uniqueFileName, let imageURL = content.url {
-            let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
-            cell.thumbnail.image = imageGetter.getImage()
+        guard let imageName = content.uniqueFileName else {
+                let imageSaver = ContentImageSaver(content: content)
+                imageSaver.downloadNameAndSaveImage()
+            return cell
         }
         
+        cell.thumbnail.image = getImage(imageName: imageName)
         cell.titleLabel.text = content.title
         
         return cell

@@ -2,8 +2,8 @@
 //  Content+CoreDataProperties.swift
 //  EnthusiasmsApp
 //
-//  Created by Joanna Lingenfelter on 11/17/16.
-//  Copyright © 2016 JoLingenfelter. All rights reserved.
+//  Created by Joanna Lingenfelter on 1/7/17.
+//  Copyright © 2017 JoLingenfelter. All rights reserved.
 //
 
 import Foundation
@@ -19,9 +19,9 @@ extension Content {
     @NSManaged public var dateAdded: NSDate?
     @NSManaged public var title: String?
     @NSManaged public var type: Int16
-    @NSManaged public var url: String?
-    @NSManaged public var localURL: String?
     @NSManaged public var uniqueFileName: String?
+    @NSManaged public var url: String?
+    @NSManaged public var thumbnailURL: String?
     @NSManaged public var studentContent: NSSet?
 
 }

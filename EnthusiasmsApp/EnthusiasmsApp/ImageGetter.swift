@@ -15,24 +15,44 @@ func getDocumentsDirectory() -> URL {
     return documentsDirectory
 }
 
-class ImageGetter: NSObject {
+class ContentImageSaver: NSObject {
     
-    let imageName: String
-    let imageURL: URL
+    let content: Content
     
-    init(imageName: String, imageURL: URL) {
-        self.imageName = imageName
-        self.imageURL = imageURL
+    init(content: Content) {
+        self.content = content
     }
     
-    func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
+    private func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         
-        URLSession.shared.dataTask(with: self.imageURL) {
-            (data, response, error) in completion(data, response, error)
-        }.resume()
+        if content.type == ContentType.Image.rawValue {
+            guard let contentURL = self.content.url else {
+                return
+            }
+            
+            URLSession.shared.dataTask(with: URL(string:contentURL)!) {
+                (data, response, error) in completion(data, response, error)
+                }.resume()
+            
+        } else {
+            guard let thumbnailURL = self.content.thumbnailURL else {
+                return
+            }
+            
+            URLSession.shared.dataTask(with: URL(string:thumbnailURL)!) {
+                (data, response, error) in completion(data, response, error)
+                }.resume()
+            
+        }
+
     }
     
-    func downloadAndSaveImage() {
+    private func generateImageName() -> String {
+        let uuid = UUID().uuidString
+        return uuid
+    }
+    
+    func downloadNameAndSaveImage() {
         
         getDataFromURL { (data, response, error) in
             guard let data = data, error == nil else {
@@ -42,7 +62,8 @@ class ImageGetter: NSObject {
             DispatchQueue.main.async {
                 if let image = UIImage(data: data) {
                     if let JPEGImageData = UIImageJPEGRepresentation(image, 0.8) {
-                        let fileName = getDocumentsDirectory().appendingPathComponent("\(self.imageName).jpeg")
+                        self.content.uniqueFileName = self.generateImageName()
+                        let fileName = getDocumentsDirectory().appendingPathComponent("\(self.content.uniqueFileName!).jpeg")
                         try? JPEGImageData.write(to: fileName)
                         
                         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
@@ -52,18 +73,18 @@ class ImageGetter: NSObject {
         }
     }
     
-    func getImage() -> UIImage? {
-        
-        var image = UIImage()
-           
-        let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
-            
-        if FileManager.default.fileExists(atPath: filePath) {
-                image = UIImage(contentsOfFile: filePath)!
-        }
-        
-        return image
-        
+}
+
+func getImage(imageName: String) -> UIImage? {
+    
+    var image = UIImage()
+    
+    let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
+    
+    if FileManager.default.fileExists(atPath: filePath) {
+        image = UIImage(contentsOfFile: filePath)!
     }
+    
+    return image
     
 }

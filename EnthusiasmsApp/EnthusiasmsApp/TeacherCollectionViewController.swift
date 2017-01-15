@@ -264,16 +264,23 @@ class TeacherCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
         
         let content = contentsArray[indexPath.item]
-        cell.titleLabel.text = content.title
+        cell.titleLabel.text = content.title!
         
-        if let contentImageName = content.uniqueFileName, let imageURL = content.url {
-            let imageGetter = ImageGetter(imageName: contentImageName, imageURL: URL(string: imageURL)!)
-            cell.thumbnail.image = imageGetter.getImage()
-            
+       
+        guard let imageName = content.uniqueFileName else {
+            let imageSaver = ContentImageSaver(content: content)
+            imageSaver.downloadNameAndSaveImage()
+            return cell
         }
+    
+            cell.thumbnail.image = getImage(imageName: imageName)
         
+
         return cell
+        
     }
+
+
 
     // MARK: UICollectionViewDelegate
     
