@@ -50,15 +50,13 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
         view.addSubview(scrollView)
         self.view.addSubview(imageView)
+        imageView.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        imageView.center = view.center
         imageView.image = image
         
         // ImageView setup
         
-        if image.size.width > self.view.bounds.size.width {
-            imageView.contentMode = .scaleAspectFit
-        } else {
-            imageView.contentMode = .center
-        }
+        imageView.contentMode = .scaleAspectFit
         
         // ScrollView setup
         
@@ -66,9 +64,9 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 6.0
         scrollView.delegate = self
-//        scrollView.showsVerticalScrollIndicator = true
-//        scrollView.showsHorizontalScrollIndicator = true
-//        scrollView.flashScrollIndicators()
+        scrollView.showsVerticalScrollIndicator = true
+        scrollView.showsHorizontalScrollIndicator = true
+        scrollView.flashScrollIndicators()
         
          viewSetup()
         
@@ -109,14 +107,14 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         // ImageView
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        
-        imageViewLeadingConstraint = imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
-        imageViewTrailingConstraint = imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
-        imageViewTopConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
-        imageViewBottomConstraint = imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        
-        NSLayoutConstraint.activate([imageViewLeadingConstraint, imageViewTrailingConstraint, imageViewTopConstraint, imageViewBottomConstraint])
+//        imageView.translatesAutoresizingMaskIntoConstraints = false
+//        
+//        imageViewLeadingConstraint = imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0)
+//        imageViewTrailingConstraint = imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
+//        imageViewTopConstraint = imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0)
+//        imageViewBottomConstraint = imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+//        
+//        NSLayoutConstraint.activate([imageViewLeadingConstraint, imageViewTrailingConstraint, imageViewTopConstraint, imageViewBottomConstraint])
         
         // Scroll View
         
