@@ -50,8 +50,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
         view.addSubview(scrollView)
         self.view.addSubview(imageView)
-        imageView.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-        imageView.center = view.center
         imageView.image = image
         
         // ImageView setup
@@ -100,7 +98,9 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         navBarSetup()
+        navBarSetup()
+        
+        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
     
     func viewSetup() {
