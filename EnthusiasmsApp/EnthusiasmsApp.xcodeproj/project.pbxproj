@@ -274,7 +274,7 @@
 				TargetAttributes = {
 					9EB4F4B61D8E120500E81C74 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = N9E7Q8W5PW;
+						DevelopmentTeam = 2K6RX929EU;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -517,7 +517,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N9E7Q8W5PW;
+				DEVELOPMENT_TEAM = 2K6RX929EU;
 				INFOPLIST_FILE = EnthusiasmsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jolingenfelter.EnthusiasmsApp;
@@ -532,7 +532,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = N9E7Q8W5PW;
+				DEVELOPMENT_TEAM = 2K6RX929EU;
 				INFOPLIST_FILE = EnthusiasmsApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jolingenfelter.EnthusiasmsApp;
