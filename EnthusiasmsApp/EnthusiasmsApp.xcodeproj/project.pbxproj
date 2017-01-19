@@ -19,6 +19,7 @@
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
 		9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */; };
+		9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E949DC51E31472900F33C6F /* BugPrinter.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */; };
 		9EA0DE161E219EEF0018A02B /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */; };
@@ -58,6 +59,7 @@
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTimeViewController.swift; path = ../AddTimeViewController.swift; sourceTree = "<group>"; };
+		9E949DC51E31472900F33C6F /* BugPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugPrinter.swift; path = ../BugPrinter.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 		9EFC4B3A1DF38BDB0022BCD4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9E949DC51E31472900F33C6F /* BugPrinter.swift */,
 				9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */,
 				9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */,
 				9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */,
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */,
+				9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */,
 				9EA0DE171E219EEF0018A02B /* Student+CoreDataClass.swift in Sources */,
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,
@@ -454,6 +458,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "\"-D\"";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D Debug";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
