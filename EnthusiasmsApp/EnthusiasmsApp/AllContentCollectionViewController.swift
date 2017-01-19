@@ -75,6 +75,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
         
         presentInstructionLabel()
+
     }
     
     deinit {

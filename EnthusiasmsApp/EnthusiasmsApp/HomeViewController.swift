@@ -50,6 +50,7 @@ class HomeViewController: UIViewController {
         childButton.layer.masksToBounds = true
         childButton.addTarget(self, action: #selector(childPressed), for: .touchUpInside)
         self.view.addSubview(childButton)
+
     }
     
     deinit {

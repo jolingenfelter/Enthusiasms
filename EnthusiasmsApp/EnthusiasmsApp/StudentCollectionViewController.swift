@@ -48,6 +48,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
