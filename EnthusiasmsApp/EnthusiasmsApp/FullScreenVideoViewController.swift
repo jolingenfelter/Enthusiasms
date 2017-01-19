@@ -91,6 +91,7 @@ class FullScreenVideoViewController: UIViewController {
         NSLayoutConstraint.activate([playerLeadingConstraint, playerTrailingConstraint, playerTopConstraint, playerBottomConstraint])
         
         coverView.translatesAutoresizingMaskIntoConstraints = false
+        
         let coverViewVerticalConstraint = coverView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         let coverViewHorizontalConstraint = coverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         let coverViewWidthConstraint = coverView.widthAnchor.constraint(equalToConstant: 100)
