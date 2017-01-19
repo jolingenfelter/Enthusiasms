@@ -21,6 +21,8 @@ class FullScreenVideoViewController: UIViewController {
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimePasswordCheck = AddTimePasswordCheckViewController()
     let addTimeViewController = AddTimeViewController()
+    let coverView = UIView()
+    
     var minutes: Int {
         return rewardTime / 60
     }
@@ -41,12 +43,16 @@ class FullScreenVideoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
         view.addSubview(youtubePlayerView)
+        youtubePlayerView.playerVars = ["showinfo": 0 as AnyObject]
         youtubePlayerView.loadVideoURL(videoURL!)
         navBarSetup()
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
+        
+        // CoverView
+        view.addSubview(coverView)
         
     }
     
@@ -83,6 +89,15 @@ class FullScreenVideoViewController: UIViewController {
         let playerBottomConstraint = youtubePlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         
         NSLayoutConstraint.activate([playerLeadingConstraint, playerTrailingConstraint, playerTopConstraint, playerBottomConstraint])
+        
+        coverView.translatesAutoresizingMaskIntoConstraints = false
+        let coverViewVerticalConstraint = coverView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        let coverViewHorizontalConstraint = coverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        let coverViewWidthConstraint = coverView.widthAnchor.constraint(equalToConstant: 100)
+        let coverViewHeightConstraint = coverView.heightAnchor.constraint(equalToConstant: 100)
+        
+        NSLayoutConstraint.activate([coverViewVerticalConstraint, coverViewHorizontalConstraint, coverViewWidthConstraint, coverViewHeightConstraint])
+
     }
 
     override func didReceiveMemoryWarning() {
