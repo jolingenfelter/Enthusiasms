@@ -70,7 +70,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
         let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
         let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 200)
-        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 800)
+        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 400)
         
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
         
