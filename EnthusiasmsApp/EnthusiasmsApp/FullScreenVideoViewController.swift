@@ -43,7 +43,7 @@ class FullScreenVideoViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.black
         view.addSubview(youtubePlayerView)
-        youtubePlayerView.playerVars = ["showinfo": 0 as AnyObject]
+        youtubePlayerView.playerVars = ["showinfo": 0 as AnyObject, "rel": 0 as AnyObject]
         youtubePlayerView.loadVideoURL(videoURL!)
         navBarSetup()
         
