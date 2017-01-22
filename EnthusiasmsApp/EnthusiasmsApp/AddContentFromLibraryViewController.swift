@@ -20,7 +20,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         instructionsLabel.numberOfLines = 0
         instructionsLabel.font = instructionsLabel.font.withSize(35)
         instructionsLabel.textAlignment = .center
-        instructionsLabel.text = "Your library is currently empty." + "\n" + "Add content in 'All Content' or to a student."
+        instructionsLabel.text = "Add content in 'All Content' or to a student."
     }
     
     func navBarSetup() {
