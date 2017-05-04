@@ -255,7 +255,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate, UIGestureRecognizerDele
             let jsonData = try JSONSerialization.data(withJSONObject: object, options: JSONSerialization.WritingOptions.prettyPrinted)
 
             // Succeeded
-            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as? String
+            return NSString(data: jsonData, encoding: String.Encoding.utf8.rawValue) as String?
 
         } catch let jsonError {
 
