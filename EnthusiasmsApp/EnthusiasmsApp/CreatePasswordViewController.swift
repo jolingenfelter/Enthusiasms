@@ -93,11 +93,12 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let titleLabelTopConstraint = titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80)
-        let titleLabelHeightConstraint = titleLabel.heightAnchor.constraint(equalToConstant: 200)
-        let titleLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 20)
-        let titleLabelTrailingConstraint = titleLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -20)
-        NSLayoutConstraint.activate([titleLabelTopConstraint, titleLabelHeightConstraint, titleLabelLeadingConstraint, titleLabelTrailingConstraint])
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 80),
+            titleLabel.heightAnchor.constraint(equalToConstant: 200),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
+            ])
     }
     
     func setTextFieldConstraints() {
@@ -110,29 +111,33 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         
         
         // createPasswordTextField constraints
-        let createPasswordHorizontalConstraint = createPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let createPasswordVerticalConstraint = createPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80)
-        let createPasswordHeightConstraint = createPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
-        let createPasswordWidthConstraint = createPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
-        NSLayoutConstraint.activate([createPasswordHorizontalConstraint,createPasswordVerticalConstraint, createPasswordHeightConstraint, createPasswordWidthConstraint])
+        
+        NSLayoutConstraint.activate([
+            createPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            createPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
+            createPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
+            createPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
+            ])
         
         // confirmPasswordTextField constraints
-        let confirmPasswordHorizontalConstraint = confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let confirmPasswordVerticalConstraint = confirmPasswordTextField.topAnchor.constraint(equalTo: createPasswordTextField.bottomAnchor, constant: 25)
-        let confirmPasswordHeightConstraint = confirmPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight)
-        let confirmPasswordWidthConstraint = confirmPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
-        NSLayoutConstraint.activate([confirmPasswordHorizontalConstraint, confirmPasswordVerticalConstraint, confirmPasswordHeightConstraint, confirmPasswordWidthConstraint])
+
+        NSLayoutConstraint.activate([
+            confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            confirmPasswordTextField.topAnchor.constraint(equalTo: createPasswordTextField.bottomAnchor, constant: 25),
+            confirmPasswordTextField.heightAnchor.constraint(equalToConstant: textFieldHeight),
+            confirmPasswordTextField.widthAnchor.constraint(equalToConstant: textFieldWidth)
+            ])
     }
     
     func setButtonConstraints() {
         
         getStartedButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let getStartedButtonHorizontalConstraint = getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let getStartedButtonVerticalConstraint = getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
-        let getStartedButtonHeightConstraint = getStartedButton.heightAnchor.constraint(equalToConstant: 60)
-        let getStartedButtonWidthConstraint = getStartedButton.widthAnchor.constraint(equalToConstant: 400)
-        NSLayoutConstraint.activate([getStartedButtonHorizontalConstraint, getStartedButtonVerticalConstraint, getStartedButtonHeightConstraint, getStartedButtonWidthConstraint])
+        NSLayoutConstraint.activate([
+            getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            getStartedButton.heightAnchor.constraint(equalToConstant: 60),
+            getStartedButton.widthAnchor.constraint(equalToConstant: 400)])
     }
     
     func getStartedButtonPressed() {
