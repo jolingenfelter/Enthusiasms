@@ -10,18 +10,20 @@ import UIKit
 
 class AddTimePasswordCheckViewController: EnterPasswordViewController {
     
-    let navigationBar = UINavigationBar()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+    let navigationBar: UINavigationBar = {
         
-        // NavBar Setup
-        view.addSubview(navigationBar)
+        let navigationBar = UINavigationBar()
         let navigationItem = UINavigationItem(title: "Enter Password")
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
         navigationItem.leftBarButtonItem = cancelButton
         navigationBar.items = [navigationItem]
+        
+        return navigationBar
+    }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
         
         // Title Label
         titleLabel.isHidden = true
@@ -34,14 +36,15 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        view.addSubview(navigationBar)
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         
-        let navigationBarLeadingConstraint = navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let navigationBarTrailingConstraint = navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let navigationBarTopConstraint = navigationBar.topAnchor.constraint(equalTo: view.topAnchor)
-        let navigationBarHeightConstraint = navigationBar.heightAnchor.constraint(equalToConstant: 40)
-        
-        NSLayoutConstraint.activate([navigationBarLeadingConstraint, navigationBarTrailingConstraint, navigationBarTopConstraint, navigationBarHeightConstraint])
+        NSLayoutConstraint.activate([
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 40)
+            ])
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,12 +55,12 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     override func setButtonConstraints() {
         self.getStartedButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let buttonHorizontalConstraint = self.getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let buttonVerticalConstraint = self.getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
-        let buttonHeightConstraint = self.getStartedButton.heightAnchor.constraint(equalToConstant: 50)
-        let buttonWidthConstraint = self.getStartedButton.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([buttonHorizontalConstraint, buttonVerticalConstraint, buttonHeightConstraint, buttonWidthConstraint])
+        NSLayoutConstraint.activate([
+            getStartedButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            getStartedButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            getStartedButton.heightAnchor.constraint(equalToConstant: 50),
+            getStartedButton.widthAnchor.constraint(equalToConstant: 200)
+            ])
     }
     
     override func getStartedButtonPressed() {
