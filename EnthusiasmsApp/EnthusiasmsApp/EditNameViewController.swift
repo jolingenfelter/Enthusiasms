@@ -77,34 +77,34 @@ class EditNameViewController: UIViewController {
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = nameLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor)
-        let verticalConstraint = nameLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -150)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: nameTextField.leadingAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -150)
+            ])
     }
     
     func textFieldConstraints() {
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10)
-        let heightConstraint = nameTextField.heightAnchor.constraint(equalToConstant: 40)
-        let widthConstraint = nameTextField.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        NSLayoutConstraint.activate([
+            nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            nameTextField.widthAnchor.constraint(equalToConstant: 200)
+            ])
     }
     
     func buttonConstraints() {
         
         saveChangesButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = saveChangesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = saveChangesButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 80)
-        let heightConstraint = saveChangesButton.heightAnchor.constraint(equalToConstant: 50)
-        let widthConstraint = saveChangesButton.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        NSLayoutConstraint.activate([
+            saveChangesButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveChangesButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 80),
+            saveChangesButton.heightAnchor.constraint(equalToConstant: 50),
+            saveChangesButton.widthAnchor.constraint(equalToConstant: 200)
+            ])
     }
     
     func saveChanges() {
