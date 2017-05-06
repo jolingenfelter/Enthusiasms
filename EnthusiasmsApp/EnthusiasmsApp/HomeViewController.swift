@@ -57,11 +57,6 @@ class HomeViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
     }
     
-    override func viewWillLayoutSubviews() {
-        labelConstraints()
-        buttonConstraints()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
         
@@ -75,35 +70,42 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func viewWillLayoutSubviews() {
+        labelConstraints()
+        buttonConstraints()
+    }
+    
     func labelConstraints() {
         
         enthusiasmsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = enthusiasmsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = enthusiasmsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160)
-    
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        NSLayoutConstraint.activate([
+            enthusiasmsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            enthusiasmsLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 160)
+            ])
     }
     
     func buttonConstraints() {
-
+        
+        // Caretaker Button
         caretakerButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let teacherButtonHorizontalConstraint = caretakerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let teacherButtonVerticalConstraint = caretakerButton.topAnchor.constraint(equalTo: enthusiasmsLabel.bottomAnchor, constant: 200)
-        let teacherButtonHeight = caretakerButton.heightAnchor.constraint(equalToConstant: 90)
-        let teacherButtonWidth = caretakerButton.widthAnchor.constraint(equalToConstant: 400)
+        NSLayoutConstraint.activate([
+            caretakerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            caretakerButton.topAnchor.constraint(equalTo: enthusiasmsLabel.bottomAnchor, constant: 200),
+            caretakerButton.heightAnchor.constraint(equalToConstant: 90),
+            caretakerButton.widthAnchor.constraint(equalToConstant: 400)
+            ])
         
-        NSLayoutConstraint.activate([teacherButtonHorizontalConstraint, teacherButtonVerticalConstraint, teacherButtonHeight, teacherButtonWidth])
-        
+        // Child Button
         childButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let studentButtonHorizontalConstraint = childButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let studentButtonVerticalConstraint = childButton.topAnchor.constraint(equalTo: caretakerButton.bottomAnchor, constant: 30)
-        let studentButtonHeight = childButton.heightAnchor.constraint(equalTo: caretakerButton.heightAnchor)
-        let studentButtonWidth = childButton.widthAnchor.constraint(equalTo: caretakerButton.widthAnchor)
-        
-        NSLayoutConstraint.activate([studentButtonHorizontalConstraint, studentButtonVerticalConstraint, studentButtonHeight, studentButtonWidth])
+        NSLayoutConstraint.activate([
+            childButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            childButton.topAnchor.constraint(equalTo: caretakerButton.bottomAnchor, constant: 30),
+            childButton.heightAnchor.constraint(equalTo: caretakerButton.heightAnchor),
+            childButton.widthAnchor.constraint(equalTo: caretakerButton.widthAnchor)
+            ])
         
     }
 

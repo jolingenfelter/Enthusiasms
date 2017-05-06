@@ -65,11 +65,11 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint])
+        NSLayoutConstraint.activate([
+            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
+            ])
         
         presentInstructionLabel()
     }
@@ -146,7 +146,9 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     // MARK: NavBar Actions
     
     func setupSettingsVC() {
+        
         // ViewController setup
+        
         settingsViewController = UIViewController()
         let editPasswordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
         
@@ -157,12 +159,15 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         settingsViewController.view.addSubview(editPasswordButton)
         
         // Button constraints
+        
         editPasswordButton.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraint = editPasswordButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
-        let verticalConstraint = editPasswordButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
-        let heightConstraint = editPasswordButton.heightAnchor.constraint(equalToConstant: 50)
-        let widthConstraint = editPasswordButton.widthAnchor.constraint(equalToConstant: 150)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+
+        NSLayoutConstraint.activate([
+            editPasswordButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor),
+            editPasswordButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor),
+            editPasswordButton.heightAnchor.constraint(equalToConstant: 50),
+            editPasswordButton.widthAnchor.constraint(equalToConstant: 150),
+            ])
         
         // PopoverView setup
         settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
