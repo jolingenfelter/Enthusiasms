@@ -52,34 +52,34 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         // NavBar Constraints
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         
-        let navBarLeadingConstraint = navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let navBarTrailingConstraint = navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let navBarTopConstraint = navigationBar.topAnchor.constraint(equalTo: view.topAnchor)
-        let navBarHeightConstraint = navigationBar.heightAnchor.constraint(equalToConstant: 40)
-        
-        NSLayoutConstraint.activate([navBarLeadingConstraint, navBarTrailingConstraint, navBarTopConstraint, navBarHeightConstraint])
+        NSLayoutConstraint.activate([
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 40)
+            ])
         
         // TimePicker Constraints
         
         timePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        let timePickerLeadingConstraint = timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let timePickerTrailingConstraint = timePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let timePickerTopConstraint = timePicker.topAnchor.constraint(equalTo: navigationBar.bottomAnchor)
-        let timePickerHeightConstraint = timePicker.heightAnchor.constraint(equalToConstant: 250)
-        
-        NSLayoutConstraint.activate([timePickerLeadingConstraint, timePickerTrailingConstraint, timePickerTopConstraint, timePickerHeightConstraint])
+        NSLayoutConstraint.activate([
+            timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timePicker.topAnchor.constraint(equalTo: navigationBar.bottomAnchor),
+            timePicker.heightAnchor.constraint(equalToConstant: 200)
+            ])
         
         // Button Constraints
         
         updateTimeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let updateTimeHorizontalConstraint = updateTimeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let updateTimeTopConstraint = updateTimeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80)
-        let updateTimeHeightConstraint = updateTimeButton.heightAnchor.constraint(equalToConstant: 50)
-        let updateTimeWidthConstraint = updateTimeButton.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([updateTimeHorizontalConstraint, updateTimeTopConstraint, updateTimeHeightConstraint, updateTimeWidthConstraint])
+        NSLayoutConstraint.activate([
+            updateTimeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            updateTimeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -80),
+            updateTimeButton.heightAnchor.constraint(equalToConstant: 50),
+            updateTimeButton.widthAnchor.constraint(equalToConstant: 200),
+            ])
     }
 
     override func didReceiveMemoryWarning() {
