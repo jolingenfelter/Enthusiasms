@@ -129,23 +129,23 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
         urlTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5)
-        let trailingConstraint = urlTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
-        let topConstraint = urlTextField.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 5)
-        let heightConstraint = urlTextField.heightAnchor.constraint(equalToConstant: 30)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, heightConstraint])
+        NSLayoutConstraint.activate([
+            urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            urlTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
+            urlTextField.topAnchor.constraint(equalTo: navBar.bottomAnchor, constant: 5),
+            urlTextField.heightAnchor.constraint(equalToConstant: 30)
+            ])
     }
     
     func progressViewConstraints() {
         
         progressView.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let topConstraint = progressView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint])
+        NSLayoutConstraint.activate([
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            progressView.topAnchor.constraint(equalTo: urlTextField.bottomAnchor)
+            ])
     }
     
     
@@ -153,24 +153,24 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
         webView.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = webView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = webView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let topConstraint = webView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 5)
-        let bottomConstraint = webView.bottomAnchor.constraint(equalTo: toolbar.topAnchor)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        NSLayoutConstraint.activate([
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 5),
+            webView.bottomAnchor.constraint(equalTo: toolbar.topAnchor)
+            ])
     }
     
     func toolbarConstraints() {
         
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let topConstraint = toolbar.topAnchor.constraint(equalTo: webView.bottomAnchor)
-        let bottomConstraint = toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, topConstraint, bottomConstraint])
+        NSLayoutConstraint.activate([
+            toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            toolbar.topAnchor.constraint(equalTo: webView.bottomAnchor),
+            toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
     }
     
     // MARK: WebView Delegate
