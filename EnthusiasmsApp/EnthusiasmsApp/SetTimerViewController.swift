@@ -51,25 +51,27 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
     }
     
     func datePickerConstraints() {
+        
         timePicker.translatesAutoresizingMaskIntoConstraints = false
         
-        let leadingConstraint = timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let trailingConstraint = timePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let verticalConstraint = timePicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 60)
-        let heightConstraint = timePicker.heightAnchor.constraint(equalToConstant: 400)
-        
-        NSLayoutConstraint.activate([leadingConstraint, trailingConstraint, verticalConstraint, heightConstraint])
+        NSLayoutConstraint.activate([
+            timePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            timePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            timePicker.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            timePicker.heightAnchor.constraint(equalToConstant: 400)
+            ])
     }
     
     func buttonConstraints() {
+        
         startButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        let horizontalConstraint = startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = startButton.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
-        let heightConstraint = startButton.heightAnchor.constraint(equalToConstant: 50)
-        let widthConstraint = startButton.widthAnchor.constraint(equalToConstant: 300)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+    
+        NSLayoutConstraint.activate([
+            startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            startButton.heightAnchor.constraint(equalToConstant: 50),
+            startButton.widthAnchor.constraint(equalToConstant: 300)
+            ])
     }
     
     func startPressed() {
