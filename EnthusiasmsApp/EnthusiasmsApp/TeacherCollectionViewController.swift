@@ -44,13 +44,12 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.view.addSubview(instructionsLabel)
         
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let horizontalConstraint = instructionsLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let verticalConstraint = instructionsLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
-        let heightConstraint = instructionsLabel.heightAnchor.constraint(equalToConstant: 80)
-        let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        NSLayoutConstraint.activate([
+            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            instructionsLabel.heightAnchor.constraint(equalToConstant: 90),
+            instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
+            ])
         
         updateContents()
         
@@ -115,21 +114,23 @@ class TeacherCollectionViewController: UICollectionViewController {
     func setupSettingsVC() {
         // ViewController setup
         settingsViewController = UIViewController()
-        let editName = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
+        let editNameButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
         
-        editName.setTitle("Edit Student Name", for: .normal)
-        editName.setTitleColor(UIColor.black, for: .normal)
-        editName.isEnabled = true
-        editName.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
-        settingsViewController.view.addSubview(editName)
+        editNameButton.setTitle("Edit Student Name", for: .normal)
+        editNameButton.setTitleColor(UIColor.black, for: .normal)
+        editNameButton.isEnabled = true
+        editNameButton.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
+        settingsViewController.view.addSubview(editNameButton)
         
         // Button constraints
-        editName.translatesAutoresizingMaskIntoConstraints = false
-        let horizontalConstraint = editName.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor)
-        let verticalConstraint = editName.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor)
-        let heightConstraint = editName.heightAnchor.constraint(equalToConstant: 50)
-        let widthConstraint = editName.widthAnchor.constraint(equalToConstant: 200)
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        editNameButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            editNameButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor),
+            editNameButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor),
+            editNameButton.heightAnchor.constraint(equalToConstant: 50),
+            editNameButton.widthAnchor.constraint(equalToConstant: 200)
+            ])
         
         // PopoverView setup
         settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -333,50 +334,55 @@ class TeacherCollectionViewController: UICollectionViewController {
         let buttonHeight: CGFloat = 60
         let buttonWidth: CGFloat = 200
         
+        // RemoveButton Constraints
         removeButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let removeHorizontalConstraint = removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let removeVerticalConstraint = removeButton.bottomAnchor.constraint(equalTo: separator1.topAnchor)
-        let removeHeightConstraint = removeButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        let removeWidthConstraint = removeButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+        NSLayoutConstraint.activate([
+            removeButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor),
+            removeButton.bottomAnchor.constraint(equalTo: separator1.topAnchor),
+            removeButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            removeButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+            ])
         
-        NSLayoutConstraint.activate([removeHorizontalConstraint, removeVerticalConstraint, removeHeightConstraint, removeWidthConstraint])
-        
+        // Separator1 Constraints
         separator1.translatesAutoresizingMaskIntoConstraints = false
         
-        let separator1LeadingConstraint = separator1.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
-        let separator1TrailingConstraint = separator1.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
-        let separator1VerticalConstraint = separator1.bottomAnchor.constraint(equalTo: viewContentButton.topAnchor)
-        let separator1HeightConstraint = separator1.heightAnchor.constraint(equalToConstant: 1)
+        NSLayoutConstraint.activate([
+            separator1.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
+            separator1.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
+            separator1.bottomAnchor.constraint(equalTo: viewContentButton.topAnchor),
+            separator1.heightAnchor.constraint(equalToConstant: 1)
+            ])
         
-        NSLayoutConstraint.activate([separator1LeadingConstraint, separator1TrailingConstraint, separator1VerticalConstraint, separator1HeightConstraint])
-        
+        // ViewContentButton Constraints
         viewContentButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let viewContentHorizontalConstraint = viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let viewContentVerticalConstraint = viewContentButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
-        let viewContentHeightConstraint = viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        let viewContentWidthConstraint = viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+        NSLayoutConstraint.activate([
+            viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor),
+            viewContentButton.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor),
+            viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+            ])
         
-        NSLayoutConstraint.activate([viewContentHorizontalConstraint, viewContentVerticalConstraint, viewContentHeightConstraint, viewContentWidthConstraint])
-        
+        // Separator 2 Constraints
         separator2.translatesAutoresizingMaskIntoConstraints = false
         
-        let separator2LeadingConstraint = separator2.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor)
-        let separator2TrailingConstraint = separator2.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor)
-        let separator2VerticalConstraint = separator2.topAnchor.constraint(equalTo: viewContentButton.bottomAnchor)
-        let separator2HeightCOnstraint = separator2.heightAnchor.constraint(equalToConstant: 1)
+        NSLayoutConstraint.activate([
+            separator2.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
+            separator2.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
+            separator2.topAnchor.constraint(equalTo: viewContentButton.bottomAnchor),
+            separator2.heightAnchor.constraint(equalToConstant: 1)
+            ])
         
-        NSLayoutConstraint.activate([separator2LeadingConstraint, separator2TrailingConstraint, separator2VerticalConstraint, separator2HeightCOnstraint])
-        
+        // ChangeTitleButton Constraints
         changeTitleButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let changeTitleHorizontalConstraint = changeTitleButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor)
-        let changeTitleVerticalConstraint = changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor)
-        let changeTitleHeightConstraint = changeTitleButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-        let changeTitleWidthConstraint = changeTitleButton.widthAnchor.constraint(equalToConstant: buttonWidth)
-        
-        NSLayoutConstraint.activate([changeTitleHorizontalConstraint, changeTitleVerticalConstraint, changeTitleHeightConstraint, changeTitleWidthConstraint])
+        NSLayoutConstraint.activate([
+            changeTitleButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor),
+            changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor),
+            changeTitleButton.heightAnchor.constraint(equalToConstant: buttonHeight),
+            changeTitleButton.widthAnchor.constraint(equalToConstant: buttonWidth)
+            ])
         
         self.present(menu, animated: true, completion: nil)
     }
@@ -410,34 +416,5 @@ class TeacherCollectionViewController: UICollectionViewController {
     func updateTitle () {
         self.collectionView?.reloadData()
     }
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }
