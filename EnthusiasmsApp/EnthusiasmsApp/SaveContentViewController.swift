@@ -81,34 +81,34 @@ class SaveContentViewController: UIViewController {
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = titleLabel.leadingAnchor.constraint(equalTo: contentTitleTextField.leadingAnchor)
-        let verticalConstraint = titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint])
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: contentTitleTextField.leadingAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
+            ])
     }
     
     func textFieldConstraints() {
         
         contentTitleTextField.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = contentTitleTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = contentTitleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
-        let heightConstraint = contentTitleTextField.heightAnchor.constraint(equalToConstant: 40)
-        let widthConstraint = contentTitleTextField.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        NSLayoutConstraint.activate([
+            contentTitleTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            contentTitleTextField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            contentTitleTextField.heightAnchor.constraint(equalToConstant: 40),
+            contentTitleTextField.widthAnchor.constraint(equalToConstant: 200)
+            ])
     }
     
     func buttonConstraints() {
         
         saveContentButton.translatesAutoresizingMaskIntoConstraints = false
         
-        let horizontalConstraint = saveContentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        let verticalConstraint = saveContentButton.topAnchor.constraint(equalTo: contentTitleTextField.bottomAnchor, constant: 200)
-        let heightConstraint = saveContentButton.heightAnchor.constraint(equalToConstant: 50)
-        let widthConstraint = saveContentButton.widthAnchor.constraint(equalToConstant: 200)
-        
-        NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
+        NSLayoutConstraint.activate([
+            saveContentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveContentButton.topAnchor.constraint(equalTo: contentTitleTextField.bottomAnchor, constant: 200),
+            saveContentButton.heightAnchor.constraint(equalToConstant: 50),
+            saveContentButton.widthAnchor.constraint(equalToConstant: 200)
+            ])
     }
     
     func cancelWasPressed() {
