@@ -60,58 +60,58 @@ class WebViewHelpViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         // NavigationBar Constraints
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         
-        let navigationBarLeadingConstraint = navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let navigationBarTrailingConstraint = navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let navigationBarHeight = navigationBar.heightAnchor.constraint(equalToConstant: 40)
-        
-        NSLayoutConstraint.activate([navigationBarLeadingConstraint, navigationBarTrailingConstraint, navigationBarHeight])
+        NSLayoutConstraint.activate([
+            navigationBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navigationBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            navigationBar.heightAnchor.constraint(equalToConstant: 40)
+            ])
         
         // TitleLabel Constraints
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let titleLabelHorizontalConstraint = titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
-        let titleLabelVerticalConstraint = titleLabel.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 15)
-        
-        NSLayoutConstraint.activate([titleLabelHorizontalConstraint, titleLabelVerticalConstraint])
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            titleLabel.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 15)
+            ])
         
         // PicturesLabel Constraints
         picturesLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        let picturesLabelHorizontalConstraint = picturesLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15)
-        let picturesLabelVerticalConstraint = picturesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15)
-        
-        NSLayoutConstraint.activate([picturesLabelHorizontalConstraint, picturesLabelVerticalConstraint])
+
+        NSLayoutConstraint.activate([
+            picturesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            picturesLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15)
+            ])
         
         // PicturesDescriptionConstraints
         picturesDescription.translatesAutoresizingMaskIntoConstraints = false
         
-        let picturesDescriptionLeadingConstraint = picturesDescription.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15)
-        let picturesDescriptionTrailingConstraint = picturesDescription.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
-        let picturesDescriptionVerticalConstraint = picturesDescription.topAnchor.constraint(equalTo: picturesLabel.bottomAnchor)
-        let picturesDescriptionHeightConstraint = picturesLabel.heightAnchor.constraint(equalToConstant: 40)
-        
-        NSLayoutConstraint.activate([picturesDescriptionLeadingConstraint, picturesDescriptionTrailingConstraint, picturesDescriptionVerticalConstraint, picturesDescriptionHeightConstraint])
+        NSLayoutConstraint.activate([
+            picturesDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            picturesDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            picturesDescription.topAnchor.constraint(equalTo: picturesLabel.bottomAnchor)
+            ])
         
         // VideoLabel Constraints
         videoLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let videoLabelHorizontalConstraint = videoLabel.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15)
-        let videoLabelVerticalConstraint = videoLabel.topAnchor.constraint(equalTo: picturesDescription.bottomAnchor, constant: 30)
-        
-        NSLayoutConstraint.activate([videoLabelHorizontalConstraint, videoLabelVerticalConstraint])
+        NSLayoutConstraint.activate([
+            videoLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            videoLabel.topAnchor.constraint(equalTo: picturesDescription.bottomAnchor, constant: 30)
+            ])
         
         // VideoDescription Constraints
         videoDescription.translatesAutoresizingMaskIntoConstraints = false
         
-        let videoDescriptionLeadingConstraint = videoDescription.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 15)
-        let videoDescriptionTrailingConstraint = videoDescription.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -15)
-        let videoDescriptionVerticalConstraint = videoDescription.topAnchor.constraint(equalTo: videoLabel.bottomAnchor)
-        let videoDescriptionHeightConstraint = videoDescription.heightAnchor.constraint(equalToConstant: 120)
-        
-        NSLayoutConstraint.activate([videoDescriptionHeightConstraint, videoDescriptionLeadingConstraint, videoDescriptionTrailingConstraint, videoDescriptionVerticalConstraint])
+        NSLayoutConstraint.activate([
+            videoDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
+            videoDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
+            videoDescription.topAnchor.constraint(equalTo: videoLabel.bottomAnchor),
+            videoDescription.heightAnchor.constraint(equalToConstant: 120)
+            ])
     }
 
     override func didReceiveMemoryWarning() {
