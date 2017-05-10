@@ -233,6 +233,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
             ])
         
         // ChangeTitleButton
+        changeTitleButton.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             changeTitleButton.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
             changeTitleButton.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
