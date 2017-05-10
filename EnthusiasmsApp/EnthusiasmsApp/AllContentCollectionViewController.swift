@@ -189,7 +189,6 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         //Menu layout
         
         let buttonHeight: CGFloat = 50
-        let buttonWidth: CGFloat = 200
         
         
         // ViewContentButton

@@ -81,23 +81,26 @@ class FullScreenVideoViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
+        // PlayerView
         youtubePlayerView.translatesAutoresizingMaskIntoConstraints = false
         
-        let playerLeadingConstraint = youtubePlayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let playerTrailingConstraint = youtubePlayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let playerTopConstraint = youtubePlayerView.topAnchor.constraint(equalTo: view.topAnchor)
-        let playerBottomConstraint = youtubePlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        NSLayoutConstraint.activate([
+            youtubePlayerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            youtubePlayerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            youtubePlayerView.topAnchor.constraint(equalTo: view.topAnchor),
+            youtubePlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         
-        NSLayoutConstraint.activate([playerLeadingConstraint, playerTrailingConstraint, playerTopConstraint, playerBottomConstraint])
-        
+        // CoverVIew
         coverView.translatesAutoresizingMaskIntoConstraints = false
         
-        let coverViewVerticalConstraint = coverView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        let coverViewHorizontalConstraint = coverView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let coverViewWidthConstraint = coverView.widthAnchor.constraint(equalToConstant: 100)
-        let coverViewHeightConstraint = coverView.heightAnchor.constraint(equalToConstant: 100)
-        
-        NSLayoutConstraint.activate([coverViewVerticalConstraint, coverViewHorizontalConstraint, coverViewWidthConstraint, coverViewHeightConstraint])
+        NSLayoutConstraint.activate([
+            coverView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            coverView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            coverView.widthAnchor.constraint(equalToConstant: 100),
+            coverView.heightAnchor.constraint(equalToConstant: 100)
+            ])
 
     }
 
