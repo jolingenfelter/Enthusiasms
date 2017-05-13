@@ -159,53 +159,53 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
     }
     
     
-    // MARK: Player controls
+    // MARK: Player controls - Commented out to avoid warnings
     
-    open func mute() {
-        evaluatePlayerCommand("mute()")
-    }
-    
-    open func unMute() {
-        evaluatePlayerCommand("unMute()")
-    }
-    
-    open func play() {
-        evaluatePlayerCommand("playVideo()")
-    }
-    
-    open func pause() {
-        evaluatePlayerCommand("pauseVideo()")
-    }
-    
-    open func stop() {
-        evaluatePlayerCommand("stopVideo()")
-    }
-    
-    open func clear() {
-        evaluatePlayerCommand("clearVideo()")
-    }
-    
-    open func seekTo(_ seconds: Float, seekAhead: Bool) {
-        evaluatePlayerCommand("seekTo(\(seconds), \(seekAhead))")
-    }
-    
-    open func getDuration() -> String? {
-        return evaluatePlayerCommand("getDuration()")
-    }
-    
-    open func getCurrentTime() -> String? {
-        return evaluatePlayerCommand("getCurrentTime()")
-    }
-    
-    // MARK: Playlist controls
-    
-    open func previousVideo() {
-        evaluatePlayerCommand("previousVideo()")
-    }
-    
-    open func nextVideo() {
-        evaluatePlayerCommand("nextVideo()")
-    }
+//    open func mute() {
+//        evaluatePlayerCommand("mute()")
+//    }
+//    
+//    open func unMute() {
+//        evaluatePlayerCommand("unMute()")
+//    }
+//    
+//    open func play() {
+//        evaluatePlayerCommand("playVideo()")
+//    }
+//    
+//    open func pause() {
+//        evaluatePlayerCommand("pauseVideo()")
+//    }
+//    
+//    open func stop() {
+//        evaluatePlayerCommand("stopVideo()")
+//    }
+//    
+//    open func clear() {
+//        evaluatePlayerCommand("clearVideo()")
+//    }
+//    
+//    open func seekTo(_ seconds: Float, seekAhead: Bool) {
+//        evaluatePlayerCommand("seekTo(\(seconds), \(seekAhead))")
+//    }
+//    
+//    open func getDuration() -> String? {
+//        return evaluatePlayerCommand("getDuration()")
+//    }
+//    
+//    open func getCurrentTime() -> String? {
+//        return evaluatePlayerCommand("getCurrentTime()")
+//    }
+//    
+//    // MARK: Playlist controls
+//    
+//    open func previousVideo() {
+//        evaluatePlayerCommand("previousVideo()")
+//    }
+//    
+//    open func nextVideo() {
+//        evaluatePlayerCommand("nextVideo()")
+//    }
     
     fileprivate func evaluatePlayerCommand(_ command: String) -> String? {
         let fullCommand = "player." + command + ";"
