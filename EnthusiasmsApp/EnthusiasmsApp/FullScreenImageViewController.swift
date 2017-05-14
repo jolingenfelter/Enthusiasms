@@ -12,8 +12,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
     var content: Content?
     var image = UIImage()
-    let imageView = UIImageView()
-    let scrollView = UIScrollView()
+    let imageScrollView = ImageScrollView()
     
     // Timer Variables
     var rewardTime = 0
@@ -37,34 +36,10 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
             return "\(minutes):\(seconds)"
         }
     }
-    
-    // Constraints
-    var imageViewLeadingConstraint = NSLayoutConstraint()
-    var imageViewTrailingConstraint = NSLayoutConstraint()
-    var imageViewTopConstraint = NSLayoutConstraint()
-    var imageViewBottomConstraint = NSLayoutConstraint()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-    
-        view.addSubview(scrollView)
-        self.view.addSubview(imageView)
-        imageView.image = image
-        
-        // ImageView setup
-        
-        imageView.contentMode = .scaleAspectFit
-        
-        // ScrollView setup
-        
-        scrollView.addSubview(imageView)
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 6.0
-        scrollView.delegate = self
-        scrollView.showsVerticalScrollIndicator = true
-        scrollView.showsHorizontalScrollIndicator = true
-        scrollView.flashScrollIndicators()
         
          viewSetup()
         
@@ -98,23 +73,25 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         navBarSetup()
-        
-        imageView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
     }
     
     func viewSetup() {
         
-        // Scroll View
+        DispatchQueue.main.async {
+            self.imageScrollView.displayImage(self.image)
+        }
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(imageScrollView)
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         
-        let scrollViewLeadingConstraint = scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
-        let scrollViewTrailingConstraint = scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        let scrollViewTopConstraint = scrollView.topAnchor.constraint(equalTo: view.topAnchor)
-        let scrollViewBottomConstraint = scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        
-        NSLayoutConstraint.activate([scrollViewLeadingConstraint, scrollViewTrailingConstraint, scrollViewTopConstraint, scrollViewBottomConstraint])
+        NSLayoutConstraint.activate([
+            imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageScrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
         
     }
 
@@ -163,12 +140,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
     func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
-    }
-    
-    // MARK: ScrollView Delegate
-    
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return self.imageView
     }
     
 }
