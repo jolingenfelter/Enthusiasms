@@ -19,6 +19,7 @@
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
 		9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */; };
+		9E6150DF1EC8FFCF00ED4B43 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */; };
 		9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E949DC51E31472900F33C6F /* BugPrinter.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */; };
@@ -60,6 +61,7 @@
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTimeViewController.swift; path = ../AddTimeViewController.swift; sourceTree = "<group>"; };
+		9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		9E949DC51E31472900F33C6F /* BugPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugPrinter.swift; path = ../BugPrinter.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				9EFC4B361DF338610022BCD4 /* VideoThumnailHelper.swift */,
 				9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */,
 				9ED5D9C71EC7C3AC00E0CF64 /* ImageScrollView.swift */,
+				9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,
 				9EF36B0A1DDA1E54009A9C61 /* ContentCollectionViewCell.swift in Sources */,
+				9E6150DF1EC8FFCF00ED4B43 /* Utilities.swift in Sources */,
 				9EB4F4D01D8E131D00E81C74 /* DataModel.xcdatamodeld in Sources */,
 				9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */,
 				9EFC4B3D1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift in Sources */,

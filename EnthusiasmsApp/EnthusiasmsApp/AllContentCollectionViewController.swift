@@ -135,6 +135,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedContent = fetchedResultsController.object(at: indexPath)
+        print(selectedContent!.uniqueFileName)
         showMenufor(cellAtIndexPath: indexPath)
     }
     
@@ -266,48 +267,70 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }
     
     func addToStudentPressed() {
+        
         studentListPopover.modalPresentationStyle = .popover
         studentListPopover.popoverPresentationController?.sourceView = menu.view
         studentListPopover.popoverPresentationController?.sourceRect = CGRect(x: 180, y: 80, width: 0, height: 0)
         studentListPopover.preferredContentSize = CGSize(width: 180, height: 180)
         studentListPopover.popoverPresentationController?.permittedArrowDirections = [.left, .up]
+        
         self.presentedViewController?.present(studentListPopover, animated: true, completion: nil)
     }
     
     func studentSelected() {
+        
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
+        
         let dataController = DataController.sharedInstance
         dataController.saveContext()
     }
     
     func changeTitlePressed() {
+        
         let editContentViewController = EditContentTitleViewController()
+        
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
+        
         menu.dismiss(animated: false, completion: nil)
+        
         self.present(editContentViewController, animated: true, completion: nil)
     }
     
     func deleteContent() {
+        
         let deleteAlert = UIAlertController(title: "Delete this content?", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
+        
         let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { alert in
-            let dataController = DataController.sharedInstance
-            dataController.managedObjectContext.delete(self.selectedContent!)
-            dataController.saveContext()
+            
+            if let fileName = self.selectedContent?.uniqueFileName {
+                
+                DataController.sharedInstance.managedObjectContext.delete(self.selectedContent!)
+                DataController.sharedInstance.saveContext()
+                
+                deleteFile(named: fileName)
+            }
+            
+            
             self.presentedViewController?.dismiss(animated: true, completion: nil)
         })
+        
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
         
         deleteAlert.addAction(noAction)
         deleteAlert.addAction(yesAction)
+        
         menu.dismiss(animated: false, completion: nil)
+        
         self.present(deleteAlert, animated: true, completion: nil)
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
         presentInstructionLabel()
         collectionView?.reloadData()
+        
     }
     
     func viewContent() {
