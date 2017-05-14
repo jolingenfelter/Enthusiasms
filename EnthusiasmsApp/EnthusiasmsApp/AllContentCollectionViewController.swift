@@ -134,8 +134,9 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         selectedContent = fetchedResultsController.object(at: indexPath)
-        print(selectedContent!.uniqueFileName)
+
         showMenufor(cellAtIndexPath: indexPath)
     }
     
