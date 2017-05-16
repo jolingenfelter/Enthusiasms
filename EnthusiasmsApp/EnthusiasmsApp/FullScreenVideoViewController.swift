@@ -21,7 +21,8 @@ class FullScreenVideoViewController: UIViewController {
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimePasswordCheck = AddTimePasswordCheckViewController()
     let addTimeViewController = AddTimeViewController()
-    let coverView = UIView()
+    let rightCoverView = UIView()
+    let leftCoverView = UIView()
     
     var minutes: Int {
         return rewardTime / 60
@@ -51,8 +52,10 @@ class FullScreenVideoViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(addTimePasswordCheckComplete), name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
         
-        // CoverView
-        view.addSubview(coverView)
+        // CoverViews
+        view.addSubview(rightCoverView)
+        view.addSubview(leftCoverView)
+        leftCoverView.backgroundColor = .blue
         
     }
     
@@ -92,15 +95,31 @@ class FullScreenVideoViewController: UIViewController {
             youtubePlayerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         
-        // CoverVIew
-        coverView.translatesAutoresizingMaskIntoConstraints = false
+        // Right CoverView
+        rightCoverView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            coverView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            coverView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            coverView.widthAnchor.constraint(equalToConstant: 100),
-            coverView.heightAnchor.constraint(equalToConstant: 100)
+            rightCoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            rightCoverView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            rightCoverView.widthAnchor.constraint(equalToConstant: 100),
+            rightCoverView.heightAnchor.constraint(equalToConstant: 100)
             ])
+        
+        // Left CoverView
+        leftCoverView.translatesAutoresizingMaskIntoConstraints = false
+        
+        var bottomAnchor = leftCoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -45)
+        
+        NSLayoutConstraint.activate([
+            bottomAnchor,
+            leftCoverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            leftCoverView.widthAnchor.constraint(equalToConstant: 100),
+            leftCoverView.heightAnchor.constraint(equalToConstant: 100)
+            ])
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            
+        }
 
     }
 
