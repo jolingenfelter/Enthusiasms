@@ -55,7 +55,6 @@ class FullScreenVideoViewController: UIViewController {
         // CoverViews
         view.addSubview(rightCoverView)
         view.addSubview(leftCoverView)
-        leftCoverView.backgroundColor = .blue
         
     }
     
@@ -108,18 +107,12 @@ class FullScreenVideoViewController: UIViewController {
         // Left CoverView
         leftCoverView.translatesAutoresizingMaskIntoConstraints = false
         
-        var bottomAnchor = leftCoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -45)
-        
         NSLayoutConstraint.activate([
-            bottomAnchor,
+            leftCoverView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -45),
             leftCoverView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             leftCoverView.widthAnchor.constraint(equalToConstant: 100),
             leftCoverView.heightAnchor.constraint(equalToConstant: 100)
             ])
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            
-        }
 
     }
 
