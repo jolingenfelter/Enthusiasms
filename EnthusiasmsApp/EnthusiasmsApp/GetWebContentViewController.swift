@@ -118,9 +118,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         UIMenuController.shared.menuItems = nil
+        webView.loadHTMLString("", baseURL: nil)
     }
     
     // MARK: View Setup

@@ -9,6 +9,11 @@
 import UIKit
 
 class EnterPasswordViewController: CreatePasswordViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "cancelRequest"), object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()

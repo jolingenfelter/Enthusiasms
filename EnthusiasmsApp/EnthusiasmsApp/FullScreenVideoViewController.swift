@@ -115,6 +115,11 @@ class FullScreenVideoViewController: UIViewController {
             ])
 
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "cancelRequest"), object: nil)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

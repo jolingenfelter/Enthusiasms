@@ -84,7 +84,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
     
     public typealias YouTubePlayerParameters = [String: AnyObject]
     
-    fileprivate var webView: UIWebView!
+    public var webView: UIWebView!
     
     /** The readiness of the player */
     fileprivate(set) open var ready = false
@@ -132,6 +132,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
         webView.mediaPlaybackRequiresUserAction = false
         webView.delegate = self
         webView.scrollView.isScrollEnabled = false
+        NotificationCenter.default.addObserver(self, selector: #selector(cancelRequest), name: Notification.Name(rawValue: "cancelRequest"), object: nil)
     }
     
     
@@ -344,6 +345,10 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
         if let url = url, url.scheme == "ytplayer" { handleJSEvent(url) }
         
         return true
+    }
+    
+    func cancelRequest() {
+        webView.loadHTMLString("", baseURL: nil)
     }
 }
 
