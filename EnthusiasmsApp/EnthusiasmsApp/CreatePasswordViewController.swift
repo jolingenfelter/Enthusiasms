@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
+class CreatePasswordViewController: UIViewController {
     
     let titleLabel = UILabel()
     
@@ -46,6 +46,12 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         createPasswordTextField.layer.masksToBounds = true
         confirmPasswordTextField.layer.cornerRadius = 5.0
         confirmPasswordTextField.layer.masksToBounds = true
+        
+        createPasswordTextField.tag = 1
+        createPasswordTextField.delegate = self
+        
+        confirmPasswordTextField.tag = 2
+        confirmPasswordTextField.delegate = self
         
         self.view.addSubview(createPasswordTextField)
         self.view.addSubview(confirmPasswordTextField)
@@ -165,6 +171,34 @@ class CreatePasswordViewController: UIViewController, UITextFieldDelegate {
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+
+}
+
+// MARK: - UITextFieldDelegate
+
+extension CreatePasswordViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField.tag == 1 {
+            
+            textField.resignFirstResponder()
+            
+            if let nextTextField = textField.superview?.viewWithTag(2) {
+                
+                nextTextField.becomeFirstResponder()
+
+            }
+        
+        } else {
+            
+            textField.resignFirstResponder()
+            getStartedButtonPressed()
+            
+        }
+        
+        return true
     }
 
 }
