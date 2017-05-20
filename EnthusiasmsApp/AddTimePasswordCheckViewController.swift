@@ -63,10 +63,10 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     }
     
     override func getStartedButtonPressed() {
-        if self.createPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
+        if self.confirmPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
             let addTimeViewController = AddTimeViewController()
             addTimeViewController.modalPresentationStyle = .formSheet
-            self.createPasswordTextField.text = nil
+            self.confirmPasswordTextField.text = nil
             self.dismiss(animated: true, completion: nil)
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
             

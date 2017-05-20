@@ -19,15 +19,15 @@ class EnterPasswordViewController: CreatePasswordViewController {
         super.viewDidLoad()
         
         self.titleLabel.text = "Enter Password"
-        self.confirmPasswordTextField.isHidden = true
+        self.createPasswordTextField.isHidden = true
         
     }
     
     override func getStartedButtonPressed() {
-        if self.createPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
+        if self.confirmPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
             let homeViewController = HomeViewController()
             let navigationController = UINavigationController(rootViewController: homeViewController)
-            self.createPasswordTextField.text = nil
+            self.confirmPasswordTextField.text = nil
             self.present(navigationController, animated: true, completion: nil)
         } else {
             presentAlert(title: "Incorrect Password", message: "The password you have entered is incorrect")
