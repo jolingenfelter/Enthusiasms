@@ -12,8 +12,24 @@ class CreatePasswordViewController: UIViewController {
     
     let titleLabel = UILabel()
     
-    let createPasswordTextField = UITextField()
-    let confirmPasswordTextField = UITextField()
+    let createPasswordTextFieldSettings = IndentedTextField(placeHolder: "Password", isSecureEntry: true, tag: 1)
+    let confirmPasswordTextFieldSettings = IndentedTextField(placeHolder: "Confirm password", isSecureEntry: true, tag: 2)
+    
+    lazy var createPasswordTextField: UITextField = {
+        
+        let textField = self.createPasswordTextFieldSettings.textField
+        textField.delegate = self
+        return textField
+        
+    }()
+    
+    lazy var confirmPasswordTextField: UITextField = {
+        
+        let textField = self.confirmPasswordTextFieldSettings.textField
+        textField.delegate = self
+        return textField
+        
+    }()
     
     let getStartedButton = UIButton()
 
@@ -31,40 +47,6 @@ class CreatePasswordViewController: UIViewController {
         titleLabel.textColor = UIColor.white
         titleLabel.font = titleLabel.font.withSize(40)
         view.addSubview(titleLabel)
-        
-        // TextFields Setup
-        createPasswordTextField.placeholder = "Password"
-        confirmPasswordTextField.placeholder = "Confirm password"
-        
-        createPasswordTextField.isSecureTextEntry = true
-        confirmPasswordTextField.isSecureTextEntry = true
-        
-        createPasswordTextField.backgroundColor = UIColor.white
-        confirmPasswordTextField.backgroundColor = UIColor.white
-        
-        createPasswordTextField.layer.cornerRadius = 5.0
-        createPasswordTextField.layer.masksToBounds = true
-        confirmPasswordTextField.layer.cornerRadius = 5.0
-        confirmPasswordTextField.layer.masksToBounds = true
-        
-        createPasswordTextField.tag = 1
-        createPasswordTextField.delegate = self
-        
-        confirmPasswordTextField.tag = 2
-        confirmPasswordTextField.delegate = self
-        
-        self.view.addSubview(createPasswordTextField)
-        self.view.addSubview(confirmPasswordTextField)
-        
-        let textFieldHeight: CGFloat = 40
-        
-        let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        createPasswordTextField.leftView = textInset1
-        createPasswordTextField.leftViewMode = UITextFieldViewMode.always
-        
-        let textInset2 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        confirmPasswordTextField.leftView = textInset2
-        confirmPasswordTextField.leftViewMode = UITextFieldViewMode.always
 
         
         // Button Setup
@@ -79,6 +61,9 @@ class CreatePasswordViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
+        self.view.addSubview(createPasswordTextField)
+        self.view.addSubview(confirmPasswordTextField)
         
         setLabelConstraints()
         setTextFieldConstraints()

@@ -20,6 +20,7 @@
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
 		9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */; };
 		9E6150DF1EC8FFCF00ED4B43 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */; };
+		9E64A33A1ED20EE7006264C1 /* IndentedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E64A3391ED20EE7006264C1 /* IndentedTextField.swift */; };
 		9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E949DC51E31472900F33C6F /* BugPrinter.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */; };
@@ -62,6 +63,7 @@
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTimeViewController.swift; path = ../AddTimeViewController.swift; sourceTree = "<group>"; };
 		9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		9E64A3391ED20EE7006264C1 /* IndentedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndentedTextField.swift; sourceTree = "<group>"; };
 		9E949DC51E31472900F33C6F /* BugPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugPrinter.swift; path = ../BugPrinter.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -154,6 +156,15 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		9E64A3381ED20EB9006264C1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */,
+				9E64A3391ED20EE7006264C1 /* IndentedTextField.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		9E969BE01DF50209004E420E /* Name */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,6 +197,7 @@
 			children = (
 				9EB4F4BA1D8E120500E81C74 /* AppDelegate.swift */,
 				9E5EC2161D90CDB40014FC35 /* CoreData */,
+				9E64A3381ED20EB9006264C1 /* View */,
 				9EFC4B3B1DF38C790022BCD4 /* Password */,
 				9E969BE01DF50209004E420E /* Name */,
 				9E3692B21DFDB0C600557E3B /* Timer */,
@@ -194,7 +206,6 @@
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
-				9EF36B091DDA1E54009A9C61 /* ContentCollectionViewCell.swift */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
@@ -371,6 +382,7 @@
 			files = (
 				9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */,
 				9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */,
+				9E64A33A1ED20EE7006264C1 /* IndentedTextField.swift in Sources */,
 				9EA0DE171E219EEF0018A02B /* Student+CoreDataClass.swift in Sources */,
 				9EB4F4CD1D8E129A00E81C74 /* CoreDataStack.swift in Sources */,
 				9EE2E7361D8EE35100B3D53F /* StudentListViewController.swift in Sources */,

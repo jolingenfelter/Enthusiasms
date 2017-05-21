@@ -10,32 +10,23 @@ import UIKit
 
 class EditPasswordViewController: CreatePasswordViewController {
     
-    let passwordTextField = UITextField()
+    let passwordTextFieldSettings = IndentedTextField(placeHolder: "Current Password", isSecureEntry: true, tag: 3)
     let navigationBar = UINavigationBar()
+    
+    lazy var passwordTextField: UITextField = {
+        
+        let textField = self.passwordTextFieldSettings.textField
+        textField.delegate = self
+        return textField
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.titleLabel.text = "Edit Password"
         
-        // TextField setup
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.backgroundColor = UIColor.white
-        passwordTextField.layer.cornerRadius = 5
-        passwordTextField.layer.masksToBounds = true
-        
         self.view.addSubview(passwordTextField)
-        
-        passwordTextField.placeholder = "Current password"
-        createPasswordTextField.placeholder = "New password"
-        confirmPasswordTextField.placeholder = "Confirm new password"
-        
-        let textFieldHeight: Int = 40
-        let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        passwordTextField.leftView = textInset
-        passwordTextField.leftViewMode = UITextFieldViewMode.always
-        passwordTextField.tag = 3
-        passwordTextField.delegate = self
         
         // Button setup
         self.getStartedButton.setTitle("Save Changes", for: .normal)
