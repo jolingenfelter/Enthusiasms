@@ -34,6 +34,7 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         super.viewDidLayoutSubviews()
         
         view.addSubview(navigationBar)

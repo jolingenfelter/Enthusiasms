@@ -16,6 +16,7 @@ class EnterPasswordViewController: CreatePasswordViewController {
     }
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.titleLabel.text = "Enter Password"

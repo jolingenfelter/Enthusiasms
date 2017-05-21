@@ -12,13 +12,22 @@ import CoreData
 class SaveContentViewController: UIViewController {
     
     var saveContentButton = UIButton()
-    var contentTitleTextField = UITextField()
     var titleLabel = UILabel()
     var content : Content?
     var student: Student?
     var contentURL: String?
     var contentType: ContentType?
     var youtubeVideoID: String?
+    
+    let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
+    
+    lazy var contentTitleTextField: UITextField = {
+        
+        let textField = self.indentedTextField.textField
+        textField.delegate = self
+        return textField
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,15 +60,6 @@ class SaveContentViewController: UIViewController {
         view.addSubview(saveContentButton)
         
         // TextFieldSetup
-        contentTitleTextField.layer.cornerRadius = 5.0
-        contentTitleTextField.layer.masksToBounds = true
-        contentTitleTextField.backgroundColor = UIColor.white
-        contentTitleTextField.autocorrectionType = .no
-        let textFieldHeight: CGFloat = 40
-        let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        contentTitleTextField.leftView = textInset1
-        contentTitleTextField.leftViewMode = UITextFieldViewMode.always
-        contentTitleTextField.delegate = self
         
         view.addSubview(contentTitleTextField)
 

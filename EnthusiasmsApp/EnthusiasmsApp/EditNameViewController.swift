@@ -17,11 +17,10 @@ class EditNameViewController: UIViewController {
     var nameLabel = UILabel()
     var saveChangesButton = UIButton()
     
-    lazy var nameTextFieldSettings = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
-    
+    var indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
     lazy var nameTextField: UITextField = {
         
-        let textField = self.nameTextFieldSettings.textField
+        let textField = self.indentedTextField.textField
         textField.delegate = self
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 1.0
@@ -36,11 +35,7 @@ class EditNameViewController: UIViewController {
         
         // Label setup
         nameLabel.text = "name:"
-        
-        view.addSubview(nameLabel)
 
-        
-        view.addSubview(nameTextField)
         
         // Button setup
         saveChangesButton.layer.cornerRadius = 5.0
@@ -66,7 +61,12 @@ class EditNameViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         super.viewDidLayoutSubviews()
+        
+        view.addSubview(nameLabel)
+        view.addSubview(nameTextField)
+        
         labelConstraints()
         textFieldConstraints()
         buttonConstraints()
