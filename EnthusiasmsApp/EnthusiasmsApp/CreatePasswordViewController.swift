@@ -183,8 +183,6 @@ extension CreatePasswordViewController: UITextFieldDelegate {
         
         if textField.tag == 1 {
             
-            textField.resignFirstResponder()
-            
             if let nextTextField = textField.superview?.viewWithTag(2) {
                 
                 nextTextField.becomeFirstResponder()

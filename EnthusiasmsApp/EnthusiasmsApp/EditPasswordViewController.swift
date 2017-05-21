@@ -23,6 +23,7 @@ class EditPasswordViewController: CreatePasswordViewController {
         passwordTextField.backgroundColor = UIColor.white
         passwordTextField.layer.cornerRadius = 5
         passwordTextField.layer.masksToBounds = true
+        
         self.view.addSubview(passwordTextField)
         
         passwordTextField.placeholder = "Current password"
@@ -33,6 +34,8 @@ class EditPasswordViewController: CreatePasswordViewController {
         let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
         passwordTextField.leftView = textInset
         passwordTextField.leftViewMode = UITextFieldViewMode.always
+        passwordTextField.tag = 3
+        passwordTextField.delegate = self
         
         // Button setup
         self.getStartedButton.setTitle("Save Changes", for: .normal)
@@ -104,6 +107,34 @@ class EditPasswordViewController: CreatePasswordViewController {
     
     func cancelPressed() {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    // Mark: UITextFieldDelegate
+    
+    override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        if textField.tag == 3 {
+            
+            if let nextTextField = textField.superview?.viewWithTag(1) {
+                nextTextField.becomeFirstResponder()
+            }
+            
+        } else if textField.tag == 1 {
+            
+            
+            if let nextTextField = textField.superview?.viewWithTag(2) {
+                nextTextField.becomeFirstResponder()
+            }
+            
+        } else {
+            
+            textField.resignFirstResponder()
+            getStartedButtonPressed()
+            
+        }
+        
+        
+        return true
     }
 
 }

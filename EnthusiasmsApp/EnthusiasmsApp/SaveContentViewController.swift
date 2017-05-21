@@ -59,6 +59,7 @@ class SaveContentViewController: UIViewController {
         let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
         contentTitleTextField.leftView = textInset1
         contentTitleTextField.leftViewMode = UITextFieldViewMode.always
+        contentTitleTextField.delegate = self
         
         view.addSubview(contentTitleTextField)
 
@@ -167,6 +168,19 @@ class SaveContentViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             
         }
+    }
+    
+}
+
+// MARK: UITextFieldDelegate
+
+extension SaveContentViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        saveContentPressed()
+        
+        return true
     }
     
 }
