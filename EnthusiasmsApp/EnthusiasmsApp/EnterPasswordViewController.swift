@@ -19,6 +19,7 @@ class EnterPasswordViewController: CreatePasswordViewController {
         super.viewDidLoad()
         
         self.titleLabel.text = "Enter Password"
+        self.confirmPasswordTextField.placeholder = "Password"
         self.createPasswordTextField.isHidden = true
         
     }

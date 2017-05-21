@@ -37,6 +37,9 @@ class IndentedTextField {
             textField.tag = tag
         }
         
+        // AutoCorrection
+        textField.autocorrectionType = .no
+        
     }
 
 }

@@ -23,13 +23,17 @@ class CreateStudentViewController: EditNameViewController {
     }
 
     override func saveChanges() {
+        
         if nameTextField.text == "" {
             noNameAlert()
         } else {
+            
             let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: dataController.managedObjectContext) as! Student
             student.name = nameTextField.text
+            
             dataController.saveContext()
             dismiss(animated: true, completion: nil)
+            
         }
 
     }

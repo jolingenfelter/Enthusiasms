@@ -15,8 +15,20 @@ class EditNameViewController: UIViewController {
     let dataController = DataController.sharedInstance
     
     var nameLabel = UILabel()
-    var nameTextField = UITextField()
     var saveChangesButton = UIButton()
+    
+    lazy var nameTextFieldSettings = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
+    
+    lazy var nameTextField: UITextField = {
+        
+        let textField = self.nameTextFieldSettings.textField
+        textField.delegate = self
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.text = self.student?.name
+        return textField
+        
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,20 +38,6 @@ class EditNameViewController: UIViewController {
         nameLabel.text = "name:"
         
         view.addSubview(nameLabel)
-        
-        // TextField setup
-        nameTextField.text = student?.name
-        nameTextField.layer.cornerRadius = 5.0
-        nameTextField.layer.masksToBounds = true
-        nameTextField.backgroundColor = UIColor.white
-        nameTextField.layer.borderWidth = 1.0
-        nameTextField.layer.borderColor = UIColor.lightGray.cgColor
-        nameTextField.autocorrectionType = .no
-        let textFieldHeight: CGFloat = 40
-        let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
-        nameTextField.leftView = textInset1
-        nameTextField.leftViewMode = UITextFieldViewMode.always
-        nameTextField.delegate = self
 
         
         view.addSubview(nameTextField)
@@ -91,7 +89,7 @@ class EditNameViewController: UIViewController {
         NSLayoutConstraint.activate([
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             nameTextField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
-            nameTextField.heightAnchor.constraint(equalToConstant: 50),
+            nameTextField.heightAnchor.constraint(equalToConstant: 40),
             nameTextField.widthAnchor.constraint(equalToConstant: 200)
             ])
     }
