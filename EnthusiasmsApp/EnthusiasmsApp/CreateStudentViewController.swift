@@ -11,16 +11,11 @@ import CoreData
 
 class CreateStudentViewController: EditNameViewController {
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         saveChangesButton.setTitle("Add Child", for: .normal)
         
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,3 +35,4 @@ class CreateStudentViewController: EditNameViewController {
     }
 
 }
+ 

@@ -39,6 +39,7 @@ class EditNameViewController: UIViewController {
         let textInset1 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldHeight))
         nameTextField.leftView = textInset1
         nameTextField.leftViewMode = UITextFieldViewMode.always
+        nameTextField.delegate = self
 
         
         view.addSubview(nameTextField)
@@ -131,4 +132,17 @@ class EditNameViewController: UIViewController {
         self.present(alertVC, animated: true, completion: nil)
     }
 
+}
+
+// MARK: UITextFieldDelegate
+
+extension EditNameViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        saveChanges()
+        
+        return true
+    }
+    
 }
