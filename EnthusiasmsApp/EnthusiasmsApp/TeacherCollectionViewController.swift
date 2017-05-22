@@ -134,6 +134,8 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
     
+    // Edit Student Name
+    
     func editStudentName() {
         
         let editNameViewController = EditNameViewController()
@@ -167,6 +169,8 @@ class TeacherCollectionViewController: UICollectionViewController {
         settingsMenu.popoverPresentationController?.permittedArrowDirections = .up
         self.present(settingsMenu, animated: true, completion: nil)
     }
+    
+    // Add Content
     
     func addPressed() {
         
@@ -243,8 +247,6 @@ class TeacherCollectionViewController: UICollectionViewController {
         return cell
         
     }
-
-
 
     // MARK: UICollectionViewDelegate
     

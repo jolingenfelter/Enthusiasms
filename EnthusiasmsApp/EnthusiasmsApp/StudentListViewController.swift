@@ -16,8 +16,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     var allContentButton = UIBarButtonItem()
     let instructionsLabel = UILabel()
     
-    var settingsViewController = UIViewController()
-    
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in
         let request: NSFetchRequest<Student> = Student.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -148,38 +146,6 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     
     // MARK: NavBar Actions
     
-    func setupSettingsVC() {
-        
-        // ViewController setup
-        
-        settingsViewController = UIViewController()
-        let editPasswordButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
-        
-        editPasswordButton.setTitle("Edit Password", for: .normal)
-        editPasswordButton.setTitleColor(UIColor.black, for: .normal)
-        editPasswordButton.isEnabled = true
-        editPasswordButton.addTarget(self, action: #selector(editPasswordWasPressed), for: .touchUpInside)
-        settingsViewController.view.addSubview(editPasswordButton)
-        
-        // Button constraints
-        
-        editPasswordButton.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            editPasswordButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor),
-            editPasswordButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor),
-            editPasswordButton.heightAnchor.constraint(equalToConstant: 50),
-            editPasswordButton.widthAnchor.constraint(equalToConstant: 150),
-            ])
-        
-        // PopoverView setup
-        settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popover = settingsViewController.popoverPresentationController! as UIPopoverPresentationController
-        popover.barButtonItem = settingsButton
-        settingsViewController.preferredContentSize = CGSize(width: 150, height: 50)
-        settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
-    }
-    
     func editPasswordWasPressed() {
         let editPasswordViewController = EditPasswordViewController()
         self.presentedViewController?.dismiss(animated: false, completion: nil)
@@ -187,8 +153,19 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     }
     
     func settingsWasPressed() {
-        setupSettingsVC()
-        self.present(settingsViewController, animated: true, completion: nil)
+        
+        let settingsMenu = StudentListSettingsMenu()
+        settingsMenu.editPasswordButton.addTarget(self, action: #selector(editPasswordWasPressed), for: .touchUpInside)
+        
+        // PopoverView setup
+        settingsMenu.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = settingsMenu.popoverPresentationController! as UIPopoverPresentationController
+        popover.barButtonItem = settingsButton
+        settingsMenu.preferredContentSize = CGSize(width: 150, height: 50)
+        settingsMenu.popoverPresentationController?.permittedArrowDirections = .up
+        
+        self.present(settingsMenu, animated: true, completion: nil)
+        
     }
     
     func addStudentPressed() {
