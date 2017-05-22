@@ -29,6 +29,7 @@ class TeacherSettingsMenu: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
+        
         super.viewDidLayoutSubviews()
         
         editNameButton.translatesAutoresizingMaskIntoConstraints = false

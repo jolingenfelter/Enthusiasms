@@ -25,6 +25,7 @@
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
 		9E9DB26C1ED386EF00B25136 /* TeacherCellMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */; };
 		9E9DB2711ED390FA00B25136 /* TeacherSettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DB2701ED390FA00B25136 /* TeacherSettingsMenu.swift */; };
+		9E9DB2731ED3978F00B25136 /* TeacherAddContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DB2721ED3978F00B25136 /* TeacherAddContentMenu.swift */; };
 		9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */; };
 		9EA0DE161E219EEF0018A02B /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */; };
 		9EA0DE171E219EEF0018A02B /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE131E219EEF0018A02B /* Student+CoreDataClass.swift */; };
@@ -70,6 +71,7 @@
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
 		9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCellMenu.swift; sourceTree = "<group>"; };
 		9E9DB2701ED390FA00B25136 /* TeacherSettingsMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherSettingsMenu.swift; sourceTree = "<group>"; };
+		9E9DB2721ED3978F00B25136 /* TeacherAddContentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherAddContentMenu.swift; sourceTree = "<group>"; };
 		9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EA0DE131E219EEF0018A02B /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */,
 				9E9DB2701ED390FA00B25136 /* TeacherSettingsMenu.swift */,
+				9E9DB2721ED3978F00B25136 /* TeacherAddContentMenu.swift */,
 			);
 			name = "TeacherCollectionVC's";
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				9E38C9661DEBBB6B006D0ABD /* FullScreenImageViewController.swift in Sources */,
 				9ED5D9C81EC7C3AC00E0CF64 /* ImageScrollView.swift in Sources */,
 				9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */,
+				9E9DB2731ED3978F00B25136 /* TeacherAddContentMenu.swift in Sources */,
 				9E127D731D918B0B0086B7C3 /* StudentListPopover.swift in Sources */,
 				9EDFF1D61DE262440028FB06 /* AddContentToStudentPopoverViewController.swift in Sources */,
 				9E9DB2711ED390FA00B25136 /* TeacherSettingsMenu.swift in Sources */,
