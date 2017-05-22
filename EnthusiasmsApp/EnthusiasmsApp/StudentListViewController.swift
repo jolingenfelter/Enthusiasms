@@ -147,9 +147,13 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     // MARK: NavBar Actions
     
     func editPasswordWasPressed() {
+        
         let editPasswordViewController = EditPasswordViewController()
+        let navigationController = UINavigationController(rootViewController: editPasswordViewController)
+        
         self.presentedViewController?.dismiss(animated: false, completion: nil)
-        self.present(editPasswordViewController, animated: true, completion: nil)
+        self.present(navigationController, animated: true, completion: nil)
+        
     }
     
     func settingsWasPressed() {

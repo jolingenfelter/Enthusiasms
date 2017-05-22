@@ -9,8 +9,6 @@
 import UIKit
 
 class EditPasswordViewController: CreatePasswordViewController {
-
-    let navigationBar = UINavigationBar()
     
     let indentedTextField = IndentedTextField(placeHolder: "Current Password", isSecureEntry: true, tag: 3)
     lazy var passwordTextField: UITextField = {
@@ -32,19 +30,11 @@ class EditPasswordViewController: CreatePasswordViewController {
         self.getStartedButton.setTitle("Save Changes", for: .normal)
         
         // Navigation bar
-        self.navigationBar.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 60)
-        self.view.addSubview(self.navigationBar)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = cancelButton
-        self.navigationBar.items = [navItem]
-        
+        self.navigationItem.leftBarButtonItem = cancelButton
         
     }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        navigationBar.frame = CGRect(x: 0, y: 0, width: size.width, height: 60)
-    }
+
     
     func passwordTextFieldConstraints() {
         
