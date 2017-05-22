@@ -14,18 +14,26 @@ private let reuseIdentifier = "Cell"
 class TeacherCollectionViewController: UICollectionViewController {
     
     var student: Student?
-    var settingsViewController = UIViewController()
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
     var selectedContent: Content?
-    let instructionsLabel = UILabel()
+    
+    lazy var instructionsLabel: UILabel = {
+        
+        let label = UILabel()
+        
+        label.text = "Tap '+' to add content"
+        label.textColor = UIColor.white
+        label.font = label.font.withSize(40)
+        label.textAlignment = .center
+        self.view.addSubview(label)
+        
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
@@ -35,21 +43,6 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.title = student?.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
-        
-        // InstructionsLabel 
-        instructionsLabel.text = "Tap '+' to add content"
-        instructionsLabel.textColor = UIColor.white
-        instructionsLabel.font = instructionsLabel.font.withSize(40)
-        instructionsLabel.textAlignment = .center
-        self.view.addSubview(instructionsLabel)
-        
-        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            instructionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            instructionsLabel.heightAnchor.constraint(equalToConstant: 90),
-            instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
-            ])
         
         updateContents()
         
@@ -62,6 +55,21 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Notification observer to update contentTitle after edit
         NotificationCenter.default.addObserver(self, selector: #selector(updateTitle), name: NSNotification.Name(rawValue: "ContentTitleUpdate"), object: nil)
 
+    }
+    
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
+        instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            instructionsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            instructionsLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            instructionsLabel.heightAnchor.constraint(equalToConstant: 90),
+            instructionsLabel.widthAnchor.constraint(equalToConstant: 600)
+            ])
+        
+        
     }
     
     deinit {
@@ -111,35 +119,6 @@ class TeacherCollectionViewController: UICollectionViewController {
         }
     }
     
-    func setupSettingsVC() {
-        // ViewController setup
-        settingsViewController = UIViewController()
-        let editNameButton = UIButton(frame: CGRect(x: 0, y: 0, width: 120, height: 40))
-        
-        editNameButton.setTitle("Edit Student Name", for: .normal)
-        editNameButton.setTitleColor(UIColor.black, for: .normal)
-        editNameButton.isEnabled = true
-        editNameButton.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
-        settingsViewController.view.addSubview(editNameButton)
-        
-        // Button constraints
-        editNameButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            editNameButton.centerXAnchor.constraint(equalTo: settingsViewController.view.centerXAnchor),
-            editNameButton.centerYAnchor.constraint(equalTo: settingsViewController.view.centerYAnchor),
-            editNameButton.heightAnchor.constraint(equalToConstant: 50),
-            editNameButton.widthAnchor.constraint(equalToConstant: 200)
-            ])
-        
-        // PopoverView setup
-        settingsViewController.modalPresentationStyle = UIModalPresentationStyle.popover
-        let popover = settingsViewController.popoverPresentationController! as UIPopoverPresentationController
-        popover.barButtonItem = settingsBarButton
-        settingsViewController.preferredContentSize = CGSize(width: 200, height: 50)
-        settingsViewController.popoverPresentationController?.permittedArrowDirections = .up
-    }
-    
     func editStudentName() {
         let editNameViewController = EditNameViewController()
         editNameViewController.modalTransitionStyle = .coverVertical
@@ -158,8 +137,17 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
 
     func settingsPressed() {
-        setupSettingsVC()
-        self.present(settingsViewController, animated: true, completion: nil)
+        
+        let settingsMenu = TeacherSettingsMenu()
+        settingsMenu.editNameButton.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
+        
+        // PopoverView setup
+        settingsMenu.modalPresentationStyle = UIModalPresentationStyle.popover
+        let popover = settingsMenu.popoverPresentationController! as UIPopoverPresentationController
+        popover.barButtonItem = settingsBarButton
+        settingsMenu.preferredContentSize = CGSize(width: 200, height: 50)
+        settingsMenu.popoverPresentationController?.permittedArrowDirections = .up
+        self.present(settingsMenu, animated: true, completion: nil)
     }
     
     func addPressed() {
@@ -299,6 +287,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
         let name = student!.name!
         
+        // Popover Setup
         let menu = TeacherCellMenu(name: name)
         menu.modalPresentationStyle = .popover
         menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
@@ -306,6 +295,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
         menu.preferredContentSize = CGSize(width: 200, height: 200)
         
+        // Button Actions
         menu.removeButton.addTarget(self, action: #selector(removeContentFromStudent), for: .touchUpInside)
         menu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         menu.changeTitleButton.addTarget(self, action: #selector(changeTitle), for: .touchUpInside)
