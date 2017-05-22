@@ -23,6 +23,7 @@
 		9E64A33A1ED20EE7006264C1 /* IndentedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E64A3391ED20EE7006264C1 /* IndentedTextField.swift */; };
 		9E949DC61E31472900F33C6F /* BugPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E949DC51E31472900F33C6F /* BugPrinter.swift */; };
 		9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */; };
+		9E9DB26C1ED386EF00B25136 /* TeacherCellMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */; };
 		9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */; };
 		9EA0DE161E219EEF0018A02B /* Content+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */; };
 		9EA0DE171E219EEF0018A02B /* Student+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA0DE131E219EEF0018A02B /* Student+CoreDataClass.swift */; };
@@ -66,6 +67,7 @@
 		9E64A3391ED20EE7006264C1 /* IndentedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndentedTextField.swift; sourceTree = "<group>"; };
 		9E949DC51E31472900F33C6F /* BugPrinter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BugPrinter.swift; path = ../BugPrinter.swift; sourceTree = "<group>"; };
 		9E975C511DB5194900C3BA8D /* SetTimerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetTimerViewController.swift; sourceTree = "<group>"; };
+		9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherCellMenu.swift; sourceTree = "<group>"; };
 		9EA0DE111E219EEF0018A02B /* Content+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9EA0DE121E219EEF0018A02B /* Content+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Content+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9EA0DE131E219EEF0018A02B /* Student+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Student+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -134,15 +136,6 @@
 			name = Timer;
 			sourceTree = "<group>";
 		};
-		9E3692B31DFDB0F000557E3B /* Popovers */ = {
-			isa = PBXGroup;
-			children = (
-				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
-				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
-			);
-			name = Popovers;
-			sourceTree = "<group>";
-		};
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +167,33 @@
 			name = Name;
 			sourceTree = "<group>";
 		};
+		9E9DB26D1ED3870400B25136 /* TeacherCollectionVC's */ = {
+			isa = PBXGroup;
+			children = (
+				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
+				9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */,
+			);
+			name = "TeacherCollectionVC's";
+			sourceTree = "<group>";
+		};
+		9E9DB26E1ED3877200B25136 /* HomeVC's */ = {
+			isa = PBXGroup;
+			children = (
+				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
+				9E127D721D918B0B0086B7C3 /* StudentListPopover.swift */,
+			);
+			name = "HomeVC's";
+			sourceTree = "<group>";
+		};
+		9E9DB26F1ED387C700B25136 /* AllContentVC's */ = {
+			isa = PBXGroup;
+			children = (
+				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
+				9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */,
+			);
+			name = "AllContentVC's";
+			sourceTree = "<group>";
+		};
 		9EB4F4AE1D8E120500E81C74 = {
 			isa = PBXGroup;
 			children = (
@@ -201,16 +221,15 @@
 				9EFC4B3B1DF38C790022BCD4 /* Password */,
 				9E969BE01DF50209004E420E /* Name */,
 				9E3692B21DFDB0C600557E3B /* Timer */,
-				9E3692B31DFDB0F000557E3B /* Popovers */,
-				9EB4F4BC1D8E120500E81C74 /* HomeViewController.swift */,
+				9E9DB26E1ED3877200B25136 /* HomeVC's */,
+				9E9DB26D1ED3870400B25136 /* TeacherCollectionVC's */,
 				9EE2E7351D8EE35100B3D53F /* StudentListViewController.swift */,
-				9EBBCC391D90309900A6099A /* TeacherCollectionViewController.swift */,
 				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
 				9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */,
-				9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */,
+				9E9DB26F1ED387C700B25136 /* AllContentVC's */,
 				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 				9EFC4B3E1DF38DA80022BCD4 /* View Content */,
 				9EFC4B3A1DF38BDB0022BCD4 /* Helpers */,
@@ -400,6 +419,7 @@
 				9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */,
 				9E2334701DE34ECF006AB7ED /* EditContentTitleViewController.swift in Sources */,
 				9EFE8CC11DBBF3CF00AA57EF /* GetWebContentViewController.swift in Sources */,
+				9E9DB26C1ED386EF00B25136 /* TeacherCellMenu.swift in Sources */,
 				9EFC4B371DF338610022BCD4 /* VideoThumnailHelper.swift in Sources */,
 				9EA0DE161E219EEF0018A02B /* Content+CoreDataProperties.swift in Sources */,
 				9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */,
