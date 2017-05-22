@@ -41,7 +41,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         super.viewDidLoad()
 
         self.collectionView!.register(ContentCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        self.title = student?.name
+        self.title = student.name
         
         // Timer Setup
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

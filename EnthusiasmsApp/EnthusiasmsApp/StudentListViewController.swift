@@ -113,12 +113,15 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let student = fetchedResultsController.object(at: indexPath)
+        
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        let teacherCollectionViewController = TeacherCollectionViewController(collectionViewLayout: flowLayout)
-        teacherCollectionViewController.student = student
+        
+        let teacherCollectionViewController = TeacherCollectionViewController(student: student, collectionViewLayout: flowLayout)
+        
         self.navigationController?.pushViewController(teacherCollectionViewController, animated: true)
         
     }

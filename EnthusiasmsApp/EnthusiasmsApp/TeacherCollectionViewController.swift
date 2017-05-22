@@ -13,7 +13,7 @@ private let reuseIdentifier = "Cell"
 
 class TeacherCollectionViewController: UICollectionViewController {
     
-    var student: Student?
+    let student: Student
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
@@ -32,6 +32,17 @@ class TeacherCollectionViewController: UICollectionViewController {
         return label
     }()
     
+    init(student: Student, collectionViewLayout: UICollectionViewFlowLayout) {
+        
+        self.student = student
+        super.init(collectionViewLayout: collectionViewLayout)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +51,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
         // Collection View setup
     
-        self.title = student?.name
+        self.title = student.name
         self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
         
@@ -73,14 +84,16 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     deinit {
+        
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "NameUpdate"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ContentTitleUpdate"), object: nil)
+        
     }
     
     func updateContents() {
         
-        guard let student = student, let contents = student.contents else {
+        guard let contents = student.contents else {
             return
         }
         
@@ -129,11 +142,11 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func updateStudentName() {
-        if let student = student {
-            if let studentName = student.name {
-                self.title = studentName
-            }
+        
+        if let studentName = student.name {
+            self.title = studentName
         }
+        
     }
 
     func settingsPressed() {
@@ -285,7 +298,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     func showMenufor(objectAtIndexPath indexPath: IndexPath) {
         
         let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
-        let name = student!.name!
+        let name = student.name!
         
         // Popover Setup
         let menu = TeacherCellMenu(name: name)
@@ -304,7 +317,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func removeContentFromStudent() {
-        selectedContent?.removeFromStudentContent(student!)
+        selectedContent?.removeFromStudentContent(student)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
         let dataController = DataController.sharedInstance
         dataController.saveContext()
