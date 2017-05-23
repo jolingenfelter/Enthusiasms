@@ -98,7 +98,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     
     func addContent() {
         let getWebContentViewController = GetWebContentViewController()
-        self.present(getWebContentViewController, animated: true, completion: nil)
+        let navigationController = UINavigationController(rootViewController: getWebContentViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 
     // MARK: UICollectionViewDataSource

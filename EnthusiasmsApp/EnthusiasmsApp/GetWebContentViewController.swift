@@ -17,7 +17,6 @@ enum ContentType: Int16 {
 class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     var webView = UIWebView()
-    let navBar = UINavigationBar()
     let urlTextField = UITextField()
     let toolbar = UIToolbar()
     var backButton = UIBarButtonItem()
@@ -46,14 +45,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         view.backgroundColor = UIColor.white
         
         // NavBar Setup
-        navBar.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 60)
-        view.addSubview(navBar)
-        let navItem = UINavigationItem()
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        navItem.rightBarButtonItem = cancelButton
+        navigationItem.rightBarButtonItem = cancelButton
         let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
-        navItem.leftBarButtonItem = helpButton
-        navBar.items = [navItem]
+        navigationItem.leftBarButtonItem = helpButton
         
         // TextField Setup
         urlTextField.keyboardType = .URL
@@ -102,10 +97,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        navBar.frame = CGRect(x: 0, y: 0, width: size.width, height: 60)
-    }
-    
     override func viewDidLayoutSubviews() {
         textFieldConstraints()
         progressViewConstraints()
@@ -129,6 +120,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     func textFieldConstraints() {
         
         urlTextField.translatesAutoresizingMaskIntoConstraints = false
+        
+        guard let navBar = navigationController?.navigationBar else {
+            return
+        }
         
         NSLayoutConstraint.activate([
             urlTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
