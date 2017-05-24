@@ -17,11 +17,6 @@ enum ContentType: Int16 {
 class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
     
     var webView = UIWebView()
-    let urlTextField = UITextField()
-    let toolbar = UIToolbar()
-    var backButton = UIBarButtonItem()
-    var forwardButton = UIBarButtonItem()
-    var refreshButton = UIBarButtonItem()
     let progressView = UIProgressView()
     var userURL = URL(string: "")
     var webViewIsLoaded = false
@@ -30,6 +25,60 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     var selectedImageURL = String()
     var student: Student?
     var contentType: ContentType?
+    
+    lazy var urlTextField: UITextField = {
+        
+        let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
+        let textField = indentedTextField.textField
+        textField.keyboardType = .URL
+        textField.returnKeyType = .go
+        textField.autocorrectionType = .no
+        textField.clearButtonMode = .whileEditing
+        textField.delegate = self
+        self.view.addSubview(textField)
+        textField.text = "http://www.google.com"
+        textField.autocapitalizationType = .none
+        textField.layer.borderColor = UIColor.lightGray.cgColor
+        textField.layer.borderWidth = 0.5
+        return textField
+        
+    }()
+    
+    
+    lazy var backButton : UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(backPressed))
+        return button
+        
+    }()
+    
+    lazy var forwardButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(forwardPressed))
+        return button
+        
+    }()
+    
+    lazy var refreshButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshPressed))
+        return button
+        
+    }()
+    
+    lazy var toolbar: UIToolbar = {
+        
+        let bar = UIToolbar()
+        self.view.addSubview(bar)
+        let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpaceItem.width = 10
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        bar.setItems([self.backButton, fixedSpaceItem, self.forwardButton, flexibleSpace, self.refreshButton], animated: true)
+        self.backButton.isEnabled = false
+        self.forwardButton.isEnabled = false
+        return bar
+        
+    }()
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
@@ -49,42 +98,13 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         navigationItem.rightBarButtonItem = cancelButton
         let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
         navigationItem.leftBarButtonItem = helpButton
-        
-        // TextField Setup
-        urlTextField.keyboardType = .URL
-        urlTextField.returnKeyType = .go
-        urlTextField.autocorrectionType = .no
-        urlTextField.clearButtonMode = .whileEditing
-        urlTextField.delegate = self
-        view.addSubview(urlTextField)
-        urlTextField.backgroundColor = UIColor.white
-        urlTextField.layer.cornerRadius = 5
-        urlTextField.layer.masksToBounds = true
-        urlTextField.text = "http://www.google.com"
-        let inset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: urlTextField.frame.height))
-        urlTextField.leftView = inset
-        urlTextField.leftViewMode = .always
-        urlTextField.autocapitalizationType = .none
-        urlTextField.layer.borderColor = UIColor.lightGray.cgColor
-        urlTextField.layer.borderWidth = 0.5
+
         
         // WebView Setup
         webView.scalesPageToFit = true
         let url = URL(string: "http://www.google.com")
         let request = URLRequest(url: url!)
         webView.loadRequest(request)
-        
-        // Toolbar Setup
-        view.addSubview(toolbar)
-        backButton = UIBarButtonItem(title: "<", style: .plain, target: self, action: #selector(backPressed))
-        forwardButton = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(forwardPressed))
-        refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshPressed))
-        let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        fixedSpaceItem.width = 10
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([backButton, fixedSpaceItem, forwardButton, flexibleSpace, refreshButton], animated: true)
-        backButton.isEnabled = false
-        forwardButton.isEnabled = false
         
         // Long Press
         longPressGestureRecognizer.addTarget(self, action: #selector(longPressAction))
