@@ -82,6 +82,11 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
+    convenience init(student: Student?) {
+        self.init(nibName: nil, bundle: nil)
+        self.student = student
+    }
+    
     override func loadView() {
         super.loadView()
         self.view.addSubview(progressView)

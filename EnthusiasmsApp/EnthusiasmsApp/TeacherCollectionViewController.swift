@@ -186,9 +186,8 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func contentFromWebPressed() {
-        let getContentView = GetWebContentViewController()
+        let getContentView = GetWebContentViewController(student: student)
         let navController = UINavigationController(rootViewController: getContentView)
-        getContentView.student = student
         self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(navController, animated: true, completion: nil)
     }
