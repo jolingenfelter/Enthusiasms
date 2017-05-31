@@ -10,11 +10,67 @@ import UIKit
 
 class WebViewHelpViewController: UIViewController {
     
-    let titleLabel = UILabel()
-    let picturesLabel = UILabel()
-    let videoLabel = UILabel()
-    let picturesDescription = UILabel()
-    let videoDescription = UILabel()
+    lazy var titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "How do I save content?"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
+    lazy var picturesLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Pictures:"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        self.view.addSubview(label)
+        
+        return label
+    
+    }()
+    
+    lazy var picturesDescription: UILabel = {
+        
+        let label = UILabel()
+        label.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give the image a title and save."
+        label.numberOfLines = 0
+        label.font = label.font.withSize(14)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
+    lazy var videoLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Videos:"
+        label.textAlignment = .center
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
+    lazy var videoDescription: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Currently, Enthusiasms only supports Youtube videos.  To save a Youtube Video, navigate to the video on Youtube in this browser.  Once on the page of the video, tap the navigation bar.  A menu will pop up with the option to 'Save Video URL', select it and a popup will appear allowing you to give the video a title and save.  Please note, that Enthusiasms does not currently download videos and video content will not be available offline."
+        label.numberOfLines = 0
+        label.font = label.font.withSize(14)
+        self.view.addSubview(label)
+
+        
+        return label
+        
+    }()
+    
     let navigationBar = UINavigationBar()
 
     override func viewDidLoad() {
@@ -27,35 +83,8 @@ class WebViewHelpViewController: UIViewController {
         let cancelButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closePressed))
         navigationItem.leftBarButtonItem = cancelButton
         self.view.addSubview(navigationBar)
+
         
-        // TitleLabel Setup
-        titleLabel.text = "How do I save content?"
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        self.view.addSubview(titleLabel)
-        
-        // PicturesLabel
-        picturesLabel.text = "Pictures:"
-        picturesLabel.textAlignment = .center
-        picturesLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        self.view.addSubview(picturesLabel)
-        
-        // PicturesDescriptionLabel
-        picturesDescription.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give the image a title and save."
-        picturesDescription.numberOfLines = 0
-        picturesDescription.font = picturesDescription.font.withSize(14)
-        self.view.addSubview(picturesDescription)
-        
-        // VideoLabel
-        videoLabel.text = "Videos:"
-        videoLabel.textAlignment = .center
-        videoLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        self.view.addSubview(videoLabel)
-        
-        // VideoDescriptionLabel
-        videoDescription.text = "Currently, Enthusiasms only supports Youtube videos.  To save a Youtube Video, navigate to the video on Youtube in this browser.  Once on the page of the video, tap the navigation bar.  A menu will pop up with the option to 'Save Video URL', select it and a popup will appear allowing you to give the video a title and save.  Please note, that Enthusiasms does not currently download videos and video content will not be available offline."
-        videoDescription.numberOfLines = 0
-        videoDescription.font = videoDescription.font.withSize(14)
         self.view.addSubview(videoDescription)
     }
     
