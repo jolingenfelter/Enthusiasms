@@ -24,21 +24,12 @@ class FullScreenVideoViewController: UIViewController {
     let rightCoverView = UIView()
     let leftCoverView = UIView()
     
-    var minutes: Int {
-        return rewardTime / 60
-    }
-    var seconds: Int {
-        return rewardTime % 60
-    }
-    var timeDisplay: String {
-        if seconds == 0 {
-            return "\(minutes):00"
-        } else if seconds >= 1 && seconds < 10 {
-            return "\(minutes):0\(seconds)"
-        } else {
-            return "\(minutes):\(seconds)"
-        }
-    }
+    lazy var timeDisplay: TimeDisplay = {
+        
+        let timeDisplay = TimeDisplay(timeInSeconds: self.rewardTime)
+        return timeDisplay
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,7 +136,8 @@ class FullScreenVideoViewController: UIViewController {
     func updateTimer() {
         
         rewardTime -= 1
-        addTimeButton.setTitle(timeDisplay, for: .normal)
+        timeDisplay.totalTimeInSeconds = rewardTime
+        addTimeButton.setTitle(timeDisplay.display, for: .normal)
         let enterPasswordVC = EnterPasswordViewController()
         
         if rewardTime == 0 {
