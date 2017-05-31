@@ -16,6 +16,7 @@
 		9E3692B51DFDB36900557E3B /* AddTimePasswordCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3692B41DFDB36900557E3B /* AddTimePasswordCheckViewController.swift */; };
 		9E38C9661DEBBB6B006D0ABD /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */; };
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
+		9E4977D81ED5085200F3E580 /* AddContentFromLibraryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4977D71ED5085200F3E580 /* AddContentFromLibraryMenu.swift */; };
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
 		9E5A91101DAD3F3600980511 /* EditPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */; };
 		9E5CDE8B1DFC6F4E00720EB3 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */; };
@@ -63,6 +64,7 @@
 		9E3692B41DFDB36900557E3B /* AddTimePasswordCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimePasswordCheckViewController.swift; sourceTree = "<group>"; };
 		9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
+		9E4977D71ED5085200F3E580 /* AddContentFromLibraryMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentFromLibraryMenu.swift; sourceTree = "<group>"; };
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
 		9E5A910F1DAD3F3600980511 /* EditPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EditPasswordViewController.swift; path = EnthusiasmsApp/EditPasswordViewController.swift; sourceTree = "<group>"; };
 		9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTimeViewController.swift; path = ../AddTimeViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,15 @@
 				9E5CDE8A1DFC6F4E00720EB3 /* AddTimeViewController.swift */,
 			);
 			name = Timer;
+			sourceTree = "<group>";
+		};
+		9E4977D61ED5082000F3E580 /* AddContentFromLibraryVC's */ = {
+			isa = PBXGroup;
+			children = (
+				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
+				9E4977D71ED5085200F3E580 /* AddContentFromLibraryMenu.swift */,
+			);
+			name = "AddContentFromLibraryVC's";
 			sourceTree = "<group>";
 		};
 		9E5EC2161D90CDB40014FC35 /* CoreData */ = {
@@ -241,7 +252,7 @@
 				9E9DB26E1ED3877200B25136 /* HomeVC's */,
 				9E9DB26D1ED3870400B25136 /* TeacherCollectionVC's */,
 				9E9DB2751ED39D2D00B25136 /* StudentListVC's */,
-				9E2334731DE35C92006AB7ED /* AddContentFromLibraryViewController.swift */,
+				9E4977D61ED5082000F3E580 /* AddContentFromLibraryVC's */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
@@ -456,6 +467,7 @@
 				9EA0DE181E219EEF0018A02B /* Student+CoreDataProperties.swift in Sources */,
 				9E127D751D918BBF0086B7C3 /* StudentCollectionViewController.swift in Sources */,
 				9E9DB2771ED39D5100B25136 /* StudentListSettingsMenu.swift in Sources */,
+				9E4977D81ED5085200F3E580 /* AddContentFromLibraryMenu.swift in Sources */,
 				9EA0DE151E219EEF0018A02B /* Content+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

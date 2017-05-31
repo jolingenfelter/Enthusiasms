@@ -11,12 +11,30 @@ import UIKit
 class AddContentFromLibraryViewController: AllContentCollectionViewController {
     
     var navigationBar = UINavigationBar()
-    var student: Student?
+    let student: Student
+    
+    lazy var fromLibraryMenu: AddContentFromLibraryMenu = {
+        
+        let menu = AddContentFromLibraryMenu(student: self.student)
+        return menu
+        
+    }()
+    
+    init(student: Student, flowLayout: UICollectionViewFlowLayout) {
+        self.student = student
+        super.init(collectionViewLayout: flowLayout)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navBarSetup()
         
+        // Edit instructions label from AllContentVC super class
         instructionsLabel.numberOfLines = 0
         instructionsLabel.font = instructionsLabel.font.withSize(35)
         instructionsLabel.textAlignment = .center
@@ -26,10 +44,6 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     func navBarSetup() {
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
-    }
-    
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        navigationBar.frame = CGRect(x: 0, y: 0, width: size.width, height: 60)
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,70 +63,22 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     override func showMenufor(cellAtIndexPath indexPath: IndexPath) {
         
         let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
-        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
-        menu.modalPresentationStyle = .popover
-        menu.preferredContentSize = CGSize(width: 200, height: 150)
-        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-        menu.popoverPresentationController?.sourceView = cell
+        fromLibraryMenu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
+        fromLibraryMenu.modalPresentationStyle = .popover
+        fromLibraryMenu.preferredContentSize = CGSize(width: 200, height: 150)
+        fromLibraryMenu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
+        fromLibraryMenu.popoverPresentationController?.sourceView = cell
         
-        let addContentButton = UIButton()
-        addContentButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        if let studentName = student?.name {
-          addContentButton.setTitle("Add to \(studentName)", for: .normal)
-        }
-        addContentButton.setTitleColor(UIColor.black, for: .normal)
-        addContentButton.addTarget(self, action: #selector(addContentPressed), for: .touchUpInside)
-        menu.view.addSubview(addContentButton)
+        fromLibraryMenu.addContentButton.addTarget(self, action: #selector(addContentPressed), for: .touchUpInside)
+        fromLibraryMenu.addContentButton.setTitle("Add Content to \(student.name!)", for: .normal)
+        fromLibraryMenu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         
-        let separator = UIView()
-        separator.backgroundColor = UIColor.lightGray
-        menu.view.addSubview(separator)
-        
-        let viewContentButton = UIButton()
-        viewContentButton.setTitle("View", for: .normal)
-        viewContentButton.setTitleColor(.black, for: .normal)
-        viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
-        menu.view.addSubview(viewContentButton)
-        
-        let buttonHeight: CGFloat = 75
-        let buttonWidth: CGFloat = 200
-        
-        // AddContentButton
-        addContentButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            addContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor),
-            addContentButton.bottomAnchor.constraint(equalTo: separator.topAnchor),
-            addContentButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            addContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
-            ])
-        
-        // Separator
-        separator.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            separator.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            separator.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            separator.heightAnchor.constraint(equalToConstant: 1),
-            separator.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor)
-            ])
-        
-        // ViewContenteButton
-        viewContentButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            viewContentButton.centerXAnchor.constraint(equalTo: menu.view.centerXAnchor),
-            viewContentButton.topAnchor.constraint(equalTo: separator.bottomAnchor),
-            viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            viewContentButton.widthAnchor.constraint(equalToConstant: buttonWidth)
-            ])
-        
-        self.present(menu, animated: true, completion: nil)
+        self.present(fromLibraryMenu, animated: true, completion: nil)
 
     }
     
     func addContentPressed() {
-        student?.addToContents(selectedContent!)
+        student.addToContents(selectedContent!)
         let dataController = DataController.sharedInstance
         dataController.saveContext()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
