@@ -138,25 +138,33 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         selectedContent = fetchedResultsController.object(at: indexPath)
 
-        showMenufor(cellAtIndexPath: indexPath)
+        show(menu: menu, ofSize: CGSize(width: 200, height: 220), forCellAtIndexPath: indexPath)
     }
     
-    func showMenufor(cellAtIndexPath indexPath: IndexPath) {
+    func show(menu: UIViewController, ofSize size: CGSize, forCellAtIndexPath indexPath: IndexPath) {
+        
+        menuButtonSetup()
+        
+        menu.modalPresentationStyle = .popover
+        menu.preferredContentSize = size
+        
+        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
+        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
+        menu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
+        menu.popoverPresentationController?.sourceView = cell
+        
+        self.present(menu, animated: true, completion: nil)
+    }
+    
+    // MARK: Button Setup
+    
+    func menuButtonSetup() {
         
         menu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
         menu.addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
         menu.changeTitleButton.addTarget(self, action: #selector(changeTitlePressed), for: .touchUpInside)
         menu.deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
         
-        menu.modalPresentationStyle = .popover
-        menu.preferredContentSize = CGSize(width: 200, height: 220)
-        
-        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
-        menu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
-        menu.popoverPresentationController?.permittedArrowDirections = [.left, .up, .right]
-        menu.popoverPresentationController?.sourceView = cell
-        
-        self.present(menu, animated: true, completion: nil)
     }
     
     func addToStudentPressed() {

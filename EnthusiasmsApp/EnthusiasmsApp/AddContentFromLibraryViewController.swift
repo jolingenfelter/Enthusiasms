@@ -57,24 +57,14 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedContent = fetchedResultsController.object(at: indexPath)
-        showMenufor(cellAtIndexPath: indexPath)
+        show(menu: fromLibraryMenu, ofSize: CGSize(width: 200, height: 150), forCellAtIndexPath: indexPath)
     }
     
-    override func showMenufor(cellAtIndexPath indexPath: IndexPath) {
-        
-        let cell = self.collectionView?.cellForItem(at: indexPath) as! ContentCollectionViewCell
-        fromLibraryMenu.popoverPresentationController?.sourceRect = cell.thumbnail.frame
-        fromLibraryMenu.modalPresentationStyle = .popover
-        fromLibraryMenu.preferredContentSize = CGSize(width: 200, height: 150)
-        fromLibraryMenu.popoverPresentationController?.permittedArrowDirections = [.left, .right]
-        fromLibraryMenu.popoverPresentationController?.sourceView = cell
+    override func menuButtonSetup() {
         
         fromLibraryMenu.addContentButton.addTarget(self, action: #selector(addContentPressed), for: .touchUpInside)
         fromLibraryMenu.addContentButton.setTitle("Add Content to \(student.name!)", for: .normal)
         fromLibraryMenu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
-        
-        self.present(fromLibraryMenu, animated: true, completion: nil)
-
     }
     
     func addContentPressed() {
