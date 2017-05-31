@@ -16,6 +16,7 @@
 		9E3692B51DFDB36900557E3B /* AddTimePasswordCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3692B41DFDB36900557E3B /* AddTimePasswordCheckViewController.swift */; };
 		9E38C9661DEBBB6B006D0ABD /* FullScreenImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */; };
 		9E392B061EDF57B600CD46CC /* AllContentMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E392B051EDF57B600CD46CC /* AllContentMenu.swift */; };
+		9E392B081EDF672B00CD46CC /* TimeDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E392B071EDF672B00CD46CC /* TimeDisplay.swift */; };
 		9E3FD5021DB2E4A300CC2C41 /* EditNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */; };
 		9E4977D81ED5085200F3E580 /* AddContentFromLibraryMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4977D71ED5085200F3E580 /* AddContentFromLibraryMenu.swift */; };
 		9E55B5751DD623B100934E86 /* SaveContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E55B5741DD623B100934E86 /* SaveContentViewController.swift */; };
@@ -65,6 +66,7 @@
 		9E3692B41DFDB36900557E3B /* AddTimePasswordCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimePasswordCheckViewController.swift; sourceTree = "<group>"; };
 		9E38C9651DEBBB6B006D0ABD /* FullScreenImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageViewController.swift; sourceTree = "<group>"; };
 		9E392B051EDF57B600CD46CC /* AllContentMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllContentMenu.swift; sourceTree = "<group>"; };
+		9E392B071EDF672B00CD46CC /* TimeDisplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeDisplay.swift; sourceTree = "<group>"; };
 		9E3FD5011DB2E4A300CC2C41 /* EditNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNameViewController.swift; sourceTree = "<group>"; };
 		9E4977D71ED5085200F3E580 /* AddContentFromLibraryMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentFromLibraryMenu.swift; sourceTree = "<group>"; };
 		9E55B5741DD623B100934E86 /* SaveContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveContentViewController.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 				9EFC4B381DF37AA20022BCD4 /* ViewContentHelpers.swift */,
 				9ED5D9C71EC7C3AC00E0CF64 /* ImageScrollView.swift */,
 				9E6150DE1EC8FFCF00ED4B43 /* Utilities.swift */,
+				9E392B071EDF672B00CD46CC /* TimeDisplay.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				9EFC4B3D1DF38D9C0022BCD4 /* FullScreenVideoViewController.swift in Sources */,
 				9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */,
 				9E2334741DE35C92006AB7ED /* AddContentFromLibraryViewController.swift in Sources */,
+				9E392B081EDF672B00CD46CC /* TimeDisplay.swift in Sources */,
 				9E975C521DB5194900C3BA8D /* SetTimerViewController.swift in Sources */,
 				9E3692B51DFDB36900557E3B /* AddTimePasswordCheckViewController.swift in Sources */,
 				9EC774361E1DA544008B33B5 /* WebViewHelpViewController.swift in Sources */,
