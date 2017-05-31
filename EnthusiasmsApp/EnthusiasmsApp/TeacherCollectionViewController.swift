@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 
-private let reuseIdentifier = "Cell"
-
 class TeacherCollectionViewController: UICollectionViewController {
     
     let student: Student
@@ -197,6 +195,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 40, left: 10, bottom: 10, right: 10)
         let addContentFromLibraryVC = AddContentFromLibraryViewController(student: student, flowLayout: flowLayout)
+
         let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
         self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(navigationController, animated: true, completion: nil)

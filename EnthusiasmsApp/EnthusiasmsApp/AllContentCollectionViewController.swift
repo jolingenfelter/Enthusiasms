@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-private let reuseIdentifier = "Cell"
+public let reuseIdentifier = "Cell"
 
 class AllContentCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
     
@@ -23,7 +23,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     }()
     
     var cancelButton = UIBarButtonItem()
-    let menu = UIViewController()
+    let menu = AllContentMenu()
     var selectedContent: Content?
     let studentListPopover = AddContentToStudentPopoverViewController()
     let instructionsLabel = UILabel()
@@ -143,43 +143,10 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     
     func showMenufor(cellAtIndexPath indexPath: IndexPath) {
         
-        let viewContentButton = UIButton()
-        let addToStudentButton = UIButton()
-        let changeTitleButton = UIButton()
-        let deleteButton = UIButton()
-        
-        viewContentButton.setTitle("View", for: .normal)
-        viewContentButton.setTitleColor(.black, for: .normal)
-        viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
-        
-        addToStudentButton.setTitle("Add to student", for: .normal)
-        addToStudentButton.setTitleColor(UIColor.black, for: .normal)
-        addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
-        
-        changeTitleButton.setTitle("Change title", for: .normal)
-        changeTitleButton.setTitleColor(UIColor.black, for: .normal)
-        changeTitleButton.addTarget(self, action: #selector(changeTitlePressed), for: .touchUpInside)
-        
-        deleteButton.setTitle("Delete Content", for: .normal)
-        deleteButton.setTitleColor(UIColor.black, for: .normal)
-        deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
-        
-        menu.view.addSubview(viewContentButton)
-        menu.view.addSubview(addToStudentButton)
-        menu.view.addSubview(changeTitleButton)
-        menu.view.addSubview(deleteButton)
-        
-        let separator1 = UIView()
-        separator1.backgroundColor = UIColor.lightGray
-        menu.view.addSubview(separator1)
-        
-        let separator2 = UIView()
-        separator2.backgroundColor = UIColor.lightGray
-        menu.view.addSubview(separator2)
-        
-        let separator3 = UIView()
-        separator3.backgroundColor = UIColor.lightGray
-        menu.view.addSubview(separator3)
+        menu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
+        menu.addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
+        menu.changeTitleButton.addTarget(self, action: #selector(changeTitlePressed), for: .touchUpInside)
+        menu.deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
         
         menu.modalPresentationStyle = .popover
         menu.preferredContentSize = CGSize(width: 200, height: 220)
@@ -189,83 +156,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         menu.popoverPresentationController?.permittedArrowDirections = [.left, .up, .right]
         menu.popoverPresentationController?.sourceView = cell
         
-        //Menu layout
-        
-        let buttonHeight: CGFloat = 50
-        
-        
-        // ViewContentButton
-        viewContentButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            viewContentButton.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            viewContentButton.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            viewContentButton.bottomAnchor.constraint(equalTo: separator1.topAnchor),
-            viewContentButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            ])
-        
-        // Separator 1
-        separator1.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            separator1.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            separator1.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            separator1.heightAnchor.constraint(equalToConstant: 1),
-            separator1.bottomAnchor.constraint(equalTo: addToStudentButton.topAnchor)
-            ])
-       
-        
-        // AddToStudentButton
-        addToStudentButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            addToStudentButton.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            addToStudentButton.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            addToStudentButton.bottomAnchor.constraint(equalTo: separator2.topAnchor),
-            addToStudentButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-            ])
-        
-        // Separator2
-        separator2.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            separator2.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            separator2.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            separator2.centerYAnchor.constraint(equalTo: menu.view.centerYAnchor),
-            separator2.heightAnchor.constraint(equalToConstant: 1)
-            ])
-        
-        // ChangeTitleButton
-        changeTitleButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            changeTitleButton.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            changeTitleButton.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor),
-            changeTitleButton.heightAnchor.constraint(equalToConstant: buttonHeight)
-            ])
-        
-        // Separator3
-        separator3.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            separator3.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            separator3.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            separator3.heightAnchor.constraint(equalToConstant: 1),
-            separator3.topAnchor.constraint(equalTo: changeTitleButton.bottomAnchor)
-            ])
-        
-        // DeleteButton
-        deleteButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            deleteButton.leadingAnchor.constraint(equalTo: menu.view.leadingAnchor),
-            deleteButton.trailingAnchor.constraint(equalTo: menu.view.trailingAnchor),
-            deleteButton.heightAnchor.constraint(equalToConstant: buttonHeight),
-            deleteButton.topAnchor.constraint(equalTo: separator3.bottomAnchor)
-            ])
-        
-         self.present(menu, animated: true, completion: nil)
+        self.present(menu, animated: true, completion: nil)
     }
     
     func addToStudentPressed() {

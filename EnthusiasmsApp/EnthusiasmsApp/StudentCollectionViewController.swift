@@ -8,8 +8,6 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
-
 class StudentCollectionViewController: TeacherCollectionViewController {
     
     var timer = Timer()
