@@ -12,7 +12,6 @@ import CoreData
 class EditNameViewController: UIViewController {
     
     var student: Student?
-    let dataController = DataController.sharedInstance
     
     var nameLabel = UILabel()
     var saveChangesButton = UIButton()
@@ -112,7 +111,7 @@ class EditNameViewController: UIViewController {
             noNameAlert()
         } else {
             student?.name = nameTextField.text
-            dataController.saveContext()
+            DataController.sharedInstance.saveContext()
             NotificationCenter.default.post(name: Notification.Name(rawValue: "NameUpdate"), object: nil)
             dismiss(animated: true, completion: nil)
         }

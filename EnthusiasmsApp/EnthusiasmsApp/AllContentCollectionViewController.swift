@@ -182,9 +182,8 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
-        
-        let dataController = DataController.sharedInstance
-        dataController.saveContext()
+    
+        DataController.sharedInstance.saveContext()
     }
     
     func changeTitlePressed() {

@@ -132,10 +132,9 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let student = fetchedResultsController.object(at: indexPath)
-        let dataController = DataController.sharedInstance
-        dataController.managedObjectContext.delete(student)
+        DataController.sharedInstance.managedObjectContext.delete(student)
         
-        dataController.saveContext()
+        DataController.sharedInstance.saveContext()
     }
 
 

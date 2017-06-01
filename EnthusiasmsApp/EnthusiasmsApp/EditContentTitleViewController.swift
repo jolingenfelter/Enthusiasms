@@ -35,8 +35,7 @@ class EditContentTitleViewController: SaveContentViewController {
         } else {
             content?.title = contentTitleTextField.text
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentTitleUpdate"), object: nil)
-            let dataController = DataController.sharedInstance
-            dataController.saveContext()
+            DataController.sharedInstance.saveContext()
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -69,8 +69,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     
     func addContentPressed() {
         student.addToContents(selectedContent!)
-        let dataController = DataController.sharedInstance
-        dataController.saveContext()
+        DataController.sharedInstance.saveContext()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
         self.presentedViewController?.dismiss(animated: true, completion: nil)
     }

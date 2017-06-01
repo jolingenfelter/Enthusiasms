@@ -127,9 +127,7 @@ class SaveContentViewController: UIViewController {
             
         } else {
             
-            let dataController = DataController.sharedInstance
-            
-            guard let content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: dataController.managedObjectContext) as? Content else {
+            guard let content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: DataController.sharedInstance.managedObjectContext) as? Content else {
                 let alert = UIAlertController(title: "Error", message: "Error adding content", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
                 alert.addAction(okAction)
@@ -161,7 +159,7 @@ class SaveContentViewController: UIViewController {
                 imageSaver.downloadNameAndSaveImage()
             }
             
-            dataController.saveContext()
+            DataController.sharedInstance.saveContext()
             
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
             

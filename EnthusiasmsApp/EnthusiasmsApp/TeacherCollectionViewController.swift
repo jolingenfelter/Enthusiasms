@@ -280,8 +280,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     func removeContentFromStudent() {
         selectedContent?.removeFromStudentContent(student)
         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
-        let dataController = DataController.sharedInstance
-        dataController.saveContext()
+        DataController.sharedInstance.saveContext()
         self.presentedViewController?.dismiss(animated: true, completion: nil)
     }
     
