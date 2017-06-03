@@ -13,16 +13,34 @@ class EditNameViewController: UIViewController {
     
     var student: Student?
     
-    var nameLabel = UILabel()
-    var saveChangesButton = UIButton()
+    lazy var nameLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "name:"
+        label.textColor = .white
+        return label
+        
+    }()
+    
+    lazy var saveChangesButton: UIButton = {
+        
+        let button = UIButton()
+        button.layer.cornerRadius = 5.0
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.setTitle("Save Changes", for: .normal)
+        button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
     
     var indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
     lazy var nameTextField: UITextField = {
         
         let textField = self.indentedTextField.textField
         textField.delegate = self
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.layer.borderWidth = 1.0
         textField.text = self.student?.name
         return textField
         
@@ -30,33 +48,8 @@ class EditNameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
-        
-        // Label setup
-        nameLabel.text = "name:"
-
-        
-        // Button setup
-        saveChangesButton.layer.cornerRadius = 5.0
-        saveChangesButton.layer.masksToBounds = true
-        saveChangesButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        saveChangesButton.setTitle("Save Changes", for: .normal)
-        saveChangesButton.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
-        
-        view.addSubview(saveChangesButton)
-        
-        // NavBar Setup
-        let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
-        let navBar = UINavigationBar(frame: navBarRect)
-        
-        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelWasPressed))
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = cancelBarButton
-        navBar.items = [navItem]
-        
-        view.addSubview(navBar)
-
-        
+        self.view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        navBarSetup()
     }
     
     override func viewDidLayoutSubviews() {
@@ -69,6 +62,20 @@ class EditNameViewController: UIViewController {
         labelConstraints()
         textFieldConstraints()
         buttonConstraints()
+    }
+    
+    func navBarSetup() {
+        
+        let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
+        let navBar = UINavigationBar(frame: navBarRect)
+        
+        let cancelBarButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelWasPressed))
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = cancelBarButton
+        navBar.items = [navItem]
+        
+        view.addSubview(navBar)
+        
     }
     
     func labelConstraints() {
