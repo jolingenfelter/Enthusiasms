@@ -17,6 +17,7 @@ class WebViewHelpViewController: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubview(label)
+        label.textColor = .white
         
         return label
         
@@ -29,6 +30,7 @@ class WebViewHelpViewController: UIViewController {
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         self.view.addSubview(label)
+        label.textColor = .white
         
         return label
     
@@ -40,7 +42,9 @@ class WebViewHelpViewController: UIViewController {
         label.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give the image a title and save."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
+        label.textColor = .white
         self.view.addSubview(label)
+        
         
         return label
         
@@ -52,6 +56,7 @@ class WebViewHelpViewController: UIViewController {
         label.text = "Videos:"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .white
         self.view.addSubview(label)
         
         return label
@@ -64,6 +69,7 @@ class WebViewHelpViewController: UIViewController {
         label.text = "Currently, Enthusiasms only supports Youtube videos.  To save a Youtube Video, navigate to the video on Youtube in this browser.  Once on the page of the video, tap the navigation bar.  A menu will pop up with the option to 'Save Video URL', select it and a popup will appear allowing you to give the video a title and save.  Please note, that Enthusiasms does not currently download videos and video content will not be available offline."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
+        label.textColor = .white
         self.view.addSubview(label)
 
         
@@ -75,7 +81,7 @@ class WebViewHelpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor =  UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
 
         // NavigationBar setup
         let navigationItem = UINavigationItem()

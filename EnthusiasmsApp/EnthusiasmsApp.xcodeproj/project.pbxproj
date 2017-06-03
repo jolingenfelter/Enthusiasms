@@ -195,6 +195,7 @@
 				9E9DB26B1ED386EF00B25136 /* TeacherCellMenu.swift */,
 				9E9DB2701ED390FA00B25136 /* TeacherSettingsMenu.swift */,
 				9E9DB2721ED3978F00B25136 /* TeacherAddContentMenu.swift */,
+				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
 			);
 			name = "TeacherCollectionVC's";
 			sourceTree = "<group>";
@@ -259,10 +260,7 @@
 				9E9DB2751ED39D2D00B25136 /* StudentListVC's */,
 				9E4977D61ED5082000F3E580 /* AddContentFromLibraryVC's */,
 				9E127D741D918BBF0086B7C3 /* StudentCollectionViewController.swift */,
-				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
-				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
-				9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */,
-				9E23346F1DE34ECF006AB7ED /* EditContentTitleViewController.swift */,
+				9EF71C071EE359F60065735E /* WebVC's */,
 				9E9DB26F1ED387C700B25136 /* AllContentVC's */,
 				9EFC4B3E1DF38DA80022BCD4 /* View Content */,
 				9EFC4B3A1DF38BDB0022BCD4 /* Helpers */,
@@ -272,6 +270,16 @@
 				9EB4F4CE1D8E131D00E81C74 /* DataModel.xcdatamodeld */,
 			);
 			path = EnthusiasmsApp;
+			sourceTree = "<group>";
+		};
+		9EF71C071EE359F60065735E /* WebVC's */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
+				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
+				9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */,
+			);
+			name = "WebVC's";
 			sourceTree = "<group>";
 		};
 		9EFC4B3A1DF38BDB0022BCD4 /* Helpers */ = {
