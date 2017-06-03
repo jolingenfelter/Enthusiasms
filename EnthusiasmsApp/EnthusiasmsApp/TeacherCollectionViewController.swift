@@ -232,11 +232,9 @@ class TeacherCollectionViewController: UICollectionViewController {
         let content = contentsArray[indexPath.item]
         cell.titleLabel.text = content.title!
         
-       
         guard let imageName = content.uniqueFileName else {
             let imageSaver = ContentImageSaver(content: content)
             imageSaver.downloadNameAndSaveImage()
-            DataController.sharedInstance.saveContext()
             return cell
         }
     

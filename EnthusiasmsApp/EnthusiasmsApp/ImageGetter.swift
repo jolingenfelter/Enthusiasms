@@ -55,9 +55,14 @@ class ContentImageSaver: NSObject {
             }
             
             DispatchQueue.main.async {
+                
                 if let image = UIImage(data: data) {
+                    
                     if let JPEGImageData = UIImageJPEGRepresentation(image, 0.8) {
+                        
                         self.content.uniqueFileName = self.generateImageName()
+                        DataController.sharedInstance.saveContext()
+                        
                         let fileName = getDocumentsDirectory().appendingPathComponent("\(self.content.uniqueFileName!).jpeg")
                         try? JPEGImageData.write(to: fileName)
                         

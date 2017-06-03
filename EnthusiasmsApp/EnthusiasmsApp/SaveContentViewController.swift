@@ -133,6 +133,7 @@ class SaveContentViewController: UIViewController {
                 alert.addAction(okAction)
                 self.present(alert, animated: true, completion: nil)
                 return
+                
             }
             
             content.title = contentTitleTextField.text
@@ -141,20 +142,27 @@ class SaveContentViewController: UIViewController {
             content.type = (contentType?.rawValue)!
             
             if let student = student {
+                
                 content.addToStudentContent(student)
+                
             }
             
             if contentType == .Image {
+                
                 let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
+                
             }
             
             if contentType == .Video {
+                
                 guard let videoID = youtubeVideoID else {
                     return
                 }
+                
                 let thumbnailURL = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
                 content.thumbnailURL = thumbnailURL
+                
                 let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
             }
