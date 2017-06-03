@@ -115,8 +115,8 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         let student = fetchedResultsController.object(at: indexPath)
         
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        flowLayout.itemSize = CGSize(width: 300, height: 300)
         
         let teacherCollectionViewController = TeacherCollectionViewController(student: student, collectionViewLayout: flowLayout)
         

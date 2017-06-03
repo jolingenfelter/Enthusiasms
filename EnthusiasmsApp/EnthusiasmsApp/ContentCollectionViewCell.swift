@@ -16,12 +16,16 @@ class ContentCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         
         self.contentView.addSubview(titleLabel)
-        titleLabel.font = UIFont.systemFont(ofSize: 16)
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .white
         titleLabel.textAlignment = .center
         titleLabel.adjustsFontSizeToFitWidth = true
         
         self.contentView.addSubview(thumbnail)
-        thumbnail.contentMode = .scaleAspectFit
+        thumbnail.contentMode = .scaleAspectFill
+        thumbnail.clipsToBounds = true
+        thumbnail.layer.cornerRadius = 10
+        thumbnail.layer.masksToBounds = true
         
         // TitleLabel Constraints
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +46,7 @@ class ContentCollectionViewCell: UICollectionViewCell {
             thumbnail.widthAnchor.constraint(equalToConstant: 200),
             thumbnail.heightAnchor.constraint(equalToConstant: 200)
             ])
+        
     }
     
 }

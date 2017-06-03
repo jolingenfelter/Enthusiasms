@@ -123,6 +123,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         guard let imageName = content.uniqueFileName else {
                 let imageSaver = ContentImageSaver(content: content)
                 imageSaver.downloadNameAndSaveImage()
+                DataController.sharedInstance.saveContext()
             return cell
         }
         

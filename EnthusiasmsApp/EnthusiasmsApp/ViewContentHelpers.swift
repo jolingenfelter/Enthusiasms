@@ -8,7 +8,8 @@
 
 import UIKit
 
-func imageViewer(for content: Content) -> FullScreenImageViewController? {
+fileprivate func imageViewer(for content: Content) -> FullScreenImageViewController? {
+    
     let imageViewer = FullScreenImageViewController()
     imageViewer.content = content
     
@@ -25,7 +26,8 @@ func imageViewer(for content: Content) -> FullScreenImageViewController? {
     return imageViewer
 }
 
-func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
+fileprivate func videoPlayer(for content: Content) -> FullScreenVideoViewController? {
+    
     let videoPlayer = FullScreenVideoViewController()
     
     guard let videoURLString = content.url, let videoURL = URL(string: videoURLString) else {
@@ -43,19 +45,24 @@ func viewFullScreen(content: Content, from viewController: UIViewController) {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     if content.type == ContentType.Image.rawValue {
+        
         guard let imageViewer = imageViewer(for: content) else {
             return
         }
+        
         imageViewer.rewardTime = appDelegate.rewardTime
         let navigationController = UINavigationController(rootViewController: imageViewer)
         viewController.present(navigationController, animated: true, completion: nil)
+        
     } else {
         guard let videoPlayer = videoPlayer(for: content) else {
             return
         }
+        
         videoPlayer.rewardTime = appDelegate.rewardTime
         let navigationController = UINavigationController(rootViewController: videoPlayer)
         viewController.present(navigationController, animated: true, completion: nil)
+        
     }
     
 }
