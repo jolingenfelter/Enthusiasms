@@ -56,6 +56,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        self.window?.makeKeyAndVisible()
+        
+        // Restart with Password
+        
+        if UserDefaults.standard.value(forKey: "password") != nil {
+            let initialViewController = EnterPasswordViewController()
+            self.window?.rootViewController = initialViewController
+        } else {
+            let initialViewController = CreatePasswordViewController()
+            self.window?.rootViewController = initialViewController
+        }
+
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
