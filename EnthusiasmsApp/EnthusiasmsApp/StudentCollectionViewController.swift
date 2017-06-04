@@ -90,9 +90,24 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func homePressed() {
-        timer.invalidate()
-        let enterPasswordVC = EnterPasswordViewController()
-        self.present(enterPasswordVC, animated: true, completion: nil)
+        
+        let alert = UIAlertController(title: "Quit?", message: "Are you sure you want to quit", preferredStyle: .alert)
+        
+        let quitAction = UIAlertAction(title: "Quit", style: .destructive) { (action) in
+            
+            self.timer.invalidate()
+            let enterPasswordVC = EnterPasswordViewController()
+            self.present(enterPasswordVC, animated: true, completion: nil)
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(quitAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     // MARK: Timer
