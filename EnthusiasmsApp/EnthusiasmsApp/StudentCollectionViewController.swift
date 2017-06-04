@@ -91,7 +91,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     override func homePressed() {
         
-        let alert = UIAlertController(title: "Quit?", message: "Are you sure you want to quit", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Quit?", message: "Are you sure you want to quit?", preferredStyle: .alert)
         
         let quitAction = UIAlertAction(title: "Quit", style: .destructive) { (action) in
             

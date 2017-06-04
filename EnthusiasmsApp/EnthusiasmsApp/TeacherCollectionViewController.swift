@@ -277,10 +277,32 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func removeContentFromStudent() {
-        selectedContent?.removeFromStudentContent(student)
-        NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
-        DataController.sharedInstance.saveContext()
-        self.presentedViewController?.dismiss(animated: true, completion: nil)
+        
+        guard let selectedContent = selectedContent, let studentName = student.name else {
+            
+            return
+            
+        }
+        
+        let alert = UIAlertController(title: "Remove Content?", message: "Are you sure you want to remove this content from \(studentName)? The content will remain available in the Content Library.", preferredStyle: .alert)
+        
+        let removeAction = UIAlertAction(title: "Remove", style: .destructive) { (action) in
+            
+            selectedContent.removeFromStudentContent(self.student)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
+            DataController.sharedInstance.saveContext()
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(removeAction)
+        alert.addAction(cancelAction)
+        
+        self.presentedViewController?.present(alert, animated: true, completion: nil)
     }
     
     func viewContent() {
