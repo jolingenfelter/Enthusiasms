@@ -18,11 +18,9 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     
     var webView = UIWebView()
     let progressView = UIProgressView()
-    var userURL = URL(string: "")
     var webViewIsLoaded = false
     var loadTimer = Timer()
     let longPressGestureRecognizer = UILongPressGestureRecognizer()
-    var selectedImageURL = String()
     var student: Student?
     var contentType: ContentType?
     
@@ -193,14 +191,17 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     // MARK: WebView Delegate
     
     func webViewDidStartLoad(_ webView: UIWebView) {
+        
         progressView.isHidden = false
         progressView.progress = 0.0
         webViewIsLoaded = false
         loadTimer = Timer.scheduledTimer(timeInterval: 0.01667, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
         updateButtons()
+        
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        
         self.urlTextField.text = webView.request?.url?.absoluteString
         webViewIsLoaded = true
         progressView.isHidden = true
@@ -209,25 +210,36 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        
         webViewIsLoaded = true
         progressView.isHidden = true
         updateButtons()
+        
     }
     
     // MARK: Timer
     
     func timerCallBack() {
+        
         if webViewIsLoaded == true {
+            
             if progressView.progress >= 1 {
+                
                 loadTimer.invalidate()
+                
             } else {
+                
                 progressView.progress += 0.1
+                
             }
         } else {
+            
             progressView.progress += 0.05
+            
             if progressView.progress >= 0.95 {
                 progressView.progress = 0.95
             }
+            
         }
     }
     
@@ -250,15 +262,20 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
                 urlString = "google.com/search?q=\(searchString)"
             }
             
+            var userURL = URL(string: "")
             let url = URL(string: urlString)
             
             if var url = url {
                 
                 if (url.scheme == nil) {
+                    
                     url = URL(string: "http://\(url)")!
                     userURL = url
+                    
                 } else {
+                    
                     userURL = url
+                    
                 }
                 
                 let request = URLRequest(url: userURL!)
