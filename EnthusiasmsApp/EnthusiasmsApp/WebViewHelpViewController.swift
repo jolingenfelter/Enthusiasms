@@ -39,7 +39,7 @@ class WebViewHelpViewController: UIViewController {
     lazy var picturesDescription: UILabel = {
         
         let label = UILabel()
-        label.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give the image a title and save."
+        label.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give it a title and save.  Note, images are downloaded and saved on your device."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
         label.textColor = .white
@@ -66,7 +66,7 @@ class WebViewHelpViewController: UIViewController {
     lazy var videoDescription: UILabel = {
         
         let label = UILabel()
-        label.text = "Currently, Enthusiasms only supports Youtube videos.  To save a Youtube Video, navigate to the video on Youtube in this browser.  Once on the page of the video, tap the navigation bar.  A menu will pop up with the option to 'Save Video URL', select it and a popup will appear allowing you to give the video a title and save.  Please note, that Enthusiasms does not currently download videos and video content will not be available offline."
+        label.text = "Currently, Enthusiasms only supports Youtube videos.  To save a video, in this browser, navigate to Youtube and then to the page of the video.  Next, tap and hold on the video.  A popup will appear allowing you to give it a title and save.  Please note, that Enthusiasms does not currently download videos.  Thus, video content will not be available offline."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
         label.textColor = .white
@@ -127,7 +127,7 @@ class WebViewHelpViewController: UIViewController {
         NSLayoutConstraint.activate([
             picturesDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             picturesDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            picturesDescription.topAnchor.constraint(equalTo: picturesLabel.bottomAnchor)
+            picturesDescription.topAnchor.constraint(equalTo: picturesLabel.bottomAnchor, constant: 5)
             ])
         
         // VideoLabel Constraints
@@ -144,8 +144,7 @@ class WebViewHelpViewController: UIViewController {
         NSLayoutConstraint.activate([
             videoDescription.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
             videoDescription.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            videoDescription.topAnchor.constraint(equalTo: videoLabel.bottomAnchor),
-            videoDescription.heightAnchor.constraint(equalToConstant: 120)
+            videoDescription.topAnchor.constraint(equalTo: videoLabel.bottomAnchor, constant: 5)
             ])
     }
 
