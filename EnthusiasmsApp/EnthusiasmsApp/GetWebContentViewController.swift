@@ -116,10 +116,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         longPressGestureRecognizer.delegate = self
         webView.addGestureRecognizer(longPressGestureRecognizer)
         
-        // Context Menu
-        let saveVideoURLMenuItem = UIMenuItem(title: "Save Video URL", action: #selector(saveVideoURL))
-        UIMenuController.shared.menuItems = [saveVideoURLMenuItem]
-        
     }
     
     override func viewDidLayoutSubviews() {
@@ -326,43 +322,45 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         
         if sender.state == UIGestureRecognizerState.recognized {
-            let pressPosition = sender.location(in: webView)
-            let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
             
-            if imageSRC != "" {
-                let saveContentVC = SaveContentViewController()
-                saveContentVC.modalPresentationStyle = .formSheet
-                saveContentVC.student = student
-                saveContentVC.contentURL = imageSRC
-                saveContentVC.contentType = ContentType.Image
-                self.present(saveContentVC, animated: true, completion: nil)
+            let saveContentVC = SaveContentViewController()
+            saveContentVC.modalPresentationStyle = .formSheet
+            saveContentVC.student = student
+            
+            if let urlRequest = webView.request, let contentURL = urlRequest.url {
+                
+                let contentURLString = contentURL.absoluteString
+                
+                if let videoID = videoIDFromYouTubeURL(contentURL) {
+                    
+                    saveContentVC.contentURL = contentURLString
+                    saveContentVC.contentType = ContentType.Video
+                    saveContentVC.youtubeVideoID = videoID
+                    self.present(saveContentVC, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let pressPosition = sender.location(in: webView)
+                    
+                    if let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));") {
+                        
+                        saveContentVC.contentURL = imageSRC
+                        saveContentVC.contentType = ContentType.Image
+                        self.present(saveContentVC, animated: true, completion: nil)
+                        
+                    }
+                    
+                }
+                
             }
+            
         }
     }
+    
+    // MARK: - GestureRecognizerDelegate
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     
-    // Save Video URL
-    
-    func saveVideoURL() {
-        let saveContentVC = SaveContentViewController()
-        saveContentVC.modalPresentationStyle = .formSheet
-        saveContentVC.student = student
-        
-        guard let urlRequest = webView.request, let contentURL = urlRequest.url else {
-            return
-        }
-        
-        let contentURLString = contentURL.absoluteString
-    
-        saveContentVC.contentURL = contentURLString
-        saveContentVC.contentType = ContentType.Video
-        
-        let videoID = videoIDFromYouTubeURL(contentURL)
-        saveContentVC.youtubeVideoID = videoID
-        
-        self.present(saveContentVC, animated: true, completion: nil)
-    }
 }
