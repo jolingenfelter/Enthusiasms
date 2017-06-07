@@ -10,9 +10,7 @@ import UIKit
 import CoreData
 
 class SaveContentViewController: UIViewController {
-    
-    var saveContentButton = UIButton()
-    var titleLabel = UILabel()
+
     var content : Content?
     var student: Student?
     var contentURL: String?
@@ -28,12 +26,44 @@ class SaveContentViewController: UIViewController {
         return textField
         
     }()
+    
+    lazy var titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Content Title:"
+        label.textColor = UIColor.white
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
+    lazy var saveContentButton: UIButton = {
+        
+        let button = UIButton()
+        button.layer.cornerRadius = 5.0
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.setTitle("Save Content", for: .normal)
+        button.addTarget(self, action: #selector(saveContentPressed), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         
-        // NavBar Setup
+        navBarSetup()
+        
+        view.addSubview(contentTitleTextField)
+        
+    }
+    
+    func navBarSetup() {
+    
         let navBarRect = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 40)
         let navBar = UINavigationBar(frame: navBarRect)
         
@@ -44,25 +74,6 @@ class SaveContentViewController: UIViewController {
         
         view.addSubview(navBar)
         
-        // Label Setup
-        titleLabel.text = "Content Title:"
-        titleLabel.textColor = UIColor.white
-        
-        view.addSubview(titleLabel)
-        
-        // Button Setup
-        saveContentButton.layer.cornerRadius = 5.0
-        saveContentButton.layer.masksToBounds = true
-        saveContentButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        saveContentButton.setTitle("Save Content", for: .normal)
-        saveContentButton.addTarget(self, action: #selector(saveContentPressed), for: .touchUpInside)
-        
-        view.addSubview(saveContentButton)
-        
-        // TextFieldSetup
-        
-        view.addSubview(contentTitleTextField)
-
     }
 
     override func didReceiveMemoryWarning() {
