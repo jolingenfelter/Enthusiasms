@@ -10,7 +10,21 @@ import UIKit
 
 class CreatePasswordViewController: UIViewController {
     
-    let titleLabel = UILabel()
+    lazy var titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.numberOfLines = 0
+        let welcome = "Welcome to Enthusiasms!"
+        let createPassword = "Create a password to get started."
+        label.text = welcome + "\n" + createPassword
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.font = label.font.withSize(40)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
     
     let indentedTextField1 = IndentedTextField(placeHolder: "Password", isSecureEntry: true, tag: 1)
     let indentedTextField2 = IndentedTextField(placeHolder: "Confirm password", isSecureEntry: true, tag: 2)
@@ -19,6 +33,7 @@ class CreatePasswordViewController: UIViewController {
         
         let textField = self.indentedTextField1.textField
         textField.delegate = self
+        self.view.addSubview(textField)
         return textField
         
     }()
@@ -27,45 +42,35 @@ class CreatePasswordViewController: UIViewController {
         
         let textField = self.indentedTextField2.textField
         textField.delegate = self
+        self.view.addSubview(textField)
         return textField
         
     }()
     
-    let getStartedButton = UIButton()
+    lazy var getStartedButton: UIButton = {
+        
+        let button = UIButton()
+        button.layer.cornerRadius = 5.0
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.setTitle("Get Started!", for: .normal)
+        button.addTarget(self, action: #selector(CreatePasswordViewController.getStartedButtonPressed), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         
-        // Label Setup
-        titleLabel.numberOfLines = 0
-        let welcome = "Welcome to Enthusiasms!"
-        let createPassword = "Create a password to get started."
-        titleLabel.text = welcome + "\n" + createPassword
-        titleLabel.textAlignment = .center
-        titleLabel.textColor = UIColor.white
-        titleLabel.font = titleLabel.font.withSize(40)
-        view.addSubview(titleLabel)
-
-        
-        // Button Setup
-        getStartedButton.layer.cornerRadius = 5.0
-        getStartedButton.layer.masksToBounds = true
-        getStartedButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        getStartedButton.setTitle("Get Started!", for: .normal)
-        getStartedButton.addTarget(self, action: #selector(CreatePasswordViewController.getStartedButtonPressed), for: .touchUpInside)
-        
-        view.addSubview(getStartedButton)
-        
     }
     
     override func viewDidLayoutSubviews() {
         
         super.viewDidLayoutSubviews()
-        
-        self.view.addSubview(createPasswordTextField)
-        self.view.addSubview(confirmPasswordTextField)
         
         setLabelConstraints()
         setTextFieldConstraints()
@@ -98,11 +103,9 @@ class CreatePasswordViewController: UIViewController {
         let textFieldHeight: CGFloat = 40
         let textFieldWidth: CGFloat = 250
         
-        createPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        
         
         // createPasswordTextField constraints
+        createPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             createPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -112,7 +115,8 @@ class CreatePasswordViewController: UIViewController {
             ])
         
         // confirmPasswordTextField constraints
-
+        confirmPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             confirmPasswordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             confirmPasswordTextField.topAnchor.constraint(equalTo: createPasswordTextField.bottomAnchor, constant: 25),
