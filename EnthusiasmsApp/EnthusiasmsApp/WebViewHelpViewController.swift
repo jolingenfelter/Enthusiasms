@@ -95,6 +95,8 @@ class WebViewHelpViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         
+        super.viewDidLayoutSubviews()
+        
         // NavigationBar Constraints
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         

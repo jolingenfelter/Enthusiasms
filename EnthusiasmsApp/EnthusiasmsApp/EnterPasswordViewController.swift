@@ -26,13 +26,19 @@ class EnterPasswordViewController: CreatePasswordViewController {
     }
     
     override func getStartedButtonPressed() {
+        
         if self.confirmPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
+            
             let homeViewController = HomeViewController()
             let navigationController = UINavigationController(rootViewController: homeViewController)
+            
             self.confirmPasswordTextField.text = nil
             self.present(navigationController, animated: true, completion: nil)
+            
         } else {
+            
             presentAlert(title: "Incorrect Password", message: "The password you have entered is incorrect")
+            
         }
     }
     

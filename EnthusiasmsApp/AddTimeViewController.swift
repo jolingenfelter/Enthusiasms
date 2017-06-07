@@ -49,6 +49,8 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     override func viewDidLayoutSubviews() {
         
+        super.viewDidLayoutSubviews()
+        
         // NavBar Constraints
         navigationBar.translatesAutoresizingMaskIntoConstraints = false
         

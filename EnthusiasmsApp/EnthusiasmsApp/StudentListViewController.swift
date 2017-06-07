@@ -80,9 +80,13 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     func presentInstructionLabel() {
         
         if self.fetchedResultsController.fetchedObjects?.count == 0 {
+            
             instructionsLabel.isHidden = false
+            
         } else {
+            
             instructionsLabel.isHidden = true
+            
         }
     }
 
@@ -132,8 +136,8 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         let student = fetchedResultsController.object(at: indexPath)
-        DataController.sharedInstance.managedObjectContext.delete(student)
         
+        DataController.sharedInstance.managedObjectContext.delete(student)
         DataController.sharedInstance.saveContext()
     }
 
@@ -164,6 +168,7 @@ class StudentListViewController: UITableViewController, NSFetchedResultsControll
         settingsMenu.modalPresentationStyle = UIModalPresentationStyle.popover
         let popover = settingsMenu.popoverPresentationController! as UIPopoverPresentationController
         popover.barButtonItem = settingsButton
+        
         settingsMenu.preferredContentSize = CGSize(width: 150, height: 50)
         settingsMenu.popoverPresentationController?.permittedArrowDirections = .up
         

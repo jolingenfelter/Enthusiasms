@@ -34,8 +34,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         
-         viewSetup()
-        
         // Timer
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         updateTimer()
@@ -66,11 +64,14 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(true)
         navBarSetup()
     }
     
-    func viewSetup() {
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
         
         DispatchQueue.main.async {
             self.imageScrollView.displayImage(self.image)

@@ -27,15 +27,24 @@ class EditContentTitleViewController: SaveContentViewController {
     }
     
     override func saveContentPressed() {
+        
         if contentTitleTextField.text == "" {
+            
             let alert = UIAlertController(title: "Required Field", message: "Please enter a title for this content", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            
             alert.addAction(action)
+            
             self.present(alert, animated: true, completion: nil)
+            
         } else {
+            
             content?.title = contentTitleTextField.text
+            
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentTitleUpdate"), object: nil)
+            
             DataController.sharedInstance.saveContext()
+            
             self.dismiss(animated: true, completion: nil)
         }
     }

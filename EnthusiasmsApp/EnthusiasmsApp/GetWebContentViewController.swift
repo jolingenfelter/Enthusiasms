@@ -116,6 +116,9 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     }
     
     override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
+        
         textFieldConstraints()
         progressViewConstraints()
         webViewConstraints()
@@ -128,7 +131,9 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(animated)
+        
         UIMenuController.shared.menuItems = nil
         webView.loadHTMLString("", baseURL: nil)
     }

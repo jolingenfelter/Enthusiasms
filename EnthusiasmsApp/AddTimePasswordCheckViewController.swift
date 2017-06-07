@@ -22,6 +22,7 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     }()
     
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
         
@@ -64,7 +65,9 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
     }
     
     override func getStartedButtonPressed() {
+        
         if self.confirmPasswordTextField.text?.hash == UserDefaults.standard.value(forKey: "password") as? Int {
+            
             let addTimeViewController = AddTimeViewController()
             addTimeViewController.modalPresentationStyle = .formSheet
             self.confirmPasswordTextField.text = nil
@@ -72,13 +75,17 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "addTimePasswordCheck"), object: nil)
             
         } else {
+            
             presentAlert(title: "Incorrect Password", message: "The password you have entered is incorrect")
+            
         }
     }
     
     func cancelPressed() {
+        
         NotificationCenter.default.post(name: NSNotification.Name("cancelTimeUpdate"), object: nil)
         self.dismiss(animated: true, completion: nil)
+        
     }
 
 }

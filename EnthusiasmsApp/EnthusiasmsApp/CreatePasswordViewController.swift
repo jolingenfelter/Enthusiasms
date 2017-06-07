@@ -133,10 +133,15 @@ class CreatePasswordViewController: UIViewController {
     }
     
     func getStartedButtonPressed() {
+        
         if createPasswordTextField.text == "" || confirmPasswordTextField.text == "" {
+            
             presentAlert(title: "Required", message: "Input and confirm password to continue")
+            
         } else if createPasswordTextField.text != confirmPasswordTextField.text {
+            
             presentAlert(title: "Incorrect password", message: "Passwords do not match")
+            
         } else if createPasswordTextField.text == confirmPasswordTextField.text {
             
             let hashedpassword = createPasswordTextField.text?.hash
@@ -154,6 +159,7 @@ class CreatePasswordViewController: UIViewController {
     // MARK: Helper Methods
     
     func presentAlert(title: String, message: String) {
+        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alertController.addAction(okAction)

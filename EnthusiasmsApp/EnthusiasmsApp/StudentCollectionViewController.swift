@@ -40,6 +40,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
         navigationBarSetup()
         
@@ -57,6 +58,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        
         super.viewWillDisappear(animated)
         
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
@@ -69,11 +71,16 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     }
     
     override func navigationBarSetup() {
+        
         let homeButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(StudentCollectionViewController.homePressed))
-        self.navigationItem.rightBarButtonItem = homeButton
+        
+        navigationItem.rightBarButtonItem = homeButton
+        
         addTimeButton.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
         addTimeButton.setTitleColor(.black, for: .normal)
+        
         let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
+        
         self.navigationItem.leftBarButtonItem = addTimeBarButton
     
     }

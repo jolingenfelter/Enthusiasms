@@ -165,6 +165,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         popover.barButtonItem = settingsBarButton
         settingsMenu.preferredContentSize = CGSize(width: 200, height: 50)
         settingsMenu.popoverPresentationController?.permittedArrowDirections = .up
+        
         self.present(settingsMenu, animated: true, completion: nil)
     }
     
@@ -184,8 +185,10 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func contentFromWebPressed() {
+        
         let getContentView = GetWebContentViewController(student: student)
         let navController = UINavigationController(rootViewController: getContentView)
+        
         self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(navController, animated: true, completion: nil)
     }
@@ -194,16 +197,21 @@ class TeacherCollectionViewController: UICollectionViewController {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 40, left: 10, bottom: 10, right: 10)
+        
         let addContentFromLibraryVC = AddContentFromLibraryViewController(student: student, flowLayout: flowLayout)
 
         let navigationController = UINavigationController(rootViewController: addContentFromLibraryVC)
+        
         self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(navigationController, animated: true, completion: nil)
     }
     
     func homePressed() {
+        
         if let navController = self.navigationController {
+            
             navController.popToRootViewController(animated: true)
+            
         }
     }
 
@@ -316,11 +324,14 @@ class TeacherCollectionViewController: UICollectionViewController {
     }
     
     func changeTitle () {
+        
         let editContentViewController = EditContentTitleViewController()
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
+        
         self.presentedViewController?.dismiss(animated: false, completion: nil)
         self.present(editContentViewController, animated: true, completion: nil)
+        
     }
     
     func updateTitle () {

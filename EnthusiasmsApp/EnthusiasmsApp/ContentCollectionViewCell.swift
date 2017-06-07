@@ -15,6 +15,8 @@ class ContentCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         
+        super.layoutSubviews()
+        
         self.contentView.addSubview(titleLabel)
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .white

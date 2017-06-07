@@ -28,9 +28,12 @@ class StudentListPopover: StudentListViewController {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let student = self.fetchedResultsController.object(at: indexPath)
         selectedStudent = student
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
+        
         self.dismiss(animated: false, completion: nil)
     }
 

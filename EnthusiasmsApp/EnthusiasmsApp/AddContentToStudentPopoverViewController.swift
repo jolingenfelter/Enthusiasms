@@ -23,9 +23,12 @@ class AddContentToStudentPopoverViewController: StudentListPopover {
     
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let student = self.fetchedResultsController.object(at: indexPath)
         selectedStudent = student
+        
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
+        
         self.dismiss(animated: true, completion: nil)
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

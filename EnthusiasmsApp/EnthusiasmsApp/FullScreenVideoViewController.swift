@@ -50,6 +50,7 @@ class FullScreenVideoViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(true)
         
         // Initial Timer Setup
@@ -63,17 +64,23 @@ class FullScreenVideoViewController: UIViewController {
     }
     
     func navBarSetup() {
+        
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
+        
         if rewardTime > 0 {
             addTimeButton.addTarget(self, action: #selector(addTimePressed), for: .touchUpInside)
             addTimeButton.setTitleColor(.black, for: .normal)
+            
             let addTimeBarButton = UIBarButtonItem.init(customView: addTimeButton)
             self.navigationItem.leftBarButtonItem = addTimeBarButton
+            
         }
     }
     
     override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
         
         // PlayerView
         youtubePlayerView.translatesAutoresizingMaskIntoConstraints = false

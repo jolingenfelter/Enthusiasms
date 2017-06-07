@@ -58,6 +58,9 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(true)
+        
         self.navigationController?.isNavigationBarHidden = true
         
         let managedObjectContext = DataController.sharedInstance.managedObjectContext
@@ -71,6 +74,9 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillLayoutSubviews() {
+        
+        super.viewWillLayoutSubviews()
+        
         labelConstraints()
         buttonConstraints()
     }
@@ -127,29 +133,41 @@ class HomeViewController: UIViewController {
     func childPressed() {
         
         if fetchedStudents.count == 0 {
+            
             let alertController = UIAlertController(title: "No Children", message: "Enter as a caretaker to get started", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            
             alertController.addAction(okAction)
+            
             self.present(alertController, animated: true, completion: nil)
+            
         } else {
+            
             studentListPopover.preferredContentSize = CGSize(width: 200, height: 200)
             studentListPopover.modalPresentationStyle = UIModalPresentationStyle.popover
             studentListPopover.popoverPresentationController?.permittedArrowDirections = .left
+            
             let popover = studentListPopover.popoverPresentationController! as UIPopoverPresentationController
             popover.sourceView = self.childButton
             popover.sourceRect = CGRect(x: 300, y: 50, width: 0, height: 0)
+            
             self.navigationController?.present(studentListPopover, animated: true, completion: nil)
             }
         
     }
     
     func studentSelected() {
+        
         let timerViewController = SetTimerViewController()
         timerViewController.student = studentListPopover.selectedStudent
+        
         self.navigationController?.pushViewController(timerViewController, animated: true)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
+        
+        super.viewDidDisappear(true)
+        
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
