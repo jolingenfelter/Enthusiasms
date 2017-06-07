@@ -109,6 +109,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     // MARK: NavBar Setup
     
     func navigationBarSetup() {
+        
         self.navigationItem.leftItemsSupplementBackButton = true
         settingsBarButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsPressed))
         
@@ -219,47 +220,6 @@ class TeacherCollectionViewController: UICollectionViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: UICollectionViewDataSource
-
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
-        return 1
-    }
-
-
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return contentsArray.count
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
-        
-        let content = contentsArray[indexPath.item]
-        cell.titleLabel.text = content.title!
-        
-        guard let imageName = content.uniqueFileName else {
-            let imageSaver = ContentImageSaver(content: content)
-            imageSaver.downloadNameAndSaveImage()
-            return cell
-        }
-    
-            cell.thumbnail.image = getImage(imageName: imageName)
-        
-
-        return cell
-        
-    }
-
-    // MARK: UICollectionViewDelegate
-    
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        selectedContent = contentsArray[indexPath.row]
-        showMenufor(objectAtIndexPath: indexPath)
-    }
     
     // MARK: Settings Menu
     
@@ -338,4 +298,47 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.collectionView?.reloadData()
     }
 
+}
+
+ // MARK: UICollectionViewDataSource & Delegate
+
+extension TeacherCollectionViewController {
+    
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        return 1
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return contentsArray.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
+        
+        let content = contentsArray[indexPath.item]
+        cell.titleLabel.text = content.title!
+        
+        guard let imageName = content.uniqueFileName else {
+            let imageSaver = ContentImageSaver(content: content)
+            imageSaver.downloadNameAndSaveImage()
+            return cell
+        }
+        
+        cell.thumbnail.image = getImage(imageName: imageName)
+        
+        
+        return cell
+        
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        selectedContent = contentsArray[indexPath.row]
+        showMenufor(objectAtIndexPath: indexPath)
+    }
+    
 }
