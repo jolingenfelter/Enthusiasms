@@ -10,24 +10,35 @@ import UIKit
 
 class ContentCollectionViewCell: UICollectionViewCell {
     
-    let titleLabel = UILabel()
-    let thumbnail = UIImageView()
+    lazy var titleLabel: UILabel = {
+        
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        self.contentView.addSubview(label)
+        
+        return label
+        
+    }()
+    
+    lazy var thumbnail: UIImageView = {
+        
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 10
+        imageView.layer.masksToBounds = true
+        self.contentView.addSubview(imageView)
+        
+        return imageView
+        
+    }()
     
     override func layoutSubviews() {
         
         super.layoutSubviews()
-        
-        self.contentView.addSubview(titleLabel)
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .white
-        titleLabel.textAlignment = .center
-        titleLabel.adjustsFontSizeToFitWidth = true
-        
-        self.contentView.addSubview(thumbnail)
-        thumbnail.contentMode = .scaleAspectFill
-        thumbnail.clipsToBounds = true
-        thumbnail.layer.cornerRadius = 10
-        thumbnail.layer.masksToBounds = true
         
         // TitleLabel Constraints
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
