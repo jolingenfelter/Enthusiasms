@@ -44,7 +44,6 @@
 		9EC774361E1DA544008B33B5 /* WebViewHelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */; };
 		9ED0BDDB1DA3F24C00A8A47B /* CreatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */; };
 		9ED5D9C81EC7C3AC00E0CF64 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED5D9C71EC7C3AC00E0CF64 /* ImageScrollView.swift */; };
-		9EDB77341EE6B1080049B876 /* WebViewHTML.html in Resources */ = {isa = PBXBuildFile; fileRef = 9EDB77331EE6B1080049B876 /* WebViewHTML.html */; };
 		9EDFF1D01DDE10600028FB06 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */; };
 		9EDFF1D41DE1F9530028FB06 /* AllContentCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */; };
 		9EDFF1D61DE262440028FB06 /* AddContentToStudentPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */; };
@@ -97,7 +96,6 @@
 		9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewHelpViewController.swift; sourceTree = "<group>"; };
 		9ED0BDDA1DA3F24C00A8A47B /* CreatePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CreatePasswordViewController.swift; path = EnthusiasmsApp/CreatePasswordViewController.swift; sourceTree = "<group>"; };
 		9ED5D9C71EC7C3AC00E0CF64 /* ImageScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
-		9EDB77331EE6B1080049B876 /* WebViewHTML.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewHTML.html; sourceTree = "<group>"; };
 		9EDFF1CF1DDE10600028FB06 /* ImageGetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
 		9EDFF1D31DE1F9530028FB06 /* AllContentCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllContentCollectionViewController.swift; sourceTree = "<group>"; };
 		9EDFF1D51DE262440028FB06 /* AddContentToStudentPopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddContentToStudentPopoverViewController.swift; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 				9EFE8CC01DBBF3CF00AA57EF /* GetWebContentViewController.swift */,
 				9E55B5741DD623B100934E86 /* SaveContentViewController.swift */,
 				9EC774351E1DA544008B33B5 /* WebViewHelpViewController.swift */,
-				9EDB77331EE6B1080049B876 /* WebViewHTML.html */,
 			);
 			name = "WebVC's";
 			sourceTree = "<group>";
@@ -385,7 +382,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EB4F4C51D8E120500E81C74 /* LaunchScreen.storyboard in Resources */,
-				9EDB77341EE6B1080049B876 /* WebViewHTML.html in Resources */,
 				9EB4F4C21D8E120500E81C74 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

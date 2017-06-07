@@ -101,13 +101,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         navigationItem.rightBarButtonItem = cancelButton
         let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
         navigationItem.leftBarButtonItem = helpButton
-        
-//        // Disable user text selection
-//        if let file = Bundle.main.path(forResource: "WebViewHTML", ofType: "html") {
-//            if let html = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) {
-//                webView.loadHTMLString(html, baseURL: nil)
-//            }
-//        }
 
         // WebView Setup
         webView.scalesPageToFit = true
@@ -212,6 +205,10 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         webViewIsLoaded = true
         progressView.isHidden = true
         updateButtons()
+        
+        // Disable user text selection
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none';")
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none';")
         
     }
     
