@@ -11,46 +11,60 @@ import UIKit
 class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     var student: Student?
-    let timePicker = UIPickerView()
-    let startButton = UIButton()
     var rewardTime: Int = 0
     let minutesArray = [Int](1...60)
     
+    lazy var timePicker: UIPickerView = {
+        
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        picker.backgroundColor = UIColor.white
+        self.view.addSubview(picker)
+        
+        return picker
+        
+    }()
+    
+    lazy var startButton: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Start!", for: .normal)
+        button.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         
         if let student = student {
+            
             if let studentName = student.name {
                 self.title = "Set reward time for \(studentName)"
             }
         }
         
-        // TimePicker setup
-        timePicker.delegate = self
-        timePicker.dataSource = self
-        timePicker.backgroundColor = UIColor.white
+        // RewardTime
         rewardTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
-        view.addSubview(timePicker)
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
+
         
-        // Button
-        startButton.setTitle("Start!", for: .normal)
-        startButton.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
-        startButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        startButton.layer.cornerRadius = 5
-        startButton.layer.masksToBounds = true
-        view.addSubview(startButton)
     }
     
     override func viewDidLayoutSubviews() {
-        datePickerConstraints()
+        pickerSetup()
         buttonConstraints()
     }
     
-    func datePickerConstraints() {
+    func pickerSetup() {
         
         timePicker.translatesAutoresizingMaskIntoConstraints = false
         
