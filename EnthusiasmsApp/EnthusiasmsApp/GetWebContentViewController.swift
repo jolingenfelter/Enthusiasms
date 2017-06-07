@@ -14,7 +14,7 @@ enum ContentType: Int16 {
     case Video = 2
 }
 
-class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFieldDelegate, UIGestureRecognizerDelegate {
+class GetWebContentViewController: UIViewController {
     
     var webView = UIWebView()
     let progressView = UIProgressView()
@@ -38,6 +38,7 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         textField.autocapitalizationType = .none
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
+        
         return textField
         
     }()
@@ -95,12 +96,8 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        
-        // NavBar Setup
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
-        navigationItem.rightBarButtonItem = cancelButton
-        let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
-        navigationItem.leftBarButtonItem = helpButton
+    
+        navBarSetup()
 
         // WebView Setup
         webView.scalesPageToFit = true
@@ -112,6 +109,16 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         longPressGestureRecognizer.addTarget(self, action: #selector(longPressAction))
         longPressGestureRecognizer.delegate = self
         webView.addGestureRecognizer(longPressGestureRecognizer)
+        
+    }
+    
+    func navBarSetup() {
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        navigationItem.rightBarButtonItem = cancelButton
+        let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
+        navigationItem.leftBarButtonItem = helpButton
+
         
     }
     
@@ -192,39 +199,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             ])
     }
     
-    // MARK: WebView Delegate
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
-        
-        progressView.isHidden = false
-        progressView.progress = 0.0
-        webViewIsLoaded = false
-        loadTimer = Timer.scheduledTimer(timeInterval: 0.01667, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
-        updateButtons()
-        
-    }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        
-        self.urlTextField.text = webView.request?.url?.absoluteString
-        webViewIsLoaded = true
-        progressView.isHidden = true
-        updateButtons()
-        
-        // Disable user text selection
-        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none';")
-        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none';")
-        
-    }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        
-        webViewIsLoaded = true
-        progressView.isHidden = true
-        updateButtons()
-        
-    }
-    
     // MARK: Timer
     
     func timerCallBack() {
@@ -250,54 +224,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             
         }
     }
-    
-    // MARK: TextField Delegate
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        urlTextField.resignFirstResponder()
-        
-        if var urlString = urlTextField.text {
-            
-            if urlString.contains(" ") {
-                let searchString = urlString.replacingOccurrences(of: " ", with: "+")
-                urlString = "google.com/search?q=\(searchString)"
-            }
-            
-            let characterSet = "-0123456789."
-            
-            if !isAnyCharacter(from: characterSet, containedIn: urlString) {
-                let searchString = urlString
-                urlString = "google.com/search?q=\(searchString)"
-            }
-            
-            var userURL = URL(string: "")
-            let url = URL(string: urlString)
-            
-            if var url = url {
-                
-                if (url.scheme == nil) {
-                    
-                    url = URL(string: "http://\(url)")!
-                    userURL = url
-                    
-                } else {
-                    
-                    userURL = url
-                    
-                }
-                
-                let request = URLRequest(url: userURL!)
-                webView.loadRequest(request)
-            }
-        }
-        
-        return false
-    }
-    
-    func isAnyCharacter(from characterSetString: String, containedIn string: String) -> Bool {
-        return Set(characterSetString.characters).isDisjoint(with: Set(string.characters)) == false
-    }
-
     
     // MARK: BarButtonItem Actions
     
@@ -381,11 +307,103 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
             
         }
     }
+}
+
+// MARK: UIWebViewDelegate
+
+extension GetWebContentViewController: UIWebViewDelegate {
     
-    // MARK: - GestureRecognizerDelegate
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        
+        progressView.isHidden = false
+        progressView.progress = 0.0
+        webViewIsLoaded = false
+        loadTimer = Timer.scheduledTimer(timeInterval: 0.01667, target: self, selector: #selector(timerCallBack), userInfo: nil, repeats: true)
+        updateButtons()
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        
+        self.urlTextField.text = webView.request?.url?.absoluteString
+        webViewIsLoaded = true
+        progressView.isHidden = true
+        updateButtons()
+        
+        // Disable user text selection
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none';")
+        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none';")
+        
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        
+        webViewIsLoaded = true
+        progressView.isHidden = true
+        updateButtons()
+        
+    }
+    
+}
+
+ // MARK: TextField Delegate
+
+extension GetWebContentViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        urlTextField.resignFirstResponder()
+        
+        if var urlString = urlTextField.text {
+            
+            if urlString.contains(" ") {
+                let searchString = urlString.replacingOccurrences(of: " ", with: "+")
+                urlString = "google.com/search?q=\(searchString)"
+            }
+            
+            let characterSet = "-0123456789."
+            
+            if !isAnyCharacter(from: characterSet, containedIn: urlString) {
+                let searchString = urlString
+                urlString = "google.com/search?q=\(searchString)"
+            }
+            
+            var userURL = URL(string: "")
+            let url = URL(string: urlString)
+            
+            if var url = url {
+                
+                if (url.scheme == nil) {
+                    
+                    url = URL(string: "http://\(url)")!
+                    userURL = url
+                    
+                } else {
+                    
+                    userURL = url
+                    
+                }
+                
+                let request = URLRequest(url: userURL!)
+                webView.loadRequest(request)
+            }
+        }
+        
+        return false
+    }
+    
+    func isAnyCharacter(from characterSetString: String, containedIn string: String) -> Bool {
+        return Set(characterSetString.characters).isDisjoint(with: Set(string.characters)) == false
+    }
+
+}
+
+// MARK: - GestureRecognizerDelegate
+
+extension GetWebContentViewController: UIGestureRecognizerDelegate {
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+    
     
 }
