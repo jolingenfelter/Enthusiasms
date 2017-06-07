@@ -8,43 +8,50 @@
 
 import UIKit
 
-class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class AddTimeViewController: UIViewController {
     
-    let timePicker = UIPickerView()
     var rewardTime = 0
     var additionalTime = 0
     var updatedTime = 0
-    let updateTimeButton = UIButton()
     let minutesArray = [Int](1...60)
     let navigationBar = UINavigationBar()
+    
+    lazy var timePicker: UIPickerView = {
+        
+        let picker = UIPickerView()
+        picker.dataSource = self
+        picker.delegate = self
+        picker.backgroundColor = UIColor.white
+        self.view.addSubview(picker)
+        
+        return picker
+        
+    }()
+    
+    lazy var updateTimeButton: UIButton = {
+        
+        let button = UIButton()
+        button.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        button.setTitle("Update Time", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(updateTime), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
         
-        // NavBar Setup
-        view.addSubview(navigationBar)
-        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
-        let navItem = UINavigationItem()
-        navItem.leftBarButtonItem = cancelButton
-        navigationBar.items = [navItem]
+        navBarSetup()
         
-        // Time Picker Setup
-        timePicker.dataSource = self
-        timePicker.delegate = self
-        timePicker.backgroundColor = UIColor.white
+        // Set additional time
         additionalTime = minutesArray[self.timePicker.selectedRow(inComponent: 0)] * 60
-        view.addSubview(timePicker)
-        
-        // Button Setup
-        updateTimeButton.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
-        updateTimeButton.setTitle("Update Time", for: .normal)
-        updateTimeButton.setTitleColor(.white, for: .normal)
-        updateTimeButton.layer.cornerRadius = 5
-        updateTimeButton.layer.masksToBounds = true
-        updateTimeButton.addTarget(self, action: #selector(updateTime), for: .touchUpInside)
-        view.addSubview(updateTimeButton)
-        
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -83,6 +90,16 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             updateTimeButton.widthAnchor.constraint(equalToConstant: 200),
             ])
     }
+    
+    func navBarSetup() {
+        
+        view.addSubview(navigationBar)
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
+        let navItem = UINavigationItem()
+        navItem.leftBarButtonItem = cancelButton
+        navigationBar.items = [navItem]
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -105,7 +122,11 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         self.dismiss(animated: true, completion: nil)
     }
     
-    // MARK: PickerView DataSource and Delegate
+}
+
+// MARK: PickerView DataSource and Delegate
+
+extension AddTimeViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
@@ -139,4 +160,5 @@ class AddTimeViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         additionalTime = minutesArray[row] * 60
     }
 
+    
 }
