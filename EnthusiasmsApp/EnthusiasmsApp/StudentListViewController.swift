@@ -11,9 +11,29 @@ import CoreData
 
 class StudentListViewController: UITableViewController {
     
-    var settingsButton = UIBarButtonItem()
-    var addButton = UIBarButtonItem()
-    var allContentButton = UIBarButtonItem()
+    lazy var settingsButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
+        
+        return button
+        
+    }()
+    
+    lazy var addButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
+        
+        return button
+        
+    }()
+    
+    lazy var allContentButton: UIBarButtonItem = {
+        
+        let button = UIBarButtonItem(title: "All Content", style: .plain, target: self, action: #selector(allContentPressed))
+        
+        return button
+        
+    }()
     
     lazy var instructionsLabel: UILabel = {
         
@@ -76,10 +96,6 @@ class StudentListViewController: UITableViewController {
     }
     
     func navBarSetup() {
-        
-        settingsButton = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
-        addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
-        allContentButton = UIBarButtonItem(title: "All Content", style: .plain, target: self, action: #selector(allContentPressed))
         
         let leftSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         leftSpaceItem.width = 20
