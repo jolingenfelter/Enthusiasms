@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SetTimerViewController: UIViewController {
     
     var student: Student?
     var rewardTime: Int = 0
@@ -105,7 +105,11 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: PickerView DataSource and Delegate
+}
+
+ // MARK: PickerView DataSource and Delegate
+
+extension SetTimerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
@@ -140,4 +144,6 @@ class SetTimerViewController: UIViewController, UIPickerViewDelegate, UIPickerVi
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
     }
+
+    
 }
