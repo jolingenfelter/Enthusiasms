@@ -11,7 +11,7 @@ import CoreData
 
 public let reuseIdentifier = "Cell"
 
-class AllContentCollectionViewController: UICollectionViewController, NSFetchedResultsControllerDelegate {
+class AllContentCollectionViewController: UICollectionViewController {
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
         let request: NSFetchRequest<Content> = Content.fetchRequest()
@@ -26,8 +26,19 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
     let menu = AllContentMenu()
     var selectedContent: Content?
     let studentListPopover = AddContentToStudentPopoverViewController()
-    let instructionsLabel = UILabel()
-
+    
+    lazy var instructionsLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Tap '+' to add content"
+        label.textColor = UIColor.white
+        label.font = label.font.withSize(40)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,11 +70,17 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let addContentButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addContent))
         self.navigationItem.rightBarButtonItem = addContentButton
         
-        // InstructionsLabel
-        instructionsLabel.text = "Tap '+' to add content"
-        instructionsLabel.textColor = UIColor.white
-        instructionsLabel.font = instructionsLabel.font.withSize(40)
-        self.view.addSubview(instructionsLabel)
+        presentInstructionLabel()
+
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
+    }
+
+    override func viewDidLayoutSubviews() {
+        
+        super.viewDidLayoutSubviews()
         
         instructionsLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -73,15 +90,10 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let widthConstraint = instructionsLabel.widthAnchor.constraint(equalToConstant: 400)
         
         NSLayoutConstraint.activate([horizontalConstraint, verticalConstraint, heightConstraint, widthConstraint])
-        
-        presentInstructionLabel()
 
+        
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "AddContentToSelectedStudent"), object: nil)
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -101,28 +113,32 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         let navigationController = UINavigationController(rootViewController: getWebContentViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
+        
+}
 
-    // MARK: UICollectionViewDataSource
+// MARK: UITableViewDataSource & Delegate
 
+extension AllContentCollectionViewController {
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return self.fetchedResultsController.fetchedObjects?.count ?? 0
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ContentCollectionViewCell
-    
+        
         let content = fetchedResultsController.object(at: indexPath) as Content
         
         guard let imageName = content.uniqueFileName else {
-                let imageSaver = ContentImageSaver(content: content)
-                imageSaver.downloadNameAndSaveImage()
+            let imageSaver = ContentImageSaver(content: content)
+            imageSaver.downloadNameAndSaveImage()
             return cell
         }
         
@@ -131,13 +147,13 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         return cell
     }
-
+    
     // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedContent = fetchedResultsController.object(at: indexPath)
-
+        
         show(menu: menu, ofSize: CGSize(width: 200, height: 220), forCellAtIndexPath: indexPath)
     }
     
@@ -156,7 +172,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         self.present(menu, animated: true, completion: nil)
     }
     
-    // MARK: Button Setup
+    // MARK: Menu Button Setup
     
     func menuButtonSetup() {
         
@@ -182,7 +198,7 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
-    
+        
         DataController.sharedInstance.saveContext()
     }
     
@@ -226,13 +242,6 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         self.present(deleteAlert, animated: true, completion: nil)
     }
     
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-        presentInstructionLabel()
-        collectionView?.reloadData()
-        
-    }
-    
     func viewContent() {
         
         guard let selectedContent = selectedContent else {
@@ -241,9 +250,22 @@ class AllContentCollectionViewController: UICollectionViewController, NSFetchedR
         
         menu.dismiss(animated: false, completion: nil)
         viewFullScreen(content: selectedContent, from: self)
-    
-    }
         
+    }
+
+}
+
+// MARK: NSFetchedResultsControllerDelegate
+
+extension AllContentCollectionViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        
+        presentInstructionLabel()
+        collectionView?.reloadData()
+        
+    }
+    
 }
 
 
