@@ -89,7 +89,6 @@ class WebViewHelpViewController: UIViewController {
         let cancelButton = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closePressed))
         navigationItem.leftBarButtonItem = cancelButton
         self.view.addSubview(navigationBar)
-
         
         self.view.addSubview(videoDescription)
     }

@@ -101,8 +101,14 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
         navigationItem.rightBarButtonItem = cancelButton
         let helpButton = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(helpPressed))
         navigationItem.leftBarButtonItem = helpButton
-
         
+//        // Disable user text selection
+//        if let file = Bundle.main.path(forResource: "WebViewHTML", ofType: "html") {
+//            if let html = try? String(contentsOfFile: file, encoding: String.Encoding.utf8) {
+//                webView.loadHTMLString(html, baseURL: nil)
+//            }
+//        }
+
         // WebView Setup
         webView.scalesPageToFit = true
         let url = URL(string: "http://www.google.com")
@@ -332,8 +338,6 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
     
     // MARK: Save Content
     
-    // Save Image
-    
     func longPressAction(sender: UILongPressGestureRecognizer) {
         
         webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
@@ -359,7 +363,9 @@ class GetWebContentViewController: UIViewController, UIWebViewDelegate, UITextFi
                     
                     let pressPosition = sender.location(in: webView)
                     
-                    if let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));") {
+                    let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
+                    
+                    if imageSRC != "" {
                         
                         saveContentVC.contentURL = imageSRC
                         saveContentVC.contentType = ContentType.Image

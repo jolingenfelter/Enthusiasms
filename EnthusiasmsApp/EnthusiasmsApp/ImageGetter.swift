@@ -21,6 +21,7 @@ class ContentImageSaver: NSObject {
     private func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         
         if content.type == ContentType.Image.rawValue {
+            
             guard let contentURL = self.content.url else {
                 return
             }
@@ -30,6 +31,7 @@ class ContentImageSaver: NSObject {
                 }.resume()
             
         } else {
+            
             guard let thumbnailURL = self.content.thumbnailURL else {
                 return
             }
