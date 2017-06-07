@@ -11,13 +11,54 @@ import CoreData
 
 class HomeViewController: UIViewController {
 
-    let childButton = UIButton()
-    let caretakerButton = UIButton()
-    let enthusiasmsLabel = UILabel()
+    lazy var  childButton: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Child", for: .normal)
+        button.titleLabel?.textColor = UIColor.white
+        button.titleLabel?.font = button.titleLabel?.font.withSize(50)
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(childPressed), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
+    
+    lazy var caretakerButton: UIButton = {
+        
+        let button = UIButton()
+        button.setTitle("Caretaker", for: .normal)
+        button.titleLabel?.textColor = UIColor.white
+        button.titleLabel?.font = button.titleLabel?.font.withSize(50)
+        button.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
+        button.layer.cornerRadius = 5
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(caretakerPressed), for: .touchUpInside)
+        self.view.addSubview(button)
+        
+        return button
+        
+    }()
+    
+    lazy var enthusiasmsLabel: UILabel = {
+        
+        let label = UILabel()
+        label.text = "Enthusiasms"
+        label.adjustsFontSizeToFitWidth = true
+        label.textColor = UIColor.white
+        label.font = label.font.withSize(130)
+        self.view.addSubview(label)
+        
+        return label
+        
+    }()
+    
     var fetchedStudents: [Student] = []
     
     let studentListPopover = StudentListPopover()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,32 +66,6 @@ class HomeViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(studentSelected), name: NSNotification.Name(rawValue: "StudentSelected"), object: nil)
         
-        // Label Setup
-        enthusiasmsLabel.text = "Enthusiasms"
-        enthusiasmsLabel.adjustsFontSizeToFitWidth = true
-        enthusiasmsLabel.textColor = UIColor.white
-        enthusiasmsLabel.font = enthusiasmsLabel.font.withSize(130)
-        self.view.addSubview(enthusiasmsLabel)
-        
-        // Button Setup
-        caretakerButton.setTitle("Caretaker", for: .normal)
-        caretakerButton.titleLabel?.textColor = UIColor.white
-        caretakerButton.titleLabel?.font = caretakerButton.titleLabel?.font.withSize(50)
-        caretakerButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        caretakerButton.layer.cornerRadius = 5
-        caretakerButton.layer.masksToBounds = true
-        caretakerButton.addTarget(self, action: #selector(caretakerPressed), for: .touchUpInside)
-        self.view.addSubview(caretakerButton)
-        
-        childButton.setTitle("Child", for: .normal)
-        childButton.titleLabel?.textColor = UIColor.white
-        childButton.titleLabel?.font = childButton.titleLabel?.font.withSize(50)
-        childButton.backgroundColor = UIColor(red: 79/255.0, green: 176/255.0, blue: 255/255.0, alpha: 1)
-        childButton.layer.cornerRadius = 5
-        childButton.layer.masksToBounds = true
-        childButton.addTarget(self, action: #selector(childPressed), for: .touchUpInside)
-        self.view.addSubview(childButton)
-
     }
     
     deinit {
