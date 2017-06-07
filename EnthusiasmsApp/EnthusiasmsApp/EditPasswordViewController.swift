@@ -92,7 +92,11 @@ class EditPasswordViewController: CreatePasswordViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    // Mark: UITextFieldDelegate
+}
+
+// Mark: UITextFieldDelegate
+
+extension EditPasswordViewController {
     
     override func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
@@ -120,4 +124,5 @@ class EditPasswordViewController: CreatePasswordViewController {
         return true
     }
 
+    
 }
