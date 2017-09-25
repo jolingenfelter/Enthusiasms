@@ -201,7 +201,7 @@ class GetWebContentViewController: UIViewController {
     
     // MARK: Timer
     
-    func timerCallBack() {
+    @objc func timerCallBack() {
         
         if webViewIsLoaded == true {
             
@@ -227,25 +227,25 @@ class GetWebContentViewController: UIViewController {
     
     // MARK: BarButtonItem Actions
     
-    func donePressed() {
+    @objc func donePressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func helpPressed() {
+    @objc func helpPressed() {
         let helpViewController = WebViewHelpViewController()
         helpViewController.modalPresentationStyle = .formSheet
         self.present(helpViewController, animated: true, completion: nil)
     }
     
-    func backPressed() {
+    @objc func backPressed() {
         webView.goBack()
     }
     
-    func forwardPressed() {
+    @objc func forwardPressed() {
         webView.goForward()
     }
     
-    func refreshPressed() {
+    @objc func refreshPressed() {
         webView.reload()
     }
     
@@ -266,7 +266,7 @@ class GetWebContentViewController: UIViewController {
     
     // MARK: Save Content
     
-    func longPressAction(sender: UILongPressGestureRecognizer) {
+    @objc func longPressAction(sender: UILongPressGestureRecognizer) {
         
         webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         

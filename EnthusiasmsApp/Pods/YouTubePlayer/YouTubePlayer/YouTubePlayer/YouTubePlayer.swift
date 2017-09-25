@@ -347,7 +347,7 @@ open class YouTubePlayerView: UIView, UIWebViewDelegate {
         return true
     }
     
-    func cancelRequest() {
+    @objc func cancelRequest() {
         webView.loadHTMLString("", baseURL: nil)
     }
 }

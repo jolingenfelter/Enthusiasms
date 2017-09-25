@@ -125,11 +125,11 @@ class SaveContentViewController: UIViewController {
             ])
     }
     
-    func cancelWasPressed() {
+    @objc func cancelWasPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func saveContentPressed() {
+    @objc func saveContentPressed() {
         
         if contentTitleTextField.text == "" {
             

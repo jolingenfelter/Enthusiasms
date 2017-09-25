@@ -154,7 +154,7 @@ class WebViewHelpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func closePressed() {
+    @objc func closePressed() {
         self.dismiss(animated: true, completion: nil)
     }
 

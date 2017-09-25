@@ -108,11 +108,93 @@ class AllContentCollectionViewController: UICollectionViewController {
         }
     }
     
-    func addContent() {
+    @objc func addContent() {
         let getWebContentViewController = GetWebContentViewController()
         let navigationController = UINavigationController(rootViewController: getWebContentViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
+    
+    // MARK: Menu Button Setup
+    
+    func menuButtonSetup() {
+        
+        menu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
+        menu.addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
+        menu.changeTitleButton.addTarget(self, action: #selector(changeTitlePressed), for: .touchUpInside)
+        menu.deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
+        
+    }
+    
+    @objc func addToStudentPressed() {
+        
+        studentListPopover.modalPresentationStyle = .popover
+        studentListPopover.popoverPresentationController?.sourceView = menu.view
+        studentListPopover.popoverPresentationController?.sourceRect = CGRect(x: 180, y: 80, width: 0, height: 0)
+        studentListPopover.preferredContentSize = CGSize(width: 180, height: 180)
+        studentListPopover.popoverPresentationController?.permittedArrowDirections = [.left, .up]
+        
+        self.presentedViewController?.present(studentListPopover, animated: true, completion: nil)
+    }
+    
+    @objc func studentSelected() {
+        
+        let studentAddingContentTo = studentListPopover.selectedStudent
+        studentAddingContentTo?.addToContents(selectedContent!)
+        
+        DataController.sharedInstance.saveContext()
+    }
+    
+    @objc func changeTitlePressed() {
+        
+        let editContentViewController = EditContentTitleViewController()
+        
+        editContentViewController.modalPresentationStyle = .formSheet
+        editContentViewController.content = selectedContent
+        
+        menu.dismiss(animated: false, completion: nil)
+        
+        self.present(editContentViewController, animated: true, completion: nil)
+    }
+    
+    @objc func deleteContent() {
+        
+        let deleteAlert = UIAlertController(title: "Delete this content?", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { alert in
+            
+            if let fileName = self.selectedContent?.uniqueFileName {
+                
+                DataController.sharedInstance.managedObjectContext.delete(self.selectedContent!)
+                DataController.sharedInstance.saveContext()
+                
+                deleteFile(named: fileName)
+            }
+            
+            
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+        })
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        
+        deleteAlert.addAction(noAction)
+        deleteAlert.addAction(yesAction)
+        
+        menu.dismiss(animated: false, completion: nil)
+        
+        self.present(deleteAlert, animated: true, completion: nil)
+    }
+    
+    @objc func viewContent() {
+        
+        guard let selectedContent = selectedContent else {
+            return
+        }
+        
+        menu.dismiss(animated: false, completion: nil)
+        viewFullScreen(content: selectedContent, from: self)
+        
+    }
+
         
 }
 
@@ -172,87 +254,6 @@ extension AllContentCollectionViewController {
         self.present(menu, animated: true, completion: nil)
     }
     
-    // MARK: Menu Button Setup
-    
-    func menuButtonSetup() {
-        
-        menu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
-        menu.addToStudentButton.addTarget(self, action: #selector(addToStudentPressed), for: .touchUpInside)
-        menu.changeTitleButton.addTarget(self, action: #selector(changeTitlePressed), for: .touchUpInside)
-        menu.deleteButton.addTarget(self, action: #selector(deleteContent), for: .touchUpInside)
-        
-    }
-    
-    func addToStudentPressed() {
-        
-        studentListPopover.modalPresentationStyle = .popover
-        studentListPopover.popoverPresentationController?.sourceView = menu.view
-        studentListPopover.popoverPresentationController?.sourceRect = CGRect(x: 180, y: 80, width: 0, height: 0)
-        studentListPopover.preferredContentSize = CGSize(width: 180, height: 180)
-        studentListPopover.popoverPresentationController?.permittedArrowDirections = [.left, .up]
-        
-        self.presentedViewController?.present(studentListPopover, animated: true, completion: nil)
-    }
-    
-    func studentSelected() {
-        
-        let studentAddingContentTo = studentListPopover.selectedStudent
-        studentAddingContentTo?.addToContents(selectedContent!)
-        
-        DataController.sharedInstance.saveContext()
-    }
-    
-    func changeTitlePressed() {
-        
-        let editContentViewController = EditContentTitleViewController()
-        
-        editContentViewController.modalPresentationStyle = .formSheet
-        editContentViewController.content = selectedContent
-        
-        menu.dismiss(animated: false, completion: nil)
-        
-        self.present(editContentViewController, animated: true, completion: nil)
-    }
-    
-    func deleteContent() {
-        
-        let deleteAlert = UIAlertController(title: "Delete this content?", message: "Are you sure you want to delete this content from the app?", preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { alert in
-            
-            if let fileName = self.selectedContent?.uniqueFileName {
-                
-                DataController.sharedInstance.managedObjectContext.delete(self.selectedContent!)
-                DataController.sharedInstance.saveContext()
-                
-                deleteFile(named: fileName)
-            }
-            
-            
-            self.presentedViewController?.dismiss(animated: true, completion: nil)
-        })
-        
-        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-        
-        deleteAlert.addAction(noAction)
-        deleteAlert.addAction(yesAction)
-        
-        menu.dismiss(animated: false, completion: nil)
-        
-        self.present(deleteAlert, animated: true, completion: nil)
-    }
-    
-    func viewContent() {
-        
-        guard let selectedContent = selectedContent else {
-            return
-        }
-        
-        menu.dismiss(animated: false, completion: nil)
-        viewFullScreen(content: selectedContent, from: self)
-        
-    }
-
 }
 
 // MARK: NSFetchedResultsControllerDelegate

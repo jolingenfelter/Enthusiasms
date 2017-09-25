@@ -42,7 +42,7 @@ class SetTimerViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         
         if let student = student {
             
@@ -88,7 +88,7 @@ class SetTimerViewController: UIViewController {
             ])
     }
     
-    func startPressed() {
+    @objc func startPressed() {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)

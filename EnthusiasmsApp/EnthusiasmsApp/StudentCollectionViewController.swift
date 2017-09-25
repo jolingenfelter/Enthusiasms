@@ -96,7 +96,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
     }
     
-    override func homePressed() {
+    @objc override func homePressed() {
         
         let alert = UIAlertController(title: "Quit?", message: "Are you sure you want to quit?", preferredStyle: .alert)
         
@@ -119,7 +119,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     
     // MARK: Timer
     
-    func updateTimer() {
+    @objc func updateTimer() {
         
         rewardTime -= 1
         timeDisplay.totalTimeInSeconds = rewardTime
@@ -139,7 +139,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
     }
     
-    func addTimePressed() {
+    @objc func addTimePressed() {
 
         remainingRewardTime = rewardTime
         addTimePasswordCheck.modalPresentationStyle = .formSheet
@@ -147,14 +147,14 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.present(addTimePasswordCheck, animated: true, completion: nil)
     }
     
-    func addTimePasswordCheckComplete() {
+    @objc func addTimePasswordCheckComplete() {
         addTimeViewController.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
         
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     
-    func updateRewardTime() {
+    @objc func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
     }
     

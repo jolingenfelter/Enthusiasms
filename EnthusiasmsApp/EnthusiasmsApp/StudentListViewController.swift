@@ -122,7 +122,7 @@ class StudentListViewController: UITableViewController {
 
     // MARK: NavBar Actions
     
-    func editPasswordWasPressed() {
+    @objc func editPasswordWasPressed() {
         
         let editPasswordViewController = EditPasswordViewController()
         let navigationController = UINavigationController(rootViewController: editPasswordViewController)
@@ -132,7 +132,7 @@ class StudentListViewController: UITableViewController {
         
     }
     
-    func settingsWasPressed() {
+    @objc func settingsWasPressed() {
         
         let settingsMenu = StudentListSettingsMenu()
         settingsMenu.editPasswordButton.addTarget(self, action: #selector(editPasswordWasPressed), for: .touchUpInside)
@@ -149,13 +149,13 @@ class StudentListViewController: UITableViewController {
         
     }
     
-    func addStudentPressed() {
+    @objc func addStudentPressed() {
         let createStudentViewController = CreateStudentViewController()
         createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentViewController, animated: false, completion: nil)
     }
     
-    func allContentPressed() {
+    @objc func allContentPressed() {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)

@@ -135,7 +135,7 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func caretakerPressed() {
+    @objc func caretakerPressed() {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = 0
@@ -145,7 +145,7 @@ class HomeViewController: UIViewController {
         self.navigationController?.pushViewController(studentListViewController, animated: true)
     }
 
-    func childPressed() {
+    @objc func childPressed() {
         
         if fetchedStudents.count == 0 {
             
@@ -171,7 +171,7 @@ class HomeViewController: UIViewController {
         
     }
     
-    func studentSelected() {
+    @objc func studentSelected() {
         
         let timerViewController = SetTimerViewController()
         timerViewController.student = studentListPopover.selectedStudent

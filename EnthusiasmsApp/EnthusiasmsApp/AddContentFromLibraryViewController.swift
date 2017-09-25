@@ -51,7 +51,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func donePressed() {
+    @objc func donePressed() {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -67,7 +67,7 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
         fromLibraryMenu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)
     }
     
-    func addContentPressed() {
+    @objc func addContentPressed() {
         student.addToContents(selectedContent!)
         DataController.sharedInstance.saveContext()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)

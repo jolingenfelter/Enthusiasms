@@ -94,14 +94,14 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func addTimePressed() {
+    @objc func addTimePressed() {
         remainingRewardTime = rewardTime
         addTimePasswordCheck.modalPresentationStyle = .formSheet
         
         self.present(addTimePasswordCheck, animated: true, completion: nil)
     }
     
-    func donePressed() {
+    @objc func donePressed() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
         timer.invalidate()
@@ -110,7 +110,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: Timer
     
-    func updateTimer() {
+    @objc func updateTimer() {
         
         rewardTime -= 1
         timeDisplay.totalTimeInSeconds = rewardTime
@@ -127,13 +127,13 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
     }
     
-    func addTimePasswordCheckComplete() {
+    @objc func addTimePasswordCheckComplete() {
         addTimeViewController.rewardTime = rewardTime
         addTimeViewController.modalPresentationStyle = .formSheet
         self.present(addTimeViewController, animated: true, completion: nil)
     }
     
-    func updateRewardTime() {
+    @objc func updateRewardTime() {
         rewardTime = addTimeViewController.updatedTime
     }
     

@@ -106,7 +106,7 @@ class AddTimeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func updateTime() {
+    @objc func updateTime() {
         
         if rewardTime + additionalTime >= 3600 {
             updatedTime = 3600
@@ -118,7 +118,7 @@ class AddTimeViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     

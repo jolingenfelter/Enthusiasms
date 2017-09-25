@@ -112,7 +112,7 @@ class EditNameViewController: UIViewController {
             ])
     }
     
-    func saveChanges() {
+    @objc func saveChanges() {
         
         if nameTextField.text == "" {
             noNameAlert()
@@ -125,7 +125,7 @@ class EditNameViewController: UIViewController {
         
     }
     
-    func cancelWasPressed() {
+    @objc func cancelWasPressed() {
         self.dismiss(animated: true, completion: nil)
     }
     

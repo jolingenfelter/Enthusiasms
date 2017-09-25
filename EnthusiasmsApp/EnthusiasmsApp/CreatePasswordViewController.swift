@@ -136,7 +136,7 @@ class CreatePasswordViewController: UIViewController {
             getStartedButton.widthAnchor.constraint(equalToConstant: 400)])
     }
     
-    func getStartedButtonPressed() {
+    @objc func getStartedButtonPressed() {
         
         if createPasswordTextField.text == "" || confirmPasswordTextField.text == "" {
             

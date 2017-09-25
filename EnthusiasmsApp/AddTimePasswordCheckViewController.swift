@@ -81,7 +81,7 @@ class AddTimePasswordCheckViewController: EnterPasswordViewController {
         }
     }
     
-    func cancelPressed() {
+    @objc func cancelPressed() {
         
         NotificationCenter.default.post(name: NSNotification.Name("cancelTimeUpdate"), object: nil)
         self.dismiss(animated: true, completion: nil)

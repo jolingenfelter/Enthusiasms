@@ -50,7 +50,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         // Collection View setup
     
         self.title = student.name
-        self.collectionView?.backgroundColor = UIColor(colorLiteralRed: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
+        self.collectionView?.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         navigationBarSetup()
         
         updateContents()
@@ -89,7 +89,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
     
-    func updateContents() {
+    @objc func updateContents() {
         
         guard let contents = student.contents else {
             return
@@ -135,7 +135,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     
     // Edit Student Name
     
-    func editStudentName() {
+    @objc func editStudentName() {
         
         let editNameViewController = EditNameViewController()
         editNameViewController.modalTransitionStyle = .coverVertical
@@ -147,7 +147,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
     
-    func updateStudentName() {
+    @objc func updateStudentName() {
         
         if let studentName = student.name {
             self.title = studentName
@@ -155,7 +155,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
 
-    func settingsPressed() {
+    @objc func settingsPressed() {
         
         let settingsMenu = TeacherSettingsMenu()
         settingsMenu.editNameButton.addTarget(self, action: #selector(editStudentName), for: .touchUpInside)
@@ -172,7 +172,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     
     // Add Content
     
-    func addPressed() {
+    @objc func addPressed() {
         
         let addContentMenu = TeacherAddContentMenu()
         addContentMenu.modalPresentationStyle = .popover
@@ -185,7 +185,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.present(addContentMenu, animated: true, completion: nil)
     }
     
-    func contentFromWebPressed() {
+    @objc func contentFromWebPressed() {
         
         let getContentView = GetWebContentViewController(student: student)
         let navController = UINavigationController(rootViewController: getContentView)
@@ -194,7 +194,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.present(navController, animated: true, completion: nil)
     }
     
-    func contentFromLibraryPressed() {
+    @objc func contentFromLibraryPressed() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 40, left: 10, bottom: 10, right: 10)
@@ -244,7 +244,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.present(menu, animated: true, completion: nil)
     }
     
-    func removeContentFromStudent() {
+    @objc func removeContentFromStudent() {
         
         guard let selectedContent = selectedContent, let studentName = student.name else {
             
@@ -273,7 +273,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         self.presentedViewController?.present(alert, animated: true, completion: nil)
     }
     
-    func viewContent() {
+    @objc func viewContent() {
         
         guard let selectedContent = selectedContent else {
             return
@@ -283,7 +283,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         viewFullScreen(content: selectedContent, from: self)
     }
     
-    func changeTitle () {
+    @objc func changeTitle () {
         
         let editContentViewController = EditContentTitleViewController()
         editContentViewController.modalPresentationStyle = .formSheet
@@ -294,7 +294,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         
     }
     
-    func updateTitle () {
+    @objc func updateTitle () {
         self.collectionView?.reloadData()
     }
 
