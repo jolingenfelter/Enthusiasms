@@ -10,8 +10,8 @@ import UIKit
 
 class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     
-    var content: Content?
-    var image = UIImage()
+    var content: Content
+    var image: UIImage?
     let imageScrollView = ImageScrollView()
     
     // Timer Variables
@@ -21,7 +21,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     var addTimeButton = UIButton(frame: CGRect(x: 0, y: 0, width: 80, height: 20))
     let addTimePasswordCheck = AddTimePasswordCheckViewController()
     let addTimeViewController = AddTimeViewController()
-
     
     lazy var timeDisplay: TimeDisplay = {
         
@@ -29,14 +28,23 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         return timeDisplay
         
     }()
-
+    
+    init(content: Content) {
+        self.content = content
+        super.init(nibName: nil, bundle: nil)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
-        
-        // Timer
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        updateTimer()
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)
@@ -52,7 +60,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         navigationController?.hidesBarsOnTap = true
         
-        self.title = content?.title
+        self.title = content.title
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
         self.navigationItem.rightBarButtonItem = doneButton
         if rewardTime > 0 {
@@ -66,7 +74,20 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         super.viewWillAppear(true)
+        
         navBarSetup()
+        
+        // Timer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateTimer), userInfo: nil, repeats: true)
+        updateTimer()
+        
+        // Image Setup
+        guard let imageName = content.uniqueFileName, let image = getImage(imageName: imageName) else {
+            presentAlert(withTitle: "Error", andMessage: "Oops! Something went wrong.", dismissSelf: true)
+            return
+        }
+        
+        self.image = image
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,7 +95,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         
         DispatchQueue.main.async {
-            self.imageScrollView.displayImage(self.image)
+            self.imageScrollView.displayImage(self.image!)
         }
         
         view.addSubview(imageScrollView)

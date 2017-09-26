@@ -11,6 +11,7 @@ import YouTubePlayer
 
 class FullScreenVideoViewController: UIViewController {
     
+    var content: Content
     let youtubePlayerView = YouTubePlayerView()
     var videoURL: URL?
 
@@ -30,6 +31,25 @@ class FullScreenVideoViewController: UIViewController {
         return timeDisplay
         
     }()
+    
+    init(content: Content) {
+        self.content = content
+        super.init(nibName: nil, bundle: nil)
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        rewardTime = appDelegate.rewardTime
+        
+        guard let urlString = content.url, let url = URL(string: urlString) else {
+            return
+        }
+        
+        videoURL = url
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
