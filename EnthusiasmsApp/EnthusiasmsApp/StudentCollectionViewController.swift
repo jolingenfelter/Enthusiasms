@@ -92,7 +92,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
         
-        viewFullScreen(content: selectedContent, from: self)
+        viewFullScreen(content: selectedContent)
         
     }
     

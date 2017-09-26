@@ -39,30 +39,34 @@ fileprivate func videoPlayer(for content: Content) -> FullScreenVideoViewControl
     return videoPlayer
 }
 
-
-func viewFullScreen(content: Content, from viewController: UIViewController) {
+extension UIViewController {
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    
-    if content.type == ContentType.Image.rawValue {
+    func viewFullScreen(content: Content) {
         
-        guard let imageViewer = imageViewer(for: content) else {
-            return
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if content.type == ContentType.Image.rawValue {
+            
+            guard let imageViewer = imageViewer(for: content) else {
+                return
+            }
+            
+            imageViewer.rewardTime = appDelegate.rewardTime
+            let navigationController = UINavigationController(rootViewController: imageViewer)
+            present(navigationController, animated: true, completion: nil)
+            
+        } else {
+            guard let videoPlayer = videoPlayer(for: content) else {
+                return
+            }
+            
+            videoPlayer.rewardTime = appDelegate.rewardTime
+            let navigationController = UINavigationController(rootViewController: videoPlayer)
+            present(navigationController, animated: true, completion: nil)
+            
         }
-        
-        imageViewer.rewardTime = appDelegate.rewardTime
-        let navigationController = UINavigationController(rootViewController: imageViewer)
-        viewController.present(navigationController, animated: true, completion: nil)
-        
-    } else {
-        guard let videoPlayer = videoPlayer(for: content) else {
-            return
-        }
-        
-        videoPlayer.rewardTime = appDelegate.rewardTime
-        let navigationController = UINavigationController(rootViewController: videoPlayer)
-        viewController.present(navigationController, animated: true, completion: nil)
         
     }
     
 }
+

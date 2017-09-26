@@ -280,7 +280,7 @@ class TeacherCollectionViewController: UICollectionViewController {
         }
         
         self.presentedViewController?.dismiss(animated: false, completion: nil)
-        viewFullScreen(content: selectedContent, from: self)
+        viewFullScreen(content: selectedContent)
     }
     
     @objc func changeTitle () {

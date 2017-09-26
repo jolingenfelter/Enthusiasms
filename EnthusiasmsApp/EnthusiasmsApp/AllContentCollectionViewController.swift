@@ -191,7 +191,7 @@ class AllContentCollectionViewController: UICollectionViewController {
         }
         
         menu.dismiss(animated: false, completion: nil)
-        viewFullScreen(content: selectedContent, from: self)
+        viewFullScreen(content: selectedContent)
         
     }
 
