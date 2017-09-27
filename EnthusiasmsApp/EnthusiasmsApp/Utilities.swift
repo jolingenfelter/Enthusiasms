@@ -6,7 +6,7 @@
 //  Copyright © 2017 JoLingenfelter. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 func getDocumentsDirectory() -> URL {
     
@@ -34,5 +34,22 @@ func deleteFile(named: String) {
         }
         
     }
+    
+}
+
+func getImage(imageName: String) -> UIImage? {
+    
+    let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
+    
+    if FileManager.default.fileExists(atPath: filePath) {
+        
+        guard let image = UIImage(contentsOfFile: filePath) else {
+            return nil
+        }
+        
+        return image
+    }
+    
+    return nil
     
 }

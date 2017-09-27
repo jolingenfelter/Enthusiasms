@@ -32,10 +32,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         self.title = student.name
         
         // Timer Setup
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        rewardTime = appDelegate.rewardTime
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        updateTimer()
 
     }
     
@@ -46,6 +43,7 @@ class StudentCollectionViewController: TeacherCollectionViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         rewardTime = appDelegate.rewardTime
+        updateTimer()
         
         // Observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateRewardTime), name: NSNotification.Name(rawValue: "timeAdded"), object: nil)

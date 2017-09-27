@@ -91,17 +91,3 @@ class ContentImageSaver {
     }
     
 }
-
-func getImage(imageName: String) -> UIImage? {
-    
-    var image = UIImage()
-    
-    let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
-    
-    if FileManager.default.fileExists(atPath: filePath) {
-        image = UIImage(contentsOfFile: filePath)!
-    }
-    
-    return image
-    
-}
