@@ -83,7 +83,6 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         // Image Setup
         guard let imageName = content.uniqueFileName, let image = getImage(imageName: imageName) else {
-            presentAlert(withTitle: "Error", andMessage: "Oops! Something went wrong.", dismissSelf: true)
             return
         }
         
@@ -94,8 +93,13 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         
         super.viewDidLayoutSubviews()
         
+        guard let contentImage = image else {
+            presentAlert(withTitle: "Error", andMessage: "Oops! The image you have selected is unavailable.", dismissSelf: true)
+            return
+        }
+        
         DispatchQueue.main.async {
-            self.imageScrollView.displayImage(self.image!)
+            self.imageScrollView.displayImage(contentImage)
         }
         
         view.addSubview(imageScrollView)

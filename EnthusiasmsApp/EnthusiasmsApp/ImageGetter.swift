@@ -10,9 +10,38 @@ import UIKit
 import CoreData
 
 
-class ContentImageSaver: NSObject {
+class ContentImageSaver {
     
     let content: Content
+    
+    private lazy var session: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        return URLSession(configuration: configuration)
+    }()
+    
+    private var url: URL? {
+        
+        var urlString = String()
+        
+        if content.type == ContentType.Image.rawValue {
+            
+            guard let string = content.url else {
+                return nil
+            }
+            
+            urlString = string
+            
+        } else if content.type == ContentType.Video.rawValue {
+            
+            guard let string = content.thumbnailURL else {
+                return nil
+            }
+            
+            urlString = string
+        }
+        
+        return URL(string: urlString)
+    }
     
     init(content: Content) {
         self.content = content
@@ -20,27 +49,13 @@ class ContentImageSaver: NSObject {
     
     private func getDataFromURL(completion: @escaping(_ data: Data?, _ response: URLResponse?, _ error: Error?) -> Void) {
         
-        if content.type == ContentType.Image.rawValue {
-            
-            guard let contentURL = self.content.url else {
-                return
-            }
-            
-            URLSession.shared.dataTask(with: URL(string:contentURL)!) {
-                (data, response, error) in completion(data, response, error)
-                }.resume()
-            
-        } else {
-            
-            guard let thumbnailURL = self.content.thumbnailURL else {
-                return
-            }
-            
-            URLSession.shared.dataTask(with: URL(string:thumbnailURL)!) {
-                (data, response, error) in completion(data, response, error)
-                }.resume()
-            
+        guard let url = url else {
+            return
         }
+        
+        session.dataTask(with: url) { (data, response, error) in
+            completion(data, response, error)
+        }.resume()
 
     }
     

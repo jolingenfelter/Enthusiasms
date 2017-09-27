@@ -29,7 +29,6 @@ extension UIViewController {
     }
     
     func viewFullScreen(content: Content) {
-
         
         if content.type == ContentType.Image.rawValue {
             
