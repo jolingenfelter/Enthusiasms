@@ -24,6 +24,10 @@ class GetWebContentViewController: UIViewController {
     var student: Student?
     var contentType: ContentType?
     
+    lazy var saveContentViewController: SaveContentViewController = {
+        return SaveContentViewController(student: self.student)
+    }()
+    
     lazy var urlTextField: UITextField = {
         
         let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
@@ -272,39 +276,6 @@ class GetWebContentViewController: UIViewController {
         
         if sender.state == UIGestureRecognizerState.recognized {
             
-            let saveContentVC = SaveContentViewController()
-            saveContentVC.modalPresentationStyle = .formSheet
-            saveContentVC.student = student
-            
-            if let urlRequest = webView.request, let contentURL = urlRequest.url {
-                
-                let contentURLString = contentURL.absoluteString
-                
-                if let videoID = videoIDFromYouTubeURL(contentURL) {
-                    
-                    saveContentVC.contentURL = contentURLString
-                    saveContentVC.contentType = ContentType.Video
-                    saveContentVC.youtubeVideoID = videoID
-                    self.present(saveContentVC, animated: true, completion: nil)
-                    
-                } else {
-                    
-                    let pressPosition = sender.location(in: webView)
-                    
-                    let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(pressPosition.x),\(pressPosition.y));")
-                    
-                    if imageSRC != "" {
-                        
-                        saveContentVC.contentURL = imageSRC
-                        saveContentVC.contentType = ContentType.Image
-                        self.present(saveContentVC, animated: true, completion: nil)
-                        
-                    }
-                    
-                }
-                
-            }
-            
         }
     }
 }
@@ -374,7 +345,7 @@ extension GetWebContentViewController: UITextFieldDelegate {
                 
                 if (url.scheme == nil) {
                     
-                    url = URL(string: "http://\(url)")!
+                    url = URL(string: "https://\(url)")!
                     userURL = url
                     
                 } else {

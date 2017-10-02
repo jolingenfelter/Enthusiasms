@@ -146,7 +146,7 @@ class AllContentCollectionViewController: UICollectionViewController {
     
     @objc func changeTitlePressed() {
         
-        let editContentViewController = EditContentTitleViewController()
+        let editContentViewController = EditContentTitleViewController(content: selectedContent)
         
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
@@ -198,7 +198,7 @@ class AllContentCollectionViewController: UICollectionViewController {
         
 }
 
-// MARK: UITableViewDataSource & Delegate
+// MARK: UICollectionViewDataSource & Delegate
 
 extension AllContentCollectionViewController {
     
@@ -229,8 +229,6 @@ extension AllContentCollectionViewController {
         
         return cell
     }
-    
-    // MARK: UICollectionViewDelegate
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

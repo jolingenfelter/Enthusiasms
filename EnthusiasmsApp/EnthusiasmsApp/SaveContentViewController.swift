@@ -9,13 +9,16 @@
 import UIKit
 import CoreData
 
+protocol saveContentViewControllerDelegate {
+    func saveContent(withTitle title: String, andURLString: String)
+}
+
 class SaveContentViewController: UIViewController {
 
-    var content : Content?
     var student: Student?
-    var contentURL: String?
-    var contentType: ContentType?
-    var youtubeVideoID: String?
+    var content: Content?
+    
+    var delegate: saveContentViewControllerDelegate!
     
     let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
     
@@ -51,7 +54,21 @@ class SaveContentViewController: UIViewController {
         return button
         
     }()
-
+    
+    init(student: Student?) {
+        self.student = student
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    convenience init(content: Content?) {
+        self.init(student: nil)
+        self.content = content
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
@@ -130,63 +147,10 @@ class SaveContentViewController: UIViewController {
     }
     
     @objc func saveContentPressed() {
-        
-        if contentTitleTextField.text == "" {
-            
-            let alert = UIAlertController(title: "Required Field", message: "Please enter a title for this content", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
-            
-        } else {
-            
-            guard let content = NSEntityDescription.insertNewObject(forEntityName: "Content", into: DataController.sharedInstance.managedObjectContext) as? Content else {
-                let alert = UIAlertController(title: "Error", message: "Error adding content", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-                alert.addAction(okAction)
-                self.present(alert, animated: true, completion: nil)
-                return
-                
-            }
-            
-            content.title = contentTitleTextField.text
-            content.url = contentURL
-            content.dateAdded = NSDate()
-            content.type = (contentType?.rawValue)!
-            
-            if let student = student {
-                
-                content.addToStudentContent(student)
-                
-            }
-            
-            if contentType == .Image {
-                
-                let imageSaver = ContentImageSaver(content: content)
-                imageSaver.downloadNameAndSaveImage()
-                
-            }
-            
-            if contentType == .Video {
-                
-                guard let videoID = youtubeVideoID else {
-                    return
-                }
-                
-                let thumbnailURL = thumbnailURLString(videoID: videoID, quailty: ThumbnailQuailty.High)
-                content.thumbnailURL = thumbnailURL
-                
-                let imageSaver = ContentImageSaver(content: content)
-                imageSaver.downloadNameAndSaveImage()
-            }
-            
-            DataController.sharedInstance.saveContext()
-            
-            NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
             
             self.dismiss(animated: true, completion: nil)
             
-        }
+        
     }
     
 }

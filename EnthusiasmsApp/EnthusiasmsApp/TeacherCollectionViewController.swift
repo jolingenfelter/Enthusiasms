@@ -285,7 +285,7 @@ class TeacherCollectionViewController: UICollectionViewController {
     
     @objc func changeTitle () {
         
-        let editContentViewController = EditContentTitleViewController()
+        let editContentViewController = EditContentTitleViewController(content: selectedContent)
         editContentViewController.modalPresentationStyle = .formSheet
         editContentViewController.content = selectedContent
         
