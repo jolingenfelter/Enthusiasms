@@ -94,7 +94,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLayoutSubviews()
         
         guard let contentImage = image else {
-            presentAlert(withTitle: "Error", andMessage: "Oops! The image you have selected is unavailable.", dismissSelf: true)
+            presentAlert(withTitle: "Oops!", andMessage: "The image you have selected is unavailable.", dismissSelf: true)
             return
         }
         
