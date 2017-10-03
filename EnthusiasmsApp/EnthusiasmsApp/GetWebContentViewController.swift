@@ -376,7 +376,7 @@ extension GetWebContentViewController: UITextFieldDelegate {
                 
                 if (url.scheme == nil) {
                     
-                    url = URL(string: "http://\(url)")!
+                    url = URL(string: "https://\(url)")!
                     userURL = url
                     
                 } else {
@@ -437,7 +437,18 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
         }
         
         if contentType == .Video {
+           
+            guard let videoID = videoIDFromYouTubeURL(contentURL) else {
+                presentAlert(withTitle: "Oops", andMessage: "There was an error saving the video", dismissSelf: false)
+                return
+            }
             
+            let thumbnailString = thumbnailURLString(videoID: videoID)
+            
+            guard let thumbnailURL = URL(string: thumbnailString) else {
+                return
+            }
+            saveImageFrom(url: thumbnailURL, forContent: newContent)
         }
         
         // Reset contentType and urlString for next content
@@ -462,6 +473,7 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
                         
                         try imageData.write(to: fileName)
                         DataController.sharedInstance.saveContext()
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
                         
                     } catch let error {
                         self.presentAlert(withTitle: "Whoops!", andMessage: "There was an error: \(error.localizedDescription)", dismissSelf: false)
