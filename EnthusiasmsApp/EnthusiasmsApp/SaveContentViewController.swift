@@ -164,6 +164,7 @@ class SaveContentViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         contentTitle = nil
+        contentTitleTextField.text = nil
     }
     
 }
