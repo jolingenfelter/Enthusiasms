@@ -8,6 +8,7 @@
 
 import UIKit
 import YouTubePlayer
+import CoreData
 
 enum ContentType: Int16 {
     case Image = 1
@@ -23,9 +24,17 @@ class GetWebContentViewController: UIViewController {
     let longPressGestureRecognizer = UILongPressGestureRecognizer()
     var student: Student?
     var contentType: ContentType?
+    var contentURL: URL?
     
     lazy var saveContentViewController: SaveContentViewController = {
-        return SaveContentViewController(student: self.student)
+        let saveContentVC = SaveContentViewController(student: self.student)
+        saveContentVC.delegate = self
+        saveContentVC.modalPresentationStyle = .formSheet
+        return saveContentVC
+    }()
+    
+    lazy var imageGetter: ImageGetter = {
+        return ImageGetter()
     }()
     
     lazy var urlTextField: UITextField = {
@@ -268,13 +277,35 @@ class GetWebContentViewController: UIViewController {
         }
     }
     
-    // MARK: Save Content
+    // MARK: Gesture
     
     @objc func longPressAction(sender: UILongPressGestureRecognizer) {
         
         webView.stringByEvaluatingJavaScript(from: getImageJavaScript)
         
         if sender.state == UIGestureRecognizerState.recognized {
+            
+            if let urlRequest = webView.request, let contentURL = urlRequest.url {
+                
+                if let _ = videoIDFromYouTubeURL(contentURL) {
+                    
+                    self.contentURL = contentURL
+                    contentType = ContentType.Video
+                    present(saveContentViewController, animated: true, completion: nil)
+                    
+                } else {
+                    
+                    let point = sender.location(in: webView)
+                    let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(point.x),\(point.y));")
+        
+                    if imageSRC != "" {
+                        self.contentURL = URL(string: imageSRC!)
+                        contentType = ContentType.Image
+                        present(saveContentViewController, animated: true, completion: nil)
+                    }
+                    
+                }
+            }
             
         }
     }
@@ -345,7 +376,7 @@ extension GetWebContentViewController: UITextFieldDelegate {
                 
                 if (url.scheme == nil) {
                     
-                    url = URL(string: "https://\(url)")!
+                    url = URL(string: "http://\(url)")!
                     userURL = url
                     
                 } else {
@@ -375,6 +406,72 @@ extension GetWebContentViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
+}
+
+// MARK: - SaveContentViewControllerDelegate
+
+extension GetWebContentViewController: saveContentViewControllerDelegate {
     
+    func saveContent() {
+        
+        guard let newContent = NSEntityDescription.insertNewObject(forEntityName: "Content", into: DataController.sharedInstance.managedObjectContext) as? Content, let contentType = contentType, let contentURL = contentURL else {
+            presentAlert(withTitle: "Whoops!", andMessage: "Something went wrong.", dismissSelf: false)
+            return
+        }
+        
+        let contentURLString = contentURL.absoluteString
+        
+        newContent.title = saveContentViewController.contentTitle
+        newContent.url = contentURLString
+        newContent.type = contentType.rawValue
+        newContent.dateAdded = NSDate()
+        
+        if let student = student {
+            newContent.addToStudentContent(student)
+        }
+        
+        // Download ContentImage
+        
+        if contentType == .Image {
+            saveImageFrom(url: contentURL, forContent: newContent)
+        }
+        
+        if contentType == .Video {
+            
+        }
+        
+        // Reset contentType and urlString for next content
+        self.contentType = nil
+        self.contentURL = nil
+    }
     
+    func saveImageFrom(url: URL, forContent content: Content) {
+        
+        imageGetter.getImage(from: url, completion: { (result) in
+            
+            switch result {
+            case .ok(let image):
+                
+                if let imageData = UIImageJPEGRepresentation(image, 1.0) {
+                    
+                    content.uniqueFileName = generateImageName()
+                    
+                    let fileName = getDocumentsDirectory().appendingPathComponent("\(content.uniqueFileName!).jpeg")
+                    
+                    do {
+                        
+                        try imageData.write(to: fileName)
+                        DataController.sharedInstance.saveContext()
+                        
+                    } catch let error {
+                        self.presentAlert(withTitle: "Whoops!", andMessage: "There was an error: \(error.localizedDescription)", dismissSelf: false)
+                    }
+                }
+                
+            case .error(let error):
+                self.presentAlert(withTitle: "Uh oh!", andMessage: "There was an error downloading the image: \(error.localizedDescription)", dismissSelf: false)
+            }
+        })
+        
+    }
 }

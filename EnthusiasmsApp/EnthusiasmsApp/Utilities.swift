@@ -8,6 +8,11 @@
 
 import UIKit
 
+func generateImageName() -> String {
+    let uuid = UUID().uuidString
+    return uuid
+}
+
 func getDocumentsDirectory() -> URL {
     
     let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -37,7 +42,7 @@ func deleteFile(named: String) {
     
 }
 
-func getImage(imageName: String) -> UIImage? {
+func retrieveImage(imageName: String) -> UIImage? {
     
     let filePath = getDocumentsDirectory().appendingPathComponent("\(imageName).jpeg").path
     

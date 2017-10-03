@@ -328,8 +328,7 @@ extension TeacherCollectionViewController {
             return cell
         }
         
-        cell.thumbnail.image = getImage(imageName: imageName)
-        
+        cell.thumbnail.image = retrieveImage(imageName: imageName)
         
         return cell
         

@@ -82,7 +82,7 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         updateTimer()
         
         // Image Setup
-        guard let imageName = content.uniqueFileName, let image = getImage(imageName: imageName) else {
+        guard let imageName = content.uniqueFileName, let image = retrieveImage(imageName: imageName) else {
             return
         }
         

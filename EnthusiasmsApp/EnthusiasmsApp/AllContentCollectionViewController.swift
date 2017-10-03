@@ -224,7 +224,7 @@ extension AllContentCollectionViewController {
             return cell
         }
         
-        cell.thumbnail.image = getImage(imageName: imageName)
+        cell.thumbnail.image = retrieveImage(imageName: imageName)
         cell.titleLabel.text = content.title
         
         return cell

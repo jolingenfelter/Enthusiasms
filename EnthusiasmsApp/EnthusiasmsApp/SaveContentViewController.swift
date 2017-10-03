@@ -10,13 +10,15 @@ import UIKit
 import CoreData
 
 protocol saveContentViewControllerDelegate {
-    func saveContent(withTitle title: String, andURLString: String)
+    func saveContent()
 }
 
 class SaveContentViewController: UIViewController {
 
     var student: Student?
     var content: Content?
+    
+    var contentTitle: String?
     
     var delegate: saveContentViewControllerDelegate!
     
@@ -147,10 +149,21 @@ class SaveContentViewController: UIViewController {
     }
     
     @objc func saveContentPressed() {
-            
-            self.dismiss(animated: true, completion: nil)
-            
         
+        contentTitle = contentTitleTextField.text
+        
+        guard contentTitle != "" else {
+            presentAlert(withTitle: "Oops!", andMessage: "A title is required.", dismissSelf: false)
+            return
+        }
+        
+        delegate.saveContent()
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        contentTitle = nil
     }
     
 }
