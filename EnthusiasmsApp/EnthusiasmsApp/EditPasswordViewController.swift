@@ -9,14 +9,11 @@
 import UIKit
 
 class EditPasswordViewController: CreatePasswordViewController {
-    
-    let indentedTextField = IndentedTextField(placeHolder: "Current Password", isSecureEntry: true, tag: 3)
+
     lazy var passwordTextField: UITextField = {
-        
-        let textField = self.indentedTextField.textField
+        let textField = IndentedTextField(placeHolder: "Current Password", isSecureEntry: true, tag: 3)
         textField.delegate = self
         return textField
-        
     }()
     
     override func viewDidLoad() {

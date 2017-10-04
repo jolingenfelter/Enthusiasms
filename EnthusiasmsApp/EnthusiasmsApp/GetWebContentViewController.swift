@@ -37,9 +37,7 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
     let imageGetter: ImageGetter
     
     lazy var urlTextField: UITextField = {
-        
-        let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
-        let textField = indentedTextField.textField
+        let textField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
         textField.keyboardType = .URL
         textField.returnKeyType = .go
         textField.autocorrectionType = .no
@@ -50,9 +48,7 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
         textField.autocapitalizationType = .none
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.layer.borderWidth = 0.5
-        
         return textField
-        
     }()
     
     
@@ -101,7 +97,7 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
     
     override func loadView() {

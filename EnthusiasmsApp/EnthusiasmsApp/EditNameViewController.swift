@@ -37,14 +37,11 @@ class EditNameViewController: UIViewController {
         
     }()
     
-    var indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
     lazy var nameTextField: UITextField = {
-        
-        let textField = self.indentedTextField.textField
+        let textField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
         textField.delegate = self
         textField.text = self.student?.name
         return textField
-        
     }()
     
     init(student: Student?, dataController: DataController = DataController.sharedInstance) {
@@ -54,7 +51,7 @@ class EditNameViewController: UIViewController {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
     
     override func viewDidLoad() {

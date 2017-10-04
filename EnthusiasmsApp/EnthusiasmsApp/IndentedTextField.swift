@@ -8,38 +8,42 @@
 
 import UIKit
 
-class IndentedTextField {
-    
-    let textField = UITextField()
+class IndentedTextField: UITextField {
 
     init(placeHolder: String?, isSecureEntry: Bool, tag: Int?) {
         
+        super.init(frame: CGRect.zero)
+        
         // Indent
         let textInset = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
-        textField.leftView = textInset
-        textField.leftViewMode = UITextFieldViewMode.always
+        self.leftView = textInset
+        self.leftViewMode = UITextFieldViewMode.always
         
         // BackgroundColor
-        textField.backgroundColor = .white
+        self.backgroundColor = .white
         
         // Corner Rounding
-        textField.layer.cornerRadius = 5
-        textField.layer.masksToBounds = true
+        self.layer.cornerRadius = 5
+        self.layer.masksToBounds = true
         
         // PlaceHolder
-        textField.placeholder = placeHolder
+        self.placeholder = placeHolder
         
         // SecureEntry
-        textField.isSecureTextEntry = isSecureEntry
+        self.isSecureTextEntry = isSecureEntry
         
         // Tag
         if let tag = tag {
-            textField.tag = tag
+            self.tag = tag
         }
         
         // AutoCorrection
-        textField.autocorrectionType = .no
+        self.autocorrectionType = .no
         
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
 }

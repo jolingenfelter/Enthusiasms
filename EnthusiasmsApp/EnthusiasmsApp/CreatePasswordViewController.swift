@@ -26,12 +26,9 @@ class CreatePasswordViewController: UIViewController {
         
     }()
     
-    let indentedTextField1 = IndentedTextField(placeHolder: "Password", isSecureEntry: true, tag: 1)
-    let indentedTextField2 = IndentedTextField(placeHolder: "Confirm password", isSecureEntry: true, tag: 2)
-    
     lazy var createPasswordTextField: UITextField = {
         
-        let textField = self.indentedTextField1.textField
+        let textField = IndentedTextField(placeHolder: "Password", isSecureEntry: true, tag: 1)
         textField.delegate = self
         self.view.addSubview(textField)
         return textField
@@ -40,7 +37,7 @@ class CreatePasswordViewController: UIViewController {
     
     lazy var confirmPasswordTextField: UITextField = {
         
-        let textField = self.indentedTextField2.textField
+        let textField = IndentedTextField(placeHolder: "Confirm password", isSecureEntry: true, tag: 2)
         textField.delegate = self
         self.view.addSubview(textField)
         return textField

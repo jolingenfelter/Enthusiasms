@@ -21,11 +21,9 @@ class SaveContentViewController: UIViewController {
     
     var delegate: saveContentViewControllerDelegate!
     
-    let indentedTextField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
-    
     lazy var contentTitleTextField: UITextField = {
         
-        let textField = self.indentedTextField.textField
+        let textField = IndentedTextField(placeHolder: nil, isSecureEntry: false, tag: nil)
         textField.delegate = self
         return textField
         

@@ -50,7 +50,7 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError()
     }
     
     override func viewDidLoad() {
