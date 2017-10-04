@@ -39,9 +39,16 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
         
     }()
     
-    lazy var imageGetter: ImageGetter = {
-        return ImageGetter()
-    }()
+   let imageGetter: ImageGetter
+    
+    init(flowLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+        self.imageGetter = imageGetter
+        super.init(collectionViewLayout: flowLayout)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +120,7 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
     }
     
     @objc func addContent() {
-        let getWebContentViewController = GetWebContentViewController()
+        let getWebContentViewController = GetWebContentViewController(student: nil)
         let navigationController = UINavigationController(rootViewController: getWebContentViewController)
         self.present(navigationController, animated: true, completion: nil)
     }
@@ -224,6 +231,11 @@ extension AllContentCollectionViewController {
         
         guard let imageName = content.uniqueFileName else {
             
+            guard let imageURL = getImageURL(forContent: content) else {
+                return cell
+            }
+            
+            saveImageFrom(url: imageURL, forContent: content)
             return cell
         }
         

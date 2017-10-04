@@ -18,7 +18,9 @@ extension DownloadableImage {
     
     func getImageURL(forContent content: Content) -> URL? {
         
-        let contentType = ContentType(rawValue: content.type)!
+        guard let contentType = ContentType(rawValue: content.type) else {
+            return nil
+        }
         
         switch contentType {
             case .Image:

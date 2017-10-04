@@ -14,22 +14,19 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     let student: Student
     
     lazy var fromLibraryMenu: AddContentFromLibraryMenu = {
-        
         let menu = AddContentFromLibraryMenu(student: self.student)
         return menu
-        
     }()
     
     init(student: Student, flowLayout: UICollectionViewFlowLayout) {
         self.student = student
-        super.init(collectionViewLayout: flowLayout)
+        super.init(flowLayout: flowLayout)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         navBarSetup()
@@ -61,7 +58,6 @@ class AddContentFromLibraryViewController: AllContentCollectionViewController {
     }
     
     override func menuButtonSetup() {
-        
         fromLibraryMenu.addContentButton.addTarget(self, action: #selector(addContentPressed), for: .touchUpInside)
         fromLibraryMenu.addContentButton.setTitle("Add Content to \(student.name!)", for: .normal)
         fromLibraryMenu.viewContentButton.addTarget(self, action: #selector(viewContent), for: .touchUpInside)

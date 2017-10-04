@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class TeacherCollectionViewController: UICollectionViewController {
+class TeacherCollectionViewController: UICollectionViewController, DownloadableImage {
     
     let student: Student
+    let imageGetter: ImageGetter
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
@@ -30,11 +31,10 @@ class TeacherCollectionViewController: UICollectionViewController {
         return label
     }()
     
-    init(student: Student, collectionViewLayout: UICollectionViewFlowLayout) {
-        
+    init(student: Student, collectionViewLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
         self.student = student
+        self.imageGetter = imageGetter
         super.init(collectionViewLayout: collectionViewLayout)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -324,6 +324,11 @@ extension TeacherCollectionViewController {
         
         guard let imageName = content.uniqueFileName else {
             
+            guard let imageURL = getImageURL(forContent: content) else {
+                return cell
+            }
+            
+            saveImageFrom(url: imageURL, forContent: content)
             return cell
         }
         

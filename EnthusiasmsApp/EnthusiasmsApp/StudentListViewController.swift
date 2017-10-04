@@ -161,7 +161,7 @@ class StudentListViewController: UITableViewController {
         flowLayout.itemSize = CGSize(width: 300, height: 300)
         flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
 
-        let allContentViewController = AllContentCollectionViewController(collectionViewLayout: flowLayout)
+        let allContentViewController = AllContentCollectionViewController(flowLayout: flowLayout)
         
         self.navigationController?.pushViewController(allContentViewController, animated: true)
     }

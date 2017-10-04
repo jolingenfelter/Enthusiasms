@@ -33,9 +33,7 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
         return saveContentVC
     }()
     
-    lazy var imageGetter: ImageGetter = {
-        return ImageGetter()
-    }()
+    let imageGetter: ImageGetter
     
     lazy var urlTextField: UITextField = {
         
@@ -94,9 +92,14 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
-    convenience init(student: Student?) {
-        self.init(nibName: nil, bundle: nil)
+    init(student: Student?, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
         self.student = student
+        self.imageGetter = imageGetter
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func loadView() {
