@@ -33,6 +33,7 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
         return saveContentVC
     }()
     
+    let dataController: DataController
     let imageGetter: ImageGetter
     
     lazy var urlTextField: UITextField = {
@@ -92,9 +93,10 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
     
     let getImageJavaScript = "function GetImgSourceAtPoint(x,y) { var msg = ''; var e = document.elementFromPoint(x,y); while (e) { if (e.tagName == 'IMG') { msg += e.src; break; } e = e.parentNode; } return msg; }"
     
-    init(student: Student?, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+    init(student: Student?, imageGetter: ImageGetter = ImageGetter.sharedInstance, dataController: DataController = DataController.sharedInstance) {
         self.student = student
         self.imageGetter = imageGetter
+        self.dataController = dataController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -427,7 +429,7 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
     
     func saveContent() {
         
-        guard let newContent = NSEntityDescription.insertNewObject(forEntityName: "Content", into: DataController.sharedInstance.managedObjectContext) as? Content, let contentType = contentType, let contentURL = contentURL else {
+        guard let newContent = NSEntityDescription.insertNewObject(forEntityName: "Content", into: dataController.managedObjectContext) as? Content, let contentType = contentType, let contentURL = contentURL else {
             presentAlert(withTitle: "Whoops!", andMessage: "Something went wrong.", dismissSelf: false)
             return
         }
@@ -443,7 +445,7 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
             newContent.addToStudentContent(student)
         }
         
-        DataController.sharedInstance.saveContext()
+        dataController.saveContext()
         
         // Download ContentImage
         

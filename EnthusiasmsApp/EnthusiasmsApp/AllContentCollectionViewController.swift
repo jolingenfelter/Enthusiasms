@@ -13,11 +13,13 @@ public let reuseIdentifier = "Cell"
 
 class AllContentCollectionViewController: UICollectionViewController, DownloadableImage {
     
+    let dataController: DataController
+    
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
         let request: NSFetchRequest<Content> = Content.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
         request.sortDescriptors = [sortDescriptor]
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let managedObjectContext = self.dataController.managedObjectContext
         let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return controller
     }()
@@ -41,8 +43,9 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
     
    let imageGetter: ImageGetter
     
-    init(flowLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+    init(flowLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance, dataController: DataController = DataController.sharedInstance) {
         self.imageGetter = imageGetter
+        self.dataController = dataController
         super.init(collectionViewLayout: flowLayout)
     }
     
@@ -152,7 +155,7 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
         let studentAddingContentTo = studentListPopover.selectedStudent
         studentAddingContentTo?.addToContents(selectedContent!)
         
-        DataController.sharedInstance.saveContext()
+        dataController.saveContext()
     }
     
     @objc func changeTitlePressed() {
@@ -175,8 +178,8 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
             
             if let fileName = self.selectedContent?.uniqueFileName {
                 
-                DataController.sharedInstance.managedObjectContext.delete(self.selectedContent!)
-                DataController.sharedInstance.saveContext()
+                dataController.managedObjectContext.delete(self.selectedContent!)
+                dataController.saveContext()
                 
                 deleteFile(named: fileName)
             }

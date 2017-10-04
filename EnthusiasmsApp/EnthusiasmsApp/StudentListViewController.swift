@@ -11,6 +11,8 @@ import CoreData
 
 class StudentListViewController: UITableViewController {
     
+    let dataController: DataController
+    
     lazy var settingsButton: UIBarButtonItem = {
         
         let button = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
@@ -52,11 +54,20 @@ class StudentListViewController: UITableViewController {
         let request: NSFetchRequest<Student> = Student.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [sortDescriptor]
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let managedObjectContext = dataController.managedObjectContext
         let controller = NSFetchedResultsController(fetchRequest: request, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         return controller
     }()
-
+    
+    init(dataController: DataController = DataController.sharedInstance) {
+        self.dataController = dataController
+        super.init(style: UITableViewStyle.plain)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -217,8 +228,8 @@ extension StudentListViewController {
         
         let student = fetchedResultsController.object(at: indexPath)
         
-        DataController.sharedInstance.managedObjectContext.delete(student)
-        DataController.sharedInstance.saveContext()
+        dataController.managedObjectContext.delete(student)
+        dataController.saveContext()
     }
 
     

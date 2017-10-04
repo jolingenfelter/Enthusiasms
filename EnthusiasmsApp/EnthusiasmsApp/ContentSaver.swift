@@ -7,18 +7,18 @@
 //
 
 import Foundation
-import UIKit
-
-import Foundation
 import CoreData
 import UIKit
 
-protocol DownloadableImage {
-    var imageGetter: ImageGetter { get }
-    var dataController: DataController { get }
-}
-
-extension DownloadableImage {
+class ContentSaver {
+    
+    let imageGetter: ImageGetter
+    let dataController: DataController
+    
+    init(imageGetter: ImageGetter = ImageGetter.sharedInstance, dataController: DataController = DataController.sharedInstance) {
+        self.imageGetter = imageGetter
+        self.dataController = dataController
+    }
     
     func getImageURL(forContent content: Content) -> URL? {
         
@@ -62,16 +62,17 @@ extension DownloadableImage {
                     do {
                         
                         try imageData.write(to: fileName)
-                        self.dataController.saveContext()
+                        DataController.sharedInstance.saveContext()
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
                         
                     } catch let error {
-                        self.dataController.managedObjectContext.delete(content)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorSavingImage"), object: nil, userInfo: ["message" : "There was an error saving the image: \(error.localizedDescription)"])
                     }
                 }
                 
             case .error(let error):
+                self.dataController.managedObjectContext.delete(content)
+                self.dataController.saveContext()
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorDownloadingImage"), object: nil, userInfo: ["message" : "There was an error downloading the image: \(error.localizedDescription)"])
             }
         })
