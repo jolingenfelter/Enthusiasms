@@ -11,68 +11,52 @@ import UIKit
 class WebViewHelpViewController: UIViewController {
     
     lazy var titleLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "How do I save content?"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 24)
         self.view.addSubview(label)
         label.textColor = .white
-        
         return label
-        
     }()
     
     lazy var picturesLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "Pictures:"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         self.view.addSubview(label)
         label.textColor = .white
-        
         return label
-    
     }()
     
     lazy var picturesDescription: UILabel = {
-        
         let label = UILabel()
         label.text = "To save an image, navigate to the page with the image.  Then, tap and hold on the image.  A popup will appear allowing you to give it a title and save.  Note, images are downloaded and saved on your device."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
         label.textColor = .white
         self.view.addSubview(label)
-        
-        
         return label
-        
     }()
     
     lazy var videoLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "Videos:"
         label.textAlignment = .center
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textColor = .white
         self.view.addSubview(label)
-        
         return label
-        
     }()
     
     lazy var videoDescription: UILabel = {
-        
         let label = UILabel()
         label.text = "Currently, Enthusiasms only supports Youtube videos.  To save a video, in this browser, navigate to Youtube and then to the page of the video.  Next, tap and hold on the video.  A popup will appear allowing you to give it a title and save.  Please note, that Enthusiasms does not currently download videos.  Thus, video content will not be available offline."
         label.numberOfLines = 0
         label.font = label.font.withSize(14)
         label.textColor = .white
         self.view.addSubview(label)
-
-        
         return label
         
     }()

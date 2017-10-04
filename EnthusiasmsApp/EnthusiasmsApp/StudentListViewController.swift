@@ -14,40 +14,28 @@ class StudentListViewController: UITableViewController {
     let dataController: DataController
     
     lazy var settingsButton: UIBarButtonItem = {
-        
         let button = UIBarButtonItem(title: "Settings", style: .plain, target: self, action: #selector(settingsWasPressed))
-        
         return button
-        
     }()
     
     lazy var addButton: UIBarButtonItem = {
-        
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addStudentPressed))
-        
         return button
-        
     }()
     
     lazy var allContentButton: UIBarButtonItem = {
-        
         let button = UIBarButtonItem(title: "All Content", style: .plain, target: self, action: #selector(allContentPressed))
-        
         return button
-        
     }()
     
     lazy var instructionsLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "Tap '+' to add a child"
         label.font = label.font.withSize(40)
         label.backgroundColor = UIColor.white
         label.textColor = UIColor.lightGray
         self.view.addSubview(label)
-        
         return label
-        
     }()
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Student> in

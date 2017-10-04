@@ -310,13 +310,11 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
 extension TeacherCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return 1
     }
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return contentsArray.count
     }
     
@@ -334,6 +332,7 @@ extension TeacherCollectionViewController {
             }
             
             saveImageFrom(url: imageURL, forContent: content)
+            
             return cell
         }
         
@@ -344,7 +343,6 @@ extension TeacherCollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         selectedContent = contentsArray[indexPath.row]
         showMenufor(objectAtIndexPath: indexPath)
     }

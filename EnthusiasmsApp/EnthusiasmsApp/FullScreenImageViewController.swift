@@ -143,11 +143,8 @@ class FullScreenImageViewController: UIViewController, UIScrollViewDelegate {
         let enterPasswordVC = EnterPasswordViewController()
         
         if rewardTime == 0 {
-            
             timer.invalidate()
-            
             self.present(enterPasswordVC, animated: true, completion: nil)
-            
         }
         
     }

@@ -12,7 +12,6 @@ import CoreData
 class HomeViewController: UIViewController {
 
     lazy var  childButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Child", for: .normal)
         button.titleLabel?.textColor = UIColor.white
@@ -22,13 +21,10 @@ class HomeViewController: UIViewController {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(childPressed), for: .touchUpInside)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var caretakerButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Caretaker", for: .normal)
         button.titleLabel?.textColor = UIColor.white
@@ -38,22 +34,17 @@ class HomeViewController: UIViewController {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(caretakerPressed), for: .touchUpInside)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var enthusiasmsLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "Enthusiasms"
         label.adjustsFontSizeToFitWidth = true
         label.textColor = UIColor.white
         label.font = label.font.withSize(130)
         self.view.addSubview(label)
-        
         return label
-        
     }()
     
     var fetchedStudents: [Student] = []

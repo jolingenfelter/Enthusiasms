@@ -13,57 +13,43 @@ class TeacherCellMenu: UIViewController {
     let studentName: String
     
     lazy var removeButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Remove from \(self.studentName)", for: .normal)
         button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.setTitleColor(.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var separator1: UIView = {
-        
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         self.view.addSubview(view)
-        
         return view
         
     }()
     
     lazy var viewContentButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("View", for: .normal)
         button.setTitleColor(.black, for: .normal)
         self.view.addSubview(button)
-
         return button
-        
     }()
     
     lazy var separator2: UIView = {
-        
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         self.view.addSubview(view)
-        
         return view
-        
     }()
     
     lazy var changeTitleButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Change Title", for: .normal)
         button.setTitleColor(.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     
@@ -139,7 +125,6 @@ class TeacherCellMenu: UIViewController {
             changeTitleButton.topAnchor.constraint(equalTo: separator2.bottomAnchor),
             changeTitleButton.heightAnchor.constraint(equalToConstant: buttonHeight),
             ])
-
     }
 
     override func didReceiveMemoryWarning() {

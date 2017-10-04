@@ -11,53 +11,39 @@ import UIKit
 class AllContentMenu: UIViewController {
     
     lazy var viewContentButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("View", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var addToStudentButton:  UIButton = {
-        
         let button = UIButton()
         button.setTitle("Add to student", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var changeTitleButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Change title", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var deleteButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Delete Content", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {

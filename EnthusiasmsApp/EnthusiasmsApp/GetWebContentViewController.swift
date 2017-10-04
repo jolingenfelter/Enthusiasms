@@ -60,17 +60,13 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
     }()
     
     lazy var forwardButton: UIBarButtonItem = {
-        
         let button = UIBarButtonItem(title: ">", style: .plain, target: self, action: #selector(forwardPressed))
         return button
-        
     }()
     
     lazy var refreshButton: UIBarButtonItem = {
-        
         let button = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshPressed))
         return button
-        
     }()
     
     lazy var toolbar: UIToolbar = {

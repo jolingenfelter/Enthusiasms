@@ -19,10 +19,8 @@ class StudentCollectionViewController: TeacherCollectionViewController {
     let addTimePasswordCheck = AddTimePasswordCheckViewController()
     
     lazy var timeDisplay: TimeDisplay = {
-        
         let timeDisplay = TimeDisplay(timeInSeconds: self.rewardTime)
         return timeDisplay
-        
     }()
     
     override func viewDidLoad() {

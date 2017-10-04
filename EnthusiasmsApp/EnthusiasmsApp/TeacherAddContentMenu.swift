@@ -11,41 +11,30 @@ import UIKit
 class TeacherAddContentMenu: UIViewController {
     
     lazy var contentFromWebButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Web Content", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var separator: UIView = {
-        
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         self.view.addSubview(view)
-        
         return view
-        
     }()
     
     lazy var contentFromLibraryButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Content from library", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {

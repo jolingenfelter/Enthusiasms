@@ -13,34 +13,25 @@ class AddContentFromLibraryMenu: UIViewController {
     let student: Student
     
     lazy var addContentButton: UIButton = {
-        
         let button = UIButton()
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var separator: UIView = {
-        
         let view = UIView()
         view.backgroundColor = UIColor.lightGray
         self.view.addSubview(view)
-        
         return view
-        
     }()
     
     lazy var viewContentButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("View", for: .normal)
         button.setTitleColor(.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
 
     

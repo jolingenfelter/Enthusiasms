@@ -11,21 +11,16 @@ import UIKit
 class TeacherSettingsMenu: UIViewController {
     
     lazy var editNameButton : UIButton = {
-        
         let button = UIButton()
         button.setTitle("Edit Student Name", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
