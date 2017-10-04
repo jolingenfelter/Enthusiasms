@@ -11,7 +11,6 @@ import UIKit
 class CreatePasswordViewController: UIViewController {
     
     lazy var titleLabel: UILabel = {
-        
         let label = UILabel()
         label.numberOfLines = 0
         let welcome = "Welcome to Enthusiasms!"
@@ -21,31 +20,24 @@ class CreatePasswordViewController: UIViewController {
         label.textColor = UIColor.white
         label.font = label.font.withSize(40)
         self.view.addSubview(label)
-        
         return label
-        
     }()
     
     lazy var createPasswordTextField: UITextField = {
-        
         let textField = IndentedTextField(placeHolder: "Password", isSecureEntry: true, tag: 1)
         textField.delegate = self
         self.view.addSubview(textField)
         return textField
-        
     }()
     
     lazy var confirmPasswordTextField: UITextField = {
-        
         let textField = IndentedTextField(placeHolder: "Confirm password", isSecureEntry: true, tag: 2)
         textField.delegate = self
         self.view.addSubview(textField)
         return textField
-        
     }()
     
     lazy var getStartedButton: UIButton = {
-        
         let button = UIButton()
         button.layer.cornerRadius = 5.0
         button.layer.masksToBounds = true
@@ -53,9 +45,7 @@ class CreatePasswordViewController: UIViewController {
         button.setTitle("Get Started!", for: .normal)
         button.addTarget(self, action: #selector(CreatePasswordViewController.getStartedButtonPressed), for: .touchUpInside)
         self.view.addSubview(button)
-        
         return button
-        
     }()
 
     override func viewDidLoad() {

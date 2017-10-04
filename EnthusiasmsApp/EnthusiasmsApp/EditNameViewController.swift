@@ -15,16 +15,13 @@ class EditNameViewController: UIViewController {
     let dataController: DataController
     
     lazy var nameLabel: UILabel = {
-        
         let label = UILabel()
         label.text = "name:"
         label.textColor = .white
         return label
-        
     }()
     
     lazy var saveChangesButton: UIButton = {
-        
         let button = UIButton()
         button.layer.cornerRadius = 5.0
         button.layer.masksToBounds = true
@@ -32,9 +29,7 @@ class EditNameViewController: UIViewController {
         button.setTitle("Save Changes", for: .normal)
         button.addTarget(self, action: #selector(saveChanges), for: .touchUpInside)
         self.view.addSubview(button)
-        
         return button
-        
     }()
     
     lazy var nameTextField: UITextField = {

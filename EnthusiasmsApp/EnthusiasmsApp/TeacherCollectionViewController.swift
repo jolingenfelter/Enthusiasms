@@ -20,15 +20,12 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
     var selectedContent: Content?
     
     lazy var instructionsLabel: UILabel = {
-        
         let label = UILabel()
-        
         label.text = "Tap '+' to add content"
         label.textColor = UIColor.white
         label.font = label.font.withSize(40)
         label.textAlignment = .center
         self.view.addSubview(label)
-        
         return label
     }()
     

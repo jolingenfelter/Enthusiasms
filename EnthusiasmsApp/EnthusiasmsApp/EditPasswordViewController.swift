@@ -47,10 +47,8 @@ class EditPasswordViewController: CreatePasswordViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        
         super.viewDidLayoutSubviews()
         passwordTextFieldConstraints()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,7 +102,6 @@ extension EditPasswordViewController {
             }
             
         } else if textField.tag == 1 {
-            
             
             if let nextTextField = textField.superview?.viewWithTag(2) {
                 nextTextField.becomeFirstResponder()

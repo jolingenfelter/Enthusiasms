@@ -17,19 +17,15 @@ class AddTimeViewController: UIViewController {
     let navigationBar = UINavigationBar()
     
     lazy var timePicker: UIPickerView = {
-        
         let picker = UIPickerView()
         picker.dataSource = self
         picker.delegate = self
         picker.backgroundColor = UIColor.white
         self.view.addSubview(picker)
-        
         return picker
-        
     }()
     
     lazy var updateTimeButton: UIButton = {
-        
         let button = UIButton()
         button.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
         button.setTitle("Update Time", for: .normal)
@@ -38,9 +34,7 @@ class AddTimeViewController: UIViewController {
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(updateTime), for: .touchUpInside)
         self.view.addSubview(button)
-        
         return button
-        
     }()
 
     override func viewDidLoad() {

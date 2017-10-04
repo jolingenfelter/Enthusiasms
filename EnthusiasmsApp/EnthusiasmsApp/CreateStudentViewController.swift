@@ -13,9 +13,7 @@ class CreateStudentViewController: EditNameViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         saveChangesButton.setTitle("Add Child", for: .normal)
-        
     }
 
     override func didReceiveMemoryWarning() {

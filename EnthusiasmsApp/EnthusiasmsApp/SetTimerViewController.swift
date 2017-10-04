@@ -15,19 +15,15 @@ class SetTimerViewController: UIViewController {
     let minutesArray = [Int](1...60)
     
     lazy var timePicker: UIPickerView = {
-        
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
         picker.backgroundColor = UIColor.white
         self.view.addSubview(picker)
-        
         return picker
-        
     }()
     
     lazy var startButton: UIButton = {
-        
         let button = UIButton()
         button.setTitle("Start!", for: .normal)
         button.addTarget(self, action: #selector(startPressed), for: .touchUpInside)
@@ -35,9 +31,7 @@ class SetTimerViewController: UIViewController {
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         self.view.addSubview(button)
-        
         return button
-        
     }()
         
     override func viewDidLoad() {
@@ -56,7 +50,6 @@ class SetTimerViewController: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         appDelegate.rewardTime = rewardTime
 
-        
     }
     
     override func viewDidLayoutSubviews() {

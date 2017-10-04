@@ -26,7 +26,6 @@ class TeacherCellMenu: UIViewController {
         view.backgroundColor = UIColor.lightGray
         self.view.addSubview(view)
         return view
-        
     }()
     
     lazy var viewContentButton: UIButton = {

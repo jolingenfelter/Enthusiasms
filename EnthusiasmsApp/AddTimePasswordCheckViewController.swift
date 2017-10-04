@@ -11,13 +11,11 @@ import UIKit
 class AddTimePasswordCheckViewController: EnterPasswordViewController {
     
     let navigationBar: UINavigationBar = {
-        
         let navigationBar = UINavigationBar()
         let navigationItem = UINavigationItem(title: "Enter Password")
         let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
         navigationItem.leftBarButtonItem = cancelButton
         navigationBar.items = [navigationItem]
-        
         return navigationBar
     }()
     
