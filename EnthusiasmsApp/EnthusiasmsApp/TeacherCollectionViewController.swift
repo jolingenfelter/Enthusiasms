@@ -13,6 +13,7 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
     
     let student: Student
     let imageGetter: ImageGetter
+    let dataController: DataController
     var settingsBarButton = UIBarButtonItem()
     var contentsArray = [Content]()
     var addContentBarButton = UIBarButtonItem()
@@ -31,9 +32,10 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
         return label
     }()
     
-    init(student: Student, collectionViewLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance) {
+    init(student: Student, collectionViewLayout: UICollectionViewFlowLayout, imageGetter: ImageGetter = ImageGetter.sharedInstance, dataController: DataController = DataController.sharedInstance) {
         self.student = student
         self.imageGetter = imageGetter
+        self.dataController = dataController
         super.init(collectionViewLayout: collectionViewLayout)
     }
     
@@ -261,7 +263,7 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
             
             selectedContent.removeFromStudentContent(self.student)
             NotificationCenter.default.post(name: Notification.Name(rawValue: "ContentUpdate"), object: nil)
-            DataController.sharedInstance.saveContext()
+            self.dataController.saveContext()
             self.presentedViewController?.dismiss(animated: true, completion: nil)
             
         }

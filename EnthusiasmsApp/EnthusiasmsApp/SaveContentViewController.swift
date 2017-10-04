@@ -17,7 +17,6 @@ class SaveContentViewController: UIViewController {
 
     var student: Student?
     var content: Content?
-    
     var contentTitle: String?
     
     var delegate: saveContentViewControllerDelegate!

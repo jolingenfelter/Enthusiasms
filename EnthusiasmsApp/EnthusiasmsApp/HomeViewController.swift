@@ -60,6 +60,17 @@ class HomeViewController: UIViewController {
     
     let studentListPopover = StudentListPopover()
     
+    let dataController: DataController
+    
+    init(dataController: DataController = DataController.sharedInstance) {
+        self.dataController = dataController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red: 0/255, green: 216/255, blue: 193/255, alpha: 1.0)
@@ -78,7 +89,7 @@ class HomeViewController: UIViewController {
         
         self.navigationController?.isNavigationBarHidden = true
         
-        let managedObjectContext = DataController.sharedInstance.managedObjectContext
+        let managedObjectContext = dataController.managedObjectContext
         let request: NSFetchRequest<NSFetchRequestResult> = Student.fetchRequest()
         
         do {

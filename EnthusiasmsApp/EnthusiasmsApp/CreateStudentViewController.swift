@@ -31,7 +31,7 @@ class CreateStudentViewController: EditNameViewController {
             let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: dataController.managedObjectContext) as! Student
             student.name = nameTextField.text
             
-            DataController.sharedInstance.saveContext()
+            dataController.saveContext()
             dismiss(animated: true, completion: nil)
             
         }

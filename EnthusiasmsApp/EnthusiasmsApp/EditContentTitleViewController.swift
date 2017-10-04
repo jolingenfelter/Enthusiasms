@@ -9,7 +9,19 @@
 import UIKit
 
 class EditContentTitleViewController: SaveContentViewController {
-
+    
+    let dataController: DataController
+    
+    init(content: Content?, dataController: DataController = DataController.sharedInstance) {
+        self.dataController = dataController
+        super.init(student: nil)
+        self.content = content
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +55,7 @@ class EditContentTitleViewController: SaveContentViewController {
             
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentTitleUpdate"), object: nil)
             
-            DataController.sharedInstance.saveContext()
+           dataController.saveContext()
             
             self.dismiss(animated: true, completion: nil)
         }
