@@ -50,7 +50,7 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
@@ -178,8 +178,8 @@ class AllContentCollectionViewController: UICollectionViewController, Downloadab
             
             if let fileName = self.selectedContent?.uniqueFileName {
                 
-                dataController.managedObjectContext.delete(self.selectedContent!)
-                dataController.saveContext()
+                self.dataController.managedObjectContext.delete(self.selectedContent!)
+                self.dataController.saveContext()
                 
                 deleteFile(named: fileName)
             }
