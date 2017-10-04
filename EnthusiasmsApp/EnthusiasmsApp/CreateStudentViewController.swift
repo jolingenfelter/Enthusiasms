@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 class CreateStudentViewController: EditNameViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,7 +28,7 @@ class CreateStudentViewController: EditNameViewController {
             noNameAlert()
         } else {
             
-            let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: DataController.sharedInstance.managedObjectContext) as! Student
+            let student = NSEntityDescription.insertNewObject(forEntityName: "Student", into: dataController.managedObjectContext) as! Student
             student.name = nameTextField.text
             
             DataController.sharedInstance.saveContext()

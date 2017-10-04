@@ -150,7 +150,7 @@ class StudentListViewController: UITableViewController {
     }
     
     @objc func addStudentPressed() {
-        let createStudentViewController = CreateStudentViewController()
+        let createStudentViewController = CreateStudentViewController(student: nil)
         createStudentViewController.modalPresentationStyle = UIModalPresentationStyle.formSheet
         self.present(createStudentViewController, animated: false, completion: nil)
     }

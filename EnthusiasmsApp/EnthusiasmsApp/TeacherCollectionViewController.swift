@@ -140,7 +140,7 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
     
     @objc func editStudentName() {
         
-        let editNameViewController = EditNameViewController()
+        let editNameViewController = EditNameViewController(student: student)
         editNameViewController.modalTransitionStyle = .coverVertical
         editNameViewController.modalPresentationStyle = .formSheet
         editNameViewController.student = student

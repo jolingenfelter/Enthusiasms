@@ -12,6 +12,7 @@ import CoreData
 class EditNameViewController: UIViewController {
     
     var student: Student?
+    let dataController: DataController
     
     lazy var nameLabel: UILabel = {
         
@@ -45,6 +46,16 @@ class EditNameViewController: UIViewController {
         return textField
         
     }()
+    
+    init(student: Student?, dataController: DataController = DataController.sharedInstance) {
+        self.student = student
+        self.dataController = dataController
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +129,7 @@ class EditNameViewController: UIViewController {
             noNameAlert()
         } else {
             student?.name = nameTextField.text
-            DataController.sharedInstance.saveContext()
+            dataController.saveContext()
             NotificationCenter.default.post(name: Notification.Name(rawValue: "NameUpdate"), object: nil)
             dismiss(animated: true, completion: nil)
         }
