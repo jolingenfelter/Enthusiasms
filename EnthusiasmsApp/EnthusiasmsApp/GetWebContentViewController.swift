@@ -305,13 +305,14 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
                 } else {
                     
                     let point = sender.location(in: webView)
-                    let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(point.x),\(point.y));")
-        
-                    if imageSRC != "" {
-                        self.contentURL = URL(string: imageSRC!)
-                        contentType = ContentType.Image
-                        present(saveContentViewController, animated: true, completion: nil)
+                    
+                    guard let imageSRC = webView.stringByEvaluatingJavaScript(from: "GetImgSourceAtPoint(\(point.x),\(point.y));"), imageSRC != "" else {
+                        return
                     }
+        
+                    self.contentURL = URL(string: imageSRC)
+                    contentType = ContentType.Image
+                    present(saveContentViewController, animated: true, completion: nil)
                     
                 }
             }
