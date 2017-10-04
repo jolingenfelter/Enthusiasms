@@ -60,12 +60,12 @@ extension DownloadableImage {
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
                         
                     } catch let error {
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorSavingImage"), object: nil, userInfo: ["Whoopsi" : "There was an error saving the image: \(error)"])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorSavingImage"), object: nil, userInfo: ["message" : "There was an error saving the image: \(error.localizedDescription)"])
                     }
                 }
                 
             case .error(let error):
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorDownloadingImage"), object: nil, userInfo: ["Ooops" : "There was an error downloading the image: \(error)"])
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ErrorDownloadingImage"), object: nil, userInfo: ["message" : "There was an error downloading the image: \(error.localizedDescription)"])
             }
         })
         

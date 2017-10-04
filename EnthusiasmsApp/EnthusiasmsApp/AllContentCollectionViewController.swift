@@ -223,7 +223,7 @@ extension AllContentCollectionViewController {
         let content = fetchedResultsController.object(at: indexPath) as Content
         
         guard let imageName = content.uniqueFileName else {
-            save
+            
             return cell
         }
         

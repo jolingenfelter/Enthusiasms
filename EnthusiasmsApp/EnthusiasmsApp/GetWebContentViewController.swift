@@ -123,6 +123,15 @@ class GetWebContentViewController: UIViewController, DownloadableImage {
         longPressGestureRecognizer.delegate = self
         webView.addGestureRecognizer(longPressGestureRecognizer)
         
+        // Notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(alertForImageError(notification:)), name: NSNotification.Name(rawValue: "ErrorSavingImage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(alertForImageError(notification:)), name: NSNotification.Name(rawValue: "ErrorDownloadingImage"), object: nil)
+        
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ErrorSavingImage"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ErrorDownloadingImage"), object: nil)
     }
     
     func navBarSetup() {
@@ -458,5 +467,11 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
         // Reset contentType and urlString for next content
         self.contentType = nil
         self.contentURL = nil
+    }
+    
+    @objc func alertForImageError(notification: NSNotification) {
+        if let userInfo = notification.userInfo, let message = userInfo["message"] as?  String {
+            presentAlert(withTitle: "Uh oh!", andMessage: message, dismissSelf: false)
+        }
     }
 }
