@@ -97,13 +97,16 @@ class TeacherCollectionViewController: UICollectionViewController, DownloadableI
         
         contentsArray = contents.sortedArray(using: [NSSortDescriptor.init(key: "title", ascending: true)]) as! [Content]
         
-        if contentsArray.count == 0 {
-            instructionsLabel.isHidden = false
-        } else {
-            instructionsLabel.isHidden = true
+        DispatchQueue.main.async {
+            
+            if self.contentsArray.count == 0 {
+                self.instructionsLabel.isHidden = false
+            } else {
+                self.instructionsLabel.isHidden = true
+            }
+            
+            self.collectionView?.reloadData()
         }
-        
-        collectionView?.reloadData()
     }
     
     // MARK: NavBar Setup
