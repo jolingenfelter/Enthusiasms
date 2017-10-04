@@ -11,7 +11,7 @@ import CoreData
 
 public let reuseIdentifier = "Cell"
 
-class AllContentCollectionViewController: UICollectionViewController {
+class AllContentCollectionViewController: UICollectionViewController, DownloadableImage {
     
     lazy var fetchedResultsController = { () -> NSFetchedResultsController<Content> in
         let request: NSFetchRequest<Content> = Content.fetchRequest()
@@ -37,6 +37,10 @@ class AllContentCollectionViewController: UICollectionViewController {
         
         return label
         
+    }()
+    
+    lazy var imageGetter: ImageGetter = {
+        return ImageGetter()
     }()
     
     override func viewDidLoad() {
@@ -219,8 +223,7 @@ extension AllContentCollectionViewController {
         let content = fetchedResultsController.object(at: indexPath) as Content
         
         guard let imageName = content.uniqueFileName else {
-            let imageSaver = ContentImageSaver(content: content)
-            imageSaver.downloadNameAndSaveImage()
+            save
             return cell
         }
         

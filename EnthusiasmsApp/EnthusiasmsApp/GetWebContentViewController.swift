@@ -15,7 +15,7 @@ enum ContentType: Int16 {
     case Video = 2
 }
 
-class GetWebContentViewController: UIViewController {
+class GetWebContentViewController: UIViewController, DownloadableImage {
     
     var webView = UIWebView()
     let progressView = UIProgressView()
@@ -430,6 +430,8 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
             newContent.addToStudentContent(student)
         }
         
+        DataController.sharedInstance.saveContext()
+        
         // Download ContentImage
         
         if contentType == .Image {
@@ -448,42 +450,13 @@ extension GetWebContentViewController: saveContentViewControllerDelegate {
             guard let thumbnailURL = URL(string: thumbnailString) else {
                 return
             }
+            
+            newContent.thumbnailURL = thumbnailString
             saveImageFrom(url: thumbnailURL, forContent: newContent)
         }
         
         // Reset contentType and urlString for next content
         self.contentType = nil
         self.contentURL = nil
-    }
-    
-    func saveImageFrom(url: URL, forContent content: Content) {
-        
-        imageGetter.getImage(from: url, completion: { (result) in
-            
-            switch result {
-            case .ok(let image):
-                
-                if let imageData = UIImageJPEGRepresentation(image, 1.0) {
-                    
-                    content.uniqueFileName = generateImageName()
-                    
-                    let fileName = getDocumentsDirectory().appendingPathComponent("\(content.uniqueFileName!).jpeg")
-                    
-                    do {
-                        
-                        try imageData.write(to: fileName)
-                        DataController.sharedInstance.saveContext()
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "ContentUpdate"), object: nil)
-                        
-                    } catch let error {
-                        self.presentAlert(withTitle: "Whoops!", andMessage: "There was an error: \(error.localizedDescription)", dismissSelf: false)
-                    }
-                }
-                
-            case .error(let error):
-                self.presentAlert(withTitle: "Uh oh!", andMessage: "There was an error downloading the image: \(error.localizedDescription)", dismissSelf: false)
-            }
-        })
-        
     }
 }

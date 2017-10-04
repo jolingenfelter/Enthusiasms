@@ -323,8 +323,7 @@ extension TeacherCollectionViewController {
         cell.titleLabel.text = content.title!
         
         guard let imageName = content.uniqueFileName else {
-            let imageSaver = ContentImageSaver(content: content)
-            imageSaver.downloadNameAndSaveImage()
+            
             return cell
         }
         
