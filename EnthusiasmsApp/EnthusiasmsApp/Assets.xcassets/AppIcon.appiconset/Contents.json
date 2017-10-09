@@ -53,6 +53,12 @@
       "idiom" : "ipad",
       "filename" : "Icon167 1-21-17, 5-49-31 PM.png",
       "scale" : "2x"
+    },
+    {
+      "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "Icon1024 1-21-17, 5-49-31 PM.png",
+      "scale" : "1x"
     }
   ],
   "info" : {
