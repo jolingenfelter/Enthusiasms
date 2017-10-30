@@ -417,7 +417,7 @@ extension GetWebContentViewController: UIGestureRecognizerDelegate {
 
 // MARK: - SaveContentViewControllerDelegate
 
-extension GetWebContentViewController: saveContentViewControllerDelegate {
+extension GetWebContentViewController: SaveContentViewControllerDelegate {
     
     func saveContent() {
         

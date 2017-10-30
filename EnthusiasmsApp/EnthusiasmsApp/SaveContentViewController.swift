@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-protocol saveContentViewControllerDelegate {
+protocol SaveContentViewControllerDelegate {
     func saveContent()
 }
 
@@ -19,7 +19,7 @@ class SaveContentViewController: UIViewController {
     var content: Content?
     var contentTitle: String?
     
-    var delegate: saveContentViewControllerDelegate!
+    var delegate: SaveContentViewControllerDelegate!
     
     lazy var contentTitleTextField: UITextField = {
         
